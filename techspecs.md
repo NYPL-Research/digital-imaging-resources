@@ -1,13 +1,5 @@
 # Technical Specifications for Digital Images
 
-- [Bound Volumes](#bound-volumes): Rare and Special Materials + General Collections
-- [Documents (Unbound)](#documents-unbound): Manuscripts and Other Rare and Special Materials + General Collections + Modern Textual Records
-- [Oversized Items](#oversized-items): Maps, Posters, and Other Materials + Newspapers
-- [Photographs](#photographs)
-- [Prints + Paintings and Other Two-Dimensional Art](#prints-paintings-etc)
-- [Transmissive Materials](#transmissive-materials): Slides, negatives, transparencies, microformatsa
-
-
 ## Reflective Materials
 For every capture, the photographer will produce 2 derivative tiff files:
   - The _Primary File_ (u) is saved in 16-bit Adobe RGB and includes an object level target (OLT). This is considered the preservation file.
