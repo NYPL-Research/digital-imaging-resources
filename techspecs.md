@@ -1,4 +1,4 @@
-# Technical Specifications for Digital Imaging Assets
+# Technical Specifications for Digital Images
 
 - [Bound Volumes](#bound-volumes): Rare and Special Materials + General Collections
 - [Documents (Unbound)](#documents-unbound): Manuscripts and Other Rare and Special Materials + General Collections + Modern Textual Records
@@ -13,13 +13,21 @@ For every capture, the photographer will produce 2 derivative tiff files:
   - The _Primary File_ (u) is saved in 16-bit Adobe RGB and includes an object level target (OLT). This is considered the preservation file.
   - The _Service File_ (s) is intended for digital display. It is 8-Bit sRGB and has been cropped to exclude the object level target (OLT).
 
----
+### Acceptable PPI Range for Capture
+| Material Type | PPI | 
+| --- | --- |
+| Bound Volumes | 400-600ppi
+| Manuscript Materials | 400-600ppi |
+| Photographic Materials | 400-1000ppi |
+| Oversized Materials | 300-600ppi |
+| Prints, Paintings, Artworks | 300-600ppi |
+| Transmissive Media up to 4x5 | 1750-4300ppi|
+| Transmissive Media larger than 4x5 | 890-1255ppi |
 
-### Bound Volumes: Rare and Special Materials + General Collections
-| Derivative Type | File Format | Capture Resolution | Bit Depth | Embedded Color Space |
-| --- | --- | --- | --- | --- | 
-| Primary (u) | tiff | 400-600ppi | 16-bit | Adobe RGB (1998) |
-| Service (s) | tiff | 400-600ppi | 8-bit | sRGb |
+---
+<details>
+
+<summary> Bound Volumes </summary>
 
 #### Best practices for bound volumes:
 ##### Rare Books and/or Special Collections Material
@@ -32,12 +40,12 @@ For every capture, the photographer will produce 2 derivative tiff files:
 - If a **backing sheet** is used, it must extend beyond the edge of the page.
 - Books may be imaged in contact with **glass** to flatten them. However, the binding must not be stressed.
 
+</details>
+
 ---
-### Documents (Unbound): Manuscripts and Other Rare and Special Materials + General Collections + Modern Textual Records
-| Derivative Type | File Format | Capture Resolution | Bit Depth | Embedded Color Space |
-| --- | --- | --- | --- | --- | 
-| Primary (u) | tiff | 400-600ppi | 16-bit | Adobe RGB (1998) |
-| Service (s) | tiff | 400-600ppi | 8-bit | sRGb |
+<details>
+
+<summary> Manuscript Materials </summary>
 
 #### Best Practices for All Manuscript Materials:
 - All objects should be photographed **recto/verso** (front and back), including blank pages.
@@ -45,22 +53,23 @@ For every capture, the photographer will produce 2 derivative tiff files:
 - **Orientation** of each image should remain the same as the face page of the document, even in cases where text may appear upside down or vertical.
 - For **general collections or modern textual materials**, an 8-bit Primary file may be used in place of the standard 16-bit.
 
+</details>
+
 ---
-### Oversized Items
-| Derivative Type | File Format | Capture Resolution | Bit Depth | Embedded Color Space |
-| --- | --- | --- | --- | --- | 
-| Primary (u) | tiff | 300-600ppi | 16-bit | Adobe RGB (1998) |
-| Service (s) | tiff | 300-600ppi | 8-bit | sRGb |
+<details>
+
+<summary> Oversized Items </summary>
 
 #### Best Practices for Oversized Materials
 - **PPI** should be determined by the item's fine details, overall size, and the amount of captures that may be required to create a composite. A single capture is preferable in most cases provided that the details are legible.
 - **Stitching** may be required for oversized items (like maps and posters) if they cannot meet the resolution aim as a single capture. In these cases, sections are digitally composited and reassembled to represent the material as a whole without distortion or misrepresentation. 
+
+</details>
+
 ---
-### Photographs
-| Derivative Type | File Format | Capture Resolution | Bit Depth | Embedded Color Space |
-| --- | --- | --- | --- | --- | 
-| Primary (u) | tiff | 400-1000ppi | 16-bit | Adobe RGB (1998) |
-| Service (s) | tiff | 400-1000ppi | 8-bit | sRGb |
+<details>
+
+<summary> Photographs </summary>
 
 #### Best Practices for Photographs
 - **Gloves** should always be worn when handling photographic materials.
@@ -68,28 +77,25 @@ For every capture, the photographer will produce 2 derivative tiff files:
 - **Order of materials** in housing (box, folder, etc.) should be retained at all times.
 - **Orientation** of each image should remain the same as the face page of the document, even in cases where text may appear upside down or vertical.
 
+</details>
+
 ---
-### Prints, Paintings, etc.
-| Derivative Type | File Format | Capture Resolution | Bit Depth | Embedded Color Space |
-| --- | --- | --- | --- | --- | 
-| Primary (u) | tiff | 300-600ppi | 16-bit | Adobe RGB (1998) |
-| Service (s) | tiff | 300-600ppi | 8-bit | sRGb |
+<details>
+
+<summary> Prints, Paintings, etc. </summary>
 
 #### Best Practices for Artworks
 - **PPI** should be determined by the item's fine details, overall size, and the amount of captures that may be required to create a composite. A single capture is preferable in most cases provided that the details are legible.
 - **Stitching** may be required for oversized items (like maps and posters) if they cannot meet the resolution aim as a single capture. In these cases, sections are digitally composited and reassembled to represent the material as a whole without distortion or misrepresentation. 
+
+</details>
 
 ---
 ## Transmissive Materials
 - **Gray Gamma 2.2** should be used as the color space for all **black and white** film-based originals.
 - Color space for color transparencies and color negative is consistent with standards for reflective material: Adobe RGB (1998) for the Primary file and sRGB for the Service files.
 
-#### Approximate PPI by Film Format, Size
-- 35mm film (strip film, microfilm, slides, etc.): 4300 +/- ppi
-- Medium format: 2500 +/- ppi
-- 4x5 sheet film: 1755 +/- ppi
-- 5x7 sheet film: 1255 +/- ppi
-- 8x10 sheet film: 890 +/- ppi
+
 
 
 
