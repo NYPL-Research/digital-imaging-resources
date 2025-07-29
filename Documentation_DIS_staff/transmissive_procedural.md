@@ -62,7 +62,8 @@ Refer to the table in [Section 1.4](#14-lens-extension-column-height-ppi-and-cro
     * Capture an IT8 target of the same format for initial focus.
     * Open Live View and examine the image at 100%. Use the Copy Stand floating tool to fine-tune focus with small incremental movements. You can use the "Pick focus area" tool and Auto Focus (AF) for an initial focus point. Hold ALT for "fine" focus adjustments.
     * Close Live View and capture an image to assess focus. Ensure focus is balanced and film grain is clearly visible. Fine-tune as needed. Be mindful of motion blur with shutter speeds slower than 1/20s.
-    * Measure PPI using the Capture Resolution Ruler (set the length to the appropriate film dimension, e.g., 35mm for 35mm slides).
+    * Measure PPI using the Capture Resolution Ruler (set the length to the appropriate film dimension, e.g., 35mm for 35mm slides). 
+
 6.  **Base Characteristics:**
     * **Mode:** Photography
     * **ICC Profile:** Phase One iXG NYPL\_Bay3\_DTPhoton\_201912 (or the most recent profile).
