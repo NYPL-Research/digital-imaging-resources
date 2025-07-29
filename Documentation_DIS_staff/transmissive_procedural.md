@@ -2,23 +2,16 @@
 
 This guide outlines the standard procedures for digitizing transmissive materials, including color transparencies (slides and film) and black & white negatives, adhering to industry best practices.
 
- **[1. Color Transmissive Material Digitization](#1-transmissive-digitization---color)**
-    * 1.1 Material Preparation
-    * 1.2 Capture Setup & Camera Settings
-    * 1.3 Processing Instructions
-    * 1.4 Lens, Extension, Column Height, PPI, and Crop Sizes for Color 
+<details open>
+<summary>
 
- **[2. Black & White Transmissive Material Digitization](#2-transmissive-digitization---black--white)**
-    * 2.1 Material Preparation
-    * 2.2 Workflow Summary (Capture Setup & Camera Settings for B&W)
-    * 2.3 Processing Instructions
-    * 2.4 Lens, Extension, Column Height, PPI, and Crop Sizes for B&W 
+### General Setup and Pre-flight Procedures
 
-## General Setup and Pre-flight Procedures
-
+</summary>
 Before you begin any digitization project, perform these essential steps:
 
-1.  **Monitor Warm-up:** Allow your Eizo monitor and Photon light to warm up for approximately 5 minutes before you start capturing images.
+1.  **Monitor Warm-up:** Allow your monitor and  light(s) to warm up for approximately 5 minutes before you start capturing images.
+
 2.  **Maintain a Clean Environment:** Keep your workspace as dust-free as possible. Dust can significantly impact image quality and require extensive post-processing.
 3.  **Camera Alignment:** Always verify camera alignment with a laser level whenever you change a lens or add extension tubes. This is crucial for maintaining image sharpness and geometric accuracy.
     * When transitioning from a reflective setup to transmissive, confirm the camera lens is perfectly parallel to the Transmissive Stage Top using the Versalab Laser Alignment Tool. Use the appropriate UV filter for your lens (46mm for 120mm lens, 77mm for 72mm MKII lens).
@@ -27,15 +20,20 @@ Before you begin any digitization project, perform these essential steps:
 6.  **Stage Assembly:** Install the DT Photon light panel and Film Scanning stage within the DT Atom stage *before* the stage top is installed.
 7.  **Power On:** Turn on the DT Atom camera back power and the Photon light. Ensure the Photon light is set to "continuous" lighting mode.
 
+</details>
+
 ---
 
-## 1. Transmissive Digitization - Color
+<details open>
+<summary>
 
-This section details the workflow for digitizing color transparencies, including slides and various film formats.
+### 1. Transmissive Digitization - Color
+</summary>
 
-### 1.1 Material Preparation
+#### *1.1 Material Preparation*
 
 1.  **Material Orientation:** Orient your transparency sheets with any punched holes on the left side (if applicable) and the production title legible. Begin image capture from the top left, moving to the right, then down.
+
 2.  **Emulsion Side Down:** Always load color positives (slides/transparencies) with the **emulsion side down**.
     * The emulsion side typically has a more matte surface and a raised/relief texture from the processed color layers.
     * The base side will appear shiny.
@@ -45,11 +43,12 @@ This section details the workflow for digitizing color transparencies, including
 5.  **Capture Quantity:** Confirm the final capture quantity matches your project requirements.
 6.  **Tracking:** Consider using a star rating (e.g., 5 stars) to mark the start of each sheet. This helps align your capture count with the physical material.
 
-### 1.2 Capture Setup & Camera Settings
+#### *1.2 Capture Setup & Camera Settings*
 
-Refer to the table in Section 1.4 for specific lens, extension, column height, and crop size recommendations based on film format.
+Refer to the table in [Section 1.4](#14-lens-extension-column-height-ppi-and-crop-sizes-for-color-transmissive-digitization) for specific lens, extension, column height, and crop size recommendations based on film format.
 
 1.  **Select Lens & Extension:** Choose the appropriate lens and extension tubes as specified in the table for your film format.
+
 2.  **ISO & Aperture:**
     * **ISO:** 50
     * **Aperture:** F9
@@ -97,9 +96,10 @@ Refer to the table in Section 1.4 for specific lens, extension, column height, a
     * Set the initial crop (e.g., approximately 3750 x 5560 pixels for 35mm slides).
     * Add an inner crop to assess the histogram and check for highlight/shadow clipping. Center and align this inner crop during capture to save time during processing.
 
-### 1.3 Processing Instructions
+#### *1.3 Processing Instructions*
 
 1.  **Batch Capture:** Once settings are finalized, capture all transparencies within the project that share similar characteristics. As you capture, regularly check for motion blur, focus, and capture density.
+
 2.  **Vertical Image Tagging:** Tag vertical captures (e.g., with a green color tag) for easy "Sort By Same" for bulk rotation later.
 3.  **Final Capture Count:** Confirm the ending capture quantity matches your project requirements.
 4.  **Review and Adjust:** Confirm the number of captures for each folder, and check for duplicates and focus issues. Make any minor adjustments to exposure and HDR settings to match the physical transparencies and ensure no clipping in highlights or shadows.
@@ -107,7 +107,7 @@ Refer to the table in Section 1.4 for specific lens, extension, column height, a
     * For 35mm transparencies: U & S files should be approximately 4300 x 6100 pixels.
 6.  **Process Files:** Process both U and S files simultaneously if desired, as they use the same crop. U Files should be **Adobe RGB 16bit**.
 
-### 1.4 Lens, Extension, Column Height, PPI, and Crop Sizes for Color Transmissive Digitization
+#### *1.4 Lens, Extension, Column Height, PPI, and Crop Sizes for Color Transmissive Digitization*
 
 | Film Format                    | Lens & Extension Tube | Column Height Approx. Position (cm) | Approx. PPI (+/- 50ppi) | Approx. U & S Crop Sizes                               |
 | :----------------------------- | :-------------------- | :---------------------------------- | :---------------------- | :----------------------------------------------------- |
@@ -118,26 +118,33 @@ Refer to the table in Section 1.4 for specific lens, extension, column height, a
 | 5x7 sheet film (use 8x10” ANR glass holder) | 72mm MKII (no extension) | 57.13 cm                            | 1255 +/-                | Same size for U & S files: 6300 x 8900 pixels          |
 | 8x10 sheet film (use 8x10” ANR glass holder) | 72mm MKII             | 70 cm                               | 890 +/-                 | Same size for U & S files: 7100 x 8900 pixels          |
 
+</details>
+
 ---
 
-## 2. Transmissive Digitization - Black & White
+<details open>
+<summary>
 
-This section details the updated workflow for digitizing black & white negatives.
+### 2. Transmissive Digitization - Black & White
 
-### 2.1 Material Preparation
+</summary>
+
+#### *2.1 Material Preparation*
 
 1.  **Emulsion Side Down:** Always load black & white negatives with the **emulsion side down**.
     * The emulsion side has a more matte surface and a texture from the build-up of silver after processing.
     * The base side will appear shiny.
     * Any text within the film should read correctly when the emulsion side is facing down.
+
 2.  **Re-sleeving:** Re-sleeve the film in the same order it was captured, ensuring consistency with any existing item-level descriptions.
 3.  **Tracking:** Consider tagging the start of each sheet with a color or star rating to help track negative count and capture count alignment. Renaming captures after each sheet is also recommended.
 
-### 2.2 Workflow Summary
+#### *2.2 Workflow Summary*
 
-Refer to the table in Section 2.4 for specific lens, extension, column height, and crop size recommendations based on film format.
+Refer to the table in [Section 2.4](#24-lens-extension-column-height-ppi-and-crop-sizes-for-bw-transmissive-digitization) for specific lens, extension, column height, and crop size recommendations based on film format.
 
 1.  **Select Lens & Extension:** Choose the appropriate lens and extension tubes as specified in the table for your film format.
+
 2.  **ISO & Aperture:**
     * **ISO:** 50
     * **Aperture:** F9
@@ -146,7 +153,7 @@ Refer to the table in Section 2.4 for specific lens, extension, column height, a
 4.  **Process Recipes:** Set process recipes to **U Files (Gray Gamma 2.2) 16bit**.
 5.  **Camera Position & Focus:**
     * In the Copy Stand tool, enter the column height starting position based on format (e.g., 57.45 cm for 35mm) and click "Move."
-    * In the Camera Focus tool, enter the desired "Target" Resolution [PPI" (e.g., 4300ppi for 35mm).
+    * In the Camera Focus tool, enter the desired "Target" Resolution PPI (e.g., 4300ppi for 35mm).
     * Capture the first negative (or an ISA 35mm B&W negative target) for initial focus.
     * Open Live View, activate the grid, and center the camera with the film holder and Photon light. Adjust staging blades as needed.
     * Within Live View at 100%, use the Copy Stand floating tool to fine-tune focus with small incremental movements.
@@ -185,11 +192,12 @@ Refer to the table in Section 2.4 for specific lens, extension, column height, a
         * For 4x5", 5x7", and 8x10" negatives: U & S files can be the same size, showing beyond the edges of the film as shot using the ANR Glass Holder.
 16. **Next Capture Adjustments:** Set to [Other > Copy From Last].
 
-### 2.3 Processing Instructions
+#### *2.3 Processing Instructions*
 
 1.  **Batch Capture:** Capture all negatives within the project that are the same size and have similar densities.
     * One efficient workflow is to capture an entire sheet or roll (e.g., 36 exposures for a 35mm roll, 12 for 120mm square film).
     * After capturing, review and adjust exposure as needed for very dense or overexposed negatives, or for highlight details nearing a 245 reading.
+
 2.  **Highlight/Shadow Adjustment (HDR Tool - Reversed for Negatives):**
     * You may need to correct for dense areas or specular highlights after the initial film base exposure aim of 235 (+/-).
     * **Shadow Adjustment:** In the HDR tool, "Shadow" adjusts for the *densest* areas of the film (which become highlights in the positive image). Aim for highlights not to be above 245; visible grain should be present in highlight areas.
@@ -207,7 +215,7 @@ Refer to the table in Section 2.4 for specific lens, extension, column height, a
     * U Files: **Gray Gamma 2.2, 16bit**.
     * S Files: **Gray Gamma 2.2, 8bit**.
 
-### 2.4 Lens, Extension, Column Height, PPI, and Crop Sizes for B&W Transmissive Digitization
+#### *2.4 Lens, Extension, Column Height, PPI, and Crop Sizes for B&W Transmissive Digitization*
 
 | Film Format                    | Lens & Extension Tube | Column Height Approx. Position (cm) | Approx. PPI (+/- 50ppi) | Approx. U & S Crop Sizes                               |
 | :----------------------------- | :-------------------- | :---------------------------------- | :---------------------- | :----------------------------------------------------- |
@@ -217,3 +225,5 @@ Refer to the table in Section 2.4 for specific lens, extension, column height, a
 | 4x5 sheet film (use 8x10” ANR glass holder) | 120mm                 | 75.5 cm                             | 1725 +/-                | Same size for U & S files: 5600 x 7000 pixels          |
 | 5x7 sheet film (use 8x10” ANR glass holder) | 72mm MKII (no extension) | 57.13 cm                            | 1255 +/-                | Same size for U & S files: 6300 x 8900 pixels          |
 | 8x10 sheet film (use 8x10” ANR glass holder) | 72mm MKII             | 70 cm                               | 890 +/-                 | Same size for U & S files: 7100 x 8900 pixels          |
+
+</details>
