@@ -1,5 +1,9 @@
+---
+layout: default
+title:  Best Practices for Reflective Materials
+---
+
 # Best Practices for Digital Capture of Reflective Materials
-<details open><summary>Bound Volumes</summary>
 
 ### Bound Volumes (Rare, Special Collections, and General Collections)
 
@@ -29,10 +33,6 @@ The goal is full cover-to-cover digitization while ensuring material safety and 
 *   **Moiré Mitigation**:
     *   Finding a balance between **moire mitigation and desired PPI** is crucial, potentially requiring test shots at varying heights. The Moire tool in Capture One (often amount 60-90, pattern 8) can be used, but values can deviate if not detrimental to image quality.
 
-</details>
-
-<details open><summary>Manuscript Materials</summary>
-
 ### Manuscript Materials (Loose Unbound & Flat)
 
 The process emphasizes accurate capture of each page while maintaining the original order and orientation.
@@ -53,10 +53,6 @@ The process emphasizes accurate capture of each page while maintaining the origi
 *   **Focus Checks**:
     *   Focus and exposure are re-checked after **50-75 shots**.
     *   It is crucial to verify that the number of images in the Capture One session matches the number of captures on the work order to avoid errors.
-
-</details>
-
-<details open><summary>Photographic Materials</summary>
 
 ### Photographic Materials (Prints)
 
@@ -80,10 +76,6 @@ These require meticulous handling and specific techniques to manage reflections 
     *   **1000ppi** for originals smaller than 5x7”.
 *   **Moiré Mitigation**:
     *   If moiré patterns are present, the **material can be rotated in-camera** to mitigate the effect. This may necessitate reducing the PPI to create adequate rotational space around the print. Higher resolution digital backs limit moiré, but it can still occur.
-
-</details>
-
-<details open><summary>Oversized Materials</summary>
 
 ### Oversized Materials (Maps, Posters, and Artworks Requiring Stitching)
 
@@ -111,10 +103,6 @@ These often require multi-capture approaches to achieve sufficient resolution an
 *   **Moiré Mitigation**:
     *   Moiré is very common with maps due to fine parallel ink lines and halftone printing. While higher resolution backs limit it, it still occurs.
     *   The moiré tool in Capture One can be used (e.g., amount 45, pattern 8), and may need to be boosted to 100 in certain areas. It's crucial to **avoid color smearing** by removing moiré adjustment from map edges and canvas seams.
-
-</details> 
-
-<details open><summary>Three-Dimensional Items</summary>
 
 ### Three-Dimensional Items
 
@@ -146,6 +134,4 @@ These items are not covered by FADGI guidelines, and their imaging relies on gen
     *   **PPI is unspecified**, based on the item's finest details that need to be resolved and balancing depth-of-field in a single capture.
 
 In essence, while flat materials prioritize a perfectly "flat" digital reproduction achieved through precise alignment and exposure, imaging 3D objects is more akin to a portrait artist capturing the essence and form of their subject. The challenges shift from mitigating surface irregularities to orchestrating light and camera angles to define volume, texture, and spatial relationships, where the "truth" of the image lies in its comprehensive portrayal from multiple perspectives rather than a single, perfectly planar shot.
-
-</details>
 

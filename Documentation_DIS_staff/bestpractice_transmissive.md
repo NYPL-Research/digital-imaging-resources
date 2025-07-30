@@ -1,3 +1,8 @@
+---
+layout: default
+title: Best Practices for Transmissive Materials
+---
+
 # Best Practices for Digital Capture of Transmissive Materials
 
 ### Preparation and Handling

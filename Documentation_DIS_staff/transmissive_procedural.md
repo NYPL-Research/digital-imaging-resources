@@ -1,13 +1,14 @@
+---
+layout: default
+title: Procedural Guide for Transmissive Digitization
+---
+
 # Procedural Guide for Transmissive Digitization
 
 This guide outlines the standard procedures for digitizing transmissive materials, including color transparencies (slides and film) and black & white negatives, adhering to industry best practices.
 
-<details open>
-<summary>
+#### General Setup and Pre-flight Procedures
 
-### General Setup and Pre-flight Procedures
-
-</summary>
 Before you begin any digitization project, perform these essential steps:
 
 1.  **Monitor Warm-up:** Allow your monitor and  light(s) to warm up for approximately 5 minutes before you start capturing images.
@@ -20,15 +21,9 @@ Before you begin any digitization project, perform these essential steps:
 6.  **Stage Assembly:** Install the DT Photon light panel and Film Scanning stage within the DT Atom stage *before* the stage top is installed.
 7.  **Power On:** Turn on the DT Atom camera back power and the Photon light. Ensure the Photon light is set to "continuous" lighting mode.
 
-</details>
-
 ---
 
-<details open>
-<summary>
-
 ### 1. Transmissive Digitization - Color
-</summary>
 
 #### *1.1 Material Preparation*
 
@@ -119,16 +114,8 @@ Refer to the table in [Section 1.4](#14-lens-extension-column-height-ppi-and-cro
 | 5x7 sheet film (use 8x10” ANR glass holder) | 72mm MKII (no extension) | 57.13 cm                            | 1255 +/-                | Same size for U & S files: 6300 x 8900 pixels          |
 | 8x10 sheet film (use 8x10” ANR glass holder) | 72mm MKII             | 70 cm                               | 890 +/-                 | Same size for U & S files: 7100 x 8900 pixels          |
 
-</details>
-
 ---
-
-<details open>
-<summary>
-
 ### 2. Transmissive Digitization - Black & White
-
-</summary>
 
 #### *2.1 Material Preparation*
 
@@ -226,5 +213,3 @@ Refer to the table in [Section 2.4](#24-lens-extension-column-height-ppi-and-cro
 | 4x5 sheet film (use 8x10” ANR glass holder) | 120mm                 | 75.5 cm                             | 1725 +/-                | Same size for U & S files: 5600 x 7000 pixels          |
 | 5x7 sheet film (use 8x10” ANR glass holder) | 72mm MKII (no extension) | 57.13 cm                            | 1255 +/-                | Same size for U & S files: 6300 x 8900 pixels          |
 | 8x10 sheet film (use 8x10” ANR glass holder) | 72mm MKII             | 70 cm                               | 890 +/-                 | Same size for U & S files: 7100 x 8900 pixels          |
-
-</details>
