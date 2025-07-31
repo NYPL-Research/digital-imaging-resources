@@ -4,15 +4,4 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+**Digital Imaging Services (DIS)** is an in-house digitization program serving the New York Public Library's three Research Centers: the [Stephen A. Schwarzman Building](https://www.nypl.org/locations/schwarzman), [The New York Public Library for the Performing Arts](https://www.nypl.org/locations/lpa), and the [Schomburg Center for Research in Black Culture](https://www.nypl.org/locations/schomburg). 
