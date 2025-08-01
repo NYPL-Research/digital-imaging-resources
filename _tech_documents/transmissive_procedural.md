@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Procedural Guide for Transmissive Digitization
-parent: Technical Documents for Photographers
-nav_order: 3
+parent: Technical Documents
+permalink: /tech_documents/transmissive_procedural/
 ---
 
 # Procedural Guide for Transmissive Digitization

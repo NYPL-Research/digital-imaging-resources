@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Technical Specifications for Digital Images
+parent: Digital Imaging Services
 ---
 
 # Technical Specifications for Digital Images

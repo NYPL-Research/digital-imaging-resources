@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Software and Equipment
+parent: About the Digital Imaging Program
+permalink: /gen_documents/equip/
 ---
 
 # The Digital Imaging Lab

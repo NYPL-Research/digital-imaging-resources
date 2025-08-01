@@ -1,11 +1,17 @@
 ---
 layout: default
 title: Best Practices for Transmissive Materials
-parent: Technical Documents for Photographers
-nav_order: 2
+parent: Technical Documents
 ---
 
 # Best Practices for Digital Capture of Transmissive Materials
+{: .no_toc}
+
+{: .no_toc .text_delta}
+
+### Table of Contents
+- TOC
+{:toc}
 
 ### Preparation and Handling
 

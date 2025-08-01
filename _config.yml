@@ -22,8 +22,10 @@ just_the_docs:
   collections:
     tech_documents:
       name: Technical Documents for Photographers
+      nav_fold: true
     gen_documents:
       name: Digital Imaging Services
+      nav_fold: true
   
 
 back_to_top: true

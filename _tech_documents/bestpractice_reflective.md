@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Best Practices for Reflective Materials
-parent: Technical Documents for Photographers
-nav_order: 1
+parent: Technical Documents
+permalink: /tech_documents/bestpractice_reflective/
 ---
 
 # Best Practices for Digital Capture of Reflective Materials
