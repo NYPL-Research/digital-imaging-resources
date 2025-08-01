@@ -1,77 +1,35 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-
 title: Digital Imaging Services
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Digital Imaging Services, New York Public Library
 baseurl: "/digital-imaging-resources" # the subpath of your site, e.g. /blog
-url: "http://nypl.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://nypl.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 remote_theme: just-the-docs/just-the-docs@v0.4.0
+color_scheme: "dark"
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
 
-# Add this section for Just the Docs specific configurations
-# (You'll likely want to customize these)
+collections:
+  tech_documents:
+    output: true
+  gen_documents:
+    output: true
+
 just_the_docs:
-  # Example configurations - refer to Just the Docs documentation for all options
-  # You can find comprehensive configuration options here: https://just-the-docs.com/docs/configuration/
   search_enabled: true
-  heading_anchors: true
   collections:
-    # If you want to use Jekyll collections for documentation, define them here
-    # E.g., for a "docs" collection in _docs folder:
-    # docs:
-    #   permalink: '/:collection/:path/'
-    #   output: true
-  nav_enabled: true # Enable sidebar navigation
-  # color_scheme: dark # Uncomment for dark mode
-  # aux_links:
-  #   "Just the Docs on GitHub":
-  #     - "//github.com/just-the-docs/just-the-docs"
+    tech_documents:
+      name: Technical Documents for Photographers
+    gen_documents:
+      name: Digital Imaging Services
+  
+
+back_to_top: true
+back_to_top_text: "Back to Top"
 
 markdown: kramdown
 kramdown:
   parse_block_html: true
-  # You might also want this for inline Markdown in <summary> if it's not working:
-  # parse_span_html: true
-
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+  parse_span_html: true
