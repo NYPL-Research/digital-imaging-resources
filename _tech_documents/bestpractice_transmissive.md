@@ -2,6 +2,7 @@
 layout: default
 title: Best Practices for Transmissive Materials
 parent: Technical Documents
+permalink: /tech_documents/bestpractice_transmissive/
 ---
 
 # Best Practices for Digital Capture of Transmissive Materials

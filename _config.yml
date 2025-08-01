@@ -21,10 +21,10 @@ just_the_docs:
   search_enabled: true
   collections:
     tech_documents:
-      name: Technical Documents for Photographers
+      name: Technical Documents
       nav_fold: true
     gen_documents:
-      name: Digital Imaging Services
+      name: About the Digital Imaging Program
       nav_fold: true
   
 

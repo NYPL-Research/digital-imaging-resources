@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Technical Specifications for Digital Images
-parent: Digital Imaging Services
+parent: About the Digital Imaging Program
+permalink: /gen_documents/techspecs/
 ---
 
 # Technical Specifications for Digital Images
