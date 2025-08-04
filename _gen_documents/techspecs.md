@@ -15,6 +15,7 @@ permalink: /gen_documents/techspecs/
 
 
 ### Acceptable PPI Range for Capture
+
 | Material Type | PPI | 
 | --- | --- |
 | [Bound Volumes](#best-practices-for-bound-volumes) | 400-600ppi
@@ -23,7 +24,7 @@ permalink: /gen_documents/techspecs/
 | [Oversized Materials](#best-practices-for-oversized-materials) | 300-600ppi |
 | [Prints, Paintings, Artworks](#best-practices-for-artworks) | 300-600ppi |
 | [Transmissive Media up to 4x5](#transmissive-materials) | 1750-4300ppi|
-| [Transmissive Media larger than 4x5](#transmissive-materials) 4x5 | 890-1255ppi |
+| [Transmissive Media larger than 4x5](#transmissive-materials) | 890-1255ppi |
 
 ---
 
@@ -70,9 +71,6 @@ permalink: /gen_documents/techspecs/
 ---
 
 #### Transmissive Materials
-- **Gray Gamma 2.2** should be used as the color space for all **black and white** film-based originals.
-- Color space for color transparencies and color negative is consistent with standards for reflective material: Adobe RGB (1998) for the Primary file and sRGB for the Service files.
-
-
-
-
+- **Gray Gamma 2.2** should be used as the color space for all **black and white** film-based originals. Black and white negatives are captured in their negative state and then inverted to create a positive, with minimal adjustments. The positive inversion is retained as the Primary File, a policy that is currently under review.
+- **Color space for color transparencies and color negative is consistent with standards for reflective material**: Adobe RGB (1998) for the Primary file and sRGB for the Service files. For color negatives, the negative file is retained.
+- *further information regarding transmissive digitization can be found in [Best Practices for Digital Capture of Transmissive Materials]({% link _tech_documents/bestpractice_transmissive.md %})*

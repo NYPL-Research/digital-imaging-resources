@@ -11,7 +11,7 @@ permalink: /tech_documents/bestpractice_reflective/
 ### Reflective Materials
 {: .no_toc .text_delta}
 
-1. TOC
+- TOC
 {:toc}
 
 ### Bound Volumes (Rare, Special Collections, and General Collections)

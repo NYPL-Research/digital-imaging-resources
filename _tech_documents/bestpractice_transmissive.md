@@ -66,7 +66,7 @@ permalink: /tech_documents/bestpractice_transmissive/
 
 -  **Film Type Specifics**: Be aware that Kodachrome films require specific IT-8 targets or professionally produced ICC profiles for correct digitization, as standard Ektachrome targets are insufficient. For B&W and color negatives, the tone scale is non-linear, and they may appear flatter than positive prints
 
-- **Color Casts and Degradation**: The aim for color transparencies is to create a digital surrogate representing their current condition as viewed on a light table, not to "color correct" casts resulting from poor development or degradation over time. Dust processed into the emulsion should be captured
+- **Color Casts and Degradation**: The aim for color transparencies is to create a digital surrogate representing their current condition as viewed on a light table, not to "color correct" casts resulting from poor development or degradation over time. Dust processed into the emulsion should be captured.
 
 - **Moiré and Motion Blur**: If moiré patterns or color noise are present, rotate the material to mitigate the effect, potentially requiring a reduction in PPI to create adequate rotational space. Be wary of motion blur, especially with shutter speeds slower than 1/20s
 

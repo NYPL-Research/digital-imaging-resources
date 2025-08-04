@@ -13,8 +13,10 @@ plugins:
 
 collections:
   tech_documents:
+    permalink: "/:collection/:path/"
     output: true
   gen_documents:
+    permalink: "/:collection/:path/"
     output: true
 
 just_the_docs:
