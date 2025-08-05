@@ -4,16 +4,6 @@ title: Best Practices for Transmissive Materials
 parent: Technical Documents
 permalink: /tech_documents/bestpractice_transmissive/
 ---
-
-# Best Practices for Digital Capture of Transmissive Materials
-{: .no_toc}
-
-{: .no_toc .text_delta}
-
-### Table of Contents
-- TOC
-{:toc}
-
 ### Preparation and Handling
 
 - Film should typically be photographed with the **emulsion side down**. The emulsion side is the more matte surface with a raised texture, while the base side is shiny. Any text on the film should read correctly when viewed with the emulsion side down.

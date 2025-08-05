@@ -226,7 +226,7 @@
     &lt;a href=&#34;#transmissive-materials&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Gray Gamma 2.2&lt;/strong&gt; should be used as the color space for all &lt;strong&gt;black and white&lt;/strong&gt; film-based originals. Black and white negatives are captured in their negative state and then inverted to create a positive, with minimal adjustments. The positive inversion is retained as the Primary File, a policy that is currently under review.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Color space for color transparencies and color negative is consistent with standards for reflective material&lt;/strong&gt;: Adobe RGB (1998) for the Primary file and sRGB for the Service files. For color negatives, the negative file is retained.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;further information regarding transmissive digitization can be found in [Best Practices for Digital Capture of Transmissive Materials]({% link _tech_documents/bestpractice_transmissive.md %})&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;further information regarding transmissive digitization can be found in &lt;a href=&#34;http://localhost:1313/digital-imaging-resources/docs/tech_documents/bestpractice_transmissive/&#34; &gt;Best Practices for Digital Capture of Transmissive Materials&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>

@@ -23,219 +23,174 @@
       <description>
         
         
-        &lt;h1&gt;Best Practices for Digital Capture of Reflective Materials&lt;/h1&gt;&lt;p&gt;{: .no_toc}&lt;/p&gt;
-&lt;h3&gt;Reflective Materials&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;reflective-materials&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#reflective-materials&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;{: .no_toc .text_delta}&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;TOC
-{:toc}&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Bound Volumes (Rare, Special Collections, and General Collections)&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;bound-volumes-rare-special-collections-and-general-collections&#34;&gt;&lt;/span&gt;
+        &lt;h3&gt;Bound Volumes (Rare, Special Collections, and General Collections)&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;bound-volumes-rare-special-collections-and-general-collections&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#bound-volumes-rare-special-collections-and-general-collections&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The goal is full cover-to-cover digitization while ensuring material safety and maintaining focus throughout the text block.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Glass Usage&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Glass Usage&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;glass-usage&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#glass-usage&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;For &lt;strong&gt;rare books and special collections&lt;/strong&gt;, glass may be &amp;ldquo;floated&amp;rdquo; to minimize pressure on fragile bound materials, and its use requires &lt;strong&gt;prior approval&lt;/strong&gt; due to potential damage risks, especially for pigmented or gold leaf materials.&lt;/li&gt;
 &lt;li&gt;Glass helps flatten pages and allows them to meet the glass consistently.&lt;/li&gt;
 &lt;li&gt;Secondary card and/or foam supports can be used with glass to reduce pressure on fragile pages or to kick up the glass for greater downward pressure on springy gutters.&lt;/li&gt;
 &lt;li&gt;For general collections, books can be imaged in contact with glass to flatten, but the binding &lt;strong&gt;must not be stressed&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Material Assessment and Support&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Material Assessment and Support&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;material-assessment-and-support&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#material-assessment-and-support&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Thoroughly assess the &lt;strong&gt;fragility of paper and stability of the binding&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;Check for &lt;strong&gt;gutter curvature, paper sheen, fold-outs, and prints/photos&lt;/strong&gt; that might influence lighting or PPI.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Foam and cardstock additions&lt;/strong&gt; are strategically used to help the text block lie as plumb as possible and to &amp;ldquo;kick pages out&amp;rdquo; to expose more text in the gutter. Be cautious not to use too much foam.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Capture Settings and Focus&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Capture Settings and Focus&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;capture-settings-and-focus&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#capture-settings-and-focus&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;The typical aperture for books rests between &lt;strong&gt;f/8.5 to f/11&lt;/strong&gt; to provide more focus depth and productivity. This may involve a sacrifice of PPI to boost depth of field for easier focusing and higher throughput.&lt;/li&gt;
 &lt;li&gt;Focus aims for a &lt;strong&gt;&amp;ldquo;zone of acceptable focus&amp;rdquo;&lt;/strong&gt; rather than absolute sharpness across the entire page, prioritizing the &amp;ldquo;meat of the text and/or image area,&amp;rdquo; especially when gutter curvature is an issue.&lt;/li&gt;
 &lt;li&gt;Focus is checked approximately every &lt;strong&gt;10-20 captures&lt;/strong&gt; (or more), adjusting camera and target height as needed. This allows for reviewing blocks of pages (e.g., 20 pages) to catch skipped or duplicated captures efficiently.&lt;/li&gt;
 &lt;li&gt;For books, a &lt;strong&gt;Lens Cast Correction (LCC)&lt;/strong&gt; is typically needed &lt;strong&gt;only once per book/session&lt;/strong&gt;, provided lighting and aperture remain constant.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Content Inclusion&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Content Inclusion&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;content-inclusion&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#content-inclusion&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Full cover-to-cover digitization for bound volumes includes &lt;strong&gt;covers, endpapers, and all pages (even blank ones)&lt;/strong&gt;, as well as the spine.&lt;/li&gt;
 &lt;li&gt;Exceptions for not digitizing covers/endpapers may occur for General Collections if a &lt;strong&gt;library binding&lt;/strong&gt; was added or similar alterations were made. Decisions not to shoot blank pages may be made in cases of interleaving tissue paper or large blank sections, often reviewed for curatorial preference.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Fold-outs&lt;/strong&gt; are imaged in sequence, matching the resolution/PPI to their bound counterpart whenever possible, and both recto and verso contents are imaged in their folded state.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Handling&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Handling&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;handling&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#handling&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Gloves are generally not recommended&lt;/strong&gt; for digitizing paper or similar materials as they can increase the possibility of damage.&lt;/li&gt;
 &lt;li&gt;Material temperature and humidity should be maintained consistent with collection storage.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Moiré Mitigation&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Moiré Mitigation&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;moiré-mitigation&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#moir%c3%a9-mitigation&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Finding a balance between &lt;strong&gt;moire mitigation and desired PPI&lt;/strong&gt; is crucial, potentially requiring test shots at varying heights. The Moire tool in Capture One (often amount 60-90, pattern 8) can be used, but values can deviate if not detrimental to image quality.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;hr&gt;
 &lt;h3&gt;Manuscript Materials (Loose Unbound &amp;amp; Flat)&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;manuscript-materials-loose-unbound--flat&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#manuscript-materials-loose-unbound--flat&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The process emphasizes accurate capture of each page while maintaining the original order and orientation.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Material Preparation&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Material Preparation&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;material-preparation&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#material-preparation&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;A &lt;strong&gt;clean gray, light gray, or off-white background paper&lt;/strong&gt; is chosen based on the material, especially for translucent items.&lt;/li&gt;
 &lt;li&gt;Use an &lt;strong&gt;air compressor or hand rocket&lt;/strong&gt; to remove dust from the material.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Capture Protocol&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Capture Protocol&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;capture-protocol&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#capture-protocol&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;All objects are photographed &lt;strong&gt;recto/verso&lt;/strong&gt; (front and back), including blank pages.&lt;/li&gt;
 &lt;li&gt;The &lt;strong&gt;order of materials&lt;/strong&gt; in their housing (box, folder) &lt;strong&gt;must be retained at all times&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;The &lt;strong&gt;orientation&lt;/strong&gt; of each image should remain the same as the face page of the document, even if text appears upside down or vertical.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;PPI Aims&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;PPI Aims&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;ppi-aims&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#ppi-aims&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;For &lt;strong&gt;manuscripts and other rare and special materials&lt;/strong&gt;, the aim is typically &lt;strong&gt;400-600ppi (FADGI 4-star)&lt;/strong&gt;, with 600ppi whenever possible.&lt;/li&gt;
 &lt;li&gt;For &lt;strong&gt;general collections or modern textual materials&lt;/strong&gt;, an &lt;strong&gt;8-bit Primary file&lt;/strong&gt; may be used instead of the standard 16-bit. For modern textual records, there are &lt;strong&gt;no FADGI star levels&lt;/strong&gt;; images either meet specifications or they don&amp;rsquo;t.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Workstation Setup&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Workstation Setup&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;workstation-setup&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#workstation-setup&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;The camera height is determined by the size of the longest item, aiming for the &lt;strong&gt;highest possible PPI (typically 550-600ppi)&lt;/strong&gt; unless otherwise specified.&lt;/li&gt;
 &lt;li&gt;The &lt;strong&gt;target is taped to the copy stand&lt;/strong&gt; to prevent movement.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Focus Checks&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Focus Checks&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;focus-checks&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#focus-checks&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Focus and exposure are re-checked after &lt;strong&gt;50-75 shots&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;It is crucial to verify that the number of images in the Capture One session matches the number of captures on the work order to avoid errors.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;hr&gt;
 &lt;h3&gt;Photographic Materials (Prints)&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;photographic-materials-prints&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#photographic-materials-prints&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;These require meticulous handling and specific techniques to manage reflections and achieve precise detail capture.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Handling Precautions&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Handling Precautions&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;handling-precautions&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#handling-precautions&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Nitrile gloves are always recommended&lt;/strong&gt; when handling photographic prints to prevent fingerprints and damage.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Dust is a significant issue&lt;/strong&gt;, especially in shadow areas and on target patches; use an air compressor or hand rocket and give extra attention to dusting darker tones.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Background and Setup&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Background and Setup&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;background-and-setup&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#background-and-setup&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;A &lt;strong&gt;black velvet shoot-through foam core&lt;/strong&gt; may be used to mitigate reflections and achieve richer shadow details, especially for photographic prints.&lt;/li&gt;
 &lt;li&gt;Lights should not be so high that they impede even illumination; the full extent of the lights should be visible from the print&amp;rsquo;s level.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Reflection Mitigation&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Reflection Mitigation&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;reflection-mitigation&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#reflection-mitigation&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;For issues like &lt;strong&gt;curved edges and hard, pronounced folds&lt;/strong&gt;, the &lt;strong&gt;digital back can be rotated&lt;/strong&gt; to mitigate highlight problems.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Peeling corners&lt;/strong&gt; can sometimes be coaxed flat using a gloved finger, bone folder, or piece of paper to mitigate hot spots.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Hard folds that catch highlights&lt;/strong&gt; may require special handling, possibly a separate capture with the back rotated vertically and a new LCC.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;PPI Aims&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;PPI Aims&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;ppi-aims-1&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#ppi-aims-1&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Specific &amp;ldquo;real world PPI buckets&amp;rdquo; are used based on print size, aiming to meet or exceed FADGI 3 or 4-star performance.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;400ppi&lt;/strong&gt; for originals larger than 16x20” (FADGI 3-star).&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;600ppi&lt;/strong&gt; for originals larger than 11x14” up to 16x20” (FADGI 4-star).&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;800ppi&lt;/strong&gt; is the &lt;strong&gt;current standard for 8x10” photographic print collections&lt;/strong&gt;, and for originals from 5x7” to 11x14”.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;1000ppi&lt;/strong&gt; for originals smaller than 5x7”.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Moiré Mitigation&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Moiré Mitigation&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;moiré-mitigation-1&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#moir%c3%a9-mitigation-1&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;If moiré patterns are present, the &lt;strong&gt;material can be rotated in-camera&lt;/strong&gt; to mitigate the effect. This may necessitate reducing the PPI to create adequate rotational space around the print. Higher resolution digital backs limit moiré, but it can still occur.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;hr&gt;
 &lt;h3&gt;Oversized Materials (Maps, Posters, and Artworks Requiring Stitching)&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;oversized-materials-maps-posters-and-artworks-requiring-stitching&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#oversized-materials-maps-posters-and-artworks-requiring-stitching&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;These often require multi-capture approaches to achieve sufficient resolution and manage physical dimensions.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Stitching Requirement&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Stitching Requirement&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;stitching-requirement&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#stitching-requirement&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Stitching may be required&lt;/strong&gt; for oversized items if they cannot meet the resolution aim as a single capture. Sections are digitally composited and reassembled to represent the material as a whole without distortion or misrepresentation.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Component images&lt;/strong&gt; that make up the final stitched file are saved as preservation files (U files) but are &lt;strong&gt;suppressed&lt;/strong&gt; in the Metadata Management System (MMS) for public display; the final stitched image becomes the production preservation file.&lt;/li&gt;
 &lt;li&gt;An overlap of &lt;strong&gt;around 20% is ideal&lt;/strong&gt; for images requiring stitching when no canvas break is present.&lt;/li&gt;
 &lt;li&gt;Stitching can be done using &lt;strong&gt;Photoshop Photomerge&lt;/strong&gt; (generally using the &amp;lsquo;collage&amp;rsquo; method) or &lt;strong&gt;manual methods&lt;/strong&gt;, the latter sometimes being less time-consuming for maps with worn seams.&lt;/li&gt;
 &lt;li&gt;For stitched images, &lt;strong&gt;only one color target&lt;/strong&gt; should remain in the final composite image.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;PPI Determination&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;PPI Determination&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;ppi-determination&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#ppi-determination&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;PPI is determined by the item&amp;rsquo;s fine details, overall size, and the number of captures required for a composite. A single capture is preferable if details are legible.&lt;/li&gt;
 &lt;li&gt;For &lt;strong&gt;maps, posters, and other materials&lt;/strong&gt;, the aim is generally &lt;strong&gt;400ppi or 600ppi&lt;/strong&gt;, adjusting based on fine details and compositing needs.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Newspapers&lt;/strong&gt; generally target &lt;strong&gt;400ppi&lt;/strong&gt; (FADGI 3-star).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Handling and Setup&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Handling and Setup&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;handling-and-setup&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#handling-and-setup&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Many maps are printed on thin paper and require an &lt;strong&gt;off-white mat board underneath&lt;/strong&gt;; only the image area needs to be covered.&lt;/li&gt;
 &lt;li&gt;For &lt;strong&gt;encapsulated items (e.g., in Mylar)&lt;/strong&gt;, special care is needed to mitigate reflections. This can involve using &lt;strong&gt;black shoot-through cards&lt;/strong&gt; to eliminate reflections from the camera and environment, covering the TTI column with black paper, or using black flags on light stands. When using a foot pedal near encapsulated items, tripping the shutter from the keyboard can prevent reflections from clothing/skin.&lt;/li&gt;
 &lt;li&gt;When using glass for encapsulated items, a &lt;strong&gt;slip of Mylar over the color target&lt;/strong&gt; is recommended.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Lighting&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Lighting&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;lighting&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#lighting&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Lights are typically between &lt;strong&gt;64” and 80” high&lt;/strong&gt; (floor to top of pin) and pointed &lt;strong&gt;20 degrees down&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;Some coated maps may require lights to be raised to avoid glare. For encapsulated items, lights may need to be lowered all the way and pointed at each other from table corners to lessen edge reflections.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Focus Challenges&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Focus Challenges&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;focus-challenges&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#focus-challenges&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Maps often fill the frame, which demands high performance from the lens and an extremely level copy stand. Balancing sharpness between corners and the center can be challenging. It may be helpful to check &lt;strong&gt;nine points of focus&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Moiré Mitigation&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Moiré Mitigation&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;moiré-mitigation-2&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#moir%c3%a9-mitigation-2&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Moiré is very common with maps due to fine parallel ink lines and halftone printing. While higher resolution backs limit it, it still occurs.&lt;/li&gt;
 &lt;li&gt;The moiré tool in Capture One can be used (e.g., amount 45, pattern 8), and may need to be boosted to 100 in certain areas. It&amp;rsquo;s crucial to &lt;strong&gt;avoid color smearing&lt;/strong&gt; by removing moiré adjustment from map edges and canvas seams.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;hr&gt;
 &lt;h3&gt;Three-Dimensional Items&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;three-dimensional-items&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#three-dimensional-items&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;These items are not covered by FADGI guidelines, and their imaging relies on general concepts to best describe their physical attributes and presence in space, often requiring multiple views and strategic lighting.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Non-FADGI Category&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;3D items are explicitly &lt;strong&gt;not included in FADGI guidelines&lt;/strong&gt;, meaning imaging practices for them are developed in-house based on best judgment and specific item needs.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Lighting and Setup&lt;/strong&gt;:
-&lt;ul&gt;
+    &lt;a href=&#34;#three-dimensional-items&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;3D items are explicitly &lt;strong&gt;not included in FADGI guidelines&lt;/strong&gt;, meaning imaging practices for them are developed in-house based on best judgment and specific item needs.&lt;/p&gt;
+&lt;h4&gt;Lighting and Setup&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;lighting-and-setup&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#lighting-and-setup&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;The setup is highly variable due to wide variations in item shape, size, and material. A &lt;strong&gt;safe off-set area&lt;/strong&gt; for the item and an &lt;strong&gt;adequate background paper sweep&lt;/strong&gt; are essential.&lt;/li&gt;
 &lt;li&gt;Focus on how light might fall across the item to &lt;strong&gt;best describe its volume and surface detail&lt;/strong&gt;. A primary light source entering from the left often works well for Western text.&lt;/li&gt;
-&lt;li&gt;A &lt;strong&gt;two-light setup with Profoto strobes&lt;/strong&gt; is typically used, with lights adjusted for height, distance, and angle to ensure even illumination.&lt;/li&gt;
+&lt;li&gt;A &lt;strong&gt;two-light setup&lt;/strong&gt; is typically used, with lights adjusted for height, distance, and angle to ensure even illumination.&lt;/li&gt;
 &lt;li&gt;Explore using a &lt;strong&gt;key light&lt;/strong&gt; (dominant), &lt;strong&gt;fill light&lt;/strong&gt; (to diminish shadows, possibly with a fill card), &lt;strong&gt;kickers/accent lights&lt;/strong&gt; (behind and to sides for highlights and separation, especially for dark items), and optional &lt;strong&gt;background lights&lt;/strong&gt; or a &lt;strong&gt;boom light&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Beware of lens flare&lt;/strong&gt;; flagging off the lens may be necessary.&lt;/li&gt;
 &lt;li&gt;Flagging off the background paper can create a &lt;strong&gt;gradated effect&lt;/strong&gt; that visually isolates the item and increases perceived dimensionality.&lt;/li&gt;
 &lt;li&gt;Alternative lighting modifiers beyond standard softboxes, such as reflectors, beauty dishes, diffusion paper, silks, and scrims, may be used.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;LCC Application&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;LCC Application&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;lcc-application&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#lcc-application&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;A unique point for 3D items is that there is &lt;strong&gt;no need to make or use an LCC&lt;/strong&gt; (Lens Cast Correction).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Camera and Focus&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Camera and Focus&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;camera-and-focus&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#camera-and-focus&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;The camera&amp;rsquo;s angle and height are critical for defining the item in space and avoiding distortion. Perform a &lt;strong&gt;through-the-lens handheld assessment&lt;/strong&gt; to quickly determine orientation and angle.&lt;/li&gt;
 &lt;li&gt;Focus aims to utilize the &lt;strong&gt;plane of focus&lt;/strong&gt; which travels outward parallel to the lens at its angle, allowing it to match the item&amp;rsquo;s shape. Pulling back camera distance can increase depth of field.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Focus stacking&lt;/strong&gt; has been tested and may be employed on a case-by-case basis depending on the item&amp;rsquo;s depth and time constraints.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Representational Views&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Representational Views&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;representational-views&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#representational-views&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;A successful 3D capture describes the item&amp;rsquo;s purpose/story, physical attributes, presence in space, and center of gravity.&lt;/li&gt;
 &lt;li&gt;Often, &lt;strong&gt;multiple views&lt;/strong&gt; are needed (e.g., ¾ front and ¾ back, or front/back, side/side, top/bottom) to adequately describe the item.&lt;/li&gt;
 &lt;li&gt;Be aware of &lt;strong&gt;visual tangent points&lt;/strong&gt; which can be distracting and flatten perceived volume; aim to create separation of object elements.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Post-processing&lt;/strong&gt;:
-&lt;ul&gt;
+&lt;h4&gt;Post-processing&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;post-processing&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#post-processing&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Final capture may benefit from an &lt;strong&gt;overall sharpening bump&lt;/strong&gt; and &lt;strong&gt;local adjustments for shadow/highlight recovery&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;ISO is kept at 200 or under&lt;/strong&gt; for in-situ items.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;PPI is unspecified&lt;/strong&gt;, based on the item&amp;rsquo;s finest details that need to be resolved and balancing depth-of-field in a single capture.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In essence, while flat materials prioritize a perfectly &amp;ldquo;flat&amp;rdquo; digital reproduction achieved through precise alignment and exposure, imaging 3D objects is more akin to a portrait artist capturing the essence and form of their subject. The challenges shift from mitigating surface irregularities to orchestrating light and camera angles to define volume, texture, and spatial relationships, where the &amp;ldquo;truth&amp;rdquo; of the image lies in its comprehensive portrayal from multiple perspectives rather than a single, perfectly planar shot.&lt;/p&gt;
 
@@ -251,14 +206,7 @@
       <description>
         
         
-        &lt;h1&gt;Best Practices for Digital Capture of Transmissive Materials&lt;/h1&gt;&lt;p&gt;{: .no_toc}&lt;/p&gt;
-&lt;p&gt;{: .no_toc .text_delta}&lt;/p&gt;
-&lt;h3&gt;Table of Contents&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;table-of-contents&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#table-of-contents&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;TOC
-{:toc}&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Preparation and Handling&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;preparation-and-handling&#34;&gt;&lt;/span&gt;
+        &lt;h3&gt;Preparation and Handling&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;preparation-and-handling&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#preparation-and-handling&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Film should typically be photographed with the &lt;strong&gt;emulsion side down&lt;/strong&gt;. The emulsion side is the more matte surface with a raised texture, while the base side is shiny. Any text on the film should read correctly when viewed with the emulsion side down.&lt;/p&gt;
@@ -363,7 +311,7 @@ The decision to save the positive inverted version as the Primary File (U) is cu
       <description>
         
         
-        &lt;h1&gt;Procedural Guide for Transmissive Digitization&lt;/h1&gt;&lt;p&gt;This guide outlines the standard procedures for digitizing transmissive materials, including color transparencies (slides and film) and black &amp;amp; white negatives, adhering to industry best practices.&lt;/p&gt;
+        &lt;p&gt;This guide outlines the standard procedures for digitizing transmissive materials, including color transparencies (slides and film) and black &amp;amp; white negatives, adhering to industry best practices.&lt;/p&gt;
 &lt;h4&gt;General Setup and Pre-flight Procedures&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;general-setup-and-pre-flight-procedures&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#general-setup-and-pre-flight-procedures&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Before you begin any digitization project, perform these essential steps:&lt;/p&gt;
 &lt;ol&gt;

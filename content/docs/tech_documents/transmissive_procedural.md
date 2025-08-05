@@ -5,8 +5,6 @@ parent: Technical Documents
 permalink: /tech_documents/transmissive_procedural/
 ---
 
-# Procedural Guide for Transmissive Digitization
-
 This guide outlines the standard procedures for digitizing transmissive materials, including color transparencies (slides and film) and black & white negatives, adhering to industry best practices.
 
 #### General Setup and Pre-flight Procedures
