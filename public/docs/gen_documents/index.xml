@@ -1,0 +1,236 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Digital Imaging Resources – General Documents</title>
+    <link>http://localhost:1313/digital-imaging-resources/docs/gen_documents/</link>
+    <description>Recent content in General Documents on Digital Imaging Resources</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="http://localhost:1313/digital-imaging-resources/docs/gen_documents/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Software and Equipment</title>
+      <link>http://localhost:1313/digital-imaging-resources/docs/gen_documents/equip/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/digital-imaging-resources/docs/gen_documents/equip/</guid>
+      <description>
+        
+        
+        &lt;h1&gt;The Digital Imaging Lab&lt;/h1&gt;&lt;p&gt;{: .no_toc}&lt;/p&gt;
+&lt;p&gt;Digital Imaging Services produces high-quality digital surrogates of collection materials for research and private use in its main lab in Long Island City and its satellite lab at the Schomburg Center.&lt;/p&gt;
+&lt;h1&gt;Table of Contents&lt;/h1&gt;&lt;p&gt;{: .no_toc .text-delta }&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TOC
+{:toc}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Software&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;software&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#software&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Image Capture, Processing, and Review&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;image-capture-processing-and-review&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#image-capture-processing-and-review&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Purpose&lt;/th&gt;
+          &lt;th&gt;Program&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Tethered Capture, Studio Photography&lt;/td&gt;
+          &lt;td&gt;Capture One CH&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Tethered Capture, Off-site Photography&lt;/td&gt;
+          &lt;td&gt;Capture One Pro&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Image Stitching, Review&lt;/td&gt;
+          &lt;td&gt;Adobe Photoshop&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Focus Stacking&lt;/td&gt;
+          &lt;td&gt;Helicon Focus&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Color Management&lt;/td&gt;
+          &lt;td&gt;basICColor&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;Program Management&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;program-management&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#program-management&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Purpose&lt;/th&gt;
+          &lt;th&gt;Program&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Production Management, Ticketing&lt;/td&gt;
+          &lt;td&gt;ClickUp&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Project Tracking, Program Admin&lt;/td&gt;
+          &lt;td&gt;Airtable&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Asset Preservation&lt;/td&gt;
+          &lt;td&gt;Preservica&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Metadata Management&lt;/td&gt;
+          &lt;td&gt;MMS&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2&gt;Equipment&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;equipment&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#equipment&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Studio Equipment&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;studio-equipment&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#studio-equipment&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Who&lt;/th&gt;
+          &lt;th&gt;What&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Phase One iXH 150MP&lt;/td&gt;
+          &lt;td&gt;Digital camera for copystand use&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;DT Element&lt;/td&gt;
+          &lt;td&gt;copystand&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;DT Atom&lt;/td&gt;
+          &lt;td&gt;smaller copystand&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;DT Titan&lt;/td&gt;
+          &lt;td&gt;bigger copystand&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Technical Specifications for Digital Images</title>
+      <link>http://localhost:1313/digital-imaging-resources/docs/gen_documents/techspecs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/digital-imaging-resources/docs/gen_documents/techspecs/</guid>
+      <description>
+        
+        
+        &lt;h1&gt;Technical Specifications for Digital Images&lt;/h1&gt;&lt;h3&gt;Primary and Service Files&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;primary-and-service-files&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#primary-and-service-files&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The &lt;em&gt;Primary File&lt;/em&gt; (u) is saved in 16-bit Adobe RGB and includes an object level target (OLT). This is considered the preservation file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The &lt;em&gt;Service File&lt;/em&gt; (s) is intended for digital display. It is 8-Bit sRGB and has been cropped to exclude the object level target (OLT).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Acceptable PPI Range for Capture&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;acceptable-ppi-range-for-capture&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#acceptable-ppi-range-for-capture&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Material Type&lt;/th&gt;
+          &lt;th&gt;PPI&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;#best-practices-for-bound-volumes&#34; &gt;Bound Volumes&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;400-600ppi&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;#best-practices-for-all-manuscript-materials&#34; &gt;Manuscript Materials&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;400-600ppi&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;#best-practices-for-photographs&#34; &gt;Photographic Materials&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;400-1000ppi&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;#best-practices-for-oversized-materials&#34; &gt;Oversized Materials&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;300-600ppi&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;#best-practices-for-artworks&#34; &gt;Prints, Paintings, Artworks&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;300-600ppi&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;#transmissive-materials&#34; &gt;Transmissive Media up to 4x5&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;1750-4300ppi&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;#transmissive-materials&#34; &gt;Transmissive Media larger than 4x5&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;890-1255ppi&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h4&gt;Best practices for bound volumes:&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;best-practices-for-bound-volumes&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#best-practices-for-bound-volumes&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;h5&gt;Rare Books and/or Special Collections Material&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;rare-books-andor-special-collections-material&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#rare-books-andor-special-collections-material&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;Bound volumes must be digitized &lt;strong&gt;cover-to-cover&lt;/strong&gt;. This includes the spine, covers, endpapers, and all pages (even blank ones).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Glass&lt;/strong&gt; may be &amp;ldquo;floated&amp;rdquo; to help flatten pages for imaging. As contact with glass may damage some materials, glass must not be used without prior approval.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Color accuracy&lt;/strong&gt; must be measured against an OLT, not the original item.&lt;/li&gt;
+&lt;li&gt;If a &lt;strong&gt;backing sheet&lt;/strong&gt; is used, it must extend beyond the edge of the page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;General Collections Material&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;general-collections-material&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#general-collections-material&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;For General Collections, covers and endpapers of bound volumes may not be digitized in cases where a &lt;strong&gt;library binding&lt;/strong&gt; was added or other similar alterations were made.&lt;/li&gt;
+&lt;li&gt;If a &lt;strong&gt;backing sheet&lt;/strong&gt; is used, it must extend beyond the edge of the page.&lt;/li&gt;
+&lt;li&gt;Books may be imaged in contact with &lt;strong&gt;glass&lt;/strong&gt; to flatten them. However, the binding must not be stressed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4&gt;Best Practices for All Manuscript Materials:&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;best-practices-for-all-manuscript-materials&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#best-practices-for-all-manuscript-materials&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;All objects should be photographed &lt;strong&gt;recto/verso&lt;/strong&gt; (front and back), including blank pages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Order of materials&lt;/strong&gt; in housing (box, folder, etc.) must be retained at all times.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Orientation&lt;/strong&gt; of each image should remain the same as the face page of the document, even in cases where text may appear upside down or vertical.&lt;/li&gt;
+&lt;li&gt;For &lt;strong&gt;general collections or modern textual materials&lt;/strong&gt;, an 8-bit Primary file may be used in place of the standard 16-bit.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4&gt;Best Practices for Oversized Materials&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;best-practices-for-oversized-materials&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#best-practices-for-oversized-materials&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PPI&lt;/strong&gt; should be determined by the item&amp;rsquo;s fine details, overall size, and the amount of captures that may be required to create a composite. A single capture is preferable in most cases provided that the details are legible.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stitching&lt;/strong&gt; may be required for oversized items (like maps and posters) if they cannot meet the resolution aim as a single capture. In these cases, sections are digitally composited and reassembled to represent the material as a whole without distortion or misrepresentation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4&gt;Best Practices for Photographs&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;best-practices-for-photographs&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#best-practices-for-photographs&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Gloves&lt;/strong&gt; should always be worn when handling photographic materials.&lt;/li&gt;
+&lt;li&gt;All objects should be photographed &lt;strong&gt;recto/verso&lt;/strong&gt; (front and back), including blank pages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Order of materials&lt;/strong&gt; in housing (box, folder, etc.) should be retained at all times.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Orientation&lt;/strong&gt; of each image should remain the same as the face page of the document, even in cases where text may appear upside down or vertical.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4&gt;Best Practices for Artworks&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;best-practices-for-artworks&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#best-practices-for-artworks&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PPI&lt;/strong&gt; should be determined by the item&amp;rsquo;s fine details, overall size, and the amount of captures that may be required to create a composite. A single capture is preferable in most cases provided that the details are legible.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stitching&lt;/strong&gt; may be required for oversized items (like maps and posters) if they cannot meet the resolution aim as a single capture. In these cases, sections are digitally composited and reassembled to represent the material as a whole without distortion or misrepresentation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4&gt;Transmissive Materials&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;transmissive-materials&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#transmissive-materials&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Gray Gamma 2.2&lt;/strong&gt; should be used as the color space for all &lt;strong&gt;black and white&lt;/strong&gt; film-based originals. Black and white negatives are captured in their negative state and then inverted to create a positive, with minimal adjustments. The positive inversion is retained as the Primary File, a policy that is currently under review.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Color space for color transparencies and color negative is consistent with standards for reflective material&lt;/strong&gt;: Adobe RGB (1998) for the Primary file and sRGB for the Service files. For color negatives, the negative file is retained.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;further information regarding transmissive digitization can be found in [Best Practices for Digital Capture of Transmissive Materials]({% link _tech_documents/bestpractice_transmissive.md %})&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
