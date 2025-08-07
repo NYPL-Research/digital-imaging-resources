@@ -1,0 +1,27 @@
+{
+  "name": "digital-imaging-resources",
+  "version": "1.0.0",
+  "description": "This repository is currently a work in progress.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NYPL/digital-imaging-resources.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NYPL/digital-imaging-resources/issues"
+  },
+  "homepage": "https://github.com/NYPL/digital-imaging-resources#readme",
+  "dependencies": {
+    "tinacms": "^2.8.2"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^1.10.2",
+    "@types/node": "^24.2.0"
+  }
+}
