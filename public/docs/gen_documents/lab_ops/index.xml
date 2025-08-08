@@ -1,50 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Digital Imaging Resources – Digital Imaging Labs</title>
+    <title>Digital Imaging Labs on Digital Imaging Resources</title>
     <link>http://localhost:1313/digital-imaging-resources/docs/gen_documents/lab_ops/</link>
     <description>Recent content in Digital Imaging Labs on Digital Imaging Resources</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    
-	  <atom:link href="http://localhost:1313/digital-imaging-resources/docs/gen_documents/lab_ops/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-      
-        
-      
-    
-    
+    <atom:link href="http://localhost:1313/digital-imaging-resources/docs/gen_documents/lab_ops/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Equipment</title>
       <link>http://localhost:1313/digital-imaging-resources/docs/gen_documents/lab_ops/equip/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>http://localhost:1313/digital-imaging-resources/docs/gen_documents/lab_ops/equip/</guid>
-      <description>
-        
-        
-        &lt;h3&gt;Photographic Equipment&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;photographic-equipment&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#photographic-equipment&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4&gt;Standard Copystand Package&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;standard-copystand-package&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#standard-copystand-package&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;h4&gt;Standard Oversized Package&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;standard-oversized-package&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#standard-oversized-package&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;h4&gt;Standard Transmissive Package&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;standard-transmissive-package&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#standard-transmissive-package&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;h4&gt;Specialized&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;specialized&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#specialized&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;
-      </description>
+      <description>&lt;h3 id=&#34;photographic-equipment&#34;&gt;Photographic Equipment&lt;/h3&gt;&#xA;&lt;h4 id=&#34;standard-copystand-package&#34;&gt;Standard Copystand Package&lt;/h4&gt;&#xA;&lt;h4 id=&#34;standard-oversized-package&#34;&gt;Standard Oversized Package&lt;/h4&gt;&#xA;&lt;h4 id=&#34;standard-transmissive-package&#34;&gt;Standard Transmissive Package&lt;/h4&gt;&#xA;&lt;h4 id=&#34;specialized&#34;&gt;Specialized&lt;/h4&gt;</description>
     </item>
-    
     <item>
       <title>Software</title>
       <link>http://localhost:1313/digital-imaging-resources/docs/gen_documents/lab_ops/soft/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>http://localhost:1313/digital-imaging-resources/docs/gen_documents/lab_ops/soft/</guid>
-      <description>
-        
-        
-        &lt;h3&gt;Software and other fun things&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;software-and-other-fun-things&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#software-and-other-fun-things&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
-      </description>
+      <description>&lt;h3 id=&#34;software-and-other-fun-things&#34;&gt;Software and other fun things&lt;/h3&gt;</description>
     </item>
-    
   </channel>
 </rss>

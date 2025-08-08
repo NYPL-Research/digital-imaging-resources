@@ -1,5 +1,7 @@
 ---
 toc: false
+linktitle: 'Home'
+type: docs
 ---
 
 # Digital Imaging Services

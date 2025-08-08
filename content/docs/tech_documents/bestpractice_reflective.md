@@ -6,7 +6,7 @@ permalink: /tech_documents/bestpractice_reflective/
 toc: true
 ---
 
-### Bound Volumes (Rare, Special Collections, and General Collections)
+## Bound Volumes (Rare, Special Collections, and General Collections)
 
 The goal is full cover-to-cover digitization while ensuring material safety and maintaining focus throughout the text block.
 
@@ -41,7 +41,7 @@ The goal is full cover-to-cover digitization while ensuring material safety and 
 
 ---
 
-### Manuscript Materials (Loose Unbound & Flat)
+## Manuscript Materials (Loose Unbound & Flat)
 
 The process emphasizes accurate capture of each page while maintaining the original order and orientation.
 
