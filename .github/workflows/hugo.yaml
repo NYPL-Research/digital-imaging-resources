@@ -1,40 +1,57 @@
-name: Build and Deploy Hugo Site
+name: Deploy Hugo site to Pages
 
 on:
   push:
     branches:
-      - main  # Change if your default branch is different
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repo
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # Install Node.js and enable npm caching
-      - uses: actions/setup-node@v4
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
         with:
-          node-version: 20
-          cache: 'npm'
-
-      # Install dependencies from package-lock.json
-      - name: Install Node dependencies
-        run: npm ci
-
-      # Install Hugo Extended
-      - uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.134.2' # Match local
+          hugo-version: '0.146.0'
           extended: true
 
-      # Build the site
-      - name: Build
+      - name: Setup Node.js (for PostCSS)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install PostCSS CLI and Autoprefixer
+        run: npm install postcss postcss-cli autoprefixer
+
+      - name: Build site
         run: hugo --minify
 
-      # Deploy to GitHub Pages
-      - uses: peaceiris/actions-gh-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
