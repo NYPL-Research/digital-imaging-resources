@@ -1,0 +1,1033 @@
+<!doctype html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en" class="no-js">
+  <head><script src="/digital-imaging-resources/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=digital-imaging-resources/livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="canonical" type="text/html" href="http://localhost:1313/digital-imaging-resources/docs/tech_documents/">
+<meta name="robots" content="noindex, nofollow">
+
+
+<link rel="shortcut icon" href="/digital-imaging-resources/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/digital-imaging-resources/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-192x192.png" sizes="192x192">
+
+<title>Technical Documents | Digital Imaging Resources</title>
+<meta name="description" content="This is the landing page for technical documentation.">
+<meta property="og:url" content="http://localhost:1313/digital-imaging-resources/docs/tech_documents/">
+  <meta property="og:site_name" content="Digital Imaging Resources">
+  <meta property="og:title" content="Technical Documents">
+  <meta property="og:description" content="This is the landing page for technical documentation.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Technical Documents">
+  <meta itemprop="description" content="This is the landing page for technical documentation.">
+  <meta itemprop="wordCount" content="8">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Technical Documents">
+  <meta name="twitter:description" content="This is the landing page for technical documentation.">
+<link href="/digital-imaging-resources/scss/main.css" rel="stylesheet">
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+  crossorigin="anonymous"></script>
+<script defer
+  src="https://unpkg.com/lunr@2.3.9/lunr.min.js"
+  integrity="sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli"
+  crossorigin="anonymous"></script>
+
+  </head>
+  <body class="td-section">
+    <header>
+      <nav class="td-navbar js-navbar-scroll" data-bs-theme="dark">
+<div class="container-fluid flex-column flex-md-row">
+  <a class="navbar-brand" href="/digital-imaging-resources/"><span class="navbar-brand__logo navbar-logo"></span><span class="navbar-brand__name">Digital Imaging Resources</span></a>
+  <div class="td-navbar-nav-scroll ms-md-auto" id="main_navbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/digital-imaging-resources/docs/gen_documents/"><span>General</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/digital-imaging-resources/docs/tech_documents/"><span>Technical</span></a>
+      </li>
+      <li class="td-light-dark-menu nav-item dropdown">
+        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="check2" viewBox="0 0 16 16">
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+  </symbol>
+  <symbol id="circle-half" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+  </symbol>
+  <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+    <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+  </symbol>
+  <symbol id="sun-fill" viewBox="0 0 16 16">
+    <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+  </symbol>
+</svg>
+
+<button class="btn btn-link nav-link dropdown-toggle d-flex align-items-center"
+        id="bd-theme"
+        type="button"
+        aria-expanded="false"
+        data-bs-toggle="dropdown"
+        data-bs-display="static"
+        aria-label="Toggle theme (auto)">
+  <svg class="bi my-1 theme-icon-active"><use href="#circle-half"></use></svg>
+</button>
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+      <svg class="bi me-2 opacity-50"><use href="#sun-fill"></use></svg>
+      Light
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+      <svg class="bi me-2 opacity-50"><use href="#moon-stars-fill"></use></svg>
+      Dark
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+      <svg class="bi me-2 opacity-50"><use href="#circle-half"></use></svg>
+      Auto
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+</ul>
+
+      </li>
+      </ul>
+  </div>
+  <div class="d-none d-lg-block">
+    <div class="td-search td-search--offline">
+  <div class="td-search__icon"></div>
+  <input
+    type="search"
+    class="td-search__input form-control"
+    placeholder="Search this site…"
+    aria-label="Search this site…"
+    autocomplete="off"
+    
+    data-offline-search-index-json-src="/digital-imaging-resources/offline-search-index.json"
+    data-offline-search-base-href="/"
+    data-offline-search-max-results="10"
+  >
+</div>
+  </div>
+</div>
+</nav>
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <main class="col-12 col-md-9 col-xl-8 ps-md-5" role="main">
+            
+
+
+
+
+<div class="td-content">
+<div class="pageinfo pageinfo-primary d-print-none">
+<p>
+This is the multi-page printable view of this section.
+<a href="#" onclick="print();return false;">Click here to print</a>.
+</p><p>
+<a href="/digital-imaging-resources/docs/tech_documents/">Return to the regular view of this page</a>.
+</p>
+</div>
+
+
+
+<h1 class="title">Technical Documents</h1>
+
+
+
+
+
+    <ul>
+    
+  
+  
+  
+  
+
+  
+    
+    
+	
+<li>1: <a href="#pg-20209410e6f4063505c07e12192b272e">Best Practices for Reflective Materials</a></li>
+
+
+    
+  
+    
+    
+	
+<li>2: <a href="#pg-e7d3c37579282764774db597dca4f564">Best Practices for Transmissive Materials</a></li>
+
+
+    
+  
+    
+    
+	
+<li>3: <a href="#pg-4034e5b1a8d54e0845f5b0a2e06c497d">Procedural Guide for Transmissive Digitization</a></li>
+
+
+    
+  
+
+    </ul>
+
+
+<div class="content">
+      <p>This is the landing page for technical documentation.</p>
+
+</div>
+</div>
+
+
+  
+  
+  
+  
+
+  
+  
+
+  
+    
+    
+	
+    
+
+<div class="td-content" style="">
+    
+	<h1 id="pg-20209410e6f4063505c07e12192b272e">1 - Best Practices for Reflective Materials</h1>
+    
+	
+
+<div class="pageinfo pageinfo-info">
+<p>This repository is currently under construction. The document you&rsquo;re reading may be edited, moved, or deleted entirely.</p>
+
+</div>
+
+<h2 id="bound-volumes-rare-special-collections-and-general-collections">Bound Volumes (Rare, Special Collections, and General Collections)</h2>
+<p>The goal is full cover-to-cover digitization while ensuring material safety and maintaining focus throughout the text block.</p>
+<h4 id="glass-usage">Glass Usage</h4>
+<ul>
+<li>For <strong>rare books and special collections</strong>, glass may be &ldquo;floated&rdquo; to minimize pressure on fragile bound materials, and its use requires <strong>prior approval</strong> due to potential damage risks, especially for pigmented or gold leaf materials.</li>
+<li>Glass helps flatten pages and allows them to meet the glass consistently.</li>
+<li>Secondary card and/or foam supports can be used with glass to reduce pressure on fragile pages or to kick up the glass for greater downward pressure on springy gutters.</li>
+<li>For general collections, books can be imaged in contact with glass to flatten, but the binding <strong>must not be stressed</strong>.</li>
+</ul>
+<h4 id="material-assessment-and-support">Material Assessment and Support</h4>
+<ul>
+<li>Thoroughly assess the <strong>fragility of paper and stability of the binding</strong>.</li>
+<li>Check for <strong>gutter curvature, paper sheen, fold-outs, and prints/photos</strong> that might influence lighting or PPI.</li>
+<li><strong>Foam and cardstock additions</strong> are strategically used to help the text block lie as plumb as possible and to &ldquo;kick pages out&rdquo; to expose more text in the gutter. Be cautious not to use too much foam.</li>
+</ul>
+<h4 id="capture-settings-and-focus">Capture Settings and Focus</h4>
+<ul>
+<li>The typical aperture for books rests between <strong>f/8.5 to f/11</strong> to provide more focus depth and productivity. This may involve a sacrifice of PPI to boost depth of field for easier focusing and higher throughput.</li>
+<li>Focus aims for a <strong>&ldquo;zone of acceptable focus&rdquo;</strong> rather than absolute sharpness across the entire page, prioritizing the &ldquo;meat of the text and/or image area,&rdquo; especially when gutter curvature is an issue.</li>
+<li>Focus is checked approximately every <strong>10-20 captures</strong> (or more), adjusting camera and target height as needed. This allows for reviewing blocks of pages (e.g., 20 pages) to catch skipped or duplicated captures efficiently.</li>
+<li>For books, a <strong>Lens Cast Correction (LCC)</strong> is typically needed <strong>only once per book/session</strong>, provided lighting and aperture remain constant.</li>
+</ul>
+<h4 id="content-inclusion">Content Inclusion</h4>
+<ul>
+<li>Full cover-to-cover digitization for bound volumes includes <strong>covers, endpapers, and all pages (even blank ones)</strong>, as well as the spine.</li>
+<li>Exceptions for not digitizing covers/endpapers may occur for General Collections if a <strong>library binding</strong> was added or similar alterations were made. Decisions not to shoot blank pages may be made in cases of interleaving tissue paper or large blank sections, often reviewed for curatorial preference.</li>
+<li><strong>Fold-outs</strong> are imaged in sequence, matching the resolution/PPI to their bound counterpart whenever possible, and both recto and verso contents are imaged in their folded state.</li>
+</ul>
+<h4 id="handling">Handling</h4>
+<ul>
+<li><strong>Gloves are generally not recommended</strong> for digitizing paper or similar materials as they can increase the possibility of damage.</li>
+<li>Material temperature and humidity should be maintained consistent with collection storage.</li>
+</ul>
+<h4 id="moiré-mitigation">Moiré Mitigation</h4>
+<ul>
+<li>Finding a balance between <strong>moire mitigation and desired PPI</strong> is crucial, potentially requiring test shots at varying heights. The Moire tool in Capture One (often amount 60-90, pattern 8) can be used, but values can deviate if not detrimental to image quality.</li>
+</ul>
+<hr>
+<h2 id="manuscript-materials-loose-unbound--flat">Manuscript Materials (Loose Unbound &amp; Flat)</h2>
+<p>The process emphasizes accurate capture of each page while maintaining the original order and orientation.</p>
+<h4 id="material-preparation">Material Preparation</h4>
+<ul>
+<li>A <strong>clean gray, light gray, or off-white background paper</strong> is chosen based on the material, especially for translucent items.</li>
+<li>Use an <strong>air compressor or hand rocket</strong> to remove dust from the material.</li>
+</ul>
+<h4 id="capture-protocol">Capture Protocol</h4>
+<ul>
+<li>All objects are photographed <strong>recto/verso</strong> (front and back), including blank pages.</li>
+<li>The <strong>order of materials</strong> in their housing (box, folder) <strong>must be retained at all times</strong>.</li>
+<li>The <strong>orientation</strong> of each image should remain the same as the face page of the document, even if text appears upside down or vertical.</li>
+</ul>
+<h4 id="ppi-aims">PPI Aims</h4>
+<ul>
+<li>For <strong>manuscripts and other rare and special materials</strong>, the aim is typically <strong>400-600ppi (FADGI 4-star)</strong>, with 600ppi whenever possible.</li>
+<li>For <strong>general collections or modern textual materials</strong>, an <strong>8-bit Primary file</strong> may be used instead of the standard 16-bit. For modern textual records, there are <strong>no FADGI star levels</strong>; images either meet specifications or they don&rsquo;t.</li>
+</ul>
+<h4 id="workstation-setup">Workstation Setup</h4>
+<ul>
+<li>The camera height is determined by the size of the longest item, aiming for the <strong>highest possible PPI (typically 550-600ppi)</strong> unless otherwise specified.</li>
+<li>The <strong>target is taped to the copy stand</strong> to prevent movement.</li>
+</ul>
+<h4 id="focus-checks">Focus Checks</h4>
+<ul>
+<li>Focus and exposure are re-checked after <strong>50-75 shots</strong>.</li>
+<li>It is crucial to verify that the number of images in the Capture One session matches the number of captures on the work order to avoid errors.</li>
+</ul>
+<hr>
+<h3 id="photographic-materials-prints">Photographic Materials (Prints)</h3>
+<p>These require meticulous handling and specific techniques to manage reflections and achieve precise detail capture.</p>
+<h4 id="handling-precautions">Handling Precautions</h4>
+<ul>
+<li><strong>Nitrile gloves are always recommended</strong> when handling photographic prints to prevent fingerprints and damage.</li>
+<li><strong>Dust is a significant issue</strong>, especially in shadow areas and on target patches; use an air compressor or hand rocket and give extra attention to dusting darker tones.</li>
+</ul>
+<h4 id="background-and-setup">Background and Setup</h4>
+<ul>
+<li>A <strong>black velvet shoot-through foam core</strong> may be used to mitigate reflections and achieve richer shadow details, especially for photographic prints.</li>
+<li>Lights should not be so high that they impede even illumination; the full extent of the lights should be visible from the print&rsquo;s level.</li>
+</ul>
+<h4 id="reflection-mitigation">Reflection Mitigation</h4>
+<ul>
+<li>For issues like <strong>curved edges and hard, pronounced folds</strong>, the <strong>digital back can be rotated</strong> to mitigate highlight problems.</li>
+<li><strong>Peeling corners</strong> can sometimes be coaxed flat using a gloved finger, bone folder, or piece of paper to mitigate hot spots.</li>
+<li><strong>Hard folds that catch highlights</strong> may require special handling, possibly a separate capture with the back rotated vertically and a new LCC.</li>
+</ul>
+<h4 id="ppi-aims-1">PPI Aims</h4>
+<ul>
+<li>Specific &ldquo;real world PPI buckets&rdquo; are used based on print size, aiming to meet or exceed FADGI 3 or 4-star performance.</li>
+<li><strong>400ppi</strong> for originals larger than 16x20” (FADGI 3-star).</li>
+<li><strong>600ppi</strong> for originals larger than 11x14” up to 16x20” (FADGI 4-star).</li>
+<li><strong>800ppi</strong> is the <strong>current standard for 8x10” photographic print collections</strong>, and for originals from 5x7” to 11x14”.</li>
+<li><strong>1000ppi</strong> for originals smaller than 5x7”.</li>
+</ul>
+<h4 id="moiré-mitigation-1">Moiré Mitigation</h4>
+<ul>
+<li>If moiré patterns are present, the <strong>material can be rotated in-camera</strong> to mitigate the effect. This may necessitate reducing the PPI to create adequate rotational space around the print. Higher resolution digital backs limit moiré, but it can still occur.</li>
+</ul>
+<hr>
+<h3 id="oversized-materials-maps-posters-and-artworks-requiring-stitching">Oversized Materials (Maps, Posters, and Artworks Requiring Stitching)</h3>
+<p>These often require multi-capture approaches to achieve sufficient resolution and manage physical dimensions.</p>
+<h4 id="stitching-requirement">Stitching Requirement</h4>
+<ul>
+<li><strong>Stitching may be required</strong> for oversized items if they cannot meet the resolution aim as a single capture. Sections are digitally composited and reassembled to represent the material as a whole without distortion or misrepresentation.</li>
+<li><strong>Component images</strong> that make up the final stitched file are saved as preservation files (U files) but are <strong>suppressed</strong> in the Metadata Management System (MMS) for public display; the final stitched image becomes the production preservation file.</li>
+<li>An overlap of <strong>around 20% is ideal</strong> for images requiring stitching when no canvas break is present.</li>
+<li>Stitching can be done using <strong>Photoshop Photomerge</strong> (generally using the &lsquo;collage&rsquo; method) or <strong>manual methods</strong>, the latter sometimes being less time-consuming for maps with worn seams.</li>
+<li>For stitched images, <strong>only one color target</strong> should remain in the final composite image.</li>
+</ul>
+<h4 id="ppi-determination">PPI Determination</h4>
+<ul>
+<li>PPI is determined by the item&rsquo;s fine details, overall size, and the number of captures required for a composite. A single capture is preferable if details are legible.</li>
+<li>For <strong>maps, posters, and other materials</strong>, the aim is generally <strong>400ppi or 600ppi</strong>, adjusting based on fine details and compositing needs.</li>
+<li><strong>Newspapers</strong> generally target <strong>400ppi</strong> (FADGI 3-star).</li>
+</ul>
+<h4 id="handling-and-setup">Handling and Setup</h4>
+<ul>
+<li>Many maps are printed on thin paper and require an <strong>off-white mat board underneath</strong>; only the image area needs to be covered.</li>
+<li>For <strong>encapsulated items (e.g., in Mylar)</strong>, special care is needed to mitigate reflections. This can involve using <strong>black shoot-through cards</strong> to eliminate reflections from the camera and environment, covering the TTI column with black paper, or using black flags on light stands. When using a foot pedal near encapsulated items, tripping the shutter from the keyboard can prevent reflections from clothing/skin.</li>
+<li>When using glass for encapsulated items, a <strong>slip of Mylar over the color target</strong> is recommended.</li>
+</ul>
+<h4 id="lighting">Lighting</h4>
+<ul>
+<li>Lights are typically between <strong>64” and 80” high</strong> (floor to top of pin) and pointed <strong>20 degrees down</strong>.</li>
+<li>Some coated maps may require lights to be raised to avoid glare. For encapsulated items, lights may need to be lowered all the way and pointed at each other from table corners to lessen edge reflections.</li>
+</ul>
+<h4 id="focus-challenges">Focus Challenges</h4>
+<ul>
+<li>Maps often fill the frame, which demands high performance from the lens and an extremely level copy stand. Balancing sharpness between corners and the center can be challenging. It may be helpful to check <strong>nine points of focus</strong>.</li>
+</ul>
+<h4 id="moiré-mitigation-2">Moiré Mitigation</h4>
+<ul>
+<li>Moiré is very common with maps due to fine parallel ink lines and halftone printing. While higher resolution backs limit it, it still occurs.</li>
+<li>The moiré tool in Capture One can be used (e.g., amount 45, pattern 8), and may need to be boosted to 100 in certain areas. It&rsquo;s crucial to <strong>avoid color smearing</strong> by removing moiré adjustment from map edges and canvas seams.</li>
+</ul>
+<hr>
+<h3 id="three-dimensional-items">Three-Dimensional Items</h3>
+<p>3D items are explicitly <strong>not included in FADGI guidelines</strong>, meaning imaging practices for them are developed in-house based on best judgment and specific item needs.</p>
+<h4 id="lighting-and-setup">Lighting and Setup</h4>
+<ul>
+<li>The setup is highly variable due to wide variations in item shape, size, and material. A <strong>safe off-set area</strong> for the item and an <strong>adequate background paper sweep</strong> are essential.</li>
+<li>Focus on how light might fall across the item to <strong>best describe its volume and surface detail</strong>. A primary light source entering from the left often works well for Western text.</li>
+<li>A <strong>two-light setup</strong> is typically used, with lights adjusted for height, distance, and angle to ensure even illumination.</li>
+<li>Explore using a <strong>key light</strong> (dominant), <strong>fill light</strong> (to diminish shadows, possibly with a fill card), <strong>kickers/accent lights</strong> (behind and to sides for highlights and separation, especially for dark items), and optional <strong>background lights</strong> or a <strong>boom light</strong>.</li>
+<li><strong>Beware of lens flare</strong>; flagging off the lens may be necessary.</li>
+<li>Flagging off the background paper can create a <strong>gradated effect</strong> that visually isolates the item and increases perceived dimensionality.</li>
+<li>Alternative lighting modifiers beyond standard softboxes, such as reflectors, beauty dishes, diffusion paper, silks, and scrims, may be used.</li>
+</ul>
+<h4 id="lcc-application">LCC Application</h4>
+<ul>
+<li>A unique point for 3D items is that there is <strong>no need to make or use an LCC</strong> (Lens Cast Correction).</li>
+</ul>
+<h4 id="camera-and-focus">Camera and Focus</h4>
+<ul>
+<li>The camera&rsquo;s angle and height are critical for defining the item in space and avoiding distortion. Perform a <strong>through-the-lens handheld assessment</strong> to quickly determine orientation and angle.</li>
+<li>Focus aims to utilize the <strong>plane of focus</strong> which travels outward parallel to the lens at its angle, allowing it to match the item&rsquo;s shape. Pulling back camera distance can increase depth of field.</li>
+<li><strong>Focus stacking</strong> has been tested and may be employed on a case-by-case basis depending on the item&rsquo;s depth and time constraints.</li>
+</ul>
+<h4 id="representational-views">Representational Views</h4>
+<ul>
+<li>A successful 3D capture describes the item&rsquo;s purpose/story, physical attributes, presence in space, and center of gravity.</li>
+<li>Often, <strong>multiple views</strong> are needed (e.g., ¾ front and ¾ back, or front/back, side/side, top/bottom) to adequately describe the item.</li>
+<li>Be aware of <strong>visual tangent points</strong> which can be distracting and flatten perceived volume; aim to create separation of object elements.</li>
+</ul>
+<h4 id="post-processing">Post-processing</h4>
+<ul>
+<li>Final capture may benefit from an <strong>overall sharpening bump</strong> and <strong>local adjustments for shadow/highlight recovery</strong>.</li>
+<li><strong>ISO is kept at 200 or under</strong> for in-situ items.</li>
+<li><strong>PPI is unspecified</strong>, based on the item&rsquo;s finest details that need to be resolved and balancing depth-of-field in a single capture.</li>
+</ul>
+<p>In essence, while flat materials prioritize a perfectly &ldquo;flat&rdquo; digital reproduction achieved through precise alignment and exposure, imaging 3D objects is more akin to a portrait artist capturing the essence and form of their subject. The challenges shift from mitigating surface irregularities to orchestrating light and camera angles to define volume, texture, and spatial relationships, where the &ldquo;truth&rdquo; of the image lies in its comprehensive portrayal from multiple perspectives rather than a single, perfectly planar shot.</p>
+
+</div>
+
+
+
+    
+	
+  
+    
+    
+	
+    
+
+<div class="td-content" style="page-break-before: always">
+    
+	<h1 id="pg-e7d3c37579282764774db597dca4f564">2 - Best Practices for Transmissive Materials</h1>
+    
+	
+
+<div class="pageinfo pageinfo-info">
+<p>This repository is currently under construction. The document you&rsquo;re reading may be edited, moved, or deleted entirely.</p>
+
+</div>
+
+<h3 id="preparation-and-handling">Preparation and Handling</h3>
+<ul>
+<li>
+<p>Film should typically be photographed with the <strong>emulsion side down</strong>. The emulsion side is the more matte surface with a raised texture, while the base side is shiny. Any text on the film should read correctly when viewed with the emulsion side down.</p>
+</li>
+<li>
+<p>Slides and film should be resleeved in the same order they were shot, mainatining the emulsion side down orientation.</p>
+</li>
+<li>
+<p>As <strong>dust</strong> is a significant challenge during the digitization of transmissive media, working areas should be cleaned regularly and kept as dust-free as possible.</p>
+</li>
+</ul>
+<h3 id="equipment-setup-and-operation">Equipment Setup and Operation</h3>
+<h4 id="equipment-setup">Equipment Setup</h4>
+<ul>
+<li>
+<p>Lighting equipment should be powered on for at least 5 minutes before beginning a session.</p>
+</li>
+<li>
+<p><strong>Camera alignment</strong> should be verified with a laser level at the beginning of any new project and/or whenever any adjustments are made, e.g. changing a lens.</p>
+</li>
+</ul>
+<h4 id="capture-settings">Capture Settings</h4>
+<ul>
+<li>
+<p><strong>ISO and Aperture</strong>: Maintain a consistent ISO of 50 and an aperture of F9 for transmissive captures.</p>
+</li>
+<li>
+<p><strong>Base Characteristics</strong>:  Set camera Base Characteristics to &ldquo;Photography&rdquo; Mode. Initially set the <strong>Curve</strong> to &ldquo;Linear Scientific&rdquo;, then switch to &ldquo;Linear Response&rdquo; after <strong>LCC creation</strong>.</p>
+</li>
+<li>
+<p><strong>Sharpening and Noise Reduction</strong>: Apply consistent <strong>sharpening settings</strong> (Amount=100, Radius=1, Threshold=0, Halo=0) and <strong>noise reduction</strong> (Luminance=0, Details=50, Color=40, Single Pixel=0).</p>
+</li>
+</ul>
+<h4 id="capture-workflow">Capture Workflow</h4>
+<ul>
+<li>
+<p><strong>Focusing</strong>: Start by creating a capture of an IT8 target or a negative for initial focus. Use Live View at 100% with single incremental movements to achieve sharp focus and visible film grain. Measure PPI with the Capture Resolution Ruler to confirm resolution</p>
+</li>
+<li>
+<p><strong>LCC (Lens Cast Correction)</strong>: Capture an LCC Raw File directly off the Photon light source (not Plexiglass) with the film removed, exposing for mid-gray. Alternatively, apply a pre-set LCC based on the film format.</p>
+</li>
+<li>
+<p><strong>White Balance</strong>: With film removed, capture a mid-gray image and white balance off the Photon light source in the center of the frame</p>
+</li>
+<li>
+<p><strong>Base Exposure</strong>: For <strong>color positives</strong>, set the exposure (film removed) until the Photon reading is at 243 (without exceeding in any RGB channel), with underexposure being preferred over overexposure. For <strong>B&amp;W negatives</strong>, set exposure off the negative&rsquo;s unexposed film base to 235 (without exceeding), as Gray Gamma 2.2 displays a single grayscale value. Fine-tune with minimal &ldquo;Exposure&rdquo; tool adjustment.</p>
+</li>
+<li>
+<p><strong>Levels and HDR Adjustments</strong>: Apply a custom Levels preset for the Atom system and specific film stocks. Adjust <strong>Shadow</strong> detail under the HDR (High Dynamic Range) Tool as needed. For <strong>B&amp;W negatives</strong>, HDR adjustments are &ldquo;reversed&rdquo; (Shadow adjusts highlights, Highlight adjusts shadows). Be mindful not to overdo shadow recovery to avoid flattening the image. Kodachrome films may require more shadow recovery (15-25)</p>
+</li>
+<li>
+<p><strong>Next Capture Adjustments</strong>: Set &ldquo;Next Capture Adjustments&rdquo; to &ldquo;Copy From Last&rdquo; to maintain consistency across captures</p>
+</li>
+<li>
+<p><strong>Batch Capture</strong>: Once settings are finalized, capture all slides/negatives within the work order/production. Tag vertical captures (e.g., green for slides, green/yellow for negatives) for easy bulk rotation later.</p>
+</li>
+</ul>
+<h4 id="capture-processing-and-output">Capture Processing and Output</h4>
+<ul>
+<li>
+<p><strong>File Formats and Bit Depth</strong>: Create both Primary Files (U Files) and Service Files (S Files). U Files should be lossless TIFF (uncompressed) at 16-bit depth for maximum detail and long-term preservation. S Files are typically 8-bit.</p>
+</li>
+<li>
+<p><strong>Color Space</strong>: U Files for <strong>color positives</strong> use Adobe RGB (1998). U Files for <strong>B&amp;W negatives</strong>  use Gray Gamma 2.2. S Files for both generally use sRGB for optimal web display.</p>
+</li>
+<li>
+<p><strong>Cropping</strong>: For 35mm slides, U and S files should have the same crop size (4300 x 6100 pixels). For B&amp;W 35mm negatives, S files are approx. 4230 x 6330 pixels, and U files are approx. 5050 x 8500 pixels. U files should include the full film border, and for roll films, a small portion of adjacent frames. S files are generally cropped outside the image area, showing some of the dark film base or slide mount.</p>
+</li>
+<li>
+<p><strong>Rotation</strong>: Rotate all vertical captures in bulk during post-processing</p>
+</li>
+</ul>
+<h3 id="key-considerations-and-challenges">Key Considerations and Challenges</h3>
+<ul>
+<li>
+<p><strong>Dynamic Range</strong>: Recognize that transparency films can have a very high d-max (approaching 4.0), which challenges even the best imaging sensors. Phase One digital backs are noted for their 15-stop dynamic range. Highlight/Shadow tolerance aims should be ideally within 245/10 (+/- 5) RGB values</p>
+</li>
+<li>
+<p><strong>Film Type Specifics</strong>: Be aware that Kodachrome films require specific IT-8 targets or professionally produced ICC profiles for correct digitization, as standard Ektachrome targets are insufficient. For B&amp;W and color negatives, the tone scale is non-linear, and they may appear flatter than positive prints</p>
+</li>
+<li>
+<p><strong>Color Casts and Degradation</strong>: The aim for color transparencies is to create a digital surrogate representing their current condition as viewed on a light table, not to &ldquo;color correct&rdquo; casts resulting from poor development or degradation over time. Dust processed into the emulsion should be captured.</p>
+</li>
+<li>
+<p><strong>Moiré and Motion Blur</strong>: If moiré patterns or color noise are present, rotate the material to mitigate the effect, potentially requiring a reduction in PPI to create adequate rotational space. Be wary of motion blur, especially with shutter speeds slower than 1/20s</p>
+</li>
+<li>
+<p><strong>Negative Inversion</strong>: The current practice for B&amp;W negatives is to capture them in their negative state and then invert them to create a positive, with minimal adjustments (e.g., straight invert, 100% desaturation, slight midtone pull in Curves)
+The decision to save the positive inverted version as the Primary File (U) is currently under review.</p>
+</li>
+</ul>
+
+</div>
+
+
+
+    
+	
+  
+    
+    
+	
+    
+
+<div class="td-content" style="page-break-before: always">
+    
+	<h1 id="pg-4034e5b1a8d54e0845f5b0a2e06c497d">3 - Procedural Guide for Transmissive Digitization</h1>
+    
+	
+
+<div class="pageinfo pageinfo-info">
+<p>This repository is currently under construction. The document you&rsquo;re reading may be edited, moved, or deleted entirely.</p>
+
+</div>
+
+<p>This guide outlines the standard procedures for digitizing transmissive materials, including color transparencies (slides and film) and black &amp; white negatives, adhering to industry best practices.</p>
+<h4 id="general-setup-and-pre-flight-procedures">General Setup and Pre-flight Procedures</h4>
+<p>Before you begin any digitization project, perform these essential steps:</p>
+<ol>
+<li>
+<p><strong>Monitor Warm-up:</strong> Allow your monitor and  light(s) to warm up for approximately 5 minutes before you start capturing images.</p>
+</li>
+<li>
+<p><strong>Maintain a Clean Environment:</strong> Keep your workspace as dust-free as possible. Dust can significantly impact image quality and require extensive post-processing.</p>
+</li>
+<li>
+<p><strong>Camera Alignment:</strong> Always verify camera alignment with a laser level whenever you change a lens or add extension tubes. This is crucial for maintaining image sharpness and geometric accuracy.</p>
+<ul>
+<li>When transitioning from a reflective setup to transmissive, confirm the camera lens is perfectly parallel to the Transmissive Stage Top using the Versalab Laser Alignment Tool. Use the appropriate UV filter for your lens (46mm for 120mm lens, 77mm for 72mm MKII lens).</li>
+</ul>
+</li>
+<li>
+<p><strong>Lens Changes:</strong> If you change lenses, power cycle the camera (turn off, wait 30 seconds, then turn back on) to ensure Capture One recognizes the new lens.</p>
+</li>
+<li>
+<p><strong>Focus Reset:</strong> The camera automatically resets focus when a Capture One session is closed or the camera is unplugged. You only need to &ldquo;recalibrate&rdquo; the column if its power is turned off; otherwise, simply refocus at the start of each session.</p>
+</li>
+<li>
+<p><strong>Stage Assembly:</strong> Install the DT Photon light panel and Film Scanning stage within the DT Atom stage <em>before</em> the stage top is installed.</p>
+</li>
+<li>
+<p><strong>Power On:</strong> Turn on the DT Atom camera back power and the Photon light. Ensure the Photon light is set to &ldquo;continuous&rdquo; lighting mode.</p>
+</li>
+</ol>
+<hr>
+<h3 id="1-transmissive-digitization---color">1. Transmissive Digitization - Color</h3>
+<h4 id="11-material-preparation"><em>1.1 Material Preparation</em></h4>
+<ol>
+<li>
+<p><strong>Material Orientation:</strong> Orient your transparency sheets with any punched holes on the left side (if applicable) and the production title legible. Begin image capture from the top left, moving to the right, then down.</p>
+</li>
+<li>
+<p><strong>Emulsion Side Down:</strong> Always load color positives (slides/transparencies) with the <strong>emulsion side down</strong>.</p>
+<ul>
+<li>The emulsion side typically has a more matte surface and a raised/relief texture from the processed color layers.</li>
+<li>The base side will appear shiny.</li>
+<li>Any text within the image should read correctly when the emulsion side is facing down.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vertical Orientation for Consistency:</strong> When digitizing vertical images, load them with the top of the image on the left side. This ensures consistent bulk rotation during post-processing.</p>
+</li>
+<li>
+<p><strong>Re-sleeving:</strong> Re-sleeve the transparencies in the same order they were captured, maintaining the emulsion-side-down orientation.</p>
+</li>
+<li>
+<p><strong>Capture Quantity:</strong> Confirm the final capture quantity matches your project requirements.</p>
+</li>
+<li>
+<p><strong>Tracking:</strong> Consider using a star rating (e.g., 5 stars) to mark the start of each sheet. This helps align your capture count with the physical material.</p>
+</li>
+</ol>
+<h4 id="12-capture-setup--camera-settings"><em>1.2 Capture Setup &amp; Camera Settings</em></h4>
+<p>Refer to the table in <a href="#14-lens-extension-column-height-ppi-and-crop-sizes-for-color-transmissive-digitization">Section 1.4</a> for specific lens, extension, column height, and crop size recommendations based on film format.</p>
+<ol>
+<li>
+<p><strong>Select Lens &amp; Extension:</strong> Choose the appropriate lens and extension tubes as specified in the table for your film format.</p>
+</li>
+<li>
+<p><strong>ISO &amp; Aperture:</strong></p>
+<ul>
+<li><strong>ISO:</strong> 50</li>
+<li><strong>Aperture:</strong> F9</li>
+</ul>
+</li>
+<li>
+<p><strong>Shutter Speed:</strong> This will vary based on film format and density.</p>
+<ul>
+<li>For 35mm film at 4300ppi, it&rsquo;s typically around 1/40th sec, but can range from 1/30th to 1/3 second.</li>
+<li>Optimal shutter speed for highlight control is often 1/30s or 1/20s.</li>
+</ul>
+</li>
+<li>
+<p><strong>Process Recipes:</strong> Set process recipes to <strong>U Files (Adobe RGB) 16bit</strong>.</p>
+</li>
+<li>
+<p><strong>Camera Position &amp; Focus:</strong></p>
+<ul>
+<li>In the Copy Stand tool, enter the column height starting position (e.g., 57.45 cm for 35mm) and click &ldquo;Move.&rdquo;</li>
+<li>In the Camera Focus tool, enter the desired &ldquo;Target&rdquo; Resolution [PPI] (e.g., 4300ppi for 35mm).</li>
+<li>Capture an IT8 target of the same format for initial focus.</li>
+<li>Open Live View and examine the image at 100%. Use the Copy Stand floating tool to fine-tune focus with small incremental movements. You can use the &ldquo;Pick focus area&rdquo; tool and Auto Focus (AF) for an initial focus point. Hold ALT for &ldquo;fine&rdquo; focus adjustments.</li>
+<li>Close Live View and capture an image to assess focus. Ensure focus is balanced and film grain is clearly visible. Fine-tune as needed. Be mindful of motion blur with shutter speeds slower than 1/20s.</li>
+<li>Measure PPI using the Capture Resolution Ruler (set the length to the appropriate film dimension, e.g., 35mm for 35mm slides).</li>
+</ul>
+</li>
+<li>
+<p><strong>Base Characteristics:</strong></p>
+<ul>
+<li><strong>Mode:</strong> Photography</li>
+<li><strong>ICC Profile:</strong> Phase One iXG NYPL_Bay3_DTPhoton_201912 (or the most recent profile).</li>
+<li><strong>Curve:</strong> Start with Linear Scientific, then switch to Linear Response after creating your LCC.</li>
+<li><strong>Engine:</strong> Capture One 20/21.</li>
+</ul>
+</li>
+<li>
+<p><strong>Sharpening:</strong> Set to: Amount = 100, Radius = 1, Threshold = 0, Halo = 0.</p>
+</li>
+<li>
+<p><strong>Noise Reduction:</strong> Set to: Luminance = 0, Details = 50, Color = 40, Single Pixel = 0.</p>
+</li>
+<li>
+<p><strong>Capture LCC Raw File:</strong></p>
+<ul>
+<li>Remove any film or film holder from the stage.</li>
+<li>Capture an LCC image directly off the Photon light source (do NOT use Plexiglass).</li>
+<li>Expose for a mid-gray value, keeping the aperture at F9 and adjusting the shutter speed. The LCC RGB value for transmissive material should be around 140 (+/- 10).</li>
+</ul>
+</li>
+<li>
+<p><strong>Apply LCC Preset:</strong> Apply the preset appropriate for your film format size, e.g., LCC_35mm_F9_4300ppi.</p>
+</li>
+<li>
+<p><strong>White Balance:</strong></p>
+<ul>
+<li>With film removed, create a capture and expose for mid-gray (e.g., 1/100th at F9).</li>
+<li>White balance off the Photon light source in the center of the frame.</li>
+<li>Default Kelvin: 5296, Tint: 8.3.</li>
+</ul>
+</li>
+<li>
+<p><strong>Set Base Exposure:</strong></p>
+<ul>
+<li>With film removed, create a capture. Adjust the shutter speed (typically 1/40th sec for 35mm/4300ppi) until the exposure reading off the Photon light source reaches <strong>243</strong> in <em>at least one</em> RGB channel, without exceeding 243 in any channel.</li>
+<li>It&rsquo;s generally better to set the shutter speed to be slightly underexposed (under 243) and then adjust exposure up, rather than overexposing.</li>
+<li>Fine-tune with minimal &ldquo;Exposure&rdquo; tool adjustment if needed.</li>
+<li><strong>Exposure Philosophy:</strong> Expose for the highlights, and develop for the shadows. Optimal shutter speed for highlight control is 1/30s or 1/20s.</li>
+<li><strong>Highlight/Shadow Aims:</strong> Highlights: 245 (+/- 5); Shadows: 10 (+/- 5).</li>
+</ul>
+</li>
+<li>
+<p><strong>Adjust Shadow Detail (HDR Tool):</strong></p>
+<ul>
+<li>Adjust as needed per set or film stock.</li>
+<li><strong>Shadow:</strong> 40 (maximum), <strong>Black:</strong> 5 (maximum).</li>
+<li><strong>Shadow Density Threshold:</strong> Minimum 10 (+/-3). Do not go below 7 in any RGB channel.</li>
+<li>Note that some film may not require much or any shadow recovery (e.g., 5 to 10), while others, like Kodachrome, may need more (e.g., 15 to 25).</li>
+</ul>
+</li>
+<li>
+<p><strong>Next Capture Adjustments:</strong> Set to [Other &gt; Copy From Last].</p>
+</li>
+<li>
+<p><strong>First Capture &amp; Crop:</strong></p>
+<ul>
+<li>Capture the first transparency of the session.</li>
+<li>Set the initial crop (e.g., approximately 3750 x 5560 pixels for 35mm slides).</li>
+<li>Add an inner crop to assess the histogram and check for highlight/shadow clipping. Center and align this inner crop during capture to save time during processing.</li>
+</ul>
+</li>
+</ol>
+<h4 id="13-processing-instructions"><em>1.3 Processing Instructions</em></h4>
+<ol>
+<li>
+<p><strong>Batch Capture:</strong> Once settings are finalized, capture all transparencies within the project that share similar characteristics. As you capture, regularly check for motion blur, focus, and capture density.</p>
+</li>
+<li>
+<p><strong>Vertical Image Tagging:</strong> Tag vertical captures (e.g., with a green color tag) for easy &ldquo;Sort By Same&rdquo; for bulk rotation later.</p>
+</li>
+<li>
+<p><strong>Final Capture Count:</strong> Confirm the ending capture quantity matches your project requirements.</p>
+</li>
+<li>
+<p><strong>Review and Adjust:</strong> Confirm the number of captures for each folder, and check for duplicates and focus issues. Make any minor adjustments to exposure and HDR settings to match the physical transparencies and ensure no clipping in highlights or shadows.</p>
+</li>
+<li>
+<p><strong>Expand Inner Crop:</strong> For both U and S files, expand the inner crop height and width. Use Scripts &gt; Crop Tools &gt; Set Height and Width.</p>
+<ul>
+<li>For 35mm transparencies: U &amp; S files should be approximately 4300 x 6100 pixels.</li>
+</ul>
+</li>
+<li>
+<p><strong>Process Files:</strong> Process both U and S files simultaneously if desired, as they use the same crop. U Files should be <strong>Adobe RGB 16bit</strong>.</p>
+</li>
+</ol>
+<h4 id="14-lens-extension-column-height-ppi-and-crop-sizes-for-color-transmissive-digitization"><em>1.4 Lens, Extension, Column Height, PPI, and Crop Sizes for Color Transmissive Digitization</em></h4>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Film Format</th>
+          <th style="text-align: left">Lens &amp; Extension Tube</th>
+          <th style="text-align: left">Column Height Approx. Position (cm)</th>
+          <th style="text-align: left">Approx. PPI (+/- 50ppi)</th>
+          <th style="text-align: left">Approx. U &amp; S Crop Sizes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">35mm slides</td>
+          <td style="text-align: left">120mm (w/ 40mm + 20mm)</td>
+          <td style="text-align: left">57.45 cm</td>
+          <td style="text-align: left">4300 +/-</td>
+          <td style="text-align: left">Same size for U &amp; S files: 4300 x 6100 pixels</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">35mm strip film / microfilm</td>
+          <td style="text-align: left">120mm (w/ 40mm + 20mm)</td>
+          <td style="text-align: left">57.45 cm</td>
+          <td style="text-align: left">4300 +/-</td>
+          <td style="text-align: left">U file: 5050 x 8500 pixels, S file: 4230 x 6330 pixels</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Medium format (use 8x10” ANR glass holder)</td>
+          <td style="text-align: left">120mm (w/ 20mm)</td>
+          <td style="text-align: left">64 cm</td>
+          <td style="text-align: left">2500 +/-</td>
+          <td style="text-align: left">U file: 6700 x 8000 pixels, S file: 5700 x 5700 pixels</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4x5 sheet film (use 8x10” ANR glass holder)</td>
+          <td style="text-align: left">120mm</td>
+          <td style="text-align: left">75.5 cm</td>
+          <td style="text-align: left">1725 +/-</td>
+          <td style="text-align: left">Same size for U &amp; S files: 5600 x 7000 pixels</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">5x7 sheet film (use 8x10” ANR glass holder)</td>
+          <td style="text-align: left">72mm MKII (no extension)</td>
+          <td style="text-align: left">57.13 cm</td>
+          <td style="text-align: left">1255 +/-</td>
+          <td style="text-align: left">Same size for U &amp; S files: 6300 x 8900 pixels</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">8x10 sheet film (use 8x10” ANR glass holder)</td>
+          <td style="text-align: left">72mm MKII</td>
+          <td style="text-align: left">70 cm</td>
+          <td style="text-align: left">890 +/-</td>
+          <td style="text-align: left">Same size for U &amp; S files: 7100 x 8900 pixels</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="2-transmissive-digitization---black--white">2. Transmissive Digitization - Black &amp; White</h3>
+<h4 id="21-material-preparation"><em>2.1 Material Preparation</em></h4>
+<ol>
+<li>
+<p><strong>Emulsion Side Down:</strong> Always load black &amp; white negatives with the <strong>emulsion side down</strong>.</p>
+<ul>
+<li>The emulsion side has a more matte surface and a texture from the build-up of silver after processing.</li>
+<li>The base side will appear shiny.</li>
+<li>Any text within the film should read correctly when the emulsion side is facing down.</li>
+</ul>
+</li>
+<li>
+<p><strong>Re-sleeving:</strong> Re-sleeve the film in the same order it was captured, ensuring consistency with any existing item-level descriptions.</p>
+</li>
+<li>
+<p><strong>Tracking:</strong> Consider tagging the start of each sheet with a color or star rating to help track negative count and capture count alignment. Renaming captures after each sheet is also recommended.</p>
+</li>
+</ol>
+<h4 id="22-workflow-summary"><em>2.2 Workflow Summary</em></h4>
+<p>Refer to the table in <a href="#24-lens-extension-column-height-ppi-and-crop-sizes-for-bw-transmissive-digitization">Section 2.4</a> for specific lens, extension, column height, and crop size recommendations based on film format.</p>
+<ol>
+<li>
+<p><strong>Select Lens &amp; Extension:</strong> Choose the appropriate lens and extension tubes as specified in the table for your film format.</p>
+</li>
+<li>
+<p><strong>ISO &amp; Aperture:</strong></p>
+<ul>
+<li><strong>ISO:</strong> 50</li>
+<li><strong>Aperture:</strong> F9</li>
+</ul>
+</li>
+<li>
+<p><strong>Shutter Speed:</strong> This will vary based on film format and density.</p>
+<ul>
+<li>For 35mm film at 4300ppi, it&rsquo;s typically around 1/20th sec. This speed will vary with different film formats and lens/extension use.</li>
+</ul>
+</li>
+<li>
+<p><strong>Process Recipes:</strong> Set process recipes to <strong>U Files (Gray Gamma 2.2) 16bit</strong>.</p>
+</li>
+<li>
+<p><strong>Camera Position &amp; Focus:</strong></p>
+<ul>
+<li>In the Copy Stand tool, enter the column height starting position based on format (e.g., 57.45 cm for 35mm) and click &ldquo;Move.&rdquo;</li>
+<li>In the Camera Focus tool, enter the desired &ldquo;Target&rdquo; Resolution PPI (e.g., 4300ppi for 35mm).</li>
+<li>Capture the first negative (or an ISA 35mm B&amp;W negative target) for initial focus.</li>
+<li>Open Live View, activate the grid, and center the camera with the film holder and Photon light. Adjust staging blades as needed.</li>
+<li>Within Live View at 100%, use the Copy Stand floating tool to fine-tune focus with small incremental movements.</li>
+<li>Close Live View and capture an image to assess focus. Ensure focus is balanced and film grain is clearly visible. Fine-tune as needed.</li>
+<li>Measure PPI using the Capture Resolution Ruler:
+<ul>
+<li>For 35mm: Set length to 36mm for the long side; resolution will be approximately 4300ppi (+/-).</li>
+<li>For 120/medium format: Set length to 60mm for the width; resolution will be approximately 2500ppi (+/-) with an ANR glass carrier.</li>
+<li>For 4x5&quot; sheet film: Set length to 4.9&quot; for the long dimension; resolution will be approximately 1755ppi with an ANR glass carrier.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Base Characteristics:</strong></p>
+<ul>
+<li><strong>Mode:</strong> Photography</li>
+<li><strong>ICC Profile:</strong> Phase One iXG NYPL_Bay3_DTPhoton_201912.</li>
+<li><strong>Curve:</strong> Linear Scientific.</li>
+</ul>
+</li>
+<li>
+<p><strong>Sharpening:</strong> Set to: Amount = 100, Radius = 1, Threshold = 0, Halo = 0.</p>
+</li>
+<li>
+<p><strong>Noise Reduction:</strong> Set to: Luminance = 0, Details = 50, Color = 40, Single Pixel = 0.</p>
+</li>
+<li>
+<p><strong>Capture LCC Raw File:</strong></p>
+<ul>
+<li>Remove any film or film holder.</li>
+<li>Capture an LCC image directly off the Photon light source (do NOT use Plexiglass).</li>
+<li>Expose for a mid-gray value, keeping the aperture at F9 and adjusting shutter speed to achieve an approximate RGB value in the range of 170-200.</li>
+</ul>
+</li>
+<li>
+<p><strong>Apply LCC Preset:</strong> Apply the preset appropriate for your film format size, e.g., LCC_35mm_F9_4300ppi.</p>
+</li>
+<li>
+<p><strong>Capture Raw File &amp; Set White Balance:</strong></p>
+<ul>
+<li>With film removed, create a capture and expose for mid-gray (keeping aperture at F9 and adjusting shutter speed to meet an approximate RGB value in the range of 170-200).</li>
+<li>White balance off the Photon light source in the center of the frame.</li>
+</ul>
+</li>
+<li>
+<p><strong>Set Base Exposure Off the Negative&rsquo;s Film Base:</strong></p>
+<ul>
+<li>Create a capture. Adjust the shutter speed (approximately 1/20th sec for 35mm/4300ppi) until the exposure reading off the negative&rsquo;s <em>unexposed film base</em> reaches <strong>235</strong> in <em>at least one</em> RGB channel, without exceeding 235 in any channel.</li>
+<li>It&rsquo;s always better to set the shutter speed to be slightly underexposed (under 235) rather than overexposed.</li>
+<li>Fine-tune with minimal &ldquo;Exposure&rdquo; tool adjustment if needed.</li>
+<li>This base exposure should provide a good starting point for well-exposed and processed film negatives without clipping highlight or shadow details.</li>
+<li><strong>Highlight/Shadow Tolerance (Gray Gamma 2.2):</strong> Ideally, shadows should not be less than 10 RGB, and highlights not more than 245 RGB.</li>
+</ul>
+</li>
+<li>
+<p><strong>Apply Levels Preset:</strong> Use BWINVERSION.</p>
+</li>
+<li>
+<p><strong>Apply Curves Preset:</strong> Use B&amp;W_midtone_adjust.</p>
+</li>
+<li>
+<p><strong>First Capture &amp; Crop:</strong></p>
+<ul>
+<li>Capture the first negative of the session.</li>
+<li>Set the S file crop:
+<ul>
+<li>For 35mm negatives: approximately 4230 x 6330 pixels.</li>
+<li>For 120mm square negatives: approximately 5700 x 5700 pixels.</li>
+<li>For 4x5&quot;, 5x7&quot;, and 8x10&quot; negatives: U &amp; S files can be the same size, showing beyond the edges of the film as shot using the ANR Glass Holder.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Next Capture Adjustments:</strong> Set to [Other &gt; Copy From Last].</p>
+</li>
+</ol>
+<h4 id="23-processing-instructions"><em>2.3 Processing Instructions</em></h4>
+<ol>
+<li>
+<p><strong>Batch Capture:</strong> Capture all negatives within the project that are the same size and have similar densities.</p>
+<ul>
+<li>One efficient workflow is to capture an entire sheet or roll (e.g., 36 exposures for a 35mm roll, 12 for 120mm square film).</li>
+<li>After capturing, review and adjust exposure as needed for very dense or overexposed negatives, or for highlight details nearing a 245 reading.</li>
+</ul>
+</li>
+<li>
+<p><strong>Highlight/Shadow Adjustment (HDR Tool - Reversed for Negatives):</strong></p>
+<ul>
+<li>You may need to correct for dense areas or specular highlights after the initial film base exposure aim of 235 (+/-).</li>
+<li><strong>Shadow Adjustment:</strong> In the HDR tool, &ldquo;Shadow&rdquo; adjusts for the <em>densest</em> areas of the film (which become highlights in the positive image). Aim for highlights not to be above 245; visible grain should be present in highlight areas.</li>
+<li><strong>Highlight Adjustment:</strong> &ldquo;Highlight&rdquo; adjusts for the <em>thinnest</em> areas of the film (which become shadows in the positive image). Aim for shadows not to be below 10.</li>
+<li><strong>Important:</strong> ONLY use HDR - Shadow recovery to bring in dense areas or specular highlight details when truly necessary; overdoing it will flatten the image. Very dense negatives may also require a slight increase to overall exposure.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vertical Image Tagging:</strong> Tag vertical captures (e.g., with green or yellow tags) for easy &ldquo;Sort By Same&rdquo; for bulk rotation.</p>
+</li>
+<li>
+<p><strong>Final Capture Count:</strong> Confirm the ending capture quantity matches your project requirements.</p>
+</li>
+<li>
+<p><strong>Create Clone Variant:</strong> Create a clone variant for all adjusted and centered S file crops.</p>
+</li>
+<li>
+<p><strong>Expand Inner Crop for U File Output:</strong> Use Scripts &gt; Crop Tools &gt; Set Height and Width.</p>
+<ul>
+<li>For 35mm negatives: approximately 5050 x 8500 pixels.</li>
+<li>For 120mm square negatives: approximately 6700 x 8000 pixels.</li>
+<li>For 4x5&quot;, 5x7&quot;, and 8x10&quot; negatives: U &amp; S files can be the same size, showing beyond the edges of the film as shot using the ANR Glass Holder.</li>
+</ul>
+</li>
+<li>
+<p><strong>Bulk Rotate:</strong> Bulk rotate all vertical captures.</p>
+</li>
+<li>
+<p><strong>Process Files:</strong></p>
+<ul>
+<li>U Files: <strong>Gray Gamma 2.2, 16bit</strong>.</li>
+<li>S Files: <strong>Gray Gamma 2.2, 8bit</strong>.</li>
+</ul>
+</li>
+</ol>
+<h4 id="24-lens-extension-column-height-ppi-and-crop-sizes-for-bw-transmissive-digitization"><em>2.4 Lens, Extension, Column Height, PPI, and Crop Sizes for B&amp;W Transmissive Digitization</em></h4>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Film Format</th>
+          <th style="text-align: left">Lens &amp; Extension Tube</th>
+          <th style="text-align: left">Column Height Approx. Position (cm)</th>
+          <th style="text-align: left">Approx. PPI (+/- 50ppi)</th>
+          <th style="text-align: left">Approx. U &amp; S Crop Sizes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">35mm strip film / microfilm</td>
+          <td style="text-align: left">120mm (w/ 40mm + 20mm)</td>
+          <td style="text-align: left">57.45 cm</td>
+          <td style="text-align: left">4300 +/-</td>
+          <td style="text-align: left">U file: 5050 x 8500 pixels, S file: 4230 x 6330 pixels</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">35mm slides</td>
+          <td style="text-align: left">120mm (w/ 40mm + 20mm)</td>
+          <td style="text-align: left">57.45 cm</td>
+          <td style="text-align: left">4300 +/-</td>
+          <td style="text-align: left">Same size for U &amp; S files: 4300 x 6100 pixels</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Medium format (use 8x10” ANR glass holder)</td>
+          <td style="text-align: left">120mm (w/ 20mm)</td>
+          <td style="text-align: left">64 cm</td>
+          <td style="text-align: left">2500 +/-</td>
+          <td style="text-align: left">U file: 6700 x 8000 pixels, S file: 5700 x 5700 pixels</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4x5 sheet film (use 8x10” ANR glass holder)</td>
+          <td style="text-align: left">120mm</td>
+          <td style="text-align: left">75.5 cm</td>
+          <td style="text-align: left">1725 +/-</td>
+          <td style="text-align: left">Same size for U &amp; S files: 5600 x 7000 pixels</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">5x7 sheet film (use 8x10” ANR glass holder)</td>
+          <td style="text-align: left">72mm MKII (no extension)</td>
+          <td style="text-align: left">57.13 cm</td>
+          <td style="text-align: left">1255 +/-</td>
+          <td style="text-align: left">Same size for U &amp; S files: 6300 x 8900 pixels</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">8x10 sheet film (use 8x10” ANR glass holder)</td>
+          <td style="text-align: left">72mm MKII</td>
+          <td style="text-align: left">70 cm</td>
+          <td style="text-align: left">890 +/-</td>
+          <td style="text-align: left">Same size for U &amp; S files: 7100 x 8900 pixels</td>
+      </tr>
+  </tbody>
+</table>
+
+</div>
+
+
+
+    
+	
+  
+
+
+
+          </main>
+        </div>
+      </div>
+      <footer class="td-footer row d-print-none">
+  <div class="container-fluid">
+    <div class="row mx-md-2">
+      <div class="td-footer__left col-6 col-sm-4 order-sm-1">
+        
+      </div><div class="td-footer__right col-6 col-sm-4 order-sm-3">
+        
+      </div><div class="td-footer__center col-12 col-sm-4 py-2 order-sm-2">
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script src="/digital-imaging-resources/js/main.js"></script>
+<script defer src="/digital-imaging-resources/js/click-to-copy.js" crossorigin="anonymous"></script>
+<script src='/digital-imaging-resources/js/tabpane-persist.js'></script>
+
+  </body>
+</html>

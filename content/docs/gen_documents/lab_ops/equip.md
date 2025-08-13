@@ -1,6 +1,7 @@
 ---
 # a document about equipment
 title: Equipment
+draft: true
 ---
 
 ### Photographic Equipment

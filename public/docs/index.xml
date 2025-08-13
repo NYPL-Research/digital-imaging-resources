@@ -7,5 +7,12 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/digital-imaging-resources/docs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Technical Standards for Digital Images</title>
+      <link>http://localhost:1313/digital-imaging-resources/docs/specifications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/digital-imaging-resources/docs/specifications/</guid>
+      <description>&lt;div class=&#34;pageinfo pageinfo-info&#34;&gt;&#xA;&lt;p&gt;This repository is currently under construction. The document you&amp;rsquo;re reading may be edited, moved, or deleted entirely.&lt;/p&gt;&#xA;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;p&gt;This document outlines the policies and standards for photographing collection materials within the library&amp;rsquo;s digital imaging program. It is a guide, not a rulebook.&lt;/p&gt;&#xA;&lt;h2 id=&#34;standards-and-practices-for-reflective-material&#34;&gt;Standards and Practices for Reflective Material&lt;/h2&gt;&#xA;&lt;h4 id=&#34;preservation-and-service-files&#34;&gt;Preservation and Service Files&lt;/h4&gt;&#xA;&lt;p&gt;Two distinct files are created for every image captured, a &lt;strong&gt;Preservation File&lt;/strong&gt; and a &lt;strong&gt;Service File&lt;/strong&gt;. The Preservation File is spec&amp;rsquo;d for long-term retention and use, whereas the Service File is spec&amp;rsquo;d for ease of access and digital display.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

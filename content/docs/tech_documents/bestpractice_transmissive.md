@@ -4,6 +4,11 @@ title: Best Practices for Transmissive Materials
 parent: Technical Documents
 permalink: /tech_documents/bestpractice_transmissive/
 ---
+
+{{% pageinfo color="info" %}}
+This repository is currently under construction. The document you're reading may be edited, moved, or deleted entirely. 
+{{% /pageinfo %}}
+
 ### Preparation and Handling
 
 - Film should typically be photographed with the **emulsion side down**. The emulsion side is the more matte surface with a raised texture, while the base side is shiny. Any text on the film should read correctly when viewed with the emulsion side down.
