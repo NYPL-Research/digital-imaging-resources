@@ -1,6 +1,7 @@
 ---
 title: "Technical Specifications for Digital Images"
 layout: single
+draft: true
 icon: 
 ---
 
