@@ -2,6 +2,10 @@
 title: Digital Imaging Equipment
 ---
 
+{{% pageinfo color="info" %}}
+This repository is currently under construction. The document you're reading may be edited, moved, or deleted entirely. 
+{{% /pageinfo %}}
+
 ## Studio Equipment
 
 ### Imaging Stations
