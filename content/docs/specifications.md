@@ -16,6 +16,8 @@ Broad policies and standards utilized by Digital Imaging Services photographers.
 
 ## Reflective Material
 
+See [Best Practices for Reflective Material]( {{< relref "tech_documents/bestpractice_reflective" >}} ) for more detailed information by material type.
+
 ### Preservation and Service Files
 
  Two distinct files are created for every image captured, a **Preservation File** and a **Service File**. The Preservation File is spec'd for long-term retention and use, whereas the Service File is spec'd for ease of access and digital display. 
@@ -45,6 +47,8 @@ Broad policies and standards utilized by Digital Imaging Services photographers.
  ---
 
 ## Transmissive Material
+
+See [Best Practices for Transmissive Materials]({{< relref "tech_documents/bestpractice_transmissive" >}}) for more detailed information.
 
 ### Preservation and Service Files
 

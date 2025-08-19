@@ -61,6 +61,8 @@ Refer to the table in [Section 1.4](#14-lens-extension-column-height-ppi-and-cro
     * Close Live View and capture an image to assess focus. Ensure focus is balanced and film grain is clearly visible. Fine-tune as needed. Be mindful of motion blur with shutter speeds slower than 1/20s.
     * Measure PPI using the Capture Resolution Ruler (set the length to the appropriate film dimension, e.g., 35mm for 35mm slides). 
 
+    ![measure film dimensions](trans_dimensions.jpg)
+
 6.  **Base Characteristics:**
     * **Mode:** Photography
     * **ICC Profile:** Phase One iXG NYPL\_Bay3\_DTPhoton\_201912 (or the most recent profile).
@@ -215,3 +217,16 @@ Refer to the table in [Section 2.4](#24-lens-extension-column-height-ppi-and-cro
 | 4x5 sheet film (use 8x10” ANR glass holder) | 120mm                 | 75.5 cm                             | 1725 +/-                | Same size for U & S files: 5600 x 7000 pixels          |
 | 5x7 sheet film (use 8x10” ANR glass holder) | 72mm MKII (no extension) | 57.13 cm                            | 1255 +/-                | Same size for U & S files: 6300 x 8900 pixels          |
 | 8x10 sheet film (use 8x10” ANR glass holder) | 72mm MKII             | 70 cm                               | 890 +/-                 | Same size for U & S files: 7100 x 8900 pixels          |
+
+### Different Crops for Different Formats
+
+{{% cardpane %}}
+{{% card header="35mm film" subtitle="preservation (u) crop" %}}
+![](trans_35mm_u.jpg)
+
+{{% /card %}}
+{{% card header="35mm film" subtitle="service (s) crop" %}}
+![](trans_35mm_s.jpg)
+
+{{% /card %}}
+{{% /cardpane %}}

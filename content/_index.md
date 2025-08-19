@@ -4,9 +4,7 @@ linktitle: 'Home'
 type: docs
 ---
 
-{{% pageinfo color="info" %}}
-This repository is currently under construction. The document you're reading may be edited, moved, or deleted entirely. 
-{{% /pageinfo %}}
+![](ixh_light.jpeg)
 
 # Digital Imaging Services
 

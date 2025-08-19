@@ -2,32 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/digital-imaging-resources/docs/program/</loc>
+  </url><url>
+    <loc>http://localhost:1313/digital-imaging-resources/docs/specifications/</loc>
+  </url><url>
     <loc>http://localhost:1313/digital-imaging-resources/docs/tech_documents/bestpractice_reflective/</loc>
   </url><url>
     <loc>http://localhost:1313/digital-imaging-resources/docs/tech_documents/bestpractice_transmissive/</loc>
   </url><url>
     <loc>http://localhost:1313/digital-imaging-resources/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/digital-imaging-resources/docs/gen_documents/lab_ops/</loc>
-  </url><url>
     <loc>http://localhost:1313/digital-imaging-resources/docs/</loc>
   </url><url>
-    <loc>http://localhost:1313/digital-imaging-resources/docs/gen_documents/lab_ops/equip/</loc>
-  </url><url>
-    <loc>http://localhost:1313/digital-imaging-resources/docs/gen_documents/</loc>
+    <loc>http://localhost:1313/digital-imaging-resources/docs/program/equip/</loc>
   </url><url>
     <loc>http://localhost:1313/digital-imaging-resources/</loc>
   </url><url>
     <loc>http://localhost:1313/digital-imaging-resources/docs/tech_documents/pro_trans/</loc>
   </url><url>
-    <loc>http://localhost:1313/digital-imaging-resources/docs/gen_documents/lab_ops/soft/</loc>
+    <loc>http://localhost:1313/digital-imaging-resources/docs/program/soft/</loc>
   </url><url>
     <loc>http://localhost:1313/digital-imaging-resources/tags/</loc>
   </url><url>
     <loc>http://localhost:1313/digital-imaging-resources/docs/tech_documents/</loc>
-  </url><url>
-    <loc>http://localhost:1313/digital-imaging-resources/docs/gen_documents/techspecs/</loc>
-  </url><url>
-    <loc>http://localhost:1313/digital-imaging-resources/docs/specifications/</loc>
   </url>
 </urlset>

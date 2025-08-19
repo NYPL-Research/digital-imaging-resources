@@ -10,6 +10,15 @@ outputs:
   section:
     - HTML
     - print
+  page:
+    - HTML
+    - print
+
+# Image processing configuration.
+imaging:
+  resampleFilter: Lanczos 
+  anchor: smart
+  quality: 75
 
 params:
   taxonomy:
