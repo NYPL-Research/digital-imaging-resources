@@ -10,6 +10,8 @@ description: "Schema specification, required fields, and controlled vocabulary f
 
 When initiating an external digitization project, the Library provides vendors with a minimal metadata inventory spreadsheet. This document serves as the foundational tracking manifest for physical materials selected for digitization and establishes the baseline data required for item identification.
 
+* **Download Template:** [image_digitization_inventory_template.csv](/digital-imaging-resources/static/templates/image_digitization_inventory_template.csv)
+
 ### 1.1 How Vendors Must Use This Data
 
 This spreadsheet represents the **initial selection and inventory stage** of the digitization workflow. The data provided here must be ingested by the vendor and used as the root source for generating item-level metadata during capture.
