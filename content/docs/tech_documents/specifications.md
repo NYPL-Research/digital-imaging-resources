@@ -1,14 +1,9 @@
 ---
-title: 'Standards for Digital Images'
-description: 'Broad policies and standards utilized by Digital Imaging Services photographers. Written for non-technical users.'
-toc_hide: false
-draft: false
-weight: 20 
+title: "Standards for Digital Images"
+parent: Technical Documents
+weight: 10
+toc: true
 ---
-
-{{% pageinfo color="info" %}}
-This repository is currently under construction. The document you're reading may be edited, moved, or deleted entirely. 
-{{% /pageinfo %}}
 
 Broad policies and standards utilized by Digital Imaging Services photographers. 
 
@@ -16,7 +11,7 @@ Broad policies and standards utilized by Digital Imaging Services photographers.
 
 ## Reflective Material
 
-See [Best Practices for Reflective Material]( {{< relref "tech_documents/bestpractice_reflective" >}} ) for more detailed information by material type.
+See [Best Practices for Reflective Material]( {{< relref "bestpractice_reflective" >}} ) for more detailed information by material type.
 
 ### Preservation and Service Files
 
@@ -48,7 +43,7 @@ See [Best Practices for Reflective Material]( {{< relref "tech_documents/bestpra
 
 ## Transmissive Material
 
-See [Best Practices for Transmissive Materials]({{< relref "tech_documents/bestpractice_transmissive" >}}) for more detailed information.
+See [Best Practices for Transmissive Materials]({{< relref "bestpractice_transmissive" >}}) for more detailed information.
 
 ### Preservation and Service Files
 

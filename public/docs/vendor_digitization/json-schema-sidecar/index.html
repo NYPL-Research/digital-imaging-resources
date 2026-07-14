@@ -1,0 +1,682 @@
+<!doctype html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en" class="no-js">
+  <head><script src="/digital-imaging-resources/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=digital-imaging-resources/livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="text/html" href="http://localhost:1313/digital-imaging-resources/_print/docs/vendor_digitization/json-schema-sidecar/">
+<meta name="robots" content="noindex, nofollow">
+
+
+<link rel="shortcut icon" href="/digital-imaging-resources/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/digital-imaging-resources/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-192x192.png" sizes="192x192">
+
+<title>JSON Sidecar Schema &amp; Automated Validation | Digital Imaging Resources</title>
+<meta name="description" content="Technical reference, property definitions, and command-line validation workflows for image-based digitization JSON sidecars.">
+<meta property="og:url" content="http://localhost:1313/digital-imaging-resources/docs/vendor_digitization/json-schema-sidecar/">
+	<meta property="og:site_name" content="Digital Imaging Resources">
+	<meta property="og:title" content="JSON Sidecar Schema & Automated Validation">
+	<meta property="og:description" content="Technical reference, property definitions, and command-line validation workflows for image-based digitization JSON sidecars.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="docs">
+
+	<meta itemprop="name" content="JSON Sidecar Schema & Automated Validation">
+	<meta itemprop="description" content="Technical reference, property definitions, and command-line validation workflows for image-based digitization JSON sidecars.">
+	<meta itemprop="wordCount" content="1270">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="JSON Sidecar Schema & Automated Validation">
+	<meta name="twitter:description" content="Technical reference, property definitions, and command-line validation workflows for image-based digitization JSON sidecars.">
+<link href="/digital-imaging-resources/scss/main.css" rel="stylesheet">
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+  crossorigin="anonymous"></script>
+<script defer
+  src="https://unpkg.com/lunr@2.3.9/lunr.min.js"
+  integrity="sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli"
+  crossorigin="anonymous"></script>
+
+  </head>
+  <body class="td-page">
+    <header>
+      <nav class="td-navbar js-navbar-scroll" data-bs-theme="dark">
+<div class="container-fluid flex-column flex-md-row">
+  <a class="navbar-brand" href="/digital-imaging-resources/"><span class="navbar-brand__logo navbar-logo"></span><span class="navbar-brand__name">Digital Imaging Resources</span></a>
+  <div class="td-navbar-nav-scroll ms-md-auto" id="main_navbar">
+    <ul class="navbar-nav">
+      <li class="td-light-dark-menu nav-item dropdown">
+        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="check2" viewBox="0 0 16 16">
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+  </symbol>
+  <symbol id="circle-half" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+  </symbol>
+  <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+    <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+  </symbol>
+  <symbol id="sun-fill" viewBox="0 0 16 16">
+    <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+  </symbol>
+</svg>
+
+<button class="btn btn-link nav-link dropdown-toggle d-flex align-items-center"
+        id="bd-theme"
+        type="button"
+        aria-expanded="false"
+        data-bs-toggle="dropdown"
+        data-bs-display="static"
+        aria-label="Toggle theme (auto)">
+  <svg class="bi my-1 theme-icon-active"><use href="#circle-half"></use></svg>
+</button>
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+      <svg class="bi me-2 opacity-50"><use href="#sun-fill"></use></svg>
+      Light
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+      <svg class="bi me-2 opacity-50"><use href="#moon-stars-fill"></use></svg>
+      Dark
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+      <svg class="bi me-2 opacity-50"><use href="#circle-half"></use></svg>
+      Auto
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+</ul>
+
+      </li>
+      </ul>
+  </div>
+  <div class="d-none d-lg-block">
+    <div class="td-search td-search--offline">
+  <div class="td-search__icon"></div>
+  <input
+    type="search"
+    class="td-search__input form-control"
+    placeholder="Search this site…"
+    aria-label="Search this site…"
+    autocomplete="off"
+    
+    data-offline-search-index-json-src="/digital-imaging-resources/offline-search-index.json"
+    data-offline-search-base-href="/"
+    data-offline-search-max-results="10"
+  >
+</div>
+  </div>
+</div>
+</nav>
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            <div id="td-sidebar-menu" class="td-sidebar__inner">
+  <div id="content-mobile">
+  <form class="td-sidebar__search d-flex align-items-center">
+    <div class="td-search td-search--offline">
+  <div class="td-search__icon"></div>
+  <input
+    type="search"
+    class="td-search__input form-control"
+    placeholder="Search this site…"
+    aria-label="Search this site…"
+    autocomplete="off"
+    
+    data-offline-search-index-json-src="/digital-imaging-resources/offline-search-index.json"
+    data-offline-search-base-href="/"
+    data-offline-search-max-results="10"
+  >
+</div>
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ms-3 fas fa-bars" type="button" data-bs-toggle="collapse" data-bs-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  </div>
+  <div id="content-desktop"></div>
+  <nav class="td-sidebar-nav collapse td-sidebar-nav--search-disabled foldable-nav" id="td-section-nav">
+    <ul class="td-sidebar-nav__section pe-md-3 ul-0">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-digital-imaging-resources-li">
+  <a href="/digital-imaging-resources/" title="" class="align-left ps-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-digital-imaging-resources"><span class="">Home</span></a>
+  <ul class="ul-1">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-digital-imaging-resourcesdocs-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocs-check" checked/>
+  <label for="m-digital-imaging-resourcesdocs-check"><a href="/digital-imaging-resources/docs/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-digital-imaging-resourcesdocs"><span class="">Documentation</span></a></label>
+  
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-digital-imaging-resourcesdocsprogram-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocsprogram-check"/>
+  <label for="m-digital-imaging-resourcesdocsprogram-check"><a href="/digital-imaging-resources/docs/program/" title="About the Digital Imaging Program" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-digital-imaging-resourcesdocsprogram"><span class="">About the Program</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-digital-imaging-resourcesdocsprogramequip-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocsprogramequip-check"/>
+  <label for="m-digital-imaging-resourcesdocsprogramequip-check"><a href="/digital-imaging-resources/docs/program/equip/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocsprogramequip"><span class="">Equipment</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-digital-imaging-resourcesdocsprogramsoft-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocsprogramsoft-check"/>
+  <label for="m-digital-imaging-resourcesdocsprogramsoft-check"><a href="/digital-imaging-resources/docs/program/soft/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocsprogramsoft"><span class="">Software</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-digital-imaging-resourcesdocstech_documents-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocstech_documents-check"/>
+  <label for="m-digital-imaging-resourcesdocstech_documents-check"><a href="/digital-imaging-resources/docs/tech_documents/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-digital-imaging-resourcesdocstech_documents"><span class="">Technical Documentation</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-digital-imaging-resourcesdocstech_documentsspecifications-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocstech_documentsspecifications-check"/>
+  <label for="m-digital-imaging-resourcesdocstech_documentsspecifications-check"><a href="/digital-imaging-resources/docs/tech_documents/specifications/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocstech_documentsspecifications"><span class="">Standards for Digital Images</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-digital-imaging-resourcesdocstech_documentsbestpractice_reflective-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocstech_documentsbestpractice_reflective-check"/>
+  <label for="m-digital-imaging-resourcesdocstech_documentsbestpractice_reflective-check"><a href="/digital-imaging-resources/docs/tech_documents/bestpractice_reflective/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocstech_documentsbestpractice_reflective"><span class="">Best Practices for Reflective Materials</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-digital-imaging-resourcesdocstech_documentsbestpractice_transmissive-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocstech_documentsbestpractice_transmissive-check"/>
+  <label for="m-digital-imaging-resourcesdocstech_documentsbestpractice_transmissive-check"><a href="/digital-imaging-resources/docs/tech_documents/bestpractice_transmissive/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocstech_documentsbestpractice_transmissive"><span class="">Best Practices for Transmissive Materials</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-digital-imaging-resourcesdocstech_documentspro_trans-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocstech_documentspro_trans-check"/>
+  <label for="m-digital-imaging-resourcesdocstech_documentspro_trans-check"><a href="/digital-imaging-resources/docs/tech_documents/pro_trans/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocstech_documentspro_trans"><span class="">Procedural Guide for Transmissive Digitization</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-digital-imaging-resourcesdocsvendor_digitization-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocsvendor_digitization-check" checked/>
+  <label for="m-digital-imaging-resourcesdocsvendor_digitization-check"><a href="/digital-imaging-resources/docs/vendor_digitization/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-digital-imaging-resourcesdocsvendor_digitization"><span class="">Vendor Digitization</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-digital-imaging-resourcesdocsvendor_digitizationscope_of_services-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocsvendor_digitizationscope_of_services-check"/>
+  <label for="m-digital-imaging-resourcesdocsvendor_digitizationscope_of_services-check"><a href="/digital-imaging-resources/docs/vendor_digitization/scope_of_services/" title="Scope of Services &amp; General Practices for Vendor Digitization" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocsvendor_digitizationscope_of_services"><span class="">Scope of Services &amp; Practices</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-digital-imaging-resourcesdocsvendor_digitizationinventory_spreadsheet_spec-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocsvendor_digitizationinventory_spreadsheet_spec-check"/>
+  <label for="m-digital-imaging-resourcesdocsvendor_digitizationinventory_spreadsheet_spec-check"><a href="/digital-imaging-resources/docs/vendor_digitization/inventory_spreadsheet_spec/" title="Vendor Digitization Inventory Spreadsheet" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocsvendor_digitizationinventory_spreadsheet_spec"><span class="">Inventory Spreadsheet</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-digital-imaging-resourcesdocsvendor_digitizationjson-schema-sidecar-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocsvendor_digitizationjson-schema-sidecar-check" checked/>
+  <label for="m-digital-imaging-resourcesdocsvendor_digitizationjson-schema-sidecar-check"><a href="/digital-imaging-resources/docs/vendor_digitization/json-schema-sidecar/" title="JSON Sidecar Schema &amp; Automated Validation" class="align-left ps-0  active td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocsvendor_digitizationjson-schema-sidecar"><span class="td-sidebar-nav-active-item">JSON Sidecar Schema</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-digital-imaging-resourcesdocsvendor_digitizationjson_schema_sidecar-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocsvendor_digitizationjson_schema_sidecar-check"/>
+  <label for="m-digital-imaging-resourcesdocsvendor_digitizationjson_schema_sidecar-check"><a href="/digital-imaging-resources/docs/vendor_digitization/json_schema_sidecar/" title="JSON Sidecar Schema &amp; Automated Validation" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocsvendor_digitizationjson_schema_sidecar"><span class="">JSON Sidecar Schema</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-digital-imaging-resourcesdocsvendor_digitizationdigital_asset_specifications-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocsvendor_digitizationdigital_asset_specifications-check"/>
+  <label for="m-digital-imaging-resourcesdocsvendor_digitizationdigital_asset_specifications-check"><a href="/digital-imaging-resources/docs/vendor_digitization/digital_asset_specifications/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocsvendor_digitizationdigital_asset_specifications"><span class="">Digital Asset Specifications</span></a></label>
+  
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+    </ul>
+  </nav>
+</div>
+
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            <div class="td-page-meta ms-2 pb-1 pt-2 mb-0">
+<a id="print" href="/digital-imaging-resources/_print/docs/vendor_digitization/"><i class="fa-solid fa-print fa-fw"></i> Print entire section</a>
+
+</div>
+
+            <div class="td-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-purpose-and-workflow-integration">1. Purpose and Workflow Integration</a></li>
+    <li><a href="#2-core-schema-requirements">2. Core Schema Requirements</a>
+      <ul>
+        <li><a href="#21-required-root-objects">2.1 Required Root Objects</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-strict-naming-and-controlled-vocabularies">3. Strict Naming and Controlled Vocabularies</a>
+      <ul>
+        <li><a href="#31-filename-pattern">3.1 Filename Pattern</a>
+          <ul>
+            <li><a href="#pattern-components">Pattern components</a></li>
+            <li><a href="#valid-examples">Valid examples</a></li>
+            <li><a href="#invalid-examples">Invalid examples</a></li>
+          </ul>
+        </li>
+        <li><a href="#32-controlled-vocabulary-validation">3.2 Controlled-Vocabulary Validation</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-automated-validation-workflows">4. Automated Validation Workflows</a>
+      <ul>
+        <li><a href="#41-nodejs-command-line-validation-with-ajv">4.1 Node.js Command-Line Validation with AJV</a>
+          <ul>
+            <li><a href="#1-install-ajv-cli">1. Install AJV CLI</a></li>
+            <li><a href="#2-download-the-authoritative-schema">2. Download the authoritative schema</a></li>
+            <li><a href="#3-validate-one-sidecar">3. Validate one sidecar</a></li>
+            <li><a href="#4-validate-an-entire-directory">4. Validate an entire directory</a></li>
+          </ul>
+        </li>
+        <li><a href="#42-python-validation-with-jsonschema">4.2 Python Validation with <code>jsonschema</code></a>
+          <ul>
+            <li><a href="#1-install-the-package">1. Install the package</a></li>
+            <li><a href="#2-validate-a-sidecar">2. Validate a sidecar</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#5-schema-access-and-download">5. Schema Access and Download</a>
+      <ul>
+        <li><a href="#51-browser-access">5.1 Browser Access</a></li>
+        <li><a href="#52-download-with-curl">5.2 Download with cURL</a></li>
+        <li><a href="#53-download-with-wget">5.3 Download with Wget</a></li>
+        <li><a href="#54-confirm-that-the-downloaded-file-is-json">5.4 Confirm That the Downloaded File Is JSON</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    
+            
+	
+          </aside>
+          <main class="col-12 col-md-9 col-xl-8 ps-md-5" role="main">
+            
+  
+
+            <nav aria-label="breadcrumb" class="td-breadcrumbs">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/digital-imaging-resources/docs/">Documentation</a></li>
+  <li class="breadcrumb-item">
+    <a href="/digital-imaging-resources/docs/vendor_digitization/">Vendor Digitization</a></li>
+  <li class="breadcrumb-item active" aria-current="page">
+    JSON Sidecar Schema</li>
+  </ol>
+</nav>
+<div class="td-content">
+	<h1>JSON Sidecar Schema &amp; Automated Validation</h1>
+	<div class="lead">Technical reference, property definitions, and command-line validation workflows for image-based digitization JSON sidecars.</div>
+	<header class="article-meta">
+		
+  </header>
+	<h2 id="1-purpose-and-workflow-integration">1. Purpose and Workflow Integration</h2>
+<p>When delivering digitized assets to the Library, external vendors must supply a structured <strong>JSON sidecar file</strong> alongside every individual digital asset, including preservation masters, production/service files, access derivatives, and OCR text files.</p>
+<p>The authoritative JSON Schema is maintained as a separate, publicly accessible file. Vendors must integrate this schema into their automated quality-control pipelines before delivery.</p>
+<ul>
+<li><strong>Public schema:</strong> <a href="https://nypl.github.io/digital-imaging-resources/schemas/digitized_image_schema.json">digitized_image_schema.json</a></li>
+</ul>
+<p>The public URL must return the raw JSON Schema document rather than an HTML page, redirect, or error response.</p>
+<hr>
+<h2 id="2-core-schema-requirements">2. Core Schema Requirements</h2>
+<p>Every delivered JSON sidecar must contain a valid JSON object that conforms to <strong>JSON Schema Draft 7</strong>.</p>
+<p>The schema uses <code>additionalProperties: false</code> where applicable. Undocumented properties added by vendor software will therefore cause validation to fail.</p>
+<p>Property names and controlled-vocabulary values are case-sensitive.</p>
+<h3 id="21-required-root-objects">2.1 Required Root Objects</h3>
+<p>Every sidecar must contain the following six top-level objects:</p>
+<ol>
+<li>
+<p><strong><code>administrative</code></strong>
+Grant, contract, or project-level administrative data, such as <code>projectCode</code>.</p>
+</li>
+<li>
+<p><strong><code>asset</code></strong>
+File-level tracking data, including the file role (<code>pres</code>, <code>serv</code>, <code>access</code>, or <code>ocr</code>), schema version, and exact <code>referenceFilename</code>.</p>
+</li>
+<li>
+<p><strong><code>identifiers</code></strong>
+Bibliographic and archival identifiers mapped from the Library-supplied inventory spreadsheet, such as <code>barcode</code>, <code>divisionCode</code>, <code>bnumber</code>, and <code>classmark</code>.</p>
+</li>
+<li>
+<p><strong><code>source</code></strong>
+Physical-source characteristics observed at capture, including the controlled object type and format pairing and sequential capture data such as <code>sequenceNumber</code>, <code>unitIndex</code>, <code>side</code>, and <code>sequenceLabel</code>.</p>
+</li>
+<li>
+<p><strong><code>digitizationProcess</code></strong>
+Technical metadata describing the capture device, lens, capture software, equipment identifiers, and calibration targets.</p>
+</li>
+<li>
+<p><strong><code>digitizer</code></strong>
+Administrative information identifying the operator and vendor organization responsible for capture.</p>
+</li>
+</ol>
+<hr>
+<h2 id="3-strict-naming-and-controlled-vocabularies">3. Strict Naming and Controlled Vocabularies</h2>
+<h3 id="31-filename-pattern">3.1 Filename Pattern</h3>
+<p>To support reliable automated ingest and validation, the <code>referenceFilename</code> property in the <code>asset</code> object must follow one of the Library’s approved naming structures.</p>
+<p>The following regular expression supports the standard, dual-track negative, and split multi-unit workflows:</p>
+<pre tabindex="0"><code class="language-regex" data-lang="regex">^33433\d{9}_(?:(?:negative|positive)_(?:[rv]|\d{5})|u\d{3}_\d{5}|[rv]|\d{5})_(?:pres|serv|access|ocr)\.[a-z0-9]+$
+</code></pre><p>This pattern permits the following structures:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[barcode]_[side-or-sequence]_[role].[extension]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[barcode]_[negative-or-positive]_[side-or-sequence]_[role].[extension]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[barcode]_u[unit]_[sequence]_[role].[extension]
+</span></span></code></pre></div><h4 id="pattern-components">Pattern components</h4>
+<ul>
+<li>
+<p><strong>Barcode — <code>33433\d{9}</code></strong>
+A 14-digit NYPL barcode beginning with <code>33433</code>.</p>
+</li>
+<li>
+<p><strong>Standard side or sequence — <code>[rv]|\d{5}</code></strong>
+Either:</p>
+<ul>
+<li><code>r</code> for recto;</li>
+<li><code>v</code> for verso; or</li>
+<li>a five-digit, zero-padded sequence number such as <code>00001</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Negative component — <code>negative|positive</code></strong>
+Used only for dual-track film- or glass-negative workflows:</p>
+<ul>
+<li><code>negative</code> identifies the non-inverted capture;</li>
+<li><code>positive</code> identifies the digitally inverted representation.</li>
+</ul>
+</li>
+<li>
+<p><strong>Unit index — <code>u\d{3}</code></strong>
+Used only when a microfilm reel or another barcode-level object is divided into distinct intellectual units, such as <code>u001</code> or <code>u002</code>.</p>
+</li>
+<li>
+<p><strong>File role — <code>pres|serv|access|ocr</code></strong>
+One of the four approved delivery roles:</p>
+<ul>
+<li><code>pres</code>;</li>
+<li><code>serv</code>;</li>
+<li><code>access</code>;</li>
+<li><code>ocr</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Extension — <code>[a-z0-9]+</code></strong>
+A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.jpg</code>, <code>.pdf</code>, <code>.xml</code>, or <code>.txt</code>.</p>
+</li>
+</ul>
+<h4 id="valid-examples">Valid examples</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433123456789_r_pres.tif
+</span></span><span class="line"><span class="cl">33433123456789_v_access.jpg
+</span></span><span class="line"><span class="cl">33433123456789_00001_serv.tif
+</span></span><span class="line"><span class="cl">33433987654321_negative_00001_pres.tif
+</span></span><span class="line"><span class="cl">33433987654321_positive_00001_access.jpg
+</span></span><span class="line"><span class="cl">33433555554444_u001_00001_ocr.xml
+</span></span></code></pre></div><h4 id="invalid-examples">Invalid examples</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433123456789_R_pres.tif
+</span></span><span class="line"><span class="cl">33433123456789_1_pres.tif
+</span></span><span class="line"><span class="cl">33433987654321_negative_u001_00001_pres.tif
+</span></span><span class="line"><span class="cl">nypl_33433123456789_00001_pres.tif
+</span></span><span class="line"><span class="cl">33433123456789_00001_master.tif
+</span></span><span class="line"><span class="cl">33433123456789_00001_pres.TIF
+</span></span></code></pre></div><p>The filename pattern must be encoded with doubled backslashes when stored as a JSON string inside the schema:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;^33433\\d{9}_(?:(?:negative|positive)_(?:[rv]|\\d{5})|u\\d{3}_\\d{5}|[rv]|\\d{5})_(?:pres|serv|access|ocr)\\.[a-z0-9]+$&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="32-controlled-vocabulary-validation">3.2 Controlled-Vocabulary Validation</h3>
+<p>The schema uses conditional JSON Schema logic, including <code>oneOf</code>, to enforce approved pairings between <code>source.object.type</code> and <code>source.object.format</code>.</p>
+<p>For example, when a sidecar declares:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;reflective photographic&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>the corresponding <code>format</code> value must be one of the formats explicitly permitted for that object type. An unsupported value will cause schema validation to fail.</p>
+<p>Vendors must use the exact spelling, capitalization, and punctuation defined by the schema. Local synonyms, abbreviations, or alternate labels are not permitted unless the Library approves a schema revision.</p>
+<hr>
+<h2 id="4-automated-validation-workflows">4. Automated Validation Workflows</h2>
+<p>Vendors must perform automated schema validation on <strong>100% of generated JSON sidecars</strong> before packaging and delivering files to the Library.</p>
+<p>Validation must occur against a controlled local copy of the authoritative schema. The schema copy should be downloaded at the beginning of the project or build process rather than fetched separately for every sidecar.</p>
+<h3 id="41-nodejs-command-line-validation-with-ajv">4.1 Node.js Command-Line Validation with AJV</h3>
+<p><a href="https://ajv.js.org/">AJV</a> provides command-line JSON Schema validation through the <code>ajv-cli</code> package.</p>
+<h4 id="1-install-ajv-cli">1. Install AJV CLI</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install --global ajv-cli
+</span></span></code></pre></div><h4 id="2-download-the-authoritative-schema">2. Download the authoritative schema</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl --fail --location <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --output digitized_image_schema.json <span class="se">\
+</span></span></span><span class="line"><span class="cl">  https://nypl.github.io/digital-imaging-resources/schemas/digitized_image_schema.json
+</span></span></code></pre></div><p>The <code>--fail</code> option causes the command to return an error for an unsuccessful HTTP response instead of saving an error page as though it were a schema.</p>
+<h4 id="3-validate-one-sidecar">3. Validate one sidecar</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ajv validate <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --spec<span class="o">=</span>draft7 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --all-errors <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -s ./digitized_image_schema.json <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d /path/to/delivery/33433087654321_00001_pres.json
+</span></span></code></pre></div><h4 id="4-validate-an-entire-directory">4. Validate an entire directory</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ajv validate <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --spec<span class="o">=</span>draft7 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --all-errors <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -s ./digitized_image_schema.json <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d <span class="s2">&#34;/path/to/delivery/**/*.json&#34;</span>
+</span></span></code></pre></div><p>AJV returns an exit status of <code>0</code> when all supplied files are valid and an exit status of <code>1</code> when one or more files fail validation.</p>
+<p>Validation errors identify the affected instance path, schema path, failed keyword, and associated error message. For example, an error may identify:</p>
+<ul>
+<li>a missing required property;</li>
+<li>an unapproved additional property;</li>
+<li>a controlled-vocabulary mismatch;</li>
+<li>an incorrect data type;</li>
+<li>a malformed filename;</li>
+<li>a filename that does not match <code>referenceFilename</code>.</li>
+</ul>
+<p>For more readable output, add:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">--errors<span class="o">=</span>text
+</span></span></code></pre></div><p>Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ajv validate <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --spec<span class="o">=</span>draft7 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --all-errors <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --errors<span class="o">=</span>text <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -s ./digitized_image_schema.json <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d <span class="s2">&#34;/path/to/delivery/**/*.json&#34;</span>
+</span></span></code></pre></div><h3 id="42-python-validation-with-jsonschema">4.2 Python Validation with <code>jsonschema</code></h3>
+<p>Vendors integrating validation into Python processing pipelines may use the <a href="https://python-jsonschema.readthedocs.io/"><code>jsonschema</code></a> package.</p>
+<h4 id="1-install-the-package">1. Install the package</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python -m pip install jsonschema
+</span></span></code></pre></div><h4 id="2-validate-a-sidecar">2. Validate a sidecar</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urllib.error</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urllib.request</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">JSONDecodeError</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterable</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">jsonschema</span> <span class="kn">import</span> <span class="n">Draft7Validator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">jsonschema.exceptions</span> <span class="kn">import</span> <span class="n">SchemaError</span><span class="p">,</span> <span class="n">ValidationError</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">SCHEMA_URL</span> <span class="o">=</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://nypl.github.io/digital-imaging-resources/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;schemas/digitized_image_schema.json&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">SIDECAR_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&#34;33433087654321_00001_pres.json&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">load_remote_json</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Download and parse a JSON document.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">request</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;NYPL-sidecar-validator/1.0&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">load_local_json</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Read and parse a local UTF-8 JSON file.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_handle</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_handle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">format_instance_path</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Convert a jsonschema error path into a readable JSON path.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">formatted</span> <span class="o">=</span> <span class="s2">&#34;$&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">formatted</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&#34;[</span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s2">]&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">formatted</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&#34;.</span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">formatted</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">schema</span> <span class="o">=</span> <span class="n">load_remote_json</span><span class="p">(</span><span class="n">SCHEMA_URL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Draft7Validator</span><span class="o">.</span><span class="n">check_schema</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">sidecar_data</span> <span class="o">=</span> <span class="n">load_local_json</span><span class="p">(</span><span class="n">SIDECAR_PATH</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">URLError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sa">f</span><span class="s2">&#34;SCHEMA DOWNLOAD ERROR: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sa">f</span><span class="s2">&#34;FILE ERROR: Sidecar not found: </span><span class="si">{</span><span class="n">SIDECAR_PATH</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sa">f</span><span class="s2">&#34;JSON SYNTAX ERROR: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">SchemaError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sa">f</span><span class="s2">&#34;SCHEMA ERROR: </span><span class="si">{</span><span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">validator</span> <span class="o">=</span> <span class="n">Draft7Validator</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">errors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ValidationError</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">validator</span><span class="o">.</span><span class="n">iter_errors</span><span class="p">(</span><span class="n">sidecar_data</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">error</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">absolute_path</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">errors</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sa">f</span><span class="s2">&#34;VALID: </span><span class="si">{</span><span class="n">SIDECAR_PATH</span><span class="si">}</span><span class="s2"> is ready for delivery.&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="sa">f</span><span class="s2">&#34;INVALID: </span><span class="si">{</span><span class="n">SIDECAR_PATH</span><span class="si">}</span><span class="s2"> contains &#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span><span class="si">}</span><span class="s2"> schema validation error(s).&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">number</span><span class="p">,</span> <span class="n">error</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">instance_path</span> <span class="o">=</span> <span class="n">format_instance_path</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">absolute_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">schema_path</span> <span class="o">=</span> <span class="s2">&#34;/&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">part</span><span class="p">)</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">error</span><span class="o">.</span><span class="n">absolute_schema_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sa">f</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">Error </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2">:&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sa">f</span><span class="s2">&#34;  Instance path: </span><span class="si">{</span><span class="n">instance_path</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sa">f</span><span class="s2">&#34;  Schema path:   </span><span class="si">{</span><span class="n">schema_path</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sa">f</span><span class="s2">&#34;  Message:       </span><span class="si">{</span><span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</span></span></code></pre></div><p>This example uses three exit statuses:</p>
+<ul>
+<li><code>0</code>: the sidecar is valid;</li>
+<li><code>1</code>: the sidecar is valid JSON but fails schema validation;</li>
+<li><code>2</code>: the schema or sidecar could not be loaded or parsed.</li>
+</ul>
+<p>For high-volume validation, vendors should download the schema once, instantiate one <code>Draft7Validator</code>, and reuse that validator for every sidecar in the batch.</p>
+<hr>
+<h2 id="5-schema-access-and-download">5. Schema Access and Download</h2>
+<p>The authoritative schema is maintained as an independent JSON artifact rather than duplicated within this documentation.</p>
+<h3 id="51-browser-access">5.1 Browser Access</h3>
+<p>Open the following resource to view or save the schema:</p>
+<ul>
+<li><a href="https://nypl.github.io/digital-imaging-resources/schemas/digitized_image_schema.json">digitized_image_schema.json</a></li>
+</ul>
+<h3 id="52-download-with-curl">5.2 Download with cURL</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl --fail --location <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --output digitized_image_schema.json <span class="se">\
+</span></span></span><span class="line"><span class="cl">  https://nypl.github.io/digital-imaging-resources/schemas/digitized_image_schema.json
+</span></span></code></pre></div><h3 id="53-download-with-wget">5.3 Download with Wget</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --output-document<span class="o">=</span>digitized_image_schema.json <span class="se">\
+</span></span></span><span class="line"><span class="cl">  https://nypl.github.io/digital-imaging-resources/schemas/digitized_image_schema.json
+</span></span></code></pre></div><h3 id="54-confirm-that-the-downloaded-file-is-json">5.4 Confirm That the Downloaded File Is JSON</h3>
+<p>A successful HTTP download does not by itself prove that the downloaded document contains valid JSON. Vendors should parse or validate the schema before using it.</p>
+<p>Using Python:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python -m json.tool digitized_image_schema.json &gt; /dev/null
+</span></span></code></pre></div><p>Using AJV:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ajv compile <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --spec<span class="o">=</span>draft7 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -s ./digitized_image_schema.json
+</span></span></code></pre></div><p>A failed parse or compile must stop the validation workflow. An HTML error page, empty file, malformed JSON document, or invalid schema must never be treated as an authoritative schema copy.</p>
+
+	
+</div>
+
+
+          </main>
+        </div>
+      </div>
+      <footer class="td-footer row d-print-none">
+  <div class="container-fluid">
+    <div class="row mx-md-2">
+      <div class="td-footer__left col-6 col-sm-4 order-sm-1">
+        
+      </div><div class="td-footer__right col-6 col-sm-4 order-sm-3">
+        
+      </div><div class="td-footer__center col-12 col-sm-4 py-2 order-sm-2">
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script src="/digital-imaging-resources/js/main.js"></script>
+<script defer src="/digital-imaging-resources/js/click-to-copy.js" crossorigin="anonymous"></script>
+<script src='/digital-imaging-resources/js/tabpane-persist.js'></script>
+
+  </body>
+</html>

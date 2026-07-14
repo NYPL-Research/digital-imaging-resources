@@ -1,0 +1,265 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Digitized Image Schema",
+  "$id": "digitized_image_schema",
+  "description": "Definitions for image-based digitization metadata sidecars",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "administrative",
+    "asset",
+    "identifiers",
+    "source",
+    "digitizationProcess",
+    "digitizer"
+  ],
+  "properties": {
+    "administrative": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "projectCode": {
+          "type": "string",
+          "description": "Administrative code for the digitization project or grant."
+        }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fileRole",
+        "schemaVersion",
+        "referenceFilename"
+      ],
+      "properties": {
+        "fileRole": {
+          "enum": ["pres", "serv", "access", "ocr"]
+        },
+        "schemaVersion": {
+          "type": "string"
+        },
+        "referenceFilename": {
+          "type": "string",
+          "pattern": "^33433\\d{9}_(?:[a-z]+_)?(?:u\\d{3}_)?(?:[rv]|\\d{5})_(pres|serv|access|ocr)\\.[a-z0-9]+$"
+        }
+      }
+    },
+    "identifiers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "barcode",
+        "divisionCode"
+      ],
+      "properties": {
+        "barcode": {
+          "type": "string",
+          "pattern": "^33433\\d{9}$"
+        },
+        "bnumber": {
+          "type": "string"
+        },
+        "classmark": {
+          "type": "string"
+        },
+        "aspaceComponentId": {
+          "type": "string"
+        },
+        "collectionId": {
+          "type": "string"
+        },
+        "divisionCode": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "object"
+      ],
+      "properties": {
+        "object": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "format"
+          ],
+          "oneOf": [
+            {
+              "properties": {
+                "type": { "const": "reflective textual and graphic" },
+                "format": {
+                  "enum": [
+                    "bound volume",
+                    "loose paper"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "type": { "const": "reflective photographic" },
+                "format": {
+                  "enum": [
+                    "photographic print"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "type": { "const": "transmissive photographic" },
+                "format": {
+                  "enum": [
+                    "black-and-white negative",
+                    "color negative",
+                    "color transparency",
+                    "mounted slide"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "type": { "const": "glass substrate" },
+                "format": {
+                  "enum": [
+                    "glass plate negative",
+                    "lantern slide"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "type": { "const": "microform" },
+                "format": {
+                  "enum": [
+                    "16mm roll microfilm",
+                    "35mm roll microfilm",
+                    "microfiche",
+                    "aperture card"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "sequence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unitIndex": {
+              "type": "integer",
+              "description": "Multi-unit split identifier (e.g., 1 for u001)"
+            },
+            "sequenceNumber": {
+              "type": "integer",
+              "description": "The sequential capture number corresponding to the filename (e.g., 24 for 00024)"
+            },
+            "side": {
+              "enum": ["r", "v"],
+              "description": "Side indicator for two-sided objects, matching the 'r' or 'v' filename convention."
+            },
+            "sequenceLabel": {
+              "type": "string",
+              "description": "The physical reality of this sequence, e.g., 'Recto', 'Verso', 'Page 42', 'Frame 105', 'Front Cover'"
+            }
+          }
+        },
+        "notes": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "physicalConditionNotes": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "digitizationProcess": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "captureDevice",
+        "captureSoftware"
+      ],
+      "properties": {
+        "captureDevice": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "manufacturer",
+            "model"
+          ],
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "lens": {
+              "type": "string"
+            },
+            "serialNumber": {
+              "type": "string"
+            }
+          }
+        },
+        "captureSoftware": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "manufacturer",
+            "productName"
+          ],
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "productName": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          }
+        },
+        "calibrationTarget": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "digitizer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operator": {
+          "type": "object",
+          "properties": {
+            "firstName": { "type": "string" },
+            "lastName": { "type": "string" }
+          }
+        },
+        "organization": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

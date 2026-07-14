@@ -1,9 +1,6 @@
 ---
-title: "Technical Documents"
-linkTitle: "Technical"
-menu:
-    main:
-        weight: 30
+title: "Technical Documentation"
+weight: 20
 toc_hide: false
 ---
 

@@ -31,9 +31,9 @@ params:
     # set taxonomyPageHeader = [] to hide taxonomies on the page headers
     taxonomyPageHeader: [tags, categories]
 
-  github_repo: https://github.com/NYPL/digital-imaging-resources
+  #github_repo: https://github.com/NYPL/digital-imaging-resources
 
-  github_branch: main
+  #github_branch: main
 
   # Enable Lunr.js offline search
   offlineSearch: true

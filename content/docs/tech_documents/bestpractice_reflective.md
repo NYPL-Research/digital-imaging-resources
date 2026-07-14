@@ -6,9 +6,6 @@ permalink: /tech_documents/bestpractice_reflective/
 toc: true
 ---
 
-{{% pageinfo color="info" %}}
-This repository is currently under construction. The document you're reading may be edited, moved, or deleted entirely. 
-{{% /pageinfo %}}
 
 ## Bound Volumes (Rare, Special Collections, and General Collections)
 

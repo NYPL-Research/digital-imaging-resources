@@ -1,0 +1,1131 @@
+<!doctype html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en" class="no-js">
+  <head><script src="/digital-imaging-resources/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=digital-imaging-resources/livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="canonical" type="text/html" href="http://localhost:1313/digital-imaging-resources/docs/vendor_digitization/digital_asset_specifications/">
+<meta name="robots" content="noindex, nofollow">
+
+
+<link rel="shortcut icon" href="/digital-imaging-resources/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/digital-imaging-resources/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-192x192.png" sizes="192x192">
+
+<title>Digital Asset Specifications | Digital Imaging Resources</title>
+<meta name="description" content="Digital Asset Specifications for outsourced digitization of image-based collection materials.">
+<meta property="og:url" content="http://localhost:1313/digital-imaging-resources/docs/vendor_digitization/digital_asset_specifications/">
+	<meta property="og:site_name" content="Digital Imaging Resources">
+	<meta property="og:title" content="Digital Asset Specifications">
+	<meta property="og:description" content="Digital Asset Specifications for outsourced digitization of image-based collection materials.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="docs">
+
+	<meta itemprop="name" content="Digital Asset Specifications">
+	<meta itemprop="description" content="Digital Asset Specifications for outsourced digitization of image-based collection materials.">
+	<meta itemprop="wordCount" content="5091">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Digital Asset Specifications">
+	<meta name="twitter:description" content="Digital Asset Specifications for outsourced digitization of image-based collection materials.">
+<link href="/digital-imaging-resources/scss/main.css" rel="stylesheet">
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+  crossorigin="anonymous"></script>
+<script defer
+  src="https://unpkg.com/lunr@2.3.9/lunr.min.js"
+  integrity="sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli"
+  crossorigin="anonymous"></script>
+
+  </head>
+  <body class="td-page">
+    <header>
+      <nav class="td-navbar js-navbar-scroll" data-bs-theme="dark">
+<div class="container-fluid flex-column flex-md-row">
+  <a class="navbar-brand" href="/digital-imaging-resources/"><span class="navbar-brand__logo navbar-logo"></span><span class="navbar-brand__name">Digital Imaging Resources</span></a>
+  <div class="td-navbar-nav-scroll ms-md-auto" id="main_navbar">
+    <ul class="navbar-nav">
+      <li class="td-light-dark-menu nav-item dropdown">
+        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="check2" viewBox="0 0 16 16">
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+  </symbol>
+  <symbol id="circle-half" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+  </symbol>
+  <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+    <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+  </symbol>
+  <symbol id="sun-fill" viewBox="0 0 16 16">
+    <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+  </symbol>
+</svg>
+
+<button class="btn btn-link nav-link dropdown-toggle d-flex align-items-center"
+        id="bd-theme"
+        type="button"
+        aria-expanded="false"
+        data-bs-toggle="dropdown"
+        data-bs-display="static"
+        aria-label="Toggle theme (auto)">
+  <svg class="bi my-1 theme-icon-active"><use href="#circle-half"></use></svg>
+</button>
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+      <svg class="bi me-2 opacity-50"><use href="#sun-fill"></use></svg>
+      Light
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+      <svg class="bi me-2 opacity-50"><use href="#moon-stars-fill"></use></svg>
+      Dark
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+      <svg class="bi me-2 opacity-50"><use href="#circle-half"></use></svg>
+      Auto
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+</ul>
+
+      </li>
+      </ul>
+  </div>
+  <div class="d-none d-lg-block">
+    <div class="td-search td-search--offline">
+  <div class="td-search__icon"></div>
+  <input
+    type="search"
+    class="td-search__input form-control"
+    placeholder="Search this site…"
+    aria-label="Search this site…"
+    autocomplete="off"
+    
+    data-offline-search-index-json-src="/digital-imaging-resources/offline-search-index.json"
+    data-offline-search-base-href="/"
+    data-offline-search-max-results="10"
+  >
+</div>
+  </div>
+</div>
+</nav>
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <main class="col-12 col-md-9 col-xl-8 ps-md-5" role="main">
+            
+<div class="td-content">
+	<h1>Digital Asset Specifications</h1>
+	<div class="lead">Digital Asset Specifications for outsourced digitization of image-based collection materials.</div>
+	<header class="article-meta">
+		
+  </header>
+	<h2 id="1-purpose">1. Purpose</h2>
+<p>This appendix defines baseline digital asset specifications for outsourced digitization of image-based collection materials. It is intended to support project-specific scopes of work (SOWs) and may be incorporated into any applicable vendor digitization agreements or contracts.</p>
+<p>These specifications establish expected deliverables for several broad material categories:</p>
+<ul>
+<li>Reflective textual and graphic materials</li>
+<li>Reflective photographic materials</li>
+<li>Transmissive photographic materials, including film negatives, transparencies, slides, and glass plates</li>
+<li>Microform materials, including 16mm and 35mm roll microfilm, microfiche, and aperture cards</li>
+<li>Associated metadata, OCR, manifests, checksums, and quality control documentation.</li>
+</ul>
+<p>Project-specific scopes may supplement or modify these requirements, but deviations must be approved in writing by the Library before production begins.</p>
+<h2 id="2-general-principles">2. General Principles</h2>
+<h3 id="21-preservation-and-access-deliverables">2.1 Preservation and Access Deliverables</h3>
+<p>The Library may request multiple deliverable types for each project. These should be clearly distinguished by role.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Role</th>
+					<th>Working Name</th>
+					<th>Purpose</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Preservation</td>
+					<td>U-File</td>
+					<td>Highest-quality preservation-oriented file; minimal processing; intended to retain the full informational content of the source object.</td>
+			</tr>
+			<tr>
+					<td>Production / Service</td>
+					<td>S-File</td>
+					<td>Cropped, oriented, and otherwise normalized file for internal use, derivative creation, access workflows, or ingest into discovery systems.</td>
+			</tr>
+			<tr>
+					<td>Access Derivative</td>
+					<td>JPEG</td>
+					<td>Lightweight access derivative for online display or review.</td>
+			</tr>
+			<tr>
+					<td>OCR / Text Derivative</td>
+					<td>OCR package</td>
+					<td>Searchable text, ALTO, hOCR, PDF, or other text deliverables, when applicable.</td>
+			</tr>
+			<tr>
+					<td>Metadata / Documentation</td>
+					<td>Manifest package</td>
+					<td>Metadata, checksums, QC reports, exception reports, and other project documentation.</td>
+			</tr>
+	</tbody>
+</table>
+<p>Not every project will require every role. Each project-specific scope should identify required deliverables.</p>
+<h3 id="22-no-silent-substitution">2.2 No Silent Substitution</h3>
+<p>The vendor shall not substitute file formats, compression methods, color profiles, bit depths, resolutions, OCR formats, naming conventions, metadata fields, or delivery structures without prior written approval from the Library.</p>
+<h3 id="23-accurate-source-sized-resolution">2.3 Accurate Source-Sized Resolution</h3>
+<p>When resolution is specified in pixels per inch, the PPI shall be measured relative to the physical dimensions of the original source object, not the dimensions of a derivative file or resized output. Image files must include accurate resolution metadata in the appropriate TIFF or image header fields.</p>
+<h3 id="24-fadgi-conformance">2.4 FADGI Conformance</h3>
+<p>Where applicable, digitization should be performed according to the FADGI Technical Guidelines for Digitizing Cultural Heritage Materials, using the appropriate object category, star level, targets, and conformance evaluation tools for the source material.</p>
+<p>Unless otherwise specified:</p>
+<ul>
+<li>General textual and manuscript materials should meet FADGI 3-Star requirements at minimum.</li>
+<li>Rare, special, photographic, fine-detail, and high-value materials should meet FADGI 4-Star requirements where feasible.</li>
+<li>Transmissive materials should use appropriate transmissive targets and evaluation methods.</li>
+<li>Vendor documentation should identify the FADGI category and star level targeted for each project.</li>
+</ul>
+<h3 id="25-targets-and-calibration">2.5 Targets and Calibration</h3>
+<p>The vendor shall utilize appropriate technical targets, calibration procedures, and process-control documentation for each material type to ensure FADGI compliance.</p>
+<h4 id="251-reflective-materials-object-level-targets">2.5.1 Reflective Materials (Object-Level Targets)</h4>
+<p>For reflective textual, graphic, and photographic print materials (Sections 3 and 4), the vendor shall utilize appropriate Image Science Associates (ISA) GoldenThread targets (such as the ISA Object Target or Device Target, as appropriate for the material size).</p>
+<p><strong>Preservation (U-Files):</strong> Targets must be captured inline with the source material as object-level target-bearing images. The target must be positioned within the frame so that it is fully visible, un-obscured, and flat, without overlapping any portion of the source collection item.</p>
+<p><strong>Production / Service (S-Files):</strong> The target must be digitally cropped out of the final delivered image. The crop must completely exclude the target while retaining a slight, uniform, and visible border of the capture background around the physical edges of the collection object. Overly tight cropping, flush cropping, or any crop that cuts into the physical boundary of the object is strictly prohibited.</p>
+<h4 id="252-transmissive-materials-batchsession-calibration">2.5.2 Transmissive Materials (Batch/Session Calibration)</h4>
+<p>For transmissive materials (Section 5), technical calibration targets must be captured at the start of each production session or batch to establish, verify, and document equipment profiles.</p>
+<p>Transmissive targets shall be included in the final delivery as separate, uncropped target images.</p>
+<p>Targets must not be embedded within or captured inline with the source collection object images, unless an exception is explicitly requested and authorized in the project-specific SOW</p>
+<h2 id="3-reflective-textual-manuscript-bound-volume-and-graphic-materials">3. Reflective Textual, Manuscript, Bound Volume, and Graphic Materials</h2>
+<h3 id="31-included-materials">3.1 Included Materials</h3>
+<p>This category includes:</p>
+<ul>
+<li>Bound volumes</li>
+<li>Rare books</li>
+<li>Manuscripts</li>
+<li>Loose paper</li>
+<li>Archival folders</li>
+<li>Correspondence</li>
+<li>Ledgers</li>
+<li>Scrapbooks</li>
+<li>Maps, posters, broadsides, and other graphic works, unless treated as oversized special projects</li>
+<li>Mixed paper-based collections.</li>
+</ul>
+<p>Photographic prints may be handled under this category for routine access projects, but preservation-quality photographic print digitization should follow the photographic reflective specifications in Section 4.</p>
+<h3 id="32-recommended-baseline-specifications">3.2 Recommended Baseline Specifications</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>Preservation / U-File</th>
+					<th>Service / S-File</th>
+					<th>Access Derivative</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>File format</td>
+					<td>TIFF</td>
+					<td>TIFF or other approved format</td>
+					<td>JPEG</td>
+			</tr>
+			<tr>
+					<td>Compression</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossy JPEG</td>
+			</tr>
+			<tr>
+					<td>Bit depth</td>
+					<td>16-bit</td>
+					<td>8-bit</td>
+					<td>8-bit</td>
+			</tr>
+			<tr>
+					<td>Color mode</td>
+					<td>RGB</td>
+					<td>RGB</td>
+					<td>RGB</td>
+			</tr>
+			<tr>
+					<td>Color profile</td>
+					<td>Adobe RGB (1998)</td>
+					<td>sRGB</td>
+					<td>sRGB</td>
+			</tr>
+			<tr>
+					<td>Resolution</td>
+					<td>Minimum 400 PPI for fine-detail material; minimum 300 PPI may be acceptable for modern textual records if approved</td>
+					<td>Match U-File unless resized by project specification</td>
+					<td>Typically 3500 px long side; do not upscale smaller originals</td>
+			</tr>
+			<tr>
+					<td>Cropping</td>
+					<td>Full object visible; no cropping into object; border/background retained as specified</td>
+					<td>Cropped with slim border; no loss of content</td>
+					<td>Match S-File crop</td>
+			</tr>
+			<tr>
+					<td>Orientation</td>
+					<td>As captured or normalized, project-specific</td>
+					<td>Correct reading orientation</td>
+					<td>Correct reading orientation</td>
+			</tr>
+			<tr>
+					<td>FADGI Aim</td>
+					<td>3-Star minimum; 4-Star for rare/special/fine-detail materials where feasible</td>
+					<td>Not applicable unless specified</td>
+					<td>Not applicable</td>
+			</tr>
+			<tr>
+					<td>Processing</td>
+					<td>Minimal; no undocumented enhancement</td>
+					<td>Approved crop, orientation, deskew, and tonal normalization</td>
+					<td>Derived from S-File</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="33-handling-of-bound-volumes">3.3 Handling of Bound Volumes</h3>
+<p>Unless explicitly authorized by the Library, bound volumes must be digitized non-destructively. The vendor shall use appropriate cradles, supports, lighting, and capture methods to avoid damage to bindings, pages, covers, inserts, and foldouts.</p>
+<p>Project-specific instructions should define capture requirements for:</p>
+<ul>
+<li>Front cover</li>
+<li>Back cover</li>
+<li>Spine</li>
+<li>Endpapers</li>
+<li>Blank pages</li>
+<li>Foldouts</li>
+<li>Inserts</li>
+<li>Tipped-in items</li>
+<li>Page edges</li>
+<li>Bookplates</li>
+<li>Ownership marks</li>
+<li>Barcodes or labels.</li>
+</ul>
+<h2 id="4-reflective-photographic-prints">4. Reflective Photographic Prints</h2>
+<h3 id="41-included-materials">4.1 Included Materials</h3>
+<p>This category includes:</p>
+<ul>
+<li>Black-and-white photographic prints</li>
+<li>Color photographic prints</li>
+<li>Mounted photographs</li>
+<li>Cabinet cards</li>
+<li>Cartes de visite</li>
+<li>Annotated prints</li>
+<li>Photographs with significant versos, mounts, stamps, captions, or enclosures.</li>
+</ul>
+<h3 id="42-recommended-baseline-specifications">4.2 Recommended Baseline Specifications</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>Preservation / U-File</th>
+					<th>Service / S-File</th>
+					<th>Access Derivative</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>File format</td>
+					<td>TIFF</td>
+					<td>TIFF or other approved format</td>
+					<td>JPEG</td>
+			</tr>
+			<tr>
+					<td>Compression</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossy JPEG</td>
+			</tr>
+			<tr>
+					<td>Bit depth</td>
+					<td>16-bit</td>
+					<td>8-bit or 16-bit, project-specific</td>
+					<td>8-bit</td>
+			</tr>
+			<tr>
+					<td>Color mode</td>
+					<td>RGB</td>
+					<td>RGB</td>
+					<td>RGB</td>
+			</tr>
+			<tr>
+					<td>Color profile</td>
+					<td>Adobe RGB (1998)</td>
+					<td>sRGB</td>
+					<td>sRGB</td>
+			</tr>
+			<tr>
+					<td>Resolution</td>
+					<td>Minimum 600 PPI at original size, or higher for small/fine-detail photographs</td>
+					<td>Match U-File unless otherwise specified</td>
+					<td>Typically 3500 px long side; do not upscale smaller originals</td>
+			</tr>
+			<tr>
+					<td>Cropping</td>
+					<td>Full photograph visible; mount/border retained as specified</td>
+					<td>Cropped with slim border; no loss of content</td>
+					<td>Match S-File crop</td>
+			</tr>
+			<tr>
+					<td>FADGI Aim</td>
+					<td>4-Star preferred</td>
+					<td>Not applicable unless specified</td>
+					<td>Not applicable</td>
+			</tr>
+			<tr>
+					<td>Processing</td>
+					<td>Minimal; faithful reproduction</td>
+					<td>Approved crop, orientation, and tonal normalization</td>
+					<td>Derived from S-File</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="43-versos-mounts-and-enclosures">4.3 Versos, Mounts, and Enclosures</h3>
+<p>Project-specific instructions must state whether the vendor should capture:</p>
+<ul>
+<li>Versos</li>
+<li>Captions</li>
+<li>Stamps</li>
+<li>Annotations</li>
+<li>Mounts</li>
+<li>Sleeves</li>
+<li>Enclosures</li>
+<li>Folder labels</li>
+<li>Item labels</li>
+<li>Barcodes.</li>
+</ul>
+<p>When versos or associated enclosures are captured, the file naming convention must clearly distinguish front, back, mount, sleeve, enclosure, or label images.</p>
+<h2 id="5-transmissive-photographic-materials-film-slides-transparencies-and-glass">5. Transmissive Photographic Materials: Film, Slides, Transparencies, and Glass</h2>
+<h3 id="51-included-materials">5.1 Included Materials</h3>
+<p>This category covers transmissive media, divided into two operational tracks based on whether the original source image is a negative or a native positive:</p>
+<p><strong>Negative Materials Track:</strong> Black-and-white negatives, color negatives, sheet film negatives, roll film negatives, nitrate negatives, acetate negatives, and glass plate negatives.</p>
+<p><strong>Positive Materials Track:</strong> Color transparencies, mounted slides (Kodachrome, Ektachrome, etc.), lantern slides, and glass transparencies.</p>
+<h3 id="52-preservation-and-derivative-concept">5.2 Preservation and Derivative Concept</h3>
+<p>To preserve both the physical reality of a transmissive artifact and its human-readable interpretation, different asset counts and processing approaches are required depending on whether the original source media is a negative or a native positive:</p>
+<p><strong>For Negative Materials (Film &amp; Glass):</strong> The vendor must maintain parallel production tracks, delivering six (6) files total per physical item: two preservation, two service (one negative, one positive), and two access JPEGs (one negative, one positive). The two mandatory preservation files are defined as follows:</p>
+<p><strong>Negative Preservation Master (U-File):</strong> A faithful, raw, un-inverted capture of the source negative as a negative image. For color negatives, the integral film base and orange mask must remain fully intact. The primary purpose of this file is to retain the absolute, objective physical and informational content of the film base.</p>
+<p><strong>Positive Preservation Master:</strong> A high-fidelity, digitally inverted positive image derived directly from the raw capture. This master must be tonally adjusted and optimized for visual interpretation, preserving maximum tonal information across the histogram while strictly avoiding highlight or shadow clipping, excessive contrast compression, or data loss.</p>
+<p><strong>For Positive Materials (Slides &amp; Transparencies):</strong> Because these items are natively positive, no inversion or dual-tracking is required. The vendor shall deliver three (3) files total per physical item: one preservation (U-File), one production/service (S-File), and one web display/access JPEG. The preservation master represents a faithful, raw capture of the positive transparency or slide without any undocumented tonal adjustments.</p>
+<h3 id="53-black-and-white-film-negatives-6-file-dual-track">5.3 Black-and-White Film Negatives (6-File Dual Track)</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>Negative Preservation</th>
+					<th>Positive Preservation</th>
+					<th>Service Files (Both Negative &amp; Positive required)</th>
+					<th>Access Derivatives (Both Negative &amp; Positive required)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>File format</td>
+					<td>TIFF</td>
+					<td>TIFF</td>
+					<td>TIFF</td>
+					<td>JPEG</td>
+			</tr>
+			<tr>
+					<td>Compression</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossy JPEG</td>
+			</tr>
+			<tr>
+					<td>Bit depth</td>
+					<td>16-bit</td>
+					<td>16-bit</td>
+					<td>8-bit</td>
+					<td>8-bit</td>
+			</tr>
+			<tr>
+					<td>Color mode</td>
+					<td>Grayscale</td>
+					<td>Grayscale</td>
+					<td>Grayscale</td>
+					<td>Grayscale</td>
+			</tr>
+			<tr>
+					<td>Color Profile</td>
+					<td>Gray Gamma 2.2</td>
+					<td>Grey Gamma 2.2</td>
+					<td>Grey Gamma 2.2</td>
+					<td>Grey Gamma 2.2</td>
+			</tr>
+			<tr>
+					<td>Resolution</td>
+					<td>Project-specific based on film format</td>
+					<td>Match negative preservation</td>
+					<td>Match or resize from preservation files</td>
+					<td>Match or resize from service files</td>
+			</tr>
+			<tr>
+					<td>Cropping</td>
+					<td>Full image area; rebate/edge markings retained if specified; no loss of image content</td>
+					<td>Cropped/oriented as specified</td>
+					<td><strong>Negative Service:</strong> Matches Neg Master crop.<br><br><strong>Positive Service:</strong> Matches Pos Master crop.</td>
+					<td><strong>Negative Access:</strong> Matches Neg Service crop.<br><br><strong>Positive Access:</strong> Matches Pos Service crop.</td>
+			</tr>
+			<tr>
+					<td>Processing</td>
+					<td>No inversion; no clipping; no undocumented tonal enhancement</td>
+					<td>Inverted and adjusted for visual clarity; no highlight/shadow clipping</td>
+					<td><strong>Negative Service:</strong> Non-inverted; normalized contrast.<br><br><strong>Positive Service:</strong> Inverted; approved visual optimization.</td>
+					<td>Derived directly from the corresponding Negative and Positive Service files</td>
+			</tr>
+			<tr>
+					<td>FADGI Aim</td>
+					<td>4-Star preferred where feasible</td>
+					<td>Not applicable</td>
+					<td>Not applicable</td>
+					<td>Not applicable</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="54-color-film-negatives-6-file-dual-track">5.4 Color Film Negatives (6-File Dual Track)</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>Negative Preservation</th>
+					<th>Positive Preservation</th>
+					<th>Service Files (Both Negative &amp; Positive required)</th>
+					<th>Access Derivatives (Both Negative &amp; Positive required)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>File format</td>
+					<td>TIFF</td>
+					<td>TIFF</td>
+					<td>TIFF</td>
+					<td>JPEG</td>
+			</tr>
+			<tr>
+					<td>Compression</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossy</td>
+			</tr>
+			<tr>
+					<td>Bit depth</td>
+					<td>16-bit per channel</td>
+					<td>16-bit per channel</td>
+					<td>8-bit per channel</td>
+					<td>8-bit per channel</td>
+			</tr>
+			<tr>
+					<td>Color mode</td>
+					<td>RGB</td>
+					<td>RGB</td>
+					<td>RGB</td>
+					<td>RGB</td>
+			</tr>
+			<tr>
+					<td>Color profile</td>
+					<td>Adobe RGB (1998)</td>
+					<td>Adobe RGB (1998)</td>
+					<td>sRGB</td>
+					<td>sRGB</td>
+			</tr>
+			<tr>
+					<td>Resolution</td>
+					<td>Native optical resolution specified by film format</td>
+					<td>Match corresponding preservation</td>
+					<td>Match corresponding preservation</td>
+					<td>Typically 3500 px long side unless otherwise specified</td>
+			</tr>
+			<tr>
+					<td>Cropping</td>
+					<td>Full film frame visible; full rebate and edge markings retained.</td>
+					<td>Oriented as specified; may be cropped to image frame per SOW.</td>
+					<td><strong>Neg Service:</strong> Matches Neg Master crop.<br><br><strong>Pos Service:</strong> Matches Pos Master crop.</td>
+					<td>Matches corresponding Service Master crop exactly.</td>
+			</tr>
+			<tr>
+					<td>Processing</td>
+					<td>Raw capture; no corrections. Orange mask fully intact.</td>
+					<td>Digitally inverted, orange mask neutralized, color-corrected. No clipping.</td>
+					<td>Approved contrast and color-balance normalization.</td>
+					<td>Derived directly from corresponding Service files.</td>
+			</tr>
+			<tr>
+					<td>FADGI Aim</td>
+					<td>4-Star preferred where feasible</td>
+					<td>Not applicable</td>
+					<td>Not applicable</td>
+					<td>Not applicable</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="55-color-transparencies-and-mounted-slides-3-file-single-track">5.5 Color Transparencies and Mounted Slides (3-File Single Track)</h3>
+<p>This section applies to natively positive film transmissive materials (e.g., Kodachrome, Ektachrome, slides).</p>
+<table>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>Preservation / U-File</th>
+					<th>Service / S-File</th>
+					<th>Access Derivative</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>File format</td>
+					<td>TIFF</td>
+					<td>TIFF</td>
+					<td>JPEG</td>
+			</tr>
+			<tr>
+					<td>Compression</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Lossy JPEG</td>
+			</tr>
+			<tr>
+					<td>Bit depth</td>
+					<td>16-bit per channel (48-bit RGB)</td>
+					<td>8-bit per channel (24-bit RGB)</td>
+					<td>8-bit</td>
+			</tr>
+			<tr>
+					<td>Color mode</td>
+					<td>RGB</td>
+					<td>RGB</td>
+					<td>RGB</td>
+			</tr>
+			<tr>
+					<td>Color profile</td>
+					<td>Adobe RGB (1998)</td>
+					<td>sRGB</td>
+					<td>sRGB</td>
+			</tr>
+			<tr>
+					<td>Resolution</td>
+					<td>Native optical resolution per SOW. No software upscaling.</td>
+					<td>Match Preservation pixel dimensions exactly.</td>
+					<td>Typically 3500 px on long side. Do not upscale smaller originals.</td>
+			</tr>
+			<tr>
+					<td>Cropping</td>
+					<td>Full frame visible; slide mount or film border and background safety margin retained.</td>
+					<td>Slide mount/border cropped out; slight background safety margin retained.</td>
+					<td>Match S-File crop</td>
+			</tr>
+			<tr>
+					<td>Processing</td>
+					<td>Faithful, raw capture of the transparency; no undocumented adjustments.</td>
+					<td>Approved baseline contrast, color-balance, and tonal normalization.</td>
+					<td>Derived directly from the Service via standard downsampling.</td>
+			</tr>
+			<tr>
+					<td>FADGI Aim</td>
+					<td>4-Star preferred</td>
+					<td>Not applicable unless specified</td>
+					<td>Not applicable</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="56-glass-plate-negatives-and-glass-transparencies">5.6 Glass Plate Negatives and Glass Transparencies</h3>
+<p>Glass materials require specialized handling and will be mapped to the file structures established above via individual project SOWs:</p>
+<p><strong>Glass Plate Negatives:</strong> Shall follow the six (6) file dual-track role structure, inversion logic, and bit-depth specifications outlined for film negatives in Section 5.3 (Grayscale) or Section 5.4 (Color).</p>
+<p><strong>Glass Transparencies and Lantern Slides:</strong> Shall follow the three (3) file single-track role structure outlined for positive transmissive materials in Section 5.5.</p>
+<h4 id="561-technical-modifications-for-glass-substrates">5.6.1 Technical Modifications for Glass Substrates</h4>
+<p>Regardless of the file track utilized, all glass-based materials must adhere to the following baseline modifications:</p>
+<p><strong>Resolution:</strong> Sampling frequency shall be defined in the project SOW relative to the physical dimensions of the glass plate (typically a minimum of 400 to 600 PPI natively), without digital interpolation.</p>
+<p><strong>Cropping:</strong> For Preservation file (U-Files), the entire physical glass plate must be fully visible. The vendor must retain all physical edges, corners, emulsion damage, glass cracks, silver mirroring, and historical labels or markings.</p>
+<p><strong>Color Mode:</strong> If a black-and-white glass negative exhibits severe chemical deterioration, silver mirroring, or hand-coloring, the Library may mandate an RGB color capture in the SOW to preserve these physical attributes.</p>
+<h3 id="57-glass-and-fragile-transmissive-handling-requirements">5.7 Glass and Fragile Transmissive Handling Requirements</h3>
+<p>The vendor shall use handling and capture methods appropriate for fragile glass and transmissive photographic materials. Requirements may include:</p>
+<ul>
+<li>Low-heat or cold illumination</li>
+<li>Minimal exposure time</li>
+<li>Appropriate custom supports for cracked or structurally compromised glass</li>
+<li>No direct physical pressure placed on emulsion surfaces (e.g., placing glass plates emulsion-side up on a low-iron, anti-reflective lower glass shelf)</li>
+<li>Meticulous handling of flaking, lifting, or lifting emulsions</li>
+<li>Procedures for broken or cracked plates</li>
+<li>Immediate reporting of unstable or unsafe items</li>
+<li>Project-specific approval before attempting capture of damaged items.</li>
+</ul>
+<p>Specific equipment may be proposed by the vendor, but the Scope of Work should describe the required outcome rather than requiring a named lighting system unless the Library has a specific technical reason to mandate it.</p>
+<h3 id="58-inversion-and-tonal-adjustment-requirements">5.8 Inversion and Tonal Adjustment Requirements</h3>
+<p>For negative-to-positive conversions, the vendor shall provide a fully documented, repeatable inversion workflow. Positive files must be visually optimized for immediate display while retaining full tonal representation across the histogram.</p>
+<p>The vendor shall avoid:</p>
+<ul>
+<li>Clipping highlights or shadows</li>
+<li>Excessive contrast expansion</li>
+<li>Unnatural tonal compression</li>
+<li>Automated correction that obscures source characteristics</li>
+<li>Removal of historically or physically meaningful marks</li>
+<li>Inconsistent positive rendering across a batch.</li>
+</ul>
+<p>The Library may require approval of a pilot batch before production begins, especially for negative inversion and glass plate projects.</p>
+<h2 id="6-microform-materials">6. Microform Materials</h2>
+<h3 id="61-included-materials">6.1 Included Materials</h3>
+<p>This category includes:</p>
+<ul>
+<li>16mm roll microfilm</li>
+<li>35mm roll microfilm</li>
+<li>Positive microfilm</li>
+<li>Negative microfilm</li>
+<li>Silver gelatin, diazo, and vesicular film</li>
+<li>Microfiche</li>
+<li>Aperture cards</li>
+<li>Microfilm containing newspapers, books, manuscripts, records, drawings, or other source documents.</li>
+</ul>
+<h3 id="62-general-approach">6.2 General Approach</h3>
+<p>Microform materials are already surrogates of original documents. The primary goal is usually legibility, completeness, accurate sequencing, and support for OCR and access. However, preservation files should still be created in a stable, well-documented format with sufficient tonal information to support future derivative creation.</p>
+<h3 id="63-recommended-baseline-specifications">6.3 Recommended Baseline Specifications</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>Preservation / U-File</th>
+					<th>Production / Service / S-File</th>
+					<th>OCR / Text Derivative (Package)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>File format</td>
+					<td>TIFF, single-page preferred unless multi-page is explicitly approved</td>
+					<td>TIFF (single-page or multi-page as specified in SOW)</td>
+					<td>Searchable PDF, ALTO XML, hOCR, plain text, or project-specific package</td>
+			</tr>
+			<tr>
+					<td>Compression</td>
+					<td>Lossless ZIP (Deflate)</td>
+					<td>Project-specific</td>
+					<td>Project-specific</td>
+			</tr>
+			<tr>
+					<td>Bit depth</td>
+					<td>8-bit grayscale</td>
+					<td>8-bit grayscale</td>
+					<td>N/A</td>
+			</tr>
+			<tr>
+					<td>Color mode</td>
+					<td>Grayscale unless source requires color</td>
+					<td>Grayscale unless source requires color</td>
+					<td>N/A</td>
+			</tr>
+			<tr>
+					<td>Resolution</td>
+					<td>4,000 PPI for 35mm film or 6,000 PPI for 16mm film, measured across the film base</td>
+					<td>Match preservation or project-specific derivative size</td>
+					<td>OCR generated from approved image files</td>
+			</tr>
+			<tr>
+					<td>Cropping</td>
+					<td>Page/frame-level crop as specified; no cropped text or content</td>
+					<td>Cropped, deskewed, and oriented for reading</td>
+					<td>N/A</td>
+			</tr>
+			<tr>
+					<td>Enhancements</td>
+					<td>Deskew, crop, orientation, polarity correction, and tonal adjustment may be allowed if documented and approved</td>
+					<td>Searchable access package</td>
+					<td>OCR confidence and exception reporting as specified</td>
+			</tr>
+			<tr>
+					<td>Sequencing</td>
+					<td>Reel, frame, page, issue, volume, or item order as specified</td>
+					<td>Match preservation sequence</td>
+					<td>Match image sequence</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="64-reduction-ratio-and-source-sized-ppi">6.4 Reduction Ratio and Source-Sized PPI</h3>
+<p>When PPI is specified relative to original page size, the vendor shall document the method used to determine or estimate reduction ratio. If the reduction ratio is unknown, the vendor shall document assumptions and notify the Library if the source material cannot reasonably meet the required effective resolution.</p>
+<h3 id="65-microfilm-ocr">6.5 Microfilm OCR</h3>
+<p>For OCR projects, the vendor shall provide project-specific OCR deliverables. Searchable PDF alone should not be the only OCR deliverable unless explicitly approved.</p>
+<p>Possible OCR deliverables include:</p>
+<ul>
+<li>Searchable PDF</li>
+<li>Plain text</li>
+<li>ALTO XML</li>
+<li>hOCR</li>
+<li>METS/ALTO packages</li>
+<li>OCR confidence reports</li>
+<li>Exception reports for unreadable frames or pages.</li>
+</ul>
+<p>The vendor shall identify source conditions likely to limit OCR quality, such as poor exposure, skew, density variation, bleed-through, blurred frames, damaged film, handwritten text, unusual typography, mixed languages, or complex layouts.</p>
+<h3 id="66-aperture-cards-and-technical-drawings">6.6 Aperture Cards and Technical Drawings</h3>
+<p>Aperture cards and microforms containing technical drawings, maps, or oversized originals may require higher effective resolution, special cropping, or delivery structures. Project-specific scopes should define these requirements separately.</p>
+<h2 id="7-file-naming-and-directory-structure">7. File Naming and Directory Structure</h2>
+<h3 id="71-general-naming-variations">7.1 General Naming Variations</h3>
+<p>All files delivered under this agreement shall follow a consistent, underscore-delimited naming convention based on the Library-issued 14-digit barcode identifier (pattern: <code>33433\d{9}</code>). To keep filenames clean and optimized for ingestion, the naming schema adapts based on the material microfilm/negative workflow:</p>
+<ol>
+<li>
+<p><strong>Standard Workflow (Reflective Materials, Slides, and Transparencies):</strong><br>
+<code>[barcode]_[side-or-sequence]_[role].[extension]</code></p>
+</li>
+<li>
+<p><strong>Dual-Track Negative Workflow (Film and Glass Negatives Only):</strong><br>
+<code>[barcode]_[component]_[side-or-sequence][role].[extension]</code></p>
+</li>
+<li>
+<p><strong>Multi-Unit Split Workflow (Only Microfilm Reels containing distinct sub-content):</strong><br>
+<code>[barcode]_u[unit]_[sequence]_[role].[extension]</code></p>
+</li>
+</ol>
+<p><strong>Zero-Padding:</strong> All page, frame, and asset sequences must be zero-padded to a strict five-digit (5) width (e.g., 00001). Sub-unit modifiers must be zero-padded to a three-digit (3) width (e.g., u001).</p>
+<h3 id="72-naming-elements-components-and-role-codes">7.2 Naming Elements, Components, and Role Codes</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Element</th>
+					<th>Code / Term</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Barcode</td>
+					<td><code>33433\d{9}</code></td>
+					<td>The 14-digit unique identifier supplied by the Library.</td>
+			</tr>
+			<tr>
+					<td>Component (Negatives Only)</td>
+					<td><code>negative</code><br><br><code>positive</code></td>
+					<td>Used strictly for negative media to differentiate the raw un-inverted capture (negative) from the digitally inverted track (positive). Omitted for standard reflective and natively positive items.</td>
+			</tr>
+			<tr>
+					<td>Unit Modifier (Split Reels Only)</td>
+					<td><code>u001</code> to <code>u999</code></td>
+					<td>Appended only when a single barcode contains multiple distinct bibliographic units requiring independent digital separation.</td>
+			</tr>
+			<tr>
+					<td>Side or Sequence</td>
+					<td><code>r</code><br><br><code>v</code><br><br><code>00001</code> to <code>99999</code></td>
+					<td>Recto (front side) or Verso (back side) for physical flat objects or photographic prints.<br><br>5-digit zero-padded index for multi-page items or sequential film/microfilm frames.</td>
+			</tr>
+			<tr>
+					<td>Role</td>
+					<td><code>pres</code><br><br><code>serv</code><br><br><code>access</code><br><br><code>ocr</code></td>
+					<td>Preservation (U-File; 16-bit lossless ZIP TIFF).<br><br>Production / Service (S-File; cropped, color-normalized TIFF or JPEG2000).<br><br>Access Derivative / Searchable Package (Lossy JPEG or Searchable PDF).<br><br>Text Derivative (ALTO XML, hOCR, or plain text coordinates).</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="73-mandatory-sidecar-metadata-requirements">7.3 Mandatory Sidecar Metadata Requirements</h3>
+<p>The vendor shall deliver file-level metadata utilizing individual, matching JSON sidecar files for every primary digital asset produced. Standing or bulk metadata files delivered in lieu of individual sidecars do not satisfy this requirement.</p>
+<p><strong>Strict 1:1 Asset Pairing:</strong> Every single image, document, or derivative file delivered (including all preservation masters, service masters, and access files) must be accompanied by exactly one corresponding JSON file. Combining or nesting metadata for multiple files into a single master JSON array or bulk manifest is strictly prohibited under this requirement.</p>
+<p><strong>Exact Character Matching:</strong> The filename of the JSON sidecar must match the base filename of its paired asset character-for-character, shifting only the file extension to lowercase <code>.json</code>. For example, <code>[filename]_pres.tif</code> must be paired with <code>[filename]_pres.json</code>, and <code>[filename]_access.jpg</code> must be paired with <code>[filename]_access.json</code>. Any case mismatches, truncation, or spacing discrepancies between the asset file and its sidecar file will result in a mandatory batch rework.</p>
+<p><strong>Directory Co-location:</strong> Each JSON sidecar file must reside within the exact same subfolder directory as its target asset. It must be written to the internal payload <code>/data</code> directory of the associated BagIt structure, sitting directly alongside the file it describes.</p>
+<p><strong>Data Ingestion and Schema Compliance:</strong> The internal structural formatting, required fields, and data values populated within each individual JSON sidecar file must strictly adhere to the external metadata workflow and schema validation rules outlined in Section 8.</p>
+<h3 id="74-delivery-examples">7.4 Delivery Examples</h3>
+<h4 id="scenario-a-standard-reflective-photo-print-with-front-and-back-no-component-code">Scenario A: Standard Reflective Photo Print with Front and Back (No Component Code)</h4>
+<p><strong>Barcode ID:</strong> <code>33433123456789</code></p>
+<ul>
+<li><strong>Front (Recto) Preservation Master &amp; Sidecar:</strong> <code>33433123456789_r_pres.tif</code> <code>33433123456789_r_pres.json</code></li>
+<li><strong>Front (Recto) Access JPEG &amp; Sidecar:</strong> <code>33433123456789_r_access.jpg</code> <code>33433123456789_r_access.json</code></li>
+<li><strong>Back (Verso) Preservation Master &amp; Sidecar:</strong> <code>33433123456789_v_pres.tif</code> <code>33433123456789_v_pres.json</code></li>
+</ul>
+<h4 id="scenario-b-complex-dual-track-transmissive-negative-component-required">Scenario B: Complex Dual-Track Transmissive Negative (Component Required)</h4>
+<p><strong>Barcode ID:</strong> <code>33433987654321</code></p>
+<ul>
+<li><strong>Raw Negative Preservation Master &amp; Sidecar:</strong> <code>33433987654321_negative_00001_pres.tif</code> <code>33433987654321_negative_00001_pres.json</code></li>
+<li><strong>Inverted Positive Preservation Master &amp; Sidecar:</strong> <code>33433987654321_positive_00001_pres.tif</code> <code>33433987654321_positive_00001_pres.json</code></li>
+</ul>
+<h4 id="scenario-c-microfilm-reel-split-into-multiple-distinct-bibliographic-units-pamphlets">Scenario C: Microfilm Reel Split into Multiple Distinct Bibliographic Units (Pamphlets)</h4>
+<p><strong>Barcode ID:</strong> <code>33433555554444</code> (Reel contains Pamphlet 1 and Pamphlet 2)</p>
+<ul>
+<li><strong>Pamphlet 1, Frame 1 Service Master &amp; Sidecar:</strong> <code>33433555554444_u001_00001_serv.tif</code> <code>33433555554444_u001_00001_serv.json</code></li>
+<li><strong>Pamphlet 1, Frame 1 Access Searchable PDF &amp; Sidecar:</strong> <code>33433555554444_u001_00001_access.pdf</code> <code>33433555554444_u001_00001_access.json</code></li>
+<li><strong>Pamphlet 2, Frame 1 Service Master &amp; Sidecar:</strong> <code>33433555554444_u002_00001_serv.tif</code> <code>33433555554444_u002_00001_serv.json</code></li>
+</ul>
+<h3 id="75-directory-structure-bagit-packaging-rules">7.5 Directory Structure: BagIt Packaging Rules</h3>
+<p><strong>Standard / Negative Items:</strong> Each unique barcode identifier shall be delivered as an independent, self-contained, BagIt-compliant directory named exactly by its barcode (e.g., folder <code>33433987654321/</code>).</p>
+<p><strong>Split Multi-Unit Items:</strong> When a barcode is split into distinct intellectual units, each unit must be packaged as its own independent bag. To prevent folder collisions, the root folder name must include the unit modifier suffix (e.g., <code>33433555554444_u001/</code> and <code>33433555554444_u002/</code>).</p>
+<h4 id="example-1-basic-reflective-directory-layout-example-photo-print-with-front--back">Example 1: Basic Reflective Directory Layout Example (Photo Print with Front &amp; Back)</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433123456789/                                  &lt;-- Root Folder (Named by Barcode + Unit Suffix)
+</span></span><span class="line"><span class="cl">├── bagit.txt                              &lt;-- BagIt declaration
+</span></span><span class="line"><span class="cl">├── manifest-md5.txt                       &lt;-- Cryptographic checksums for everything in /data
+</span></span><span class="line"><span class="cl">├── bag-info.txt                           &lt;-- Bag administrative metadata
+</span></span><span class="line"><span class="cl">└── data/                                  &lt;-- Payload directory
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_pres.tif         &lt;-- Front/Recto Preservation Master Image
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_pres.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_serv.tif         &lt;-- Front/Recto Service Master Image
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_serv.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_access.jpg         &lt;-- Front/Recto Access Image File
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_access.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_pres.tif         &lt;-- Back/Verso Preservation Master Image
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_pres.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_serv.tif         &lt;-- Back/Verso Service Master Image
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_serv.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_access.jpg         &lt;-- Back/Verso Access Image File
+</span></span><span class="line"><span class="cl">    └── 33433123456789_v_access.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span></code></pre></div><h4 id="example-2-complex-dual-track-negative-directory-layout-frame-1-of-roll">Example 2: Complex Dual-Track Negative Directory Layout (Frame 1 of Roll)</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433987654321/                                  &lt;-- Root Folder (Named by Barcode)
+</span></span><span class="line"><span class="cl">├── bagit.txt                                    &lt;-- BagIt declaration
+</span></span><span class="line"><span class="cl">├── manifest-md5.txt                             &lt;-- Cryptographic checksums for everything in /data
+</span></span><span class="line"><span class="cl">├── bag-info.txt                                 &lt;-- Bag administrative metadata
+</span></span><span class="line"><span class="cl">└── data/                                        &lt;-- Payload directory
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_pres.tif   &lt;-- Frame 1 Raw Negative Preservation Master Image
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_pres.json  &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_pres.tif   &lt;-- Frame 1 Inverted Positive Preservation Master Image
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_pres.json  &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_serv.tif   &lt;-- Frame 1 Raw Negative Service Master Image
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_serv.json  &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_serv.tif   &lt;-- Frame 1 Inverted Positive Service Master Image
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_serv.json  &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_access.jpg &lt;-- Frame 1 Raw Negative Access Image File
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_access.json&lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_access.jpg &lt;-- Frame 1 Inverted Positive Access Image File
+</span></span><span class="line"><span class="cl">    └── 33433987654321_positive_00001_access.json    &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span></code></pre></div><h4 id="example-3-split-microfilm-directory-layout-pamphlet-1-of-a-split-reel">Example 3: Split Microfilm Directory Layout (Pamphlet 1 of a Split Reel)</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433555554444_u001/                             &lt;-- Root Folder (Named by Barcode + Unit Suffix)
+</span></span><span class="line"><span class="cl">├── bagit.txt                                    &lt;-- BagIt declaration
+</span></span><span class="line"><span class="cl">├── manifest-md5.txt                             &lt;-- Cryptographic checksums for everything in /data
+</span></span><span class="line"><span class="cl">├── bag-info.txt                                 &lt;-- Bag administrative metadata
+</span></span><span class="line"><span class="cl">└── data/                                        &lt;-- Payload directory
+</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_pres.tif       &lt;-- Frame 1 Preservation Master Image
+</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_pres.json      &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_serv.tif       &lt;-- Frame 1 Service Master Image
+</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_serv.json      &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_access.pdf     &lt;-- Frame 1 Searchable PDF Access File
+</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_access.json    &lt;-- 1:1 Matching Sidecar JSON Metadata
+</span></span><span class="line"><span class="cl">    └── 33433555554444_u001_00001_ocr.xml        &lt;-- Frame 1 Coordinate OCR data
+</span></span></code></pre></div><h2 id="8-embedded-metadata-and-external-metadata">8. Embedded Metadata and External Metadata</h2>
+<h3 id="81-general-approach">8.1 General Approach</h3>
+<p>The Library utilizes a multi-tiered metadata strategy to maintain digital object lineage. Technical and administrative metadata are captured at two distinct levels: minimal metadata embedded directly within file headers, and robust, file-level external metadata delivered via the JSON sidecar files specified in Section 7.3. External metadata files serve as the primary descriptive and validation mechanism for repository ingestion.</p>
+<h3 id="82-embedded-metadata-requirements">8.2 Embedded Metadata Requirements</h3>
+<p>The vendor shall embed baseline technical and administrative metadata directly into the headers of all TIFF and derivative files where supported by the file format. Embedded metadata fields must be populated programmatically during capture and processing, and may include:</p>
+<ul>
+<li>Unique identifier / Barcode</li>
+<li>File title or document name</li>
+<li>Library/institution name and credit line</li>
+<li>Copyright or rights statement (if supplied by the Library)</li>
+<li>Source collection name (if supplied by the Library)</li>
+<li>Capture date and timestamp</li>
+<li>Digitization vendor name</li>
+<li>Capture hardware metrics (Camera/scanner make, model, and lens information)</li>
+<li>Capture software name and version number</li>
+<li>Resolution (Sampling frequency) and bit depth</li>
+<li>Assigned color space profile (ICC Profile)</li>
+<li>Image pixel dimensions and orientation</li>
+<li>Standard technical EXIF, XMP, IPTC, and TIFF header fields</li>
+</ul>
+<h3 id="83-checksums-and-fixity">8.3 Checksums and Fixity</h3>
+<p>Cryptographic checksums used for file fixity validation must be delivered via the external BagIt manifests (<code>manifest-md5.txt</code>) as outlined in Section 7.5, rather than embedded as the primary fixity mechanism inside image headers. The mandatory algorithm for all project delivery manifests is MD5.</p>
+<h3 id="84-external-metadata-workflow-and-json-schema-validation">8.4 External Metadata Workflow and JSON Schema Validation</h3>
+<p>To generate the mandatory 1:1 file-level JSON sidecars required by Section 7.4, the vendor shall execute a three-phase metadata aggregation and synthesis workflow:</p>
+<h4 id="phase-1-library-supplied-source-baseline">Phase 1: Library-Supplied Source Baseline</h4>
+<p>Prior to production or upon shipment delivery, the Library will provide the vendor with a standardized project metadata spreadsheet in CSV or XLSX format. This file acts as the authoritative data source for the project and will contain administrative, collection-level, and bibliographic markers, including:</p>
+<ul>
+<li>Library identifier / Barcode (<code>33433\d{9}</code>)</li>
+<li>Bibliographic ID (Classmark, bnumber)</li>
+<li>Collection ID</li>
+<li>Box, folder, reel, volume, or item numbers (where applicable)</li>
+</ul>
+<h4 id="phase-2-vendor-generated-json">Phase 2: Vendor-Generated JSON</h4>
+<p>The vendor must programmatically extract the data fields from the Library&rsquo;s source spreadsheet and combine them with file-level technical and operational metadata captured during the digitization process. The vendor&rsquo;s processing scripts must parse this aggregated dataset out into the individual 1:1 JSON sidecar files. The technical capture fields that the vendor must inject into each JSON sidecar include:</p>
+<ul>
+<li>Filename and file path relative to the bag root</li>
+<li>File role (e.g., pres, serv, access, ocr) and file format/size</li>
+<li>Cryptographic MD5 checksum value</li>
+<li>Exact capture date, timestamp, hardware device, and operator ID</li>
+<li>Hardware resolution (PPI), bit depth, color mode, and embedded ICC profile</li>
+<li>Quality Control (QC) validation status, exception notes, and rework indicators (where applicable)</li>
+</ul>
+<h4 id="phase-3-schema-validation">Phase 3: Schema Validation</h4>
+<p>The final structural composition, key-value pairings, nesting logic, and required fields of the delivered JSON sidecars must strictly validate against the formal JSON Schema specifications provided by the Library.</p>
+<p><strong>Schema Provision:</strong> The Library will supply the authoritative JSON Schema file (e.g., a standard .json schema definition document) prior to the launch of mass production or as an explicit attachment to the project-specific Statement of Work (SOW).</p>
+<p><strong>Mandatory 100% Pre-Delivery Validation:</strong> The vendor shall implement automated schema validation using an industry-standard validator as part of their 100% Quality Control pipeline (Section 9.1). Every single delivered JSON sidecar file must pass validation against the Library-supplied schema without error. Any files containing malformed JSON syntax, invalid data types, missing required blocks, or structural non-compliance will result in the immediate rejection of the entire delivery batch.</p>
+<h2 id="8-embedded-metadata-and-external-metadata-1">8. Embedded Metadata and External Metadata</h2>
+<h3 id="81-general-approach-1">8.1 General Approach</h3>
+<p>Embedded metadata should be used to support identification, rendering, provenance, and basic rights/credit information, but should not replace external metadata.</p>
+<h3 id="82-embedded-metadata-requirements-1">8.2 Embedded Metadata Requirements</h3>
+<p>Vendors shall embed appropriate metadata in TIFF and derivative files when supported by the file format and approved by the Library.</p>
+<p>Embedded metadata may include:</p>
+<ul>
+<li>Unique identifier</li>
+<li>File title or document name</li>
+<li>Library/institution name</li>
+<li>Credit line</li>
+<li>Copyright or rights statement, if supplied by the Library</li>
+<li>Source collection name, if supplied</li>
+<li>Capture date</li>
+<li>Vendor name</li>
+<li>Camera/scanner make and model</li>
+<li>Lens information, where applicable</li>
+<li>Capture software and version</li>
+<li>Resolution</li>
+<li>Bit depth</li>
+<li>Color profile</li>
+<li>Image dimensions</li>
+<li>Orientation</li>
+<li>Basic technical EXIF/XMP/IPTC/TIFF fields as applicable.</li>
+</ul>
+<h3 id="83-checksums">8.3 Checksums</h3>
+<p>Checksums should be delivered in an external checksum manifest, not embedded as the primary fixity mechanism inside the image file. The preferred checksum algorithm is MD5.</p>
+<h3 id="84-metadata-manifest">8.4 Metadata Manifest</h3>
+<p>The vendor shall provide a metadata manifest in CSV, TSV, Excel, JSON, XML, or another approved format. Required fields should be defined by project, but may include:</p>
+<ul>
+<li>Library identifier</li>
+<li>Barcode</li>
+<li>Bibliographic ID</li>
+<li>Call number</li>
+<li>Collection ID</li>
+<li>Reel, volume, folder, page, frame, or item number</li>
+<li>Filename</li>
+<li>File path</li>
+<li>File role</li>
+<li>File format</li>
+<li>File size</li>
+<li>Checksum</li>
+<li>Checksum algorithm</li>
+<li>Capture date</li>
+<li>Capture device</li>
+<li>Operator</li>
+<li>Resolution</li>
+<li>Bit depth</li>
+<li>Color mode</li>
+<li>ICC profile</li>
+<li>OCR status</li>
+<li>QC status</li>
+<li>Exception notes</li>
+<li>Rework status.</li>
+</ul>
+<h2 id="9-quality-control-requirements">9. Quality Control Requirements</h2>
+<h3 id="91-vendor-100-qc">9.1 Vendor 100% QC</h3>
+<p>The vendor shall perform quality control before delivery. Unless otherwise specified, vendor QC shall include 100% review or automated validation for:</p>
+<ul>
+<li>File presence</li>
+<li>File naming</li>
+<li>Directory structure</li>
+<li>Sequence completeness</li>
+<li>Checksum creation</li>
+<li>File format validation</li>
+<li>ICC profile presence and correctness</li>
+<li>Bit depth</li>
+<li>Color mode</li>
+<li>Resolution metadata</li>
+<li>Pixel dimensions</li>
+<li>Corrupt or unreadable files</li>
+<li>Manifest completeness</li>
+<li>OCR deliverable presence, if applicable.</li>
+</ul>
+<h3 id="92-vendor-visual-qc">9.2 Vendor Visual QC</h3>
+<p>The vendor shall visually review files for issues including:</p>
+<ul>
+<li>Blurred focus</li>
+<li>Motion blur</li>
+<li>Incorrect exposure</li>
+<li>Clipped highlights or shadows</li>
+<li>Color imbalance</li>
+<li>Newton’s rings</li>
+<li>Dust or debris</li>
+<li>Reflections or glare</li>
+<li>Cropped text or image content</li>
+<li>Incorrect orientation</li>
+<li>Excessive skew</li>
+<li>Moiré or scanner artifacts</li>
+<li>Missing pages, frames, or sides</li>
+<li>Incorrect negative inversion</li>
+<li>Inconsistent tonal rendering</li>
+<li>Visible handling damage or newly discovered condition issues.</li>
+</ul>
+<p>Unless a 100% manual visual review is explicitly funded in an SOW, the vendor shall conduct a manual visual inspection on a statistically valid random sample (minimum 10%) of each batch.</p>
+<h3 id="93-technical-validation-tools">9.3 Technical Validation Tools</h3>
+<p>The vendor shall use appropriate validation and analysis tools, which may include:</p>
+<ul>
+<li>JHOVE for file format validation and characterization</li>
+<li>ExifTool for embedded metadata review</li>
+<li>OpenDICE, AutoSFR, GoldenThread, or equivalent tools for image quality conformance testing</li>
+<li>Checksum tools capable of generating MD5 manifests</li>
+<li>OCR validation or confidence reporting tools, where applicable.</li>
+</ul>
+<h3 id="94-library-pilot-review">9.4 Library Pilot Review</h3>
+<p>Before mass production, the Library may review a pilot batch. The pilot batch should be representative of the full project and may include:</p>
+<ul>
+<li>25–50 images, or another agreed sample size</li>
+<li>Multiple formats and conditions</li>
+<li>Fronts/backs or rectos/versos</li>
+<li>Negative and positive versions for transmissive materials</li>
+<li>OCR output, if applicable</li>
+<li>Metadata records</li>
+<li>File manifests</li>
+<li>Checksum manifests</li>
+<li>QC reports</li>
+<li>Target images.</li>
+</ul>
+<p>The Library may use the pilot to approve:</p>
+<ul>
+<li>Image quality</li>
+<li>Cropping</li>
+<li>Orientation</li>
+<li>Naming</li>
+<li>Directory structure</li>
+<li>Metadata structure</li>
+<li>Negative inversion look and tonal handling</li>
+<li>OCR package structure</li>
+<li>QC reporting format.</li>
+</ul>
+<p>Full production shall not begin until the Library approves the pilot batch, unless the Library waives this requirement in writing.</p>
+<h3 id="95-acceptance-and-rework">9.5 Acceptance and Rework</h3>
+<p>Deliverables are not accepted until the Library completes its review and confirms that files, metadata, OCR, and documentation meet project requirements.</p>
+<p>The vendor shall correct vendor-responsible errors at no additional cost. Rework may be required for:</p>
+<ul>
+<li>Missing files</li>
+<li>Incorrect file names</li>
+<li>Incorrect sequence</li>
+<li>Incorrect or missing checksums</li>
+<li>Corrupt files</li>
+<li>Incorrect bit depth, color profile, or file format</li>
+<li>Poor focus</li>
+<li>Cropped content</li>
+<li>Unauthorized image processing</li>
+<li>Clipped tonal values</li>
+<li>Incorrect negative inversion</li>
+<li>Incomplete metadata</li>
+<li>Incorrect OCR package structure</li>
+<li>Incomplete or inaccurate manifests</li>
+<li>Failure to follow approved specifications.</li>
+</ul>
+
+	
+</div>
+
+
+          </main>
+        </div>
+      </div>
+      <footer class="td-footer row d-print-none">
+  <div class="container-fluid">
+    <div class="row mx-md-2">
+      <div class="td-footer__left col-6 col-sm-4 order-sm-1">
+        
+      </div><div class="td-footer__right col-6 col-sm-4 order-sm-3">
+        
+      </div><div class="td-footer__center col-12 col-sm-4 py-2 order-sm-2">
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script src="/digital-imaging-resources/js/main.js"></script>
+<script defer src="/digital-imaging-resources/js/click-to-copy.js" crossorigin="anonymous"></script>
+<script src='/digital-imaging-resources/js/tabpane-persist.js'></script>
+
+  </body>
+</html>

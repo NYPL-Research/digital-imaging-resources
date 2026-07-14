@@ -3,10 +3,6 @@ type: docs
 title: Procedural Guide for Transmissive Digitization
 ---
 
-{{% pageinfo color="info" %}}
-This repository is currently under construction. The document you're reading may be edited, moved, or deleted entirely. 
-{{% /pageinfo %}}
-
 This guide outlines the standard procedures for digitizing transmissive materials, including color transparencies (slides and film) and black & white negatives, adhering to industry best practices.
 
 #### General Setup and Pre-flight Procedures
