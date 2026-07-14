@@ -500,7 +500,7 @@ The vendor shall embed baseline technical and administrative metadata directly i
 
 ### 8.3 Checksums and Fixity
 
-Cryptographic checksums used for file fixity validation must be delivered via the external BagIt manifests (`manifest-md5.txt`) as outlined in Section 7.5, rather than embedded as the primary fixity mechanism inside image headers. The mandatory algorithm for all project delivery manifests is MD5.
+Cryptographic checksums used for file fixity validation must be delivered via the external BagIt manifests (`manifest-md5.txt`) as outlined in Section 7.5, rather than embedded as the primary fixity mechanism inside image headers or duplicated inside item sidecars. The mandatory algorithm for all project delivery manifests is MD5.
 
 ### 8.4 External Metadata Workflow and JSON Schema Validation
 
@@ -508,94 +508,34 @@ To generate the mandatory 1:1 file-level JSON sidecars required by Section 7.4, 
 
 #### Phase 1: Library-Supplied Source Baseline
 
-Prior to production or upon shipment delivery, the Library will provide the vendor with a standardized project metadata spreadsheet in CSV or XLSX format. This file acts as the authoritative data source for the project and will contain administrative, collection-level, and bibliographic markers, including:
+Prior to production or upon shipment delivery, the Library will provide the vendor with a standardized project inventory spreadsheet in CSV or XLSX format (as specified in the **[Inventory Spreadsheet Specification]({{< ref "inventory_spreadsheet-spec.md" >}})**). This file acts as the authoritative intake data source for the project and provides item-level baseline data, including:
 
-- Library identifier / Barcode (`33433\d{9}`)
-- Bibliographic ID (Classmark, bnumber)
-- Collection ID
-- Box, folder, reel, volume, or item numbers (where applicable)
+- **Administrative Tracking:** `schema_version` and `project_code`
+- **Primary Identifiers:** Library barcode (`barcode` matching `^33433\d{9}$`), `division_code`, `bnumber`, `classmark`, `aspace_component_id`, `collection_id`, and `item_title`
+- **Physical Object Classification:** Controlled vocabulary pairings for `object_type` and `object_format`, alongside any `physical_condition_notes` observed at selection
+- **Multi-Unit Structure:** `unit_index` and `unit_title` for single cataloged items spanning multiple carriers (e.g., split microfilm reels or multi-box sets)
 
-#### Phase 2: Vendor-Generated JSON
+#### Phase 2: Vendor-Generated JSON Synthesis
 
-The vendor must programmatically extract the data fields from the Library's source spreadsheet and combine them with file-level technical and operational metadata captured during the digitization process. The vendor's processing scripts must parse this aggregated dataset out into the individual 1:1 JSON sidecar files. The technical capture fields that the vendor must inject into each JSON sidecar include:
+The vendor must programmatically extract the item-level fields from the Library's intake spreadsheet and map them into their corresponding schema objects (`administrative`, `identifiers`, `source`). The vendor's processing scripts must then synthesize this baseline data with file-level operational metadata captured dynamically during production to generate individual 1:1 JSON sidecar files. 
 
-- Filename and file path relative to the bag root
-- File role (e.g., pres, serv, access, ocr) and file format/size
-- Cryptographic MD5 checksum value
-- Exact capture date, timestamp, hardware device, and operator ID
-- Hardware resolution (PPI), bit depth, color mode, and embedded ICC profile
-- Quality Control (QC) validation status, exception notes, and rework indicators (where applicable)
+Per the **[JSON Sidecar Schema Specification]({{< ref "json-schema-sidecar.md" >}})**, the capture-specific properties the vendor must inject into each sidecar include:
+
+- **Asset Metadata (`asset`):** The exact `referenceFilename` (strictly validated against the project naming regex pattern) and the designated `fileRole` (`pres`, `serv`, `access`, or `ocr`).
+- **Sequential Capture Tracking (`source.sequence`):** The zero-padded integer `sequenceNumber` (e.g., `24`), two-sided object `side` indicator (`r` for recto, `v` for verso), and human-readable `sequenceLabel` depicting physical reality (e.g., `"Recto"`, `"Page 42"`, `"Front Cover"`).
+- **Digitization Process Audit (`digitizationProcess`):** Granular hardware and software audit trails, including `captureDevice` (`manufacturer`, `model`, `lens`, `serialNumber`), `captureSoftware` (`manufacturer`, `productName`, `version`), and the specific optical `calibrationTarget` utilized during the capture session.
+- **Operator & Organization Tracking (`digitizer`):** Vendor administrative data, including `operator` (`firstName`, `lastName`) and `organization` (`name`).
+
+*(Note: To maintain separation of concerns, file sizes, pixel dimensions, and ICC profiles remain embedded within image headers per Section 8.2, while MD5 cryptographic checksums remain strictly within external BagIt manifests per Section 8.3).*
 
 #### Phase 3: Schema Validation
 
-The final structural composition, key-value pairings, nesting logic, and required fields of the delivered JSON sidecars must strictly validate against the formal JSON Schema specifications provided by the Library.
+The final structural composition, key-value pairings, nesting logic, and required fields of the delivered JSON sidecars must strictly validate against the formal JSON Schema specification provided by the Library.
 
-**Schema Provision:** The Library will supply the authoritative JSON Schema file (e.g., a standard .json schema definition document) prior to the launch of mass production or as an explicit attachment to the project-specific Statement of Work (SOW).
+**Schema Provision:** The authoritative, live JSON Schema file (`digitized_image_schema.json`) is maintained and published by the Library at the following canonical endpoint:
+* **Canonical Schema URI (`$id`):** `https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json`
 
-**Mandatory 100% Pre-Delivery Validation:** The vendor shall implement automated schema validation using an industry-standard validator as part of their 100% Quality Control pipeline (Section 9.1). Every single delivered JSON sidecar file must pass validation against the Library-supplied schema without error. Any files containing malformed JSON syntax, invalid data types, missing required blocks, or structural non-compliance will result in the immediate rejection of the entire delivery batch.
-
-## 8. Embedded Metadata and External Metadata
-
-### 8.1 General Approach
-
-Embedded metadata should be used to support identification, rendering, provenance, and basic rights/credit information, but should not replace external metadata.
-
-### 8.2 Embedded Metadata Requirements
-
-Vendors shall embed appropriate metadata in TIFF and derivative files when supported by the file format and approved by the Library.
-
-Embedded metadata may include:
-
-- Unique identifier
-- File title or document name
-- Library/institution name
-- Credit line
-- Copyright or rights statement, if supplied by the Library
-- Source collection name, if supplied
-- Capture date
-- Vendor name
-- Camera/scanner make and model
-- Lens information, where applicable
-- Capture software and version
-- Resolution
-- Bit depth
-- Color profile
-- Image dimensions
-- Orientation
-- Basic technical EXIF/XMP/IPTC/TIFF fields as applicable.
-
-### 8.3 Checksums
-
-Checksums should be delivered in an external checksum manifest, not embedded as the primary fixity mechanism inside the image file. The preferred checksum algorithm is MD5.
-
-### 8.4 Metadata Manifest
-
-The vendor shall provide a metadata manifest in CSV, TSV, Excel, JSON, XML, or another approved format. Required fields should be defined by project, but may include:
-
-- Library identifier
-- Barcode
-- Bibliographic ID
-- Call number
-- Collection ID
-- Reel, volume, folder, page, frame, or item number
-- Filename
-- File path
-- File role
-- File format
-- File size
-- Checksum
-- Checksum algorithm
-- Capture date
-- Capture device
-- Operator
-- Resolution
-- Bit depth
-- Color mode
-- ICC profile
-- OCR status
-- QC status
-- Exception notes
-- Rework status.
+**Mandatory 100% Pre-Delivery Validation:** The vendor shall implement automated command-line schema validation (using industry-standard tools such as `ajv-cli` or Python's `jsonschema`) as part of their 100% Quality Control pipeline (Section 9.1). Every single delivered JSON sidecar file must pass validation against the Library-supplied schema without error. Any files containing malformed JSON syntax, invalid data types, unmapped properties (`additionalProperties: false`), regex filename mismatches, or structural non-compliance will result in the immediate rejection of the entire delivery batch.
 
 ## 9. Quality Control Requirements
 
