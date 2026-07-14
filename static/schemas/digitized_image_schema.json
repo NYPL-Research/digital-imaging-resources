@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Digitized Image Schema",
-  "$id": "digitized_image_schema",
+  "$id": "https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json",  
   "description": "Definitions for image-based digitization metadata sidecars",
   "type": "object",
   "additionalProperties": false,
