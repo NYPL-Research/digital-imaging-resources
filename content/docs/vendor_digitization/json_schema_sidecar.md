@@ -14,7 +14,7 @@ While the **[Inventory Spreadsheet]({{< relref "inventory_spreadsheet_spec" >}})
 
 The authoritative JSON Schema is maintained as a separate, publicly accessible file. Vendors must integrate this schema into their automated quality-control pipelines before delivery.
 
-* **Public schema:** [digitized_image_schema.json](https://nypl.github.io/digital-imaging-resources/schemas/digitized_image_schema.json)
+* **Public schema:** [digitized_image_schema.json](https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json)
 
 The public URL must return the raw JSON Schema document rather than an HTML page, redirect, or error response.
 
@@ -396,14 +396,14 @@ The authoritative schema is maintained as an independent JSON artifact rather th
 
 Open the following resource to view or save the schema:
 
-* [digitized_image_schema.json](https://nypl.github.io/digital-imaging-resources/schemas/digitized_image_schema.json)
+* [digitized_image_schema.json](https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json)
 
 ### 5.2 Download with cURL
 
 ```bash
 curl --fail --location \
   --output digitized_image_schema.json \
-  https://nypl.github.io/digital-imaging-resources/schemas/digitized_image_schema.json
+  https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json
 ```
 
 ### 5.3 Download with Wget
@@ -411,7 +411,7 @@ curl --fail --location \
 ```bash
 wget \
   --output-document=digitized_image_schema.json \
-  https://nypl.github.io/digital-imaging-resources/schemas/digitized_image_schema.json
+  https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json
 ```
 
 ### 5.4 Confirm That the Downloaded File Is JSON
