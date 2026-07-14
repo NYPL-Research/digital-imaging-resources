@@ -175,7 +175,7 @@ npm install --global ajv-cli
 ```bash
 curl --fail --location \
   --output digitized_image_schema.json \
-  https://nypl.github.io/digital-imaging-resources/schemas/digitized_image_schema.json
+  https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json
 ```
 
 The `--fail` option causes the command to return an error for an unsuccessful HTTP response instead of saving an error page as though it were a schema.
@@ -256,7 +256,7 @@ from jsonschema.exceptions import SchemaError, ValidationError
 
 
 SCHEMA_URL = (
-    "https://nypl.github.io/digital-imaging-resources/"
+    "https://nypl-research.github.io/digital-imaging-resources/"
     "schemas/digitized_image_schema.json"
 )
 
