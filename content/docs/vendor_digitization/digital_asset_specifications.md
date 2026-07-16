@@ -306,6 +306,8 @@ This category includes:
 
 Microform materials are already surrogates of original documents. The primary goal is usually legibility, completeness, accurate sequencing, and support for OCR and access. However, preservation files should still be created in a stable, well-documented format with sufficient tonal information to support future derivative creation.
 
+When a single physical microform item contains multiple distinct intellectual units, the vendor may separate those units into approved subdirectories for navigation and downstream processing. This intellectual segmentation must not interrupt or reset the physical frame sequence. Frame numbering shall remain continuous across the complete barcode-level object, from the first captured frame through the last.
+
 ### 6.3 Recommended Baseline Specifications
 
 | Feature | Preservation / U-File | Production / Service / S-File | OCR / Text Derivative (Package) |
@@ -317,7 +319,7 @@ Microform materials are already surrogates of original documents. The primary go
 | Resolution | 4,000 PPI for 35mm film or 6,000 PPI for 16mm film, measured across the film base | Match preservation or project-specific derivative size | OCR generated from approved image files |
 | Cropping | Page/frame-level crop as specified; no cropped text or content | Cropped, deskewed, and oriented for reading | N/A |
 | Enhancements | Deskew, crop, orientation, polarity correction, and tonal adjustment may be allowed if documented and approved | Searchable access package | OCR confidence and exception reporting as specified |
-| Sequencing | Reel, frame, page, issue, volume, or item order as specified | Match preservation sequence | Match image sequence |
+| Sequencing | Continuous physical frame sequence across the complete reel or barcode-level object; intellectual units may be separated into unit subdirectories without resetting frame numbers | Match preservation sequence | Match image sequence |
 
 ### 6.4 Reduction Ratio and Source-Sized PPI
 
@@ -347,38 +349,52 @@ Aperture cards and microforms containing technical drawings, maps, or oversized 
 
 ### 7.1 General Naming Variations
 
-All files delivered under this agreement shall follow a consistent, underscore-delimited naming convention based on the Library-issued 14-digit barcode identifier (pattern: `33433\d{9}`). To keep filenames clean and optimized for ingestion, the naming schema adapts based on the material microfilm/negative workflow:
+All files delivered under this agreement shall follow a consistent, underscore-delimited naming convention based on the Library-issued 14-digit barcode identifier (pattern: `33433\d{9}`). Filenames shall use one of the following two structures:
 
-1. **Standard Workflow (Reflective Materials, Slides, and Transparencies):**  
+1. **Standard Workflow (Reflective Materials, Slides, Transparencies, and Microform):**  
    `[barcode]_[side-or-sequence]_[role].[extension]`
 
 2. **Dual-Track Negative Workflow (Film and Glass Negatives Only):**  
    `[barcode]_[component]_[side-or-sequence]_[role].[extension]`
 
-3. **Multi-Unit Split Workflow (Only Microfilm Reels containing distinct sub-content):**  
-   `[barcode]_u[unit]_[sequence]_[role].[extension]`
+Multi-unit intellectual segmentation does not create a separate filename pattern. When a single physical item contains multiple distinct intellectual units, files shall retain the applicable standard filename and shall be organized into unit subdirectories within the barcode-level bag, as described in Section 7.5.
 
-**Zero-Padding:** All page, frame, and asset sequences must be zero-padded to a strict five-digit (5) width (e.g., 00001). Sub-unit modifiers must be zero-padded to a three-digit (3) width (e.g., u001).
+**Zero-Padding:** All page, frame, and asset sequences must be zero-padded to a strict five-digit (5) width (e.g., `00001`). Unit directory identifiers must be zero-padded to a strict three-digit (3) width (e.g., `u001`).
+
+#### 7.1.1 Multi-Unit Organization and Absolute Physical Sequence
+
+A unit represents a distinct intellectual work or content grouping identified within one physical barcode-level object. Unit divisions are organizational and descriptive; they do not create new physical objects, new barcode identifiers, or separate BagIt packages.
+
+For multi-unit items:
+
+- The barcode-level bag remains the sole delivery package for the physical item.
+- Unit subdirectories shall be named `u001`, `u002`, and so forth, in the order in which the units first appear on the physical carrier.
+- Unit identifiers shall appear in directory paths and metadata, but not in asset filenames.
+- The physical frame sequence shall begin at `00001` and continue without resetting at unit boundaries.
+- All preservation, service, access, OCR, and sidecar files derived from the same physical frame shall use the same absolute sequence number.
+- Sequence numbers must not be duplicated across unit directories. Any intentional gap caused by an omitted, unreadable, or uncaptured frame must be documented in the applicable exception report.
+
+For example, if `u001` contains physical frames 1–980 and `u002` contains physical frames 981–1650, the final frame in `u001` shall use sequence `00980`, and the first frame in `u002` shall use sequence `00981`. If the TIFF files are later gathered from all unit directories and sorted by filename, they will retain the original physical order of the complete item.
 
 ### 7.2 Naming Elements, Components, and Role Codes
 
 | Element | Code / Term | Description |
 |---|---|---|
-| Barcode | `33433\d{9}` | The 14-digit unique identifier supplied by the Library. |
-| Component (Negatives Only) | `negative`<br><br>`positive` | Used strictly for negative media to differentiate the raw un-inverted capture (negative) from the digitally inverted track (positive). Omitted for standard reflective and natively positive items. |
-| Unit Modifier (Split Reels Only) | `u001` to `u999` | Appended only when a single barcode contains multiple distinct bibliographic units requiring independent digital separation. |
-| Side or Sequence | `r`<br><br>`v`<br><br>`00001` to `99999` | Recto (front side) or Verso (back side) for physical flat objects or photographic prints.<br><br>5-digit zero-padded index for multi-page items or sequential film/microfilm frames. |
+| Barcode | `33433\d{9}` | The 14-digit unique identifier supplied by the Library. The barcode also names the root BagIt directory. |
+| Component (Negatives Only) | `negative`<br><br>`positive` | Used strictly for negative media to differentiate the raw, un-inverted capture (`negative`) from the digitally inverted track (`positive`). Omitted for standard reflective and natively positive items. |
+| Unit Directory (Multi-Unit Items Only) | `u001` to `u999` | A three-digit, zero-padded subdirectory beneath `data/` used to separate distinct intellectual units within one physical barcode-level object. The unit identifier is not included in asset filenames. |
+| Side or Sequence | `r`<br><br>`v`<br><br>`00001` to `99999` | Recto (`r`) or verso (`v`) for two-sided flat objects or photographic prints.<br><br>For sequential materials, a five-digit, zero-padded absolute index across the complete physical barcode-level object. The sequence must not reset at a unit boundary. |
 | Role | `pres`<br><br>`serv`<br><br>`access`<br><br>`ocr` | Preservation (U-File; 16-bit lossless ZIP TIFF).<br><br>Production / Service (S-File; cropped, color-normalized TIFF or JPEG2000).<br><br>Access Derivative / Searchable Package (Lossy JPEG or Searchable PDF).<br><br>Text Derivative (ALTO XML, hOCR, or plain text coordinates). |
 
 ### 7.3 Mandatory Sidecar Metadata Requirements
 
 The vendor shall deliver file-level metadata utilizing individual, matching JSON sidecar files for every primary digital asset produced. Standing or bulk metadata files delivered in lieu of individual sidecars do not satisfy this requirement.
 
-**Strict 1:1 Asset Pairing:** Every single image, document, or derivative file delivered (including all preservation masters, service masters, and access files) must be accompanied by exactly one corresponding JSON file. Combining or nesting metadata for multiple files into a single master JSON array or bulk manifest is strictly prohibited under this requirement.
+**Strict 1:1 Asset Pairing:** Every single image, document, or derivative file delivered—including all preservation masters, service masters, access files, and OCR files—must be accompanied by exactly one corresponding JSON file. Combining or nesting metadata for multiple files into a single master JSON array or bulk manifest is strictly prohibited under this requirement.
 
-**Exact Character Matching:** The filename of the JSON sidecar must match the base filename of its paired asset character-for-character, shifting only the file extension to lowercase `.json`. For example, `[filename]_pres.tif` must be paired with `[filename]_pres.json`, and `[filename]_access.jpg` must be paired with `[filename]_access.json`. Any case mismatches, truncation, or spacing discrepancies between the asset file and its sidecar file will result in a mandatory batch rework.
+**Exact Character Matching:** The filename of the JSON sidecar must match the base filename of its paired asset character-for-character, shifting only the file extension to lowercase `.json`. For example, `[filename]_pres.tif` must be paired with `[filename]_pres.json`, and `[filename]_access.jpg` must be paired with `[filename]_access.json`. Any case mismatches, truncation, or spacing discrepancies between the asset file and its sidecar file will result in mandatory batch rework.
 
-**Directory Co-location:** Each JSON sidecar file must reside within the exact same subfolder directory as its target asset. It must be written to the internal payload `/data` directory of the associated BagIt structure, sitting directly alongside the file it describes.
+**Directory Co-location:** Each JSON sidecar file must reside in the exact same payload directory as its paired asset. For standard items, this will normally be the bag's `data/` directory. For multi-unit items, both the asset and its sidecar must reside together in the applicable unit subdirectory, such as `data/u001/` or `data/u002/`.
 
 **Data Ingestion and Schema Compliance:** The internal structural formatting, required fields, and data values populated within each individual JSON sidecar file must strictly adhere to the external metadata workflow and schema validation rules outlined in Section 8.
 
@@ -388,90 +404,117 @@ The vendor shall deliver file-level metadata utilizing individual, matching JSON
 
 **Barcode ID:** `33433123456789`
 
-- **Front (Recto) Preservation Master & Sidecar:** `33433123456789_r_pres.tif` `33433123456789_r_pres.json`
-- **Front (Recto) Access JPEG & Sidecar:** `33433123456789_r_access.jpg` `33433123456789_r_access.json`
-- **Back (Verso) Preservation Master & Sidecar:** `33433123456789_v_pres.tif` `33433123456789_v_pres.json`
+- **Front (Recto) Preservation Master & Sidecar:** `33433123456789_r_pres.tif` and `33433123456789_r_pres.json`
+- **Front (Recto) Access JPEG & Sidecar:** `33433123456789_r_access.jpg` and `33433123456789_r_access.json`
+- **Back (Verso) Preservation Master & Sidecar:** `33433123456789_v_pres.tif` and `33433123456789_v_pres.json`
 
 #### Scenario B: Complex Dual-Track Transmissive Negative (Component Required)
 
 **Barcode ID:** `33433987654321`
 
-- **Raw Negative Preservation Master & Sidecar:** `33433987654321_negative_00001_pres.tif` `33433987654321_negative_00001_pres.json`
-- **Inverted Positive Preservation Master & Sidecar:** `33433987654321_positive_00001_pres.tif` `33433987654321_positive_00001_pres.json`
+- **Raw Negative Preservation Master & Sidecar:** `33433987654321_negative_00001_pres.tif` and `33433987654321_negative_00001_pres.json`
+- **Inverted Positive Preservation Master & Sidecar:** `33433987654321_positive_00001_pres.tif` and `33433987654321_positive_00001_pres.json`
 
-#### Scenario C: Microfilm Reel Split into Multiple Distinct Bibliographic Units (Pamphlets)
+#### Scenario C: Microfilm Reel Containing Multiple Distinct Intellectual Units
 
-**Barcode ID:** `33433555554444` (Reel contains Pamphlet 1 and Pamphlet 2)
+**Barcode ID:** `33433555554444`  
+**Physical structure:** Pamphlet 1 occupies frames 1–980; Pamphlet 2 occupies frames 981–1650.
 
-- **Pamphlet 1, Frame 1 Service Master & Sidecar:** `33433555554444_u001_00001_serv.tif` `33433555554444_u001_00001_serv.json`
-- **Pamphlet 1, Frame 1 Access Searchable PDF & Sidecar:** `33433555554444_u001_00001_access.pdf` `33433555554444_u001_00001_access.json`
-- **Pamphlet 2, Frame 1 Service Master & Sidecar:** `33433555554444_u002_00001_serv.tif` `33433555554444_u002_00001_serv.json`
+- **Pamphlet 1, first frame:** `data/u001/33433555554444_00001_serv.tif` and `data/u001/33433555554444_00001_serv.json`
+- **Pamphlet 1, final frame:** `data/u001/33433555554444_00980_serv.tif` and `data/u001/33433555554444_00980_serv.json`
+- **Pamphlet 2, first frame:** `data/u002/33433555554444_00981_serv.tif` and `data/u002/33433555554444_00981_serv.json`
+- **Pamphlet 2, final frame:** `data/u002/33433555554444_01650_serv.tif` and `data/u002/33433555554444_01650_serv.json`
+
+The unit directory changes at the intellectual boundary, but the filename sequence remains continuous across the complete physical reel. Corresponding preservation, access, OCR, and JSON sidecar files shall use the same absolute frame number and reside in the same unit directory as the service file.
 
 ### 7.5 Directory Structure: BagIt Packaging Rules
 
-**Standard / Negative Items:** Each unique barcode identifier shall be delivered as an independent, self-contained, BagIt-compliant directory named exactly by its barcode (e.g., folder `33433987654321/`).
+**One Bag per Barcode:** Each unique physical barcode identifier shall be delivered as one independent, self-contained, BagIt-compliant directory named exactly by its barcode (for example, `33433987654321/`). A barcode-level object must not be divided into multiple bags solely because it contains multiple intellectual units.
 
-**Split Multi-Unit Items:** When a barcode is split into distinct intellectual units, each unit must be packaged as its own independent bag. To prevent folder collisions, the root folder name must include the unit modifier suffix (e.g., `33433555554444_u001/` and `33433555554444_u002/`).
+**Multi-Unit Payload Organization:** When a barcode-level object contains distinct intellectual units, the units shall be represented as subdirectories beneath the single bag's `data/` directory. Unit directories shall be named `u001`, `u002`, and so forth, in the order in which the units first appear on the physical carrier. Descriptive titles shall be recorded in metadata rather than embedded in directory names.
 
-#### Example 1: Basic Reflective Directory Layout Example (Photo Print with Front & Back)
+**Single Manifest Coverage:** The root bag's `manifest-md5.txt` must include every payload file in every unit directory using its full relative payload path (for example, `data/u002/33433555554444_00981_pres.tif`). Unit directories must not contain separate `bagit.txt`, `bag-info.txt`, or manifest files.
+
+**Absolute Sequence Across Units:** Sequential filenames shall represent the physical order of the complete barcode-level object. Sequence numbering must continue across unit boundaries and must never restart at `00001` for a later unit.
+
+#### Example 1: Basic Reflective Directory Layout (Photo Print with Front and Back)
 
 ```text
-33433123456789/                                  <-- Root Folder (Named by Barcode + Unit Suffix)
-├── bagit.txt                              <-- BagIt declaration
-├── manifest-md5.txt                       <-- Cryptographic checksums for everything in /data
-├── bag-info.txt                           <-- Bag administrative metadata
-└── data/                                  <-- Payload directory
-    ├── 33433123456789_r_pres.tif         <-- Front/Recto Preservation Master Image
-    ├── 33433123456789_r_pres.json         <-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433123456789_r_serv.tif         <-- Front/Recto Service Master Image
-    ├── 33433123456789_r_serv.json         <-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433123456789_r_access.jpg         <-- Front/Recto Access Image File
-    ├── 33433123456789_r_access.json         <-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433123456789_v_pres.tif         <-- Back/Verso Preservation Master Image
-    ├── 33433123456789_v_pres.json         <-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433123456789_v_serv.tif         <-- Back/Verso Service Master Image
-    ├── 33433123456789_v_serv.json         <-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433123456789_v_access.jpg         <-- Back/Verso Access Image File
-    └── 33433123456789_v_access.json         <-- 1:1 Matching Sidecar JSON Metadata
+33433123456789/                                  <-- Root folder named by barcode
+├── bagit.txt                                    <-- BagIt declaration
+├── manifest-md5.txt                             <-- Checksums for all files beneath /data
+├── bag-info.txt                                 <-- Bag administrative metadata
+└── data/                                        <-- Payload directory
+    ├── 33433123456789_r_pres.tif                <-- Front/recto preservation master
+    ├── 33433123456789_r_pres.json               <-- Matching sidecar JSON
+    ├── 33433123456789_r_serv.tif                <-- Front/recto service master
+    ├── 33433123456789_r_serv.json               <-- Matching sidecar JSON
+    ├── 33433123456789_r_access.jpg              <-- Front/recto access image
+    ├── 33433123456789_r_access.json             <-- Matching sidecar JSON
+    ├── 33433123456789_v_pres.tif                <-- Back/verso preservation master
+    ├── 33433123456789_v_pres.json               <-- Matching sidecar JSON
+    ├── 33433123456789_v_serv.tif                <-- Back/verso service master
+    ├── 33433123456789_v_serv.json               <-- Matching sidecar JSON
+    ├── 33433123456789_v_access.jpg              <-- Back/verso access image
+    └── 33433123456789_v_access.json             <-- Matching sidecar JSON
 ```
 
 #### Example 2: Complex Dual-Track Negative Directory Layout (Frame 1 of Roll)
 
 ```text
-33433987654321/                                  <-- Root Folder (Named by Barcode)
+33433987654321/                                  <-- Root folder named by barcode
 ├── bagit.txt                                    <-- BagIt declaration
-├── manifest-md5.txt                             <-- Cryptographic checksums for everything in /data
+├── manifest-md5.txt                             <-- Checksums for all files beneath /data
 ├── bag-info.txt                                 <-- Bag administrative metadata
 └── data/                                        <-- Payload directory
-    ├── 33433987654321_negative_00001_pres.tif   <-- Frame 1 Raw Negative Preservation Master Image
-    ├── 33433987654321_negative_00001_pres.json  <-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433987654321_positive_00001_pres.tif   <-- Frame 1 Inverted Positive Preservation Master Image
-    ├── 33433987654321_positive_00001_pres.json  <-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433987654321_negative_00001_serv.tif   <-- Frame 1 Raw Negative Service Master Image
-    ├── 33433987654321_negative_00001_serv.json  <-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433987654321_positive_00001_serv.tif   <-- Frame 1 Inverted Positive Service Master Image
-    ├── 33433987654321_positive_00001_serv.json  <-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433987654321_negative_00001_access.jpg <-- Frame 1 Raw Negative Access Image File
-    ├── 33433987654321_negative_00001_access.json<-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433987654321_positive_00001_access.jpg <-- Frame 1 Inverted Positive Access Image File
-    └── 33433987654321_positive_00001_access.json    <-- 1:1 Matching Sidecar JSON Metadata
+    ├── 33433987654321_negative_00001_pres.tif   <-- Raw negative preservation master
+    ├── 33433987654321_negative_00001_pres.json  <-- Matching sidecar JSON
+    ├── 33433987654321_positive_00001_pres.tif   <-- Inverted positive preservation master
+    ├── 33433987654321_positive_00001_pres.json  <-- Matching sidecar JSON
+    ├── 33433987654321_negative_00001_serv.tif   <-- Raw negative service master
+    ├── 33433987654321_negative_00001_serv.json  <-- Matching sidecar JSON
+    ├── 33433987654321_positive_00001_serv.tif   <-- Inverted positive service master
+    ├── 33433987654321_positive_00001_serv.json  <-- Matching sidecar JSON
+    ├── 33433987654321_negative_00001_access.jpg <-- Raw negative access image
+    ├── 33433987654321_negative_00001_access.json <-- Matching sidecar JSON
+    ├── 33433987654321_positive_00001_access.jpg <-- Inverted positive access image
+    └── 33433987654321_positive_00001_access.json <-- Matching sidecar JSON
 ```
 
-#### Example 3: Split Microfilm Directory Layout (Pamphlet 1 of a Split Reel)
+#### Example 3: Multi-Unit Microfilm Directory Layout (Two Pamphlets on One Reel)
+
+In this example, `u001` contains frames `00001`–`00980`, and `u002` contains frames `00981`–`01650`. The ellipses indicate additional files following the same naming and sidecar-pairing rules.
 
 ```text
-33433555554444_u001/                             <-- Root Folder (Named by Barcode + Unit Suffix)
+33433555554444/                                  <-- One root bag for the complete physical reel
 ├── bagit.txt                                    <-- BagIt declaration
-├── manifest-md5.txt                             <-- Cryptographic checksums for everything in /data
+├── manifest-md5.txt                             <-- Checksums for files in both unit directories
 ├── bag-info.txt                                 <-- Bag administrative metadata
 └── data/                                        <-- Payload directory
-    ├── 33433555554444_u001_00001_pres.tif       <-- Frame 1 Preservation Master Image
-    ├── 33433555554444_u001_00001_pres.json      <-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433555554444_u001_00001_serv.tif       <-- Frame 1 Service Master Image
-    ├── 33433555554444_u001_00001_serv.json      <-- 1:1 Matching Sidecar JSON Metadata
-    ├── 33433555554444_u001_00001_access.pdf     <-- Frame 1 Searchable PDF Access File
-    ├── 33433555554444_u001_00001_access.json    <-- 1:1 Matching Sidecar JSON Metadata
-    └── 33433555554444_u001_00001_ocr.xml        <-- Frame 1 Coordinate OCR data
+    ├── u001/                                    <-- First intellectual unit: Pamphlet 1
+    │   ├── 33433555554444_00001_pres.tif        <-- Physical frame 1 preservation master
+    │   ├── 33433555554444_00001_pres.json       <-- Matching sidecar JSON
+    │   ├── 33433555554444_00001_serv.tif        <-- Physical frame 1 service master
+    │   ├── 33433555554444_00001_serv.json       <-- Matching sidecar JSON
+    │   ├── 33433555554444_00001_access.pdf      <-- Physical frame 1 access file
+    │   ├── 33433555554444_00001_access.json     <-- Matching sidecar JSON
+    │   ├── 33433555554444_00001_ocr.xml         <-- Physical frame 1 coordinate OCR
+    │   ├── 33433555554444_00001_ocr.json        <-- Matching OCR sidecar JSON
+    │   ├── ...
+    │   ├── 33433555554444_00980_pres.tif        <-- Final physical frame in u001
+    │   └── 33433555554444_00980_pres.json       <-- Matching sidecar JSON
+    └── u002/                                    <-- Second intellectual unit: Pamphlet 2
+        ├── 33433555554444_00981_pres.tif        <-- Sequence continues; it does not reset
+        ├── 33433555554444_00981_pres.json       <-- Matching sidecar JSON
+        ├── 33433555554444_00981_serv.tif        <-- Physical frame 981 service master
+        ├── 33433555554444_00981_serv.json       <-- Matching sidecar JSON
+        ├── 33433555554444_00981_access.pdf      <-- Physical frame 981 access file
+        ├── 33433555554444_00981_access.json     <-- Matching sidecar JSON
+        ├── 33433555554444_00981_ocr.xml         <-- Physical frame 981 coordinate OCR
+        ├── 33433555554444_00981_ocr.json        <-- Matching OCR sidecar JSON
+        ├── ...
+        ├── 33433555554444_01650_pres.tif        <-- Final physical frame on the reel
+        └── 33433555554444_01650_pres.json       <-- Matching sidecar JSON
 ```
 
 ## 8. Embedded Metadata and External Metadata
@@ -508,25 +551,25 @@ To generate the mandatory 1:1 file-level JSON sidecars required by Section 7.4, 
 
 #### Phase 1: Library-Supplied Source Baseline
 
-Prior to production or upon shipment delivery, the Library will provide the vendor with a standardized project inventory spreadsheet in CSV or XLSX format (as specified in the **[Inventory Spreadsheet Specification]({{< ref "inventory_spreadsheet_spec.md" >}})**). This file acts as the authoritative intake data source for the project and provides item-level baseline data, including:
+Prior to production or upon shipment delivery, the Library will provide the vendor with a standardized project inventory spreadsheet in CSV or XLSX format (as specified in the **[Inventory Spreadsheet Specification]({{< relref "inventory_spreadsheet-spec" >}})**). This file acts as the authoritative intake data source for the project and provides item-level baseline data, including:
 
 - **Administrative Tracking:** `schema_version` and `project_code`
 - **Primary Identifiers:** Library barcode (`barcode` matching `^33433\d{9}$`), `division_code`, `bnumber`, `classmark`, `aspace_component_id`, `collection_id`, and `item_title`
 - **Physical Object Classification:** Controlled vocabulary pairings for `object_type` and `object_format`, alongside any `physical_condition_notes` observed at selection
-- **Multi-Unit Structure:** `unit_index` and `unit_title` for single cataloged items spanning multiple carriers (e.g., split microfilm reels or multi-box sets)
+- **Known Multi-Unit Structure:** When identified before capture, `unit_index` and `unit_title` for distinct intellectual units contained within a single physical barcode-level object (for example, multiple pamphlets on one microfilm reel). Unit boundaries discovered or refined during capture must be recorded by the vendor as part of the production metadata.
 
 #### Phase 2: Vendor-Generated JSON Synthesis
 
 The vendor must programmatically extract the item-level fields from the Library's intake spreadsheet and map them into their corresponding schema objects (`administrative`, `identifiers`, `source`). The vendor's processing scripts must then synthesize this baseline data with file-level operational metadata captured dynamically during production to generate individual 1:1 JSON sidecar files. 
 
-Per the **[JSON Sidecar Schema Specification]({{< ref "json_schema_sidecar.md" >}})**, the capture-specific properties the vendor must inject into each sidecar include:
+Per the **[JSON Sidecar Schema Specification]({{< relref "json-schema-sidecar" >}})**, the capture-specific properties the vendor must inject into each sidecar include:
 
 - **Asset Metadata (`asset`):** The exact `referenceFilename` (strictly validated against the project naming regex pattern) and the designated `fileRole` (`pres`, `serv`, `access`, or `ocr`).
-- **Sequential Capture Tracking (`source.sequence`):** The zero-padded integer `sequenceNumber` (e.g., `24`), two-sided object `side` indicator (`r` for recto, `v` for verso), and human-readable `sequenceLabel` depicting physical reality (e.g., `"Recto"`, `"Page 42"`, `"Front Cover"`).
+- **Sequential Capture and Unit Tracking (`source.sequence`):** The integer `sequenceNumber` (for example, `24`, rendered as `00024` in the filename), the applicable `unitIndex`, the two-sided object `side` indicator (`r` for recto, `v` for verso), and a human-readable `sequenceLabel` depicting physical reality (for example, `"Recto"`, `"Page 42"`, or `"Front Cover"`). For sequential multi-unit items, `sequenceNumber` must represent the absolute physical sequence across the complete barcode-level object and must not reset when `unitIndex` changes.
 - **Digitization Process Audit (`digitizationProcess`):** Granular hardware and software audit trails, including `captureDevice` (`manufacturer`, `model`, `lens`, `serialNumber`), `captureSoftware` (`manufacturer`, `productName`, `version`), and the specific optical `calibrationTarget` utilized during the capture session.
 - **Operator & Organization Tracking (`digitizer`):** Vendor administrative data, including `operator` (`firstName`, `lastName`) and `organization` (`name`).
 
-*(Note: To maintain separation of concerns, file sizes, pixel dimensions, and ICC profiles remain embedded within image headers per Section 8.2, while MD5 cryptographic checksums remain strictly within external BagIt manifests per Section 8.3).*
+*(Note: To maintain separation of concerns, file sizes, pixel dimensions, and ICC profiles remain embedded within image headers per Section 8.2, while MD5 cryptographic checksums remain strictly within external BagIt manifests per Section 8.3. Unit membership is represented by the `data/u###/` payload path and the corresponding unit metadata; it is not encoded in the asset filename.)*
 
 #### Phase 3: Schema Validation
 
@@ -545,8 +588,11 @@ The vendor shall perform quality control before delivery. Unless otherwise speci
 
 - File presence
 - File naming
-- Directory structure
+- One barcode-level bag per physical item
+- Directory structure and approved `u###` unit assignments, where applicable
+- Sidecar co-location with each paired asset
 - Sequence completeness
+- Continuous absolute sequence numbering across all unit directories, with no resets or duplicates
 - Checksum creation
 - File format validation
 - ICC profile presence and correctness
@@ -613,6 +659,7 @@ The Library may use the pilot to approve:
 - Orientation
 - Naming
 - Directory structure
+- Multi-unit boundaries, unit directory assignments, and absolute sequence continuity, where applicable
 - Metadata structure
 - Negative inversion look and tonal handling
 - OCR package structure
@@ -628,7 +675,9 @@ The vendor shall correct vendor-responsible errors at no additional cost. Rework
 
 - Missing files
 - Incorrect file names
-- Incorrect sequence
+- Incorrect sequence, including duplicate numbers, gaps without approved exception documentation, or sequence resets at unit boundaries
+- Incorrect unit directory assignment or delivery of separate bags for units belonging to one physical barcode-level object
+- Sidecar files placed outside the directory containing their paired assets
 - Incorrect or missing checksums
 - Corrupt files
 - Incorrect bit depth, color profile, or file format
