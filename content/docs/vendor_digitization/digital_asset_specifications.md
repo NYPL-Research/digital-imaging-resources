@@ -551,7 +551,7 @@ To generate the mandatory 1:1 file-level JSON sidecars required by Section 7.4, 
 
 #### Phase 1: Library-Supplied Source Baseline
 
-Prior to production or upon shipment delivery, the Library will provide the vendor with a standardized project inventory spreadsheet in CSV or XLSX format (as specified in the **[Inventory Spreadsheet Specification]({{< relref "inventory_spreadsheet-spec" >}})**). This file acts as the authoritative intake data source for the project and provides item-level baseline data, including:
+Prior to production or upon shipment delivery, the Library will provide the vendor with a standardized project inventory spreadsheet in XLSX format (as specified in the **[Inventory Spreadsheet Specification]({{< relref "inventory_spreadsheet_spec" >}})**). This file acts as the authoritative intake data source for the project and provides item-level baseline data, including:
 
 - **Administrative Tracking:** `schema_version` and `project_code`
 - **Primary Identifiers:** Library barcode (`barcode` matching `^33433\d{9}$`), `division_code`, `bnumber`, `classmark`, `aspace_component_id`, `collection_id`, and `item_title`
@@ -562,7 +562,7 @@ Prior to production or upon shipment delivery, the Library will provide the vend
 
 The vendor must programmatically extract the item-level fields from the Library's intake spreadsheet and map them into their corresponding schema objects (`administrative`, `identifiers`, `source`). The vendor's processing scripts must then synthesize this baseline data with file-level operational metadata captured dynamically during production to generate individual 1:1 JSON sidecar files. 
 
-Per the **[JSON Sidecar Schema Specification]({{< relref "json-schema-sidecar" >}})**, the capture-specific properties the vendor must inject into each sidecar include:
+Per the **[JSON Sidecar Schema Specification]({{< relref "json_schema_sidecar" >}})**, the capture-specific properties the vendor must inject into each sidecar include:
 
 - **Asset Metadata (`asset`):** The exact `referenceFilename` (strictly validated against the project naming regex pattern) and the designated `fileRole` (`pres`, `serv`, `access`, or `ocr`).
 - **Sequential Capture and Unit Tracking (`source.sequence`):** The integer `sequenceNumber` (for example, `24`, rendered as `00024` in the filename), the applicable `unitIndex`, the two-sided object `side` indicator (`r` for recto, `v` for verso), and a human-readable `sequenceLabel` depicting physical reality (for example, `"Recto"`, `"Page 42"`, or `"Front Cover"`). For sequential multi-unit items, `sequenceNumber` must represent the absolute physical sequence across the complete barcode-level object and must not reset when `unitIndex` changes.
