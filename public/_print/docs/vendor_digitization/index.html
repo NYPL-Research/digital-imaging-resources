@@ -190,6 +190,14 @@ This is the multi-page printable view of this section.
 
     
   
+    
+    
+	
+<li>5: <a href="#pg-a399ea5e822547c51097d65284837b2e">Barcode Assignment and Application Recommendations</a></li>
+
+
+    
+  
 
     </ul>
 
@@ -403,13 +411,19 @@ This is the multi-page printable view of this section.
 <div class="td-content" style="page-break-before: always">
     
 	<h1 id="pg-b3b3ee1417b8ace0ed72337e20777220">2 - Vendor Digitization Inventory Spreadsheet</h1>
-    <div class="lead">Schema specification, required fields, and controlled vocabulary for vendor digitization inventory spreadsheets.</div>
+    <div class="lead">Schema specification, required fields, operational guidelines, and controlled vocabulary for vendor digitization inventory spreadsheets.</div>
 	<h2 id="1-overview-and-workflow">1. Overview and Workflow</h2>
-<p>When initiating an external digitization project, the Library provides vendors with a minimal metadata inventory spreadsheet. This document serves as the foundational tracking manifest for physical materials selected for digitization and establishes the baseline data required for item identification.</p>
+<p>When initiating an external digitization project, the Library provides vendors with a standardized metadata inventory spreadsheet. This document serves as the foundational tracking manifest for physical materials selected for digitization, establishes the baseline data required for item identification, and directly informs vendor scoping, equipment preparation, and cost estimates.</p>
 <ul>
-<li><strong>Download Template:</strong> <a href="/digital-imaging-resources/static/templates/image_digitization_inventory_template.csv">image_digitization_inventory_template.csv</a></li>
+<li><strong>Download Template:</strong> <a href="/digital-imaging-resources/templates/NYPL_Vendor_Digital_Imaging_Inventory_Template.xlsx">NYPL_Vendor_Digital_Imaging_Inventory_Template.xlsx</a></li>
 </ul>
-<h3 id="11-how-vendors-must-use-this-data">1.1 How Vendors Must Use This Data</h3>
+<h3 id="11-completeness--internal-tracking-fields">1.1 Completeness &amp; Internal Tracking Fields</h3>
+<p>This spreadsheet is a shared tool between curatorial staff, the Vendor Digitization Services team, and external vendors. When filling out this sheet, staff must adhere to the following division of responsibilities:</p>
+<ul>
+<li><strong>Fill Out to the Best of Your Ability:</strong> Not every field in the spreadsheet is mandatory. Some archival inventory items may not be fully cataloged, described in a finding aid, or possess formalized collection IDs. However, <strong>because this inventory is used to calculate vendor estimates and resource allocation, it is vital that it be filled out as completely and accurately as possible.</strong> If descriptive metadata exists, include it.</li>
+<li><strong>Internal Tracking Fields:</strong> Users preparing inventories do not need to fill out <code>schema_version</code> (Column A) or <code>project_code</code> (Column B). These are internal administrative tracking fields; the Vendor Digitization Services team will complete and verify them before submitting the final sheet to a vendor.</li>
+</ul>
+<h3 id="12-how-vendors-must-use-this-data">1.2 How Vendors Must Use This Data</h3>
 <p>This spreadsheet represents the <strong>initial selection and inventory stage</strong> of the digitization workflow. The data provided here must be ingested by the vendor and used as the root source for generating item-level metadata during capture.</p>
 <p>When delivering digitized assets back to the Library, the vendor is responsible for generating individual JSON sidecar files for each asset. To build valid sidecars, the vendor must:</p>
 <ol>
@@ -421,14 +435,18 @@ This is the multi-page printable view of this section.
 <p><strong>Scope Limitation:</strong> Because technical capture fields and asset-level file specifications are generated dynamically during the digitization process, they are strictly excluded from this initial inventory spreadsheet.</p>
 </blockquote>
 <hr>
-<h2 id="2-row-granularity">2. Row Granularity</h2>
-<p>The spreadsheet must be populated according to the physical structure of the materials being shipped:</p>
+<h2 id="2-row-granularity-physical-vs-intellectual-content">2. Row Granularity: Physical vs. Intellectual Content</h2>
+<p>The spreadsheet must be populated according to the physical and intellectual structure of the materials being shipped. <strong>Every item scheduled for digitization requires a valid barcode (<code>barcode</code>), or the project cannot be initiated.</strong></p>
+<h3 id="21-standard-physical-granularity-one-row-per-item">2.1 Standard Physical Granularity (One Row per Item)</h3>
+<p>As a baseline rule, each physical item being digitized (e.g., each bound volume, box, folder, reel, or photograph) must get its own dedicated row. If multiple physical items belong to a single catalog record (<code>bnumber</code>) or finding aid component, create a separate row for each physical carrier and reuse/repeat that <code>bnumber</code> or <code>classmark</code> across those rows.</p>
+<h3 id="22-intellectual-splitting-on-a-single-physical-item-multi-unit-objects">2.2 Intellectual Splitting on a Single Physical Item (Multi-Unit Objects)</h3>
+<p>Frequently, a single physical carrier (such as a volume of bound pamphlets or a microfilm reel) contains <strong>multiple distinct intellectual works</strong> that require the vendor to build separate digital packages/sidecars. Because splitting intellectual units impacts vendor pricing and capture workflows, staff must capture known complexities upfront:</p>
 <ul>
-<li><strong>Single-Unit Objects:</strong> Create <strong>one row per item</strong> (e.g., a single bound volume, a photograph, or a manuscript box).</li>
-<li><strong>Multi-Unit Objects:</strong> Create <strong>one row per unit</strong> when a single cataloged item spans multiple physical carriers (e.g., a manuscript split across two microfilm reels). Repeat the primary <code>barcode</code> across every row associated with the item and increment the <code>unit_index</code> field sequentially (<code>1</code>, <code>2</code>, <code>3</code>, etc.).</li>
+<li><strong>Known Intellectual Units:</strong> If staff know at the inventory stage that a single physical item must be split into multiple digital packages, create <strong>one row per intellectual unit</strong>. Repeat the physical <code>barcode</code> across every row associated with the item, increment the <code>unit_index</code> field sequentially (<code>1</code>, <code>2</code>, <code>3</code>, etc.), and provide descriptive titles in <code>unit_title</code>.</li>
+<li><strong>Unknown/Unscoped Splits:</strong> If staff know a physical carrier contains multiple works but do not yet know the specific unit boundaries or titles, log <strong>one row for the physical item</strong>, leave <code>unit_index</code> and <code>unit_title</code> blank, and explicitly note the complexity in <code>physical_condition_notes</code> (e.g., <em>&ldquo;Contains multiple titles; vendor scoping required to determine digital package splits&rdquo;</em>).</li>
 </ul>
 <hr>
-<h2 id="3-column-specification-an">3. Column Specification (A–N)</h2>
+<h2 id="3-column-specification-ap">3. Column Specification (A–P)</h2>
 <table>
 	<thead>
 			<tr>
@@ -447,7 +465,7 @@ This is the multi-page printable view of this section.
 					<td><code>administrative.schemaVersion</code></td>
 					<td><strong>Yes</strong></td>
 					<td>String, e.g., <code>1.0.0</code></td>
-					<td>Pre-populate for entire batch</td>
+					<td>Completed by Vendor Digitization team</td>
 			</tr>
 			<tr>
 					<td>B</td>
@@ -455,7 +473,7 @@ This is the multi-page printable view of this section.
 					<td><code>administrative.projectCode</code></td>
 					<td>No</td>
 					<td>String</td>
-					<td>Grant or project identifier</td>
+					<td>Completed by Vendor Digitization team</td>
 			</tr>
 			<tr>
 					<td>C</td>
@@ -463,7 +481,7 @@ This is the multi-page printable view of this section.
 					<td><code>source.identifiers.barcode</code></td>
 					<td><strong>Yes</strong></td>
 					<td><code>33433</code> + 9 digits</td>
-					<td>Primary item key</td>
+					<td>Primary item key; <strong>mandatory to initiate</strong></td>
 			</tr>
 			<tr>
 					<td>D</td>
@@ -519,7 +537,7 @@ This is the multi-page printable view of this section.
 					<td><code>source.object.type</code></td>
 					<td><strong>Yes</strong></td>
 					<td>See controlled list below</td>
-					<td>Broad material category</td>
+					<td>Broad material category; use dropdown</td>
 			</tr>
 			<tr>
 					<td>K</td>
@@ -527,7 +545,7 @@ This is the multi-page printable view of this section.
 					<td><code>source.object.format</code></td>
 					<td><strong>Yes</strong></td>
 					<td>See controlled list below</td>
-					<td>Must match valid <code>object_type</code></td>
+					<td>Must match valid <code>object_type</code>; use dropdown</td>
 			</tr>
 			<tr>
 					<td>L</td>
@@ -535,7 +553,7 @@ This is the multi-page printable view of this section.
 					<td><code>source.notes.physicalConditionNotes</code></td>
 					<td>No</td>
 					<td>Free text</td>
-					<td>Condition observed at selection</td>
+					<td>Condition observed at selection / split notes</td>
 			</tr>
 			<tr>
 					<td>M</td>
@@ -559,7 +577,7 @@ This is the multi-page printable view of this section.
 					<td><em>(None)</em></td>
 					<td>No</td>
 					<td>Integer</td>
-					<td>Logistics only; strip before sidecar creation</td>
+					<td>Logistics &amp; estimates; strip before sidecar creation</td>
 			</tr>
 			<tr>
 					<td>P</td>
@@ -567,22 +585,24 @@ This is the multi-page printable view of this section.
 					<td><em>(None)</em></td>
 					<td>No</td>
 					<td>Boolean / String</td>
-					<td>Logistics only; strip before sidecar creation</td>
+					<td>Logistics &amp; estimates; strip before sidecar creation</td>
 			</tr>
 	</tbody>
 </table>
 <hr>
 <h3 id="31-non-schema-tracking-columns-info">3.1 Non-Schema Tracking Columns (<code>[INFO]</code>)</h3>
-<p>Columns prefixed with <code>[INFO]</code> (typically highlighted with a yellow header background in the template spreadsheet) are strictly for logistical communication between Library staff and vendor project managers—such as estimating capture counts or flagging oversized materials requiring special handling.</p>
+<p>Columns O and P (<code>[INFO] estimated_page_count</code> and <code>[INFO] is_oversized</code>) are explicitly differentiated in the template with a <strong>yellow header background</strong>. They are color-coded differently because <strong>this data will not be retained in final digital archival packages or sidecars</strong>.</p>
+<p>However, <strong>these fields are critical for calculating vendor cost estimates, timeline sizing, and capture equipment allocation.</strong> Staff should make every effort to fill out these yellow columns whenever possible.</p>
 <p><strong>Vendors must ignore and strip all <code>[INFO]</code> columns</strong> when parsing the spreadsheet into automated production pipelines. These columns do not map to the metadata schema and must never appear in generated JSON sidecar files.</p>
 <hr>
 <h2 id="4-controlled-vocabulary--material-types">4. Controlled Vocabulary — Material Types</h2>
-<p>The <code>object_type</code> and <code>object_format</code> fields must use exact pairings from the controlled vocabulary below. Any unrecognized string or mismatched pair will fail schema validation.</p>
+<p>To ensure data consistency and schema compliance across all projects, <strong>users must use the built-in drop-down menus in the Excel template for <code>object_type</code> and <code>object_format</code></strong> rather than typing manual entries.</p>
+<p>The template features dependent data validation: selecting an <code>object_type</code> in Column J will automatically filter the allowed values in Column K (<code>object_format</code>) to only show legal pairings. Any unrecognized string or mismatched pair will fail schema validation.</p>
 <table>
 	<thead>
 			<tr>
-					<th><code>object_type</code></th>
-					<th>Valid <code>object_format</code> Values</th>
+					<th><code>object_type</code> (Column J Dropdown)</th>
+					<th>Valid <code>object_format</code> Values (Column K Dependent Dropdown)</th>
 			</tr>
 	</thead>
 	<tbody>
@@ -610,8 +630,8 @@ This is the multi-page printable view of this section.
 </table>
 <hr>
 <h2 id="5-worked-examples">5. Worked Examples</h2>
-<h3 id="51-single-unit-item-photographic-print">5.1 Single-Unit Item (Photographic Print)</h3>
-<p>For standard single-unit materials, leave the unit index and unit title fields blank.</p>
+<h3 id="51-standard-single-unit-item-photographic-print">5.1 Standard Single-Unit Item (Photographic Print)</h3>
+<p>For standard materials containing a single intellectual work on a single physical carrier, leave the unit index and unit title fields blank.</p>
 <table>
 	<thead>
 			<tr>
@@ -660,10 +680,18 @@ This is the multi-page printable view of this section.
 					<td><code>unit_title</code></td>
 					<td><em>(blank)</em></td>
 			</tr>
+			<tr>
+					<td><code>[INFO] estimated_page_count</code></td>
+					<td><code>1</code></td>
+			</tr>
+			<tr>
+					<td><code>[INFO] is_oversized</code></td>
+					<td><code>FALSE</code></td>
+			</tr>
 	</tbody>
 </table>
-<h3 id="52-multi-unit-item-split-microfilm-reel">5.2 Multi-Unit Item (Split Microfilm Reel)</h3>
-<p>When a single cataloged item spans multiple physical carriers, repeat the metadata across rows while incrementing the unit index.</p>
+<h3 id="52-single-physical-item-containing-multiple-intellectual-works-bound-pamphlets">5.2 Single Physical Item Containing Multiple Intellectual Works (Bound Pamphlets)</h3>
+<p>When staff know upfront that a single physical volume contains multiple distinct works that must be delivered as separate digital packages, repeat the physical barcode across rows while assigning sequential unit indexes and titles to estimate the scope of each digital package.</p>
 <table>
 	<thead>
 			<tr>
@@ -672,22 +700,33 @@ This is the multi-page printable view of this section.
 					<th><code>unit_title</code></th>
 					<th><code>object_type</code></th>
 					<th><code>object_format</code></th>
+					<th><code>[INFO] estimated_page_count</code></th>
 			</tr>
 	</thead>
 	<tbody>
 			<tr>
-					<td><code>33433555554444</code></td>
+					<td><code>33433999888777</code></td>
 					<td><code>1</code></td>
-					<td><code>Vol. 1, Jan–Jun 1920</code></td>
-					<td><code>microform</code></td>
-					<td><code>35mm roll microfilm</code></td>
+					<td><code>An Essay on the Harbor of New York (1820)</code></td>
+					<td><code>reflective textual and graphic</code></td>
+					<td><code>bound volume</code></td>
+					<td><code>45</code></td>
 			</tr>
 			<tr>
-					<td><code>33433555554444</code></td>
+					<td><code>33433999888777</code></td>
 					<td><code>2</code></td>
-					<td><code>Vol. 1, Jul–Dec 1920</code></td>
-					<td><code>microform</code></td>
-					<td><code>35mm roll microfilm</code></td>
+					<td><code>Regulations of the Port of New York (1822)</code></td>
+					<td><code>reflective textual and graphic</code></td>
+					<td><code>bound volume</code></td>
+					<td><code>30</code></td>
+			</tr>
+			<tr>
+					<td><code>33433999888777</code></td>
+					<td><code>3</code></td>
+					<td><code>Report of the Waterfront Commission (1825)</code></td>
+					<td><code>reflective textual and graphic</code></td>
+					<td><code>bound volume</code></td>
+					<td><code>60</code></td>
 			</tr>
 	</tbody>
 </table>
@@ -696,8 +735,9 @@ This is the multi-page printable view of this section.
 <ul>
 <li><strong>Root Filename Generation:</strong> The <code>barcode</code> value (Column C) serves as the primary identifier for the physical asset and must form the root prefix for all generated digital files. In the JSON sidecar, the <code>referenceFilename</code> attribute must always begin with this string.</li>
 <li><strong>Multi-Unit Naming Syntax:</strong> For multi-unit items, the integer in <code>unit_index</code> (Column M) dictates the unit segment of the final filename. Vendors must zero-pad this integer to three digits using the <code>u00N</code> naming convention (e.g., <code>unit_index: 2</code> maps to filename segment <code>u002</code>).</li>
-<li><strong>Batch Pre-Population:</strong> To prevent version mismatch errors across large deliveries, Library project managers should pre-fill <code>schema_version</code> (Column A) and <code>project_code</code> (Column B) for all rows prior to vendor distribution.</li>
-<li><strong>Spreadsheet Validation:</strong> Library staff should implement data validation dropdowns in Excel or Google Sheets for columns J (<code>object_type</code>) and K (<code>object_format</code>) to prevent typographical errors prior to vendor delivery.</li>
+<li><strong>Scoping Multi-Unit Packages:</strong> When vendors ingest inventory rows where identical barcodes share multiple sequential <code>unit_index</code> numbers, they must configure their capture pipelines to generate distinct structural digital packages and sidecars for each unit segment, rather than combining them into a single asset package.</li>
+<li><strong>Internal Field Verification:</strong> Prior to vendor distribution, the Vendor Digitization Services team is responsible for verifying and locking the <code>schema_version</code> (Column A) and <code>project_code</code> (Column B) fields for the entire batch.</li>
+<li><strong>Template Dropdown Enforcement:</strong> The Excel template provided by the Library contains pre-configured dependent data validation rules for columns J (<code>object_type</code>) and K (<code>object_format</code>). Staff must not overwrite or paste plain text over these cells to prevent validation failures during ingestion.</li>
 </ul>
 
 </div>
@@ -733,27 +773,27 @@ This is the multi-page printable view of this section.
 <p>Every sidecar must contain the following six top-level objects:</p>
 <ol>
 <li>
-<p><strong><code>administrative</code></strong>
+<p><strong><code>administrative</code></strong><br>
 Grant, contract, or project-level administrative data, such as <code>projectCode</code>.</p>
 </li>
 <li>
-<p><strong><code>asset</code></strong>
+<p><strong><code>asset</code></strong><br>
 File-level tracking data, including the file role (<code>pres</code>, <code>serv</code>, <code>access</code>, or <code>ocr</code>), schema version, and exact <code>referenceFilename</code>.</p>
 </li>
 <li>
-<p><strong><code>identifiers</code></strong>
+<p><strong><code>identifiers</code></strong><br>
 Bibliographic and archival identifiers mapped from the Library-supplied inventory spreadsheet, such as <code>barcode</code>, <code>divisionCode</code>, <code>bnumber</code>, and <code>classmark</code>.</p>
 </li>
 <li>
-<p><strong><code>source</code></strong>
-Physical-source characteristics observed at capture, including the controlled object type and format pairing and sequential capture data such as <code>sequenceNumber</code>, <code>unitIndex</code>, <code>side</code>, and <code>sequenceLabel</code>.</p>
+<p><strong><code>source</code></strong><br>
+Physical-source characteristics observed at capture, including the controlled object type and format pairing and sequential capture data such as <code>sequenceNumber</code>, <code>unitIndex</code>, <code>unitTitle</code>, <code>side</code>, and <code>sequenceLabel</code>.</p>
 </li>
 <li>
-<p><strong><code>digitizationProcess</code></strong>
+<p><strong><code>digitizationProcess</code></strong><br>
 Technical metadata describing the capture device, lens, capture software, equipment identifiers, and calibration targets.</p>
 </li>
 <li>
-<p><strong><code>digitizer</code></strong>
+<p><strong><code>digitizer</code></strong><br>
 Administrative information identifying the operator and vendor organization responsible for capture.</p>
 </li>
 </ol>
@@ -761,43 +801,39 @@ Administrative information identifying the operator and vendor organization resp
 <h2 id="3-strict-naming-and-controlled-vocabularies">3. Strict Naming and Controlled Vocabularies</h2>
 <h3 id="31-filename-pattern">3.1 Filename Pattern</h3>
 <p>To support reliable automated ingest and validation, the <code>referenceFilename</code> property in the <code>asset</code> object must follow one of the Library’s approved naming structures.</p>
-<p>The following regular expression supports the standard, dual-track negative, and split multi-unit workflows:</p>
-<pre tabindex="0"><code class="language-regex" data-lang="regex">^33433\d{9}_(?:(?:negative|positive)_(?:[rv]|\d{5})|u\d{3}_\d{5}|[rv]|\d{5})_(?:pres|serv|access|ocr)\.[a-z0-9]+$
-</code></pre><p>This pattern permits the following structures:</p>
+<p>The base filename pattern is:</p>
+<pre tabindex="0"><code class="language-regex" data-lang="regex">^33433\d{9}_(?:(?:negative|positive)_)?(?:[rv]|\d{5})_(?:pres|serv|access|ocr)\.[a-z0-9]+$
+</code></pre><p>The pattern supports the following two filename structures:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[barcode]_[side-or-sequence]_[role].[extension]
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">[barcode]_[negative-or-positive]_[side-or-sequence]_[role].[extension]
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">[barcode]_u[unit]_[sequence]_[role].[extension]
-</span></span></code></pre></div><h4 id="pattern-components">Pattern components</h4>
+</span></span></code></pre></div><p>Multi-unit identifiers such as <code>u001</code> and <code>u002</code> are <strong>not included in filenames</strong>. Multi-unit membership is represented by the asset’s enclosing directory and by the <code>source.sequence.unitIndex</code> property in its JSON sidecar.</p>
+<h4 id="pattern-components">Pattern components</h4>
 <ul>
 <li>
-<p><strong>Barcode — <code>33433\d{9}</code></strong>
+<p><strong>Barcode — <code>33433\d{9}</code></strong><br>
 A 14-digit NYPL barcode beginning with <code>33433</code>.</p>
 </li>
 <li>
-<p><strong>Standard side or sequence — <code>[rv]|\d{5}</code></strong>
+<p><strong>Negative-source component — <code>negative|positive</code></strong><br>
+Used only for parallel files derived from a physical film or glass negative:</p>
+<ul>
+<li><code>negative</code> identifies the faithful, non-inverted representation of the source negative;</li>
+<li><code>positive</code> identifies the digitally inverted positive representation derived from that negative.</li>
+</ul>
+<p>These components do not describe all materials that happen to display as positive images. They must not be used for photographic prints, slides, transparencies, reflective materials, or other natively positive source objects.</p>
+</li>
+<li>
+<p><strong>Side or sequence — <code>[rv]|\d{5}</code></strong><br>
 Either:</p>
 <ul>
 <li><code>r</code> for recto;</li>
 <li><code>v</code> for verso; or</li>
-<li>a five-digit, zero-padded sequence number such as <code>00001</code>.</li>
+<li>a five-digit, zero-padded sequence number such as <code>00001</code> or <code>00981</code>.</li>
 </ul>
 </li>
 <li>
-<p><strong>Negative component — <code>negative|positive</code></strong>
-Used only for dual-track film- or glass-negative workflows:</p>
-<ul>
-<li><code>negative</code> identifies the non-inverted capture;</li>
-<li><code>positive</code> identifies the digitally inverted representation.</li>
-</ul>
-</li>
-<li>
-<p><strong>Unit index — <code>u\d{3}</code></strong>
-Used only when a microfilm reel or another barcode-level object is divided into distinct intellectual units, such as <code>u001</code> or <code>u002</code>.</p>
-</li>
-<li>
-<p><strong>File role — <code>pres|serv|access|ocr</code></strong>
+<p><strong>File role — <code>pres|serv|access|ocr</code></strong><br>
 One of the four approved delivery roles:</p>
 <ul>
 <li><code>pres</code>;</li>
@@ -807,7 +843,7 @@ One of the four approved delivery roles:</p>
 </ul>
 </li>
 <li>
-<p><strong>Extension — <code>[a-z0-9]+</code></strong>
+<p><strong>Extension — <code>[a-z0-9]+</code></strong><br>
 A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.jpg</code>, <code>.pdf</code>, <code>.xml</code>, or <code>.txt</code>.</p>
 </li>
 </ul>
@@ -817,19 +853,72 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 </span></span><span class="line"><span class="cl">33433123456789_00001_serv.tif
 </span></span><span class="line"><span class="cl">33433987654321_negative_00001_pres.tif
 </span></span><span class="line"><span class="cl">33433987654321_positive_00001_access.jpg
-</span></span><span class="line"><span class="cl">33433555554444_u001_00001_ocr.xml
+</span></span><span class="line"><span class="cl">33433555554444_00981_ocr.xml
 </span></span></code></pre></div><h4 id="invalid-examples">Invalid examples</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433123456789_R_pres.tif
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433123456789_positive_r_pres.tif
+</span></span><span class="line"><span class="cl">33433123456789_R_pres.tif
 </span></span><span class="line"><span class="cl">33433123456789_1_pres.tif
+</span></span><span class="line"><span class="cl">33433555554444_u001_00001_ocr.xml
 </span></span><span class="line"><span class="cl">33433987654321_negative_u001_00001_pres.tif
 </span></span><span class="line"><span class="cl">nypl_33433123456789_00001_pres.tif
 </span></span><span class="line"><span class="cl">33433123456789_00001_master.tif
 </span></span><span class="line"><span class="cl">33433123456789_00001_pres.TIF
 </span></span></code></pre></div><p>The filename pattern must be encoded with doubled backslashes when stored as a JSON string inside the schema:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;^33433\\d{9}_(?:(?:negative|positive)_(?:[rv]|\\d{5})|u\\d{3}_\\d{5}|[rv]|\\d{5})_(?:pres|serv|access|ocr)\\.[a-z0-9]+$&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;^33433\\d{9}_(?:(?:negative|positive)_)?(?:[rv]|\\d{5})_(?:pres|serv|access|ocr)\\.[a-z0-9]+$&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="32-controlled-vocabulary-validation">3.2 Controlled-Vocabulary Validation</h3>
+</span></span></code></pre></div><p>The schema applies additional conditional validation based on <code>source.object.format</code>:</p>
+<ul>
+<li>When the physical source is a black-and-white negative, color negative, or glass plate negative, <code>referenceFilename</code> must include either <code>negative</code> or <code>positive</code>.</li>
+<li>For all other source formats, <code>referenceFilename</code> must not include either component.</li>
+<li>The suffix in <code>referenceFilename</code> must agree with <code>asset.fileRole</code>. For example, an asset with <code>&quot;fileRole&quot;: &quot;pres&quot;</code> must have a filename ending in <code>_pres</code> followed by its extension.</li>
+</ul>
+<h3 id="32-multi-unit-directory-and-sequence-rules">3.2 Multi-Unit Directory and Sequence Rules</h3>
+<p>When one physical item contains multiple distinct intellectual units, the Library still requires <strong>one BagIt bag for the complete physical object</strong>. The bag root is named with the physical item’s barcode.</p>
+<p>Each intellectual unit is represented by a zero-padded unit subdirectory inside the bag’s <code>data/</code> directory:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433555554444/
+</span></span><span class="line"><span class="cl">└── data/
+</span></span><span class="line"><span class="cl">    ├── u001/
+</span></span><span class="line"><span class="cl">    └── u002/
+</span></span></code></pre></div><p>The unit identifier is recorded in two places:</p>
+<ol>
+<li>the enclosing directory, such as <code>data/u002/</code>; and</li>
+<li>the JSON sidecar property <code>source.sequence.unitIndex</code>, where the integer <code>2</code> corresponds to <code>u002</code>.</li>
+</ol>
+<p>A human-readable intellectual-unit title is recorded in <code>source.sequence.unitTitle</code>.</p>
+<p>The unit identifier must not appear in <code>referenceFilename</code>.</p>
+<p>Sequence numbering must remain absolute and uninterrupted across the entire physical object. It must not restart when a new intellectual unit begins.</p>
+<p>For example, when unit 1 contains frames 1 through 980 and unit 2 begins at frame 981, the files are structured as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433555554444/
+</span></span><span class="line"><span class="cl">└── data/
+</span></span><span class="line"><span class="cl">    ├── u001/
+</span></span><span class="line"><span class="cl">    │   ├── 33433555554444_00001_pres.tif
+</span></span><span class="line"><span class="cl">    │   └── 33433555554444_00980_pres.tif
+</span></span><span class="line"><span class="cl">    └── u002/
+</span></span><span class="line"><span class="cl">        ├── 33433555554444_00981_pres.tif
+</span></span><span class="line"><span class="cl">        └── 33433555554444_01650_pres.tif
+</span></span></code></pre></div><p>The JSON sidecar for the first frame in <code>u002</code> would therefore include:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;asset&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;fileRole&#34;</span><span class="p">:</span> <span class="s2">&#34;pres&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;schemaVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;referenceFilename&#34;</span><span class="p">:</span> <span class="s2">&#34;33433555554444_00981_pres.tif&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;object&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;microform&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;format&#34;</span><span class="p">:</span> <span class="s2">&#34;35mm roll microfilm&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;sequence&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;unitIndex&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;unitTitle&#34;</span><span class="p">:</span> <span class="s2">&#34;Pamphlet 2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;sequenceNumber&#34;</span><span class="p">:</span> <span class="mi">981</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;sequenceLabel&#34;</span><span class="p">:</span> <span class="s2">&#34;Frame 981&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The integer <code>sequenceNumber</code> is stored as <code>981</code> in JSON. Its filename representation is zero-padded to five digits as <code>00981</code>.</p>
+<h3 id="33-controlled-vocabulary-validation">3.3 Controlled-Vocabulary Validation</h3>
 <p>The schema uses conditional JSON Schema logic, including <code>oneOf</code>, to enforce approved pairings between <code>source.object.type</code> and <code>source.object.format</code>.</p>
 <p>For example, when a sidecar declares:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
@@ -855,7 +944,7 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 </span></span></span><span class="line"><span class="cl">  --spec<span class="o">=</span>draft7 <span class="se">\
 </span></span></span><span class="line"><span class="cl">  --all-errors <span class="se">\
 </span></span></span><span class="line"><span class="cl">  -s ./digitized_image_schema.json <span class="se">\
-</span></span></span><span class="line"><span class="cl">  -d /path/to/delivery/33433087654321_00001_pres.json
+</span></span></span><span class="line"><span class="cl">  -d /path/to/delivery/33433123456789_r_pres.json
 </span></span></code></pre></div><h4 id="4-validate-an-entire-directory">4. Validate an entire directory</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ajv validate <span class="se">\
 </span></span></span><span class="line"><span class="cl">  --spec<span class="o">=</span>draft7 <span class="se">\
@@ -870,7 +959,9 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 <li>a controlled-vocabulary mismatch;</li>
 <li>an incorrect data type;</li>
 <li>a malformed filename;</li>
-<li>a filename that does not match <code>referenceFilename</code>.</li>
+<li>a filename that does not match <code>referenceFilename</code>;</li>
+<li>a mismatch between <code>asset.fileRole</code> and the filename suffix;</li>
+<li>an invalid use or omission of the <code>negative</code> or <code>positive</code> filename component.</li>
 </ul>
 <p>For more readable output, add:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">--errors<span class="o">=</span>text
@@ -905,7 +996,7 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;schemas/digitized_image_schema.json&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">SIDECAR_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&#34;33433087654321_00001_pres.json&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">SIDECAR_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&#34;33433123456789_r_pres.json&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">load_remote_json</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -1028,6 +1119,18 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 <li><code>2</code>: the schema or sidecar could not be loaded or parsed.</li>
 </ul>
 <p>For high-volume validation, vendors should download the schema once, instantiate one <code>Draft7Validator</code>, and reuse that validator for every sidecar in the batch.</p>
+<h3 id="43-validation-beyond-json-schema">4.3 Validation Beyond JSON Schema</h3>
+<p>JSON Schema validation confirms that an individual sidecar follows the required structure and controlled rules. It does not inspect the filesystem or compare values across multiple files.</p>
+<p>The vendor’s delivery-validation workflow must therefore perform additional checks that cannot be enforced by the Draft 7 schema alone, including:</p>
+<ul>
+<li>confirming that the barcode at the beginning of <code>asset.referenceFilename</code> matches <code>identifiers.barcode</code>;</li>
+<li>confirming that the asset file and its JSON sidecar have matching basenames;</li>
+<li>confirming that a sidecar with <code>unitIndex: 2</code> resides in <code>data/u002/</code>;</li>
+<li>confirming that sequence numbers remain continuous across unit-directory boundaries;</li>
+<li>confirming that sequence numbering does not restart within each unit;</li>
+<li>confirming that every file listed in the BagIt payload is included in the applicable checksum manifest;</li>
+<li>confirming that no asset is duplicated or omitted when files are grouped into unit directories.</li>
+</ul>
 <hr>
 <h2 id="5-schema-access-and-download">5. Schema Access and Download</h2>
 <p>The authoritative schema is maintained as an independent JSON artifact rather than duplicated within this documentation.</p>
@@ -1397,7 +1500,7 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 			</tr>
 			<tr>
 					<td>Color Profile</td>
-					<td>Gray Gamma 2.2</td>
+					<td>Grey Gamma 2.2</td>
 					<td>Grey Gamma 2.2</td>
 					<td>Grey Gamma 2.2</td>
 					<td>Grey Gamma 2.2</td>
@@ -1593,7 +1696,7 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 <li>Minimal exposure time</li>
 <li>Appropriate custom supports for cracked or structurally compromised glass</li>
 <li>No direct physical pressure placed on emulsion surfaces (e.g., placing glass plates emulsion-side up on a low-iron, anti-reflective lower glass shelf)</li>
-<li>Meticulous handling of flaking, lifting, or lifting emulsions</li>
+<li>Meticulous handling of flaking or lifting emulsions</li>
 <li>Procedures for broken or cracked plates</li>
 <li>Immediate reporting of unstable or unsafe items</li>
 <li>Project-specific approval before attempting capture of damaged items.</li>
@@ -1626,6 +1729,7 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 </ul>
 <h3 id="62-general-approach">6.2 General Approach</h3>
 <p>Microform materials are already surrogates of original documents. The primary goal is usually legibility, completeness, accurate sequencing, and support for OCR and access. However, preservation files should still be created in a stable, well-documented format with sufficient tonal information to support future derivative creation.</p>
+<p>When a single physical microform item contains multiple distinct intellectual units, the vendor may separate those units into approved subdirectories for navigation and downstream processing. This intellectual segmentation must not interrupt or reset the physical frame sequence. Frame numbering shall remain continuous across the complete barcode-level object, from the first captured frame through the last.</p>
 <h3 id="63-recommended-baseline-specifications">6.3 Recommended Baseline Specifications</h3>
 <table>
 	<thead>
@@ -1681,7 +1785,7 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 			</tr>
 			<tr>
 					<td>Sequencing</td>
-					<td>Reel, frame, page, issue, volume, or item order as specified</td>
+					<td>Continuous physical frame sequence across the complete reel or barcode-level object; intellectual units may be separated into unit subdirectories without resetting frame numbers</td>
 					<td>Match preservation sequence</td>
 					<td>Match image sequence</td>
 			</tr>
@@ -1706,22 +1810,31 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 <p>Aperture cards and microforms containing technical drawings, maps, or oversized originals may require higher effective resolution, special cropping, or delivery structures. Project-specific scopes should define these requirements separately.</p>
 <h2 id="7-file-naming-and-directory-structure">7. File Naming and Directory Structure</h2>
 <h3 id="71-general-naming-variations">7.1 General Naming Variations</h3>
-<p>All files delivered under this agreement shall follow a consistent, underscore-delimited naming convention based on the Library-issued 14-digit barcode identifier (pattern: <code>33433\d{9}</code>). To keep filenames clean and optimized for ingestion, the naming schema adapts based on the material microfilm/negative workflow:</p>
+<p>All files delivered under this agreement shall follow a consistent, underscore-delimited naming convention based on the Library-issued 14-digit barcode identifier (pattern: <code>33433\d{9}</code>). Filenames shall use one of the following two structures:</p>
 <ol>
 <li>
-<p><strong>Standard Workflow (Reflective Materials, Slides, and Transparencies):</strong><br>
+<p><strong>Standard Workflow (Reflective Materials, Slides, Transparencies, and Microform):</strong><br>
 <code>[barcode]_[side-or-sequence]_[role].[extension]</code></p>
 </li>
 <li>
 <p><strong>Dual-Track Negative Workflow (Film and Glass Negatives Only):</strong><br>
-<code>[barcode]_[component]_[side-or-sequence][role].[extension]</code></p>
-</li>
-<li>
-<p><strong>Multi-Unit Split Workflow (Only Microfilm Reels containing distinct sub-content):</strong><br>
-<code>[barcode]_u[unit]_[sequence]_[role].[extension]</code></p>
+<code>[barcode]_[component]_[side-or-sequence]_[role].[extension]</code></p>
 </li>
 </ol>
-<p><strong>Zero-Padding:</strong> All page, frame, and asset sequences must be zero-padded to a strict five-digit (5) width (e.g., 00001). Sub-unit modifiers must be zero-padded to a three-digit (3) width (e.g., u001).</p>
+<p>Multi-unit intellectual segmentation does not create a separate filename pattern. When a single physical item contains multiple distinct intellectual units, files shall retain the applicable standard filename and shall be organized into unit subdirectories within the barcode-level bag, as described in Section 7.5.</p>
+<p><strong>Zero-Padding:</strong> All page, frame, and asset sequences must be zero-padded to a strict five-digit (5) width (e.g., <code>00001</code>). Unit directory identifiers must be zero-padded to a strict three-digit (3) width (e.g., <code>u001</code>).</p>
+<h4 id="711-multi-unit-organization-and-absolute-physical-sequence">7.1.1 Multi-Unit Organization and Absolute Physical Sequence</h4>
+<p>A unit represents a distinct intellectual work or content grouping identified within one physical barcode-level object. Unit divisions are organizational and descriptive; they do not create new physical objects, new barcode identifiers, or separate BagIt packages.</p>
+<p>For multi-unit items:</p>
+<ul>
+<li>The barcode-level bag remains the sole delivery package for the physical item.</li>
+<li>Unit subdirectories shall be named <code>u001</code>, <code>u002</code>, and so forth, in the order in which the units first appear on the physical carrier.</li>
+<li>Unit identifiers shall appear in directory paths and metadata, but not in asset filenames.</li>
+<li>The physical frame sequence shall begin at <code>00001</code> and continue without resetting at unit boundaries.</li>
+<li>All preservation, service, access, OCR, and sidecar files derived from the same physical frame shall use the same absolute sequence number.</li>
+<li>Sequence numbers must not be duplicated across unit directories. Any intentional gap caused by an omitted, unreadable, or uncaptured frame must be documented in the applicable exception report.</li>
+</ul>
+<p>For example, if <code>u001</code> contains physical frames 1–980 and <code>u002</code> contains physical frames 981–1650, the final frame in <code>u001</code> shall use sequence <code>00980</code>, and the first frame in <code>u002</code> shall use sequence <code>00981</code>. If the TIFF files are later gathered from all unit directories and sorted by filename, they will retain the original physical order of the complete item.</p>
 <h3 id="72-naming-elements-components-and-role-codes">7.2 Naming Elements, Components, and Role Codes</h3>
 <table>
 	<thead>
@@ -1735,22 +1848,22 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 			<tr>
 					<td>Barcode</td>
 					<td><code>33433\d{9}</code></td>
-					<td>The 14-digit unique identifier supplied by the Library.</td>
+					<td>The 14-digit unique identifier supplied by the Library. The barcode also names the root BagIt directory.</td>
 			</tr>
 			<tr>
 					<td>Component (Negatives Only)</td>
 					<td><code>negative</code><br><br><code>positive</code></td>
-					<td>Used strictly for negative media to differentiate the raw un-inverted capture (negative) from the digitally inverted track (positive). Omitted for standard reflective and natively positive items.</td>
+					<td>Used strictly for negative media to differentiate the raw, un-inverted capture (<code>negative</code>) from the digitally inverted track (<code>positive</code>). Omitted for standard reflective and natively positive items.</td>
 			</tr>
 			<tr>
-					<td>Unit Modifier (Split Reels Only)</td>
+					<td>Unit Directory (Multi-Unit Items Only)</td>
 					<td><code>u001</code> to <code>u999</code></td>
-					<td>Appended only when a single barcode contains multiple distinct bibliographic units requiring independent digital separation.</td>
+					<td>A three-digit, zero-padded subdirectory beneath <code>data/</code> used to separate distinct intellectual units within one physical barcode-level object. The unit identifier is not included in asset filenames.</td>
 			</tr>
 			<tr>
 					<td>Side or Sequence</td>
 					<td><code>r</code><br><br><code>v</code><br><br><code>00001</code> to <code>99999</code></td>
-					<td>Recto (front side) or Verso (back side) for physical flat objects or photographic prints.<br><br>5-digit zero-padded index for multi-page items or sequential film/microfilm frames.</td>
+					<td>Recto (<code>r</code>) or verso (<code>v</code>) for two-sided flat objects or photographic prints.<br><br>For sequential materials, a five-digit, zero-padded absolute index across the complete physical barcode-level object. The sequence must not reset at a unit boundary.</td>
 			</tr>
 			<tr>
 					<td>Role</td>
@@ -1761,83 +1874,106 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 </table>
 <h3 id="73-mandatory-sidecar-metadata-requirements">7.3 Mandatory Sidecar Metadata Requirements</h3>
 <p>The vendor shall deliver file-level metadata utilizing individual, matching JSON sidecar files for every primary digital asset produced. Standing or bulk metadata files delivered in lieu of individual sidecars do not satisfy this requirement.</p>
-<p><strong>Strict 1:1 Asset Pairing:</strong> Every single image, document, or derivative file delivered (including all preservation masters, service masters, and access files) must be accompanied by exactly one corresponding JSON file. Combining or nesting metadata for multiple files into a single master JSON array or bulk manifest is strictly prohibited under this requirement.</p>
-<p><strong>Exact Character Matching:</strong> The filename of the JSON sidecar must match the base filename of its paired asset character-for-character, shifting only the file extension to lowercase <code>.json</code>. For example, <code>[filename]_pres.tif</code> must be paired with <code>[filename]_pres.json</code>, and <code>[filename]_access.jpg</code> must be paired with <code>[filename]_access.json</code>. Any case mismatches, truncation, or spacing discrepancies between the asset file and its sidecar file will result in a mandatory batch rework.</p>
-<p><strong>Directory Co-location:</strong> Each JSON sidecar file must reside within the exact same subfolder directory as its target asset. It must be written to the internal payload <code>/data</code> directory of the associated BagIt structure, sitting directly alongside the file it describes.</p>
+<p><strong>Strict 1:1 Asset Pairing:</strong> Every single image, document, or derivative file delivered—including all preservation masters, service masters, access files, and OCR files—must be accompanied by exactly one corresponding JSON file. Combining or nesting metadata for multiple files into a single master JSON array or bulk manifest is strictly prohibited under this requirement.</p>
+<p><strong>Exact Character Matching:</strong> The filename of the JSON sidecar must match the base filename of its paired asset character-for-character, shifting only the file extension to lowercase <code>.json</code>. For example, <code>[filename]_pres.tif</code> must be paired with <code>[filename]_pres.json</code>, and <code>[filename]_access.jpg</code> must be paired with <code>[filename]_access.json</code>. Any case mismatches, truncation, or spacing discrepancies between the asset file and its sidecar file will result in mandatory batch rework.</p>
+<p><strong>Directory Co-location:</strong> Each JSON sidecar file must reside in the exact same payload directory as its paired asset. For standard items, this will normally be the bag&rsquo;s <code>data/</code> directory. For multi-unit items, both the asset and its sidecar must reside together in the applicable unit subdirectory, such as <code>data/u001/</code> or <code>data/u002/</code>.</p>
 <p><strong>Data Ingestion and Schema Compliance:</strong> The internal structural formatting, required fields, and data values populated within each individual JSON sidecar file must strictly adhere to the external metadata workflow and schema validation rules outlined in Section 8.</p>
 <h3 id="74-delivery-examples">7.4 Delivery Examples</h3>
 <h4 id="scenario-a-standard-reflective-photo-print-with-front-and-back-no-component-code">Scenario A: Standard Reflective Photo Print with Front and Back (No Component Code)</h4>
 <p><strong>Barcode ID:</strong> <code>33433123456789</code></p>
 <ul>
-<li><strong>Front (Recto) Preservation Master &amp; Sidecar:</strong> <code>33433123456789_r_pres.tif</code> <code>33433123456789_r_pres.json</code></li>
-<li><strong>Front (Recto) Access JPEG &amp; Sidecar:</strong> <code>33433123456789_r_access.jpg</code> <code>33433123456789_r_access.json</code></li>
-<li><strong>Back (Verso) Preservation Master &amp; Sidecar:</strong> <code>33433123456789_v_pres.tif</code> <code>33433123456789_v_pres.json</code></li>
+<li><strong>Front (Recto) Preservation Master &amp; Sidecar:</strong> <code>33433123456789_r_pres.tif</code> and <code>33433123456789_r_pres.json</code></li>
+<li><strong>Front (Recto) Access JPEG &amp; Sidecar:</strong> <code>33433123456789_r_access.jpg</code> and <code>33433123456789_r_access.json</code></li>
+<li><strong>Back (Verso) Preservation Master &amp; Sidecar:</strong> <code>33433123456789_v_pres.tif</code> and <code>33433123456789_v_pres.json</code></li>
 </ul>
 <h4 id="scenario-b-complex-dual-track-transmissive-negative-component-required">Scenario B: Complex Dual-Track Transmissive Negative (Component Required)</h4>
 <p><strong>Barcode ID:</strong> <code>33433987654321</code></p>
 <ul>
-<li><strong>Raw Negative Preservation Master &amp; Sidecar:</strong> <code>33433987654321_negative_00001_pres.tif</code> <code>33433987654321_negative_00001_pres.json</code></li>
-<li><strong>Inverted Positive Preservation Master &amp; Sidecar:</strong> <code>33433987654321_positive_00001_pres.tif</code> <code>33433987654321_positive_00001_pres.json</code></li>
+<li><strong>Raw Negative Preservation Master &amp; Sidecar:</strong> <code>33433987654321_negative_00001_pres.tif</code> and <code>33433987654321_negative_00001_pres.json</code></li>
+<li><strong>Inverted Positive Preservation Master &amp; Sidecar:</strong> <code>33433987654321_positive_00001_pres.tif</code> and <code>33433987654321_positive_00001_pres.json</code></li>
 </ul>
-<h4 id="scenario-c-microfilm-reel-split-into-multiple-distinct-bibliographic-units-pamphlets">Scenario C: Microfilm Reel Split into Multiple Distinct Bibliographic Units (Pamphlets)</h4>
-<p><strong>Barcode ID:</strong> <code>33433555554444</code> (Reel contains Pamphlet 1 and Pamphlet 2)</p>
+<h4 id="scenario-c-microfilm-reel-containing-multiple-distinct-intellectual-units">Scenario C: Microfilm Reel Containing Multiple Distinct Intellectual Units</h4>
+<p><strong>Barcode ID:</strong> <code>33433555554444</code><br>
+<strong>Physical structure:</strong> Pamphlet 1 occupies frames 1–980; Pamphlet 2 occupies frames 981–1650.</p>
 <ul>
-<li><strong>Pamphlet 1, Frame 1 Service Master &amp; Sidecar:</strong> <code>33433555554444_u001_00001_serv.tif</code> <code>33433555554444_u001_00001_serv.json</code></li>
-<li><strong>Pamphlet 1, Frame 1 Access Searchable PDF &amp; Sidecar:</strong> <code>33433555554444_u001_00001_access.pdf</code> <code>33433555554444_u001_00001_access.json</code></li>
-<li><strong>Pamphlet 2, Frame 1 Service Master &amp; Sidecar:</strong> <code>33433555554444_u002_00001_serv.tif</code> <code>33433555554444_u002_00001_serv.json</code></li>
+<li><strong>Pamphlet 1, first frame:</strong> <code>data/u001/33433555554444_00001_serv.tif</code> and <code>data/u001/33433555554444_00001_serv.json</code></li>
+<li><strong>Pamphlet 1, final frame:</strong> <code>data/u001/33433555554444_00980_serv.tif</code> and <code>data/u001/33433555554444_00980_serv.json</code></li>
+<li><strong>Pamphlet 2, first frame:</strong> <code>data/u002/33433555554444_00981_serv.tif</code> and <code>data/u002/33433555554444_00981_serv.json</code></li>
+<li><strong>Pamphlet 2, final frame:</strong> <code>data/u002/33433555554444_01650_serv.tif</code> and <code>data/u002/33433555554444_01650_serv.json</code></li>
 </ul>
+<p>The unit directory changes at the intellectual boundary, but the filename sequence remains continuous across the complete physical reel. Corresponding preservation, access, OCR, and JSON sidecar files shall use the same absolute frame number and reside in the same unit directory as the service file.</p>
 <h3 id="75-directory-structure-bagit-packaging-rules">7.5 Directory Structure: BagIt Packaging Rules</h3>
-<p><strong>Standard / Negative Items:</strong> Each unique barcode identifier shall be delivered as an independent, self-contained, BagIt-compliant directory named exactly by its barcode (e.g., folder <code>33433987654321/</code>).</p>
-<p><strong>Split Multi-Unit Items:</strong> When a barcode is split into distinct intellectual units, each unit must be packaged as its own independent bag. To prevent folder collisions, the root folder name must include the unit modifier suffix (e.g., <code>33433555554444_u001/</code> and <code>33433555554444_u002/</code>).</p>
-<h4 id="example-1-basic-reflective-directory-layout-example-photo-print-with-front--back">Example 1: Basic Reflective Directory Layout Example (Photo Print with Front &amp; Back)</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433123456789/                                  &lt;-- Root Folder (Named by Barcode + Unit Suffix)
-</span></span><span class="line"><span class="cl">├── bagit.txt                              &lt;-- BagIt declaration
-</span></span><span class="line"><span class="cl">├── manifest-md5.txt                       &lt;-- Cryptographic checksums for everything in /data
-</span></span><span class="line"><span class="cl">├── bag-info.txt                           &lt;-- Bag administrative metadata
-</span></span><span class="line"><span class="cl">└── data/                                  &lt;-- Payload directory
-</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_pres.tif         &lt;-- Front/Recto Preservation Master Image
-</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_pres.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_serv.tif         &lt;-- Front/Recto Service Master Image
-</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_serv.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_access.jpg         &lt;-- Front/Recto Access Image File
-</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_access.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_pres.tif         &lt;-- Back/Verso Preservation Master Image
-</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_pres.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_serv.tif         &lt;-- Back/Verso Service Master Image
-</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_serv.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_access.jpg         &lt;-- Back/Verso Access Image File
-</span></span><span class="line"><span class="cl">    └── 33433123456789_v_access.json         &lt;-- 1:1 Matching Sidecar JSON Metadata
+<p><strong>One Bag per Barcode:</strong> Each unique physical barcode identifier shall be delivered as one independent, self-contained, BagIt-compliant directory named exactly by its barcode (for example, <code>33433987654321/</code>). A barcode-level object must not be divided into multiple bags solely because it contains multiple intellectual units.</p>
+<p><strong>Multi-Unit Payload Organization:</strong> When a barcode-level object contains distinct intellectual units, the units shall be represented as subdirectories beneath the single bag&rsquo;s <code>data/</code> directory. Unit directories shall be named <code>u001</code>, <code>u002</code>, and so forth, in the order in which the units first appear on the physical carrier. Descriptive titles shall be recorded in metadata rather than embedded in directory names.</p>
+<p><strong>Single Manifest Coverage:</strong> The root bag&rsquo;s <code>manifest-md5.txt</code> must include every payload file in every unit directory using its full relative payload path (for example, <code>data/u002/33433555554444_00981_pres.tif</code>). Unit directories must not contain separate <code>bagit.txt</code>, <code>bag-info.txt</code>, or manifest files.</p>
+<p><strong>Absolute Sequence Across Units:</strong> Sequential filenames shall represent the physical order of the complete barcode-level object. Sequence numbering must continue across unit boundaries and must never restart at <code>00001</code> for a later unit.</p>
+<h4 id="example-1-basic-reflective-directory-layout-photo-print-with-front-and-back">Example 1: Basic Reflective Directory Layout (Photo Print with Front and Back)</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433123456789/                                  &lt;-- Root folder named by barcode
+</span></span><span class="line"><span class="cl">├── bagit.txt                                    &lt;-- BagIt declaration
+</span></span><span class="line"><span class="cl">├── manifest-md5.txt                             &lt;-- Checksums for all files beneath /data
+</span></span><span class="line"><span class="cl">├── bag-info.txt                                 &lt;-- Bag administrative metadata
+</span></span><span class="line"><span class="cl">└── data/                                        &lt;-- Payload directory
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_pres.tif                &lt;-- Front/recto preservation master
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_pres.json               &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_serv.tif                &lt;-- Front/recto service master
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_serv.json               &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_access.jpg              &lt;-- Front/recto access image
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_r_access.json             &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_pres.tif                &lt;-- Back/verso preservation master
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_pres.json               &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_serv.tif                &lt;-- Back/verso service master
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_serv.json               &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    ├── 33433123456789_v_access.jpg              &lt;-- Back/verso access image
+</span></span><span class="line"><span class="cl">    └── 33433123456789_v_access.json             &lt;-- Matching sidecar JSON
 </span></span></code></pre></div><h4 id="example-2-complex-dual-track-negative-directory-layout-frame-1-of-roll">Example 2: Complex Dual-Track Negative Directory Layout (Frame 1 of Roll)</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433987654321/                                  &lt;-- Root Folder (Named by Barcode)
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433987654321/                                  &lt;-- Root folder named by barcode
 </span></span><span class="line"><span class="cl">├── bagit.txt                                    &lt;-- BagIt declaration
-</span></span><span class="line"><span class="cl">├── manifest-md5.txt                             &lt;-- Cryptographic checksums for everything in /data
+</span></span><span class="line"><span class="cl">├── manifest-md5.txt                             &lt;-- Checksums for all files beneath /data
 </span></span><span class="line"><span class="cl">├── bag-info.txt                                 &lt;-- Bag administrative metadata
 </span></span><span class="line"><span class="cl">└── data/                                        &lt;-- Payload directory
-</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_pres.tif   &lt;-- Frame 1 Raw Negative Preservation Master Image
-</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_pres.json  &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_pres.tif   &lt;-- Frame 1 Inverted Positive Preservation Master Image
-</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_pres.json  &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_serv.tif   &lt;-- Frame 1 Raw Negative Service Master Image
-</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_serv.json  &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_serv.tif   &lt;-- Frame 1 Inverted Positive Service Master Image
-</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_serv.json  &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_access.jpg &lt;-- Frame 1 Raw Negative Access Image File
-</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_access.json&lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_access.jpg &lt;-- Frame 1 Inverted Positive Access Image File
-</span></span><span class="line"><span class="cl">    └── 33433987654321_positive_00001_access.json    &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span></code></pre></div><h4 id="example-3-split-microfilm-directory-layout-pamphlet-1-of-a-split-reel">Example 3: Split Microfilm Directory Layout (Pamphlet 1 of a Split Reel)</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433555554444_u001/                             &lt;-- Root Folder (Named by Barcode + Unit Suffix)
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_pres.tif   &lt;-- Raw negative preservation master
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_pres.json  &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_pres.tif   &lt;-- Inverted positive preservation master
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_pres.json  &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_serv.tif   &lt;-- Raw negative service master
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_serv.json  &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_serv.tif   &lt;-- Inverted positive service master
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_serv.json  &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_access.jpg &lt;-- Raw negative access image
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_negative_00001_access.json &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    ├── 33433987654321_positive_00001_access.jpg &lt;-- Inverted positive access image
+</span></span><span class="line"><span class="cl">    └── 33433987654321_positive_00001_access.json &lt;-- Matching sidecar JSON
+</span></span></code></pre></div><h4 id="example-3-multi-unit-microfilm-directory-layout-two-pamphlets-on-one-reel">Example 3: Multi-Unit Microfilm Directory Layout (Two Pamphlets on One Reel)</h4>
+<p>In this example, <code>u001</code> contains frames <code>00001</code>–<code>00980</code>, and <code>u002</code> contains frames <code>00981</code>–<code>01650</code>. The ellipses indicate additional files following the same naming and sidecar-pairing rules.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433555554444/                                  &lt;-- One root bag for the complete physical reel
 </span></span><span class="line"><span class="cl">├── bagit.txt                                    &lt;-- BagIt declaration
-</span></span><span class="line"><span class="cl">├── manifest-md5.txt                             &lt;-- Cryptographic checksums for everything in /data
+</span></span><span class="line"><span class="cl">├── manifest-md5.txt                             &lt;-- Checksums for files in both unit directories
 </span></span><span class="line"><span class="cl">├── bag-info.txt                                 &lt;-- Bag administrative metadata
 </span></span><span class="line"><span class="cl">└── data/                                        &lt;-- Payload directory
-</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_pres.tif       &lt;-- Frame 1 Preservation Master Image
-</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_pres.json      &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_serv.tif       &lt;-- Frame 1 Service Master Image
-</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_serv.json      &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_access.pdf     &lt;-- Frame 1 Searchable PDF Access File
-</span></span><span class="line"><span class="cl">    ├── 33433555554444_u001_00001_access.json    &lt;-- 1:1 Matching Sidecar JSON Metadata
-</span></span><span class="line"><span class="cl">    └── 33433555554444_u001_00001_ocr.xml        &lt;-- Frame 1 Coordinate OCR data
+</span></span><span class="line"><span class="cl">    ├── u001/                                    &lt;-- First intellectual unit: Pamphlet 1
+</span></span><span class="line"><span class="cl">    │   ├── 33433555554444_00001_pres.tif        &lt;-- Physical frame 1 preservation master
+</span></span><span class="line"><span class="cl">    │   ├── 33433555554444_00001_pres.json       &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    │   ├── 33433555554444_00001_serv.tif        &lt;-- Physical frame 1 service master
+</span></span><span class="line"><span class="cl">    │   ├── 33433555554444_00001_serv.json       &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    │   ├── 33433555554444_00001_access.pdf      &lt;-- Physical frame 1 access file
+</span></span><span class="line"><span class="cl">    │   ├── 33433555554444_00001_access.json     &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    │   ├── 33433555554444_00001_ocr.xml         &lt;-- Physical frame 1 coordinate OCR
+</span></span><span class="line"><span class="cl">    │   ├── 33433555554444_00001_ocr.json        &lt;-- Matching OCR sidecar JSON
+</span></span><span class="line"><span class="cl">    │   ├── ...
+</span></span><span class="line"><span class="cl">    │   ├── 33433555554444_00980_pres.tif        &lt;-- Final physical frame in u001
+</span></span><span class="line"><span class="cl">    │   └── 33433555554444_00980_pres.json       &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">    └── u002/                                    &lt;-- Second intellectual unit: Pamphlet 2
+</span></span><span class="line"><span class="cl">        ├── 33433555554444_00981_pres.tif        &lt;-- Sequence continues; it does not reset
+</span></span><span class="line"><span class="cl">        ├── 33433555554444_00981_pres.json       &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">        ├── 33433555554444_00981_serv.tif        &lt;-- Physical frame 981 service master
+</span></span><span class="line"><span class="cl">        ├── 33433555554444_00981_serv.json       &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">        ├── 33433555554444_00981_access.pdf      &lt;-- Physical frame 981 access file
+</span></span><span class="line"><span class="cl">        ├── 33433555554444_00981_access.json     &lt;-- Matching sidecar JSON
+</span></span><span class="line"><span class="cl">        ├── 33433555554444_00981_ocr.xml         &lt;-- Physical frame 981 coordinate OCR
+</span></span><span class="line"><span class="cl">        ├── 33433555554444_00981_ocr.json        &lt;-- Matching OCR sidecar JSON
+</span></span><span class="line"><span class="cl">        ├── ...
+</span></span><span class="line"><span class="cl">        ├── 33433555554444_01650_pres.tif        &lt;-- Final physical frame on the reel
+</span></span><span class="line"><span class="cl">        └── 33433555554444_01650_pres.json       &lt;-- Matching sidecar JSON
 </span></span></code></pre></div><h2 id="8-embedded-metadata-and-external-metadata">8. Embedded Metadata and External Metadata</h2>
 <h3 id="81-general-approach">8.1 General Approach</h3>
 <p>The Library utilizes a multi-tiered metadata strategy to maintain digital object lineage. Technical and administrative metadata are captured at two distinct levels: minimal metadata embedded directly within file headers, and robust, file-level external metadata delivered via the JSON sidecar files specified in Section 7.3. External metadata files serve as the primary descriptive and validation mechanism for repository ingestion.</p>
@@ -1863,23 +1999,23 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 <h3 id="84-external-metadata-workflow-and-json-schema-validation">8.4 External Metadata Workflow and JSON Schema Validation</h3>
 <p>To generate the mandatory 1:1 file-level JSON sidecars required by Section 7.4, the vendor shall execute a three-phase metadata aggregation and synthesis workflow:</p>
 <h4 id="phase-1-library-supplied-source-baseline">Phase 1: Library-Supplied Source Baseline</h4>
-<p>Prior to production or upon shipment delivery, the Library will provide the vendor with a standardized project inventory spreadsheet in CSV or XLSX format (as specified in the <strong><a href="http://localhost:1313/digital-imaging-resources/docs/vendor_digitization/inventory_spreadsheet_spec/">Inventory Spreadsheet Specification</a></strong>). This file acts as the authoritative intake data source for the project and provides item-level baseline data, including:</p>
+<p>Prior to production or upon shipment delivery, the Library will provide the vendor with a standardized project inventory spreadsheet in XLSX format (as specified in the <strong><a href="/digital-imaging-resources/docs/vendor_digitization/inventory_spreadsheet_spec/">Inventory Spreadsheet Specification</a></strong>). This file acts as the authoritative intake data source for the project and provides item-level baseline data, including:</p>
 <ul>
 <li><strong>Administrative Tracking:</strong> <code>schema_version</code> and <code>project_code</code></li>
 <li><strong>Primary Identifiers:</strong> Library barcode (<code>barcode</code> matching <code>^33433\d{9}$</code>), <code>division_code</code>, <code>bnumber</code>, <code>classmark</code>, <code>aspace_component_id</code>, <code>collection_id</code>, and <code>item_title</code></li>
 <li><strong>Physical Object Classification:</strong> Controlled vocabulary pairings for <code>object_type</code> and <code>object_format</code>, alongside any <code>physical_condition_notes</code> observed at selection</li>
-<li><strong>Multi-Unit Structure:</strong> <code>unit_index</code> and <code>unit_title</code> for single cataloged items spanning multiple carriers (e.g., split microfilm reels or multi-box sets)</li>
+<li><strong>Known Multi-Unit Structure:</strong> When identified before capture, <code>unit_index</code> and <code>unit_title</code> for distinct intellectual units contained within a single physical barcode-level object (for example, multiple pamphlets on one microfilm reel). Unit boundaries discovered or refined during capture must be recorded by the vendor as part of the production metadata.</li>
 </ul>
 <h4 id="phase-2-vendor-generated-json-synthesis">Phase 2: Vendor-Generated JSON Synthesis</h4>
 <p>The vendor must programmatically extract the item-level fields from the Library&rsquo;s intake spreadsheet and map them into their corresponding schema objects (<code>administrative</code>, <code>identifiers</code>, <code>source</code>). The vendor&rsquo;s processing scripts must then synthesize this baseline data with file-level operational metadata captured dynamically during production to generate individual 1:1 JSON sidecar files.</p>
-<p>Per the <strong><a href="http://localhost:1313/digital-imaging-resources/docs/vendor_digitization/json_schema_sidecar/">JSON Sidecar Schema Specification</a></strong>, the capture-specific properties the vendor must inject into each sidecar include:</p>
+<p>Per the <strong><a href="/digital-imaging-resources/docs/vendor_digitization/json_schema_sidecar/">JSON Sidecar Schema Specification</a></strong>, the capture-specific properties the vendor must inject into each sidecar include:</p>
 <ul>
 <li><strong>Asset Metadata (<code>asset</code>):</strong> The exact <code>referenceFilename</code> (strictly validated against the project naming regex pattern) and the designated <code>fileRole</code> (<code>pres</code>, <code>serv</code>, <code>access</code>, or <code>ocr</code>).</li>
-<li><strong>Sequential Capture Tracking (<code>source.sequence</code>):</strong> The zero-padded integer <code>sequenceNumber</code> (e.g., <code>24</code>), two-sided object <code>side</code> indicator (<code>r</code> for recto, <code>v</code> for verso), and human-readable <code>sequenceLabel</code> depicting physical reality (e.g., <code>&quot;Recto&quot;</code>, <code>&quot;Page 42&quot;</code>, <code>&quot;Front Cover&quot;</code>).</li>
+<li><strong>Sequential Capture and Unit Tracking (<code>source.sequence</code>):</strong> The integer <code>sequenceNumber</code> (for example, <code>24</code>, rendered as <code>00024</code> in the filename), the applicable <code>unitIndex</code>, the two-sided object <code>side</code> indicator (<code>r</code> for recto, <code>v</code> for verso), and a human-readable <code>sequenceLabel</code> depicting physical reality (for example, <code>&quot;Recto&quot;</code>, <code>&quot;Page 42&quot;</code>, or <code>&quot;Front Cover&quot;</code>). For sequential multi-unit items, <code>sequenceNumber</code> must represent the absolute physical sequence across the complete barcode-level object and must not reset when <code>unitIndex</code> changes.</li>
 <li><strong>Digitization Process Audit (<code>digitizationProcess</code>):</strong> Granular hardware and software audit trails, including <code>captureDevice</code> (<code>manufacturer</code>, <code>model</code>, <code>lens</code>, <code>serialNumber</code>), <code>captureSoftware</code> (<code>manufacturer</code>, <code>productName</code>, <code>version</code>), and the specific optical <code>calibrationTarget</code> utilized during the capture session.</li>
 <li><strong>Operator &amp; Organization Tracking (<code>digitizer</code>):</strong> Vendor administrative data, including <code>operator</code> (<code>firstName</code>, <code>lastName</code>) and <code>organization</code> (<code>name</code>).</li>
 </ul>
-<p><em>(Note: To maintain separation of concerns, file sizes, pixel dimensions, and ICC profiles remain embedded within image headers per Section 8.2, while MD5 cryptographic checksums remain strictly within external BagIt manifests per Section 8.3).</em></p>
+<p><em>(Note: To maintain separation of concerns, file sizes, pixel dimensions, and ICC profiles remain embedded within image headers per Section 8.2, while MD5 cryptographic checksums remain strictly within external BagIt manifests per Section 8.3. Unit membership is represented by the <code>data/u###/</code> payload path and the corresponding unit metadata; it is not encoded in the asset filename.)</em></p>
 <h4 id="phase-3-schema-validation">Phase 3: Schema Validation</h4>
 <p>The final structural composition, key-value pairings, nesting logic, and required fields of the delivered JSON sidecars must strictly validate against the formal JSON Schema specification provided by the Library.</p>
 <p><strong>Schema Provision:</strong> The authoritative, live JSON Schema file (<code>digitized_image_schema.json</code>) is maintained and published by the Library at the following canonical endpoint:</p>
@@ -1893,8 +2029,11 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 <ul>
 <li>File presence</li>
 <li>File naming</li>
-<li>Directory structure</li>
+<li>One barcode-level bag per physical item</li>
+<li>Directory structure and approved <code>u###</code> unit assignments, where applicable</li>
+<li>Sidecar co-location with each paired asset</li>
 <li>Sequence completeness</li>
+<li>Continuous absolute sequence numbering across all unit directories, with no resets or duplicates</li>
 <li>Checksum creation</li>
 <li>File format validation</li>
 <li>ICC profile presence and correctness</li>
@@ -1957,6 +2096,7 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 <li>Orientation</li>
 <li>Naming</li>
 <li>Directory structure</li>
+<li>Multi-unit boundaries, unit directory assignments, and absolute sequence continuity, where applicable</li>
 <li>Metadata structure</li>
 <li>Negative inversion look and tonal handling</li>
 <li>OCR package structure</li>
@@ -1969,7 +2109,9 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 <ul>
 <li>Missing files</li>
 <li>Incorrect file names</li>
-<li>Incorrect sequence</li>
+<li>Incorrect sequence, including duplicate numbers, gaps without approved exception documentation, or sequence resets at unit boundaries</li>
+<li>Incorrect unit directory assignment or delivery of separate bags for units belonging to one physical barcode-level object</li>
+<li>Sidecar files placed outside the directory containing their paired assets</li>
 <li>Incorrect or missing checksums</li>
 <li>Corrupt files</li>
 <li>Incorrect bit depth, color profile, or file format</li>
@@ -1982,6 +2124,1109 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 <li>Incorrect OCR package structure</li>
 <li>Incomplete or inaccurate manifests</li>
 <li>Failure to follow approved specifications.</li>
+</ul>
+
+</div>
+
+
+
+    
+	
+  
+    
+    
+	
+    
+
+<div class="td-content" style="page-break-before: always">
+    
+	<h1 id="pg-a399ea5e822547c51097d65284837b2e">5 - Barcode Assignment and Application Recommendations</h1>
+    <div class="lead">Draft recommendations for assigning, applying, recording, and validating barcodes for image-based vendor digitization projects.</div>
+	<h1 id="barcode-assignment-and-application-recommendations">Barcode Assignment and Application Recommendations</h1>
+<blockquote>
+<p><strong>Status:</strong> Discussion draft<br>
+<strong>Purpose:</strong> Establish a practical, scalable barcode framework for preparing image-based collection materials for vendor digitization.<br>
+<strong>Scope:</strong> Physical collection materials selected for outsourced image-based digitization, including bound volumes, manuscripts, photographs, negatives, transparencies, glass plates, microforms, oversized materials, and mixed archival collections.</p>
+</blockquote>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>Reliable barcode assignment is a foundational requirement for vendor digitization. A barcode provides the persistent physical identifier that connects:</p>
+<ul>
+<li>the source collection object or enclosure;</li>
+<li>the Library’s inventory and descriptive systems;</li>
+<li>vendor shipment and production tracking;</li>
+<li>digital filenames and JSON sidecars;</li>
+<li>BagIt packaging and delivery manifests;</li>
+<li>quality-control and rework workflows; and</li>
+<li>the returned physical material and resulting digital assets.</li>
+</ul>
+<p>Unlike Audio and Moving Image workflows, image-based collections do not currently follow one uniform institution-wide practice for determining which physical level should receive a barcode. The appropriate level may be obvious for a single bound volume or microfilm reel, but less obvious for a manuscript box containing many folders, a box of photographic prints, or a slide box containing hundreds of individual images.</p>
+<p>This document proposes a consistent decision framework while recognizing that barcodes may be recorded in different systems depending on the collection and material type. It focuses primarily on:</p>
+<ol>
+<li>what a barcode should identify;</li>
+<li>which physical level should be barcoded;</li>
+<li>where and how a barcode should be applied;</li>
+<li>how parent containers and subordinate digitization units should relate;</li>
+<li>how barcodes should support vendor production and digital delivery; and</li>
+<li>the minimum information that must be recorded before materials leave the Library.</li>
+</ol>
+<h2 id="2-executive-recommendation">2. Executive Recommendation</h2>
+<p>The Library should distinguish between two barcode roles.</p>
+<h3 id="21-container-barcode">2.1 Container Barcode</h3>
+<p>A <strong>container barcode</strong> identifies a custody, storage, or transport container such as:</p>
+<ul>
+<li>an archival box;</li>
+<li>a microfilm box;</li>
+<li>a slide box;</li>
+<li>a negative box;</li>
+<li>a portfolio;</li>
+<li>a map folder;</li>
+<li>a tray; or</li>
+<li>another top-level housing.</li>
+</ul>
+<p>The container barcode supports:</p>
+<ul>
+<li>location and movement control;</li>
+<li>shipment reconciliation;</li>
+<li>box-level counts;</li>
+<li>parent-child relationships;</li>
+<li>return verification; and</li>
+<li>top-container management in systems such as ArchivesSpace.</li>
+</ul>
+<p>A container barcode does <strong>not automatically become the identifier used for digital filenames or BagIt packaging</strong>.</p>
+<h3 id="22-digitization-unit-barcode">2.2 Digitization-Unit Barcode</h3>
+<p>A <strong>digitization-unit barcode</strong> identifies the physical unit that is treated as one independently controlled digitization object.</p>
+<p>The digitization-unit barcode is the identifier used for:</p>
+<ul>
+<li>the vendor inventory record;</li>
+<li>digital filenames;</li>
+<li>JSON sidecars;</li>
+<li>BagIt root directories;</li>
+<li>quality-control reports;</li>
+<li>exception and rework tracking; and</li>
+<li>repository ingest.</li>
+</ul>
+<p>Examples of digitization units include:</p>
+<ul>
+<li>one bound volume;</li>
+<li>one manuscript folder;</li>
+<li>one photographic print in an individual enclosure;</li>
+<li>one photograph album;</li>
+<li>one microfilm reel;</li>
+<li>one roll of film negatives;</li>
+<li>one glass plate;</li>
+<li>one map in an individual folder; or</li>
+<li>one physically coherent group intentionally digitized as a single object.</li>
+</ul>
+<h3 id="23-parent-child-relationship">2.3 Parent-Child Relationship</h3>
+<p>When a container holds multiple digitization units, both levels should be represented:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Container barcode: 33433111111111
+</span></span><span class="line"><span class="cl">├── Folder barcode: 33433222222222
+</span></span><span class="line"><span class="cl">├── Folder barcode: 33433333333333
+</span></span><span class="line"><span class="cl">└── Folder barcode: 33433444444444
+</span></span></code></pre></div><p>The container barcode supports custody and location. Each child barcode identifies a separate digitization package.</p>
+<p>This distinction prevents one barcode from being forced to serve incompatible purposes.</p>
+<h2 id="3-core-policy-principles">3. Core Policy Principles</h2>
+<h3 id="31-barcode-the-smallest-stable-meaningful-control-unit">3.1 Barcode the Smallest Stable, Meaningful Control Unit</h3>
+<p>The digitization-unit barcode should identify the smallest physical unit that is:</p>
+<ul>
+<li>stable enough to handle independently;</li>
+<li>meaningful within the collection’s existing arrangement;</li>
+<li>practical to inventory and reconcile;</li>
+<li>expected to remain intact during vendor processing; and</li>
+<li>appropriate to represent as one digital package.</li>
+</ul>
+<p>The smallest individual sheet, photograph, or frame should not automatically receive a barcode. Granularity should be driven by control, retrieval, arrangement, access, and production needs—not simply by the number of images created.</p>
+<h3 id="32-do-not-barcode-every-digital-image">3.2 Do Not Barcode Every Digital Image</h3>
+<p>A barcode identifies a physical source unit, not every resulting digital file.</p>
+<p>Pages, frames, rectos, versos, and derivatives are distinguished through:</p>
+<ul>
+<li>sequence numbers;</li>
+<li>side indicators;</li>
+<li>file-role codes;</li>
+<li><code>negative</code> and <code>positive</code> components where applicable; and</li>
+<li>file-level JSON sidecars.</li>
+</ul>
+<h3 id="33-one-active-barcode-must-identify-one-physical-control-unit">3.3 One Active Barcode Must Identify One Physical Control Unit</h3>
+<p>A barcode must not be reused for another item or container.</p>
+<p>When an item is rehoused, the existing active barcode should normally remain associated with the same physical control unit. If a replacement barcode is required, the prior barcode must be retained in the record as inactive or superseded rather than silently reassigned.</p>
+<h3 id="34-barcodes-must-not-encode-descriptive-meaning">3.4 Barcodes Must Not Encode Descriptive Meaning</h3>
+<p>The number should function as a persistent unique identifier. Collection, format, division, date, box, folder, and project meaning should be stored in metadata rather than inferred from the barcode number.</p>
+<h3 id="35-no-barcode-without-a-record">3.5 No Barcode Without a Record</h3>
+<p>Every barcode assigned for digitization must be logged before shipment.</p>
+<p>At minimum, the barcode record must identify:</p>
+<ul>
+<li>what the barcode represents;</li>
+<li>the parent container, when applicable;</li>
+<li>the collection or catalog record;</li>
+<li>the material type;</li>
+<li>the responsible division;</li>
+<li>the current location; and</li>
+<li>the system or inventory in which the barcode is recorded.</li>
+</ul>
+<h3 id="36-apply-barcodes-to-housings-not-collection-surfaces">3.6 Apply Barcodes to Housings, Not Collection Surfaces</h3>
+<p>The default practice should be to apply barcode labels to an appropriate enclosure rather than directly to original collection material.</p>
+<p>Examples include:</p>
+<ul>
+<li>archival folders;</li>
+<li>envelopes;</li>
+<li>sleeves;</li>
+<li>four-flap enclosures;</li>
+<li>phase boxes;</li>
+<li>clamshell boxes;</li>
+<li>microfilm boxes;</li>
+<li>negative envelopes;</li>
+<li>backing cards; and</li>
+<li>protective wrappers.</li>
+</ul>
+<p>Direct application to an original object should occur only when allowed by an established Library labeling policy and approved for that material category.</p>
+<h3 id="37-the-vendor-must-not-create-or-reassign-library-barcodes">3.7 The Vendor Must Not Create or Reassign Library Barcodes</h3>
+<p>The Library must assign and record all authoritative barcodes before shipment.</p>
+<p>A vendor may:</p>
+<ul>
+<li>scan and validate supplied barcodes;</li>
+<li>report missing, duplicated, damaged, or unreadable labels;</li>
+<li>use temporary internal production identifiers; and</li>
+<li>propose unit boundaries during a pilot.</li>
+</ul>
+<p>A vendor must not:</p>
+<ul>
+<li>generate replacement Library identifiers;</li>
+<li>reassign a barcode;</li>
+<li>alter parent-child relationships;</li>
+<li>split or combine digitization units without authorization; or</li>
+<li>treat an internal vendor identifier as the Library’s authoritative barcode.</li>
+</ul>
+<h2 id="4-definitions">4. Definitions</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Term</th>
+					<th>Definition</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Physical item</strong></td>
+					<td>A tangible source object or carrier, such as a volume, folder, print, negative, plate, reel, or fiche.</td>
+			</tr>
+			<tr>
+					<td><strong>Container</strong></td>
+					<td>A housing that holds one or more physical items or digitization units.</td>
+			</tr>
+			<tr>
+					<td><strong>Container barcode</strong></td>
+					<td>A barcode used primarily for custody, storage, transport, and location control.</td>
+			</tr>
+			<tr>
+					<td><strong>Digitization unit</strong></td>
+					<td>The physical unit treated as one independently inventoried and packaged digitization object.</td>
+			</tr>
+			<tr>
+					<td><strong>Digitization-unit barcode</strong></td>
+					<td>The barcode used in filenames, sidecars, BagIt packaging, QC, and ingest.</td>
+			</tr>
+			<tr>
+					<td><strong>Intellectual unit</strong></td>
+					<td>A distinct body of content based on arrangement or description, such as a pamphlet, folder, issue, or report.</td>
+			</tr>
+			<tr>
+					<td><strong>Parent barcode</strong></td>
+					<td>The barcode of the container that physically holds a subordinate digitization unit.</td>
+			</tr>
+			<tr>
+					<td><strong>Sequence</strong></td>
+					<td>The ordered series of pages, frames, sides, or images produced from one digitization unit.</td>
+			</tr>
+			<tr>
+					<td><strong>Multi-unit physical item</strong></td>
+					<td>One physical carrier containing multiple intellectual units, such as a microfilm reel containing several pamphlets.</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="5-decision-framework">5. Decision Framework</h2>
+<p>Use the following questions in order.</p>
+<h3 id="step-1-is-the-material-already-cataloged-or-retrieved-as-an-independent-item">Step 1: Is the material already cataloged or retrieved as an independent item?</h3>
+<p>Examples:</p>
+<ul>
+<li>a cataloged book;</li>
+<li>a bound manuscript volume;</li>
+<li>an individually described map;</li>
+<li>an individual photograph;</li>
+<li>a microfilm reel;</li>
+<li>a glass plate.</li>
+</ul>
+<p><strong>Recommendation:</strong> Assign one digitization-unit barcode to the item or its dedicated enclosure.</p>
+<h3 id="step-2-is-the-material-a-container-holding-multiple-independently-meaningful-units">Step 2: Is the material a container holding multiple independently meaningful units?</h3>
+<p>Examples:</p>
+<ul>
+<li>a manuscript box containing folders;</li>
+<li>a photograph box containing individually sleeved prints;</li>
+<li>a slide box containing separately organized groups;</li>
+<li>a box containing multiple volumes.</li>
+</ul>
+<p><strong>Recommendation:</strong> Assign:</p>
+<ol>
+<li>one container barcode to the box or outer housing; and</li>
+<li>separate digitization-unit barcodes to the subordinate units that will become independent digital packages.</li>
+</ol>
+<h3 id="step-3-are-the-subordinate-units-too-granular-to-barcode-individually">Step 3: Are the subordinate units too granular to barcode individually?</h3>
+<p>Examples:</p>
+<ul>
+<li>hundreds of individual sheets within one correspondence folder;</li>
+<li>individual pages in a volume;</li>
+<li>individual frames on one microfilm reel;</li>
+<li>individual exposures on one negative roll;</li>
+<li>individual slides that are not separately described or retrieved.</li>
+</ul>
+<p><strong>Recommendation:</strong> Barcode the enclosing stable unit and distinguish the subordinate images through sequence metadata.</p>
+<h3 id="step-4-does-one-physical-carrier-contain-multiple-intellectual-works">Step 4: Does one physical carrier contain multiple intellectual works?</h3>
+<p>Examples:</p>
+<ul>
+<li>one microfilm reel containing several pamphlets;</li>
+<li>one bound volume containing several separately titled works;</li>
+<li>one scrapbook containing multiple sections.</li>
+</ul>
+<p><strong>Recommendation:</strong> Retain one digitization-unit barcode for the physical carrier unless the contents are physically separated and independently controlled.</p>
+<p>Represent internal intellectual divisions using:</p>
+<ul>
+<li><code>unitIndex</code>;</li>
+<li><code>unitTitle</code>;</li>
+<li><code>u###</code> directories inside the BagIt <code>data/</code> directory; and</li>
+<li>an uninterrupted absolute sequence across the complete physical item.</li>
+</ul>
+<h3 id="step-5-would-the-proposed-barcode-level-create-an-unmanageably-large-or-ambiguous-digital-object">Step 5: Would the proposed barcode level create an unmanageably large or ambiguous digital object?</h3>
+<p>Consider:</p>
+<ul>
+<li>number of folders;</li>
+<li>expected image count;</li>
+<li>independent descriptive records;</li>
+<li>restrictions or rights differences;</li>
+<li>format changes;</li>
+<li>expected retrieval;</li>
+<li>likelihood of partial rework;</li>
+<li>vendor production routing; and</li>
+<li>repository ingest requirements.</li>
+</ul>
+<p><strong>Recommendation:</strong> Move the digitization-unit barcode down one meaningful physical level, normally from box to folder or from folder to individually enclosed item.</p>
+<h2 id="6-recommended-barcode-levels-by-material-type">6. Recommended Barcode Levels by Material Type</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Material type</th>
+					<th>Container barcode</th>
+					<th>Default digitization-unit barcode</th>
+					<th>Generally do not barcode</th>
+					<th>Notes</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Cataloged book or bound volume</td>
+					<td>Optional housing barcode</td>
+					<td>Each volume</td>
+					<td>Individual pages</td>
+					<td>Multi-volume works receive one barcode per physical volume.</td>
+			</tr>
+			<tr>
+					<td>Manuscript box with correspondence or records</td>
+					<td>Box</td>
+					<td>Each folder</td>
+					<td>Individual sheets</td>
+					<td>Folder-level barcoding is the recommended default.</td>
+			</tr>
+			<tr>
+					<td>Single loose manuscript item</td>
+					<td>Folder or enclosure</td>
+					<td>Individual item or dedicated enclosure</td>
+					<td>Recto and verso separately</td>
+					<td>Use one barcode; represent sides in filenames.</td>
+			</tr>
+			<tr>
+					<td>Scrapbook or album</td>
+					<td>Optional housing barcode</td>
+					<td>Each bound scrapbook or album</td>
+					<td>Individual leaves, photographs, or inserts</td>
+					<td>Sequence all component images under the volume barcode.</td>
+			</tr>
+			<tr>
+					<td>Box of individually described photographic prints</td>
+					<td>Box</td>
+					<td>Each individually enclosed print</td>
+					<td>Front and back separately</td>
+					<td>Use <code>r</code> and <code>v</code> for front/back captures.</td>
+			</tr>
+			<tr>
+					<td>Box of grouped photographic prints</td>
+					<td>Box</td>
+					<td>Folder, envelope, or coherent packet</td>
+					<td>Each print unless independently described</td>
+					<td>Project-specific item-level barcoding may be appropriate.</td>
+			</tr>
+			<tr>
+					<td>Mounted photograph, cabinet card, or carte de visite</td>
+					<td>Box or folder</td>
+					<td>Each individually enclosed object</td>
+					<td>Front, back, and mount separately</td>
+					<td>Associated views share the same barcode.</td>
+			</tr>
+			<tr>
+					<td>Photograph album</td>
+					<td>Optional housing barcode</td>
+					<td>Each album</td>
+					<td>Individual photographs</td>
+					<td>Sequence pages and details beneath the album barcode.</td>
+			</tr>
+			<tr>
+					<td>Sheet-film negative</td>
+					<td>Box</td>
+					<td>Each individually enclosed negative</td>
+					<td>Positive derivative separately</td>
+					<td><code>negative</code> and <code>positive</code> filename components share one source barcode.</td>
+			</tr>
+			<tr>
+					<td>Glass plate negative</td>
+					<td>Box</td>
+					<td>Each plate enclosure</td>
+					<td>The glass surface</td>
+					<td>Never place the barcode directly on the glass or emulsion.</td>
+			</tr>
+			<tr>
+					<td>Roll-film negative</td>
+					<td>Can, box, or roll enclosure</td>
+					<td>Each physical roll or strip selected as the control unit</td>
+					<td>Individual exposures</td>
+					<td>Frames remain in absolute sequence.</td>
+			</tr>
+			<tr>
+					<td>Mounted slide</td>
+					<td>Slide box or page</td>
+					<td>Project-specific: individual slide, slide page, tray, or coherent group</td>
+					<td>Individual slide when not separately described</td>
+					<td>Granularity must be determined during project planning.</td>
+			</tr>
+			<tr>
+					<td>Color transparency</td>
+					<td>Box or enclosure</td>
+					<td>Each individually controlled transparency or coherent sheet/packet</td>
+					<td>Positive component in filename</td>
+					<td>Natively positive materials do not use the <code>positive</code> filename component.</td>
+			</tr>
+			<tr>
+					<td>Microfilm reel</td>
+					<td>Reel box</td>
+					<td>Each reel</td>
+					<td>Individual frames or internal works</td>
+					<td>Internal works may use <code>u###</code> directories under the reel barcode.</td>
+			</tr>
+			<tr>
+					<td>Microfiche</td>
+					<td>Fiche box</td>
+					<td>Each fiche or explicitly approved fiche set</td>
+					<td>Individual frames</td>
+					<td>Project scope must define whether a set is treated together.</td>
+			</tr>
+			<tr>
+					<td>Aperture cards</td>
+					<td>Box or tray</td>
+					<td>Each card when independently controlled; otherwise approved tray or batch unit</td>
+					<td>Image area separately</td>
+					<td>Large homogeneous sets may require a documented batch exception.</td>
+			</tr>
+			<tr>
+					<td>Map, poster, broadside, or oversized sheet</td>
+					<td>Drawer, portfolio, or folder</td>
+					<td>Each individually enclosed object</td>
+					<td>Recto and verso separately</td>
+					<td>Apply label to the folder, sleeve, or portfolio.</td>
+			</tr>
+			<tr>
+					<td>Rolled item</td>
+					<td>Tube or outer container</td>
+					<td>Each independently controlled roll or item enclosure</td>
+					<td>Sections created during capture</td>
+					<td>Rehousing may be required before labeling.</td>
+			</tr>
+			<tr>
+					<td>Framed or mounted work</td>
+					<td>Shipping case or wrapper</td>
+					<td>Frame backing, protective wrapper, or dedicated enclosure</td>
+					<td>Image or decorative mount surface</td>
+					<td>Placement requires collection-management or conservation approval.</td>
+			</tr>
+			<tr>
+					<td>Mixed-format archival box</td>
+					<td>Box</td>
+					<td>Folder, envelope, volume, or format-specific enclosure</td>
+					<td>Individual sheets by default</td>
+					<td>Use child units that support safe routing and vendor handling.</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="7-detailed-recommendations-for-common-scenarios">7. Detailed Recommendations for Common Scenarios</h2>
+<h3 id="71-bound-books-and-volumes">7.1 Bound Books and Volumes</h3>
+<p>Assign one digitization-unit barcode per physical volume.</p>
+<p>The barcode should be applied according to the following preference order:</p>
+<ol>
+<li>a dedicated preservation enclosure;</li>
+<li>a removable barcode flag, wrapper, or book band;</li>
+<li>an approved location on a modern or general-collection binding; or</li>
+<li>another location approved by Collection Management or Conservation.</li>
+</ol>
+<p>Do not:</p>
+<ul>
+<li>place a barcode over original labels, inscriptions, stamps, or decorative elements;</li>
+<li>treat separate pages as separate barcode units;</li>
+<li>use one barcode for an entire multi-volume set; or</li>
+<li>apply an adhesive label directly to a rare or vulnerable binding without approval.</li>
+</ul>
+<p>For a multi-volume work:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Volume 1 → one barcode and one BagIt bag
+</span></span><span class="line"><span class="cl">Volume 2 → one barcode and one BagIt bag
+</span></span><span class="line"><span class="cl">Volume 3 → one barcode and one BagIt bag
+</span></span></code></pre></div><h3 id="72-boxes-of-correspondence-and-other-foldered-records">7.2 Boxes of Correspondence and Other Foldered Records</h3>
+<p>The recommended default is:</p>
+<ul>
+<li>one container barcode for the archival box; and</li>
+<li>one digitization-unit barcode for each folder selected for digitization.</li>
+</ul>
+<p>Do not barcode every letter or sheet unless the collection is already arranged, described, and retrieved at item level or the project explicitly requires item-level digital objects.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Box barcode: 33433111111111
+</span></span><span class="line"><span class="cl">├── Folder 1 barcode: 33433222222222
+</span></span><span class="line"><span class="cl">│   └── 126 page images
+</span></span><span class="line"><span class="cl">├── Folder 2 barcode: 33433333333333
+</span></span><span class="line"><span class="cl">│   └── 83 page images
+</span></span><span class="line"><span class="cl">└── Folder 3 barcode: 33433444444444
+</span></span><span class="line"><span class="cl">    └── 211 page images
+</span></span></code></pre></div><p>The folder barcode—not the box barcode—is used for the filenames and BagIt root of each folder-level delivery.</p>
+<p>The box barcode is retained in the inventory as <code>parentBarcode</code>.</p>
+<p>A folder may contain many pieces without requiring sub-item barcodes. The vendor should preserve physical order and assign page-level sequence numbers beneath the folder barcode.</p>
+<h4 id="when-to-split-a-folder-into-multiple-barcode-units">When to split a folder into multiple barcode units</h4>
+<p>A folder should be divided into multiple barcode units only when:</p>
+<ul>
+<li>it already contains clearly established subfolders or packets;</li>
+<li>the units are separately described;</li>
+<li>separate rights or restrictions apply;</li>
+<li>the physical volume cannot be safely handled as one unit;</li>
+<li>different formats require separate production workflows;</li>
+<li>the units are expected to become separate access objects; or</li>
+<li>Collection Management or archival processing approves a physical subdivision.</li>
+</ul>
+<p>Digitization staff or vendors should not independently reorganize archival folders solely to reduce image counts.</p>
+<h3 id="73-photographic-prints">7.3 Photographic Prints</h3>
+<p>For individually described or independently retrieved photographs, assign one barcode per photograph and apply it to the photograph’s enclosure.</p>
+<p>One barcode may govern multiple captures of the same object, including:</p>
+<ul>
+<li>recto;</li>
+<li>verso;</li>
+<li>mount;</li>
+<li>sleeve;</li>
+<li>enclosure;</li>
+<li>caption;</li>
+<li>label; and</li>
+<li>associated detail views.</li>
+</ul>
+<p>For photographic groups that are not item-level described, use the folder, envelope, packet, or other coherent housing as the digitization unit.</p>
+<p>The project plan should state whether access and repository objects will be created:</p>
+<ul>
+<li>per photograph;</li>
+<li>per folder;</li>
+<li>per packet; or</li>
+<li>per box.</li>
+</ul>
+<h3 id="74-negatives-transparencies-and-slides">7.4 Negatives, Transparencies, and Slides</h3>
+<h4 id="sheet-film-and-glass-negatives">Sheet-film and glass negatives</h4>
+<p>Assign one barcode per individually controlled negative or plate enclosure.</p>
+<p>The same barcode governs both delivery tracks:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[barcode]_negative_00001_pres.tif
+</span></span><span class="line"><span class="cl">[barcode]_positive_00001_pres.tif
+</span></span></code></pre></div><p>Do not assign separate barcodes to the negative and positive renderings. They are digital representations of the same physical source.</p>
+<h4 id="roll-film">Roll film</h4>
+<p>Assign one barcode per physical roll or stable strip unit defined by the project.</p>
+<p>Individual exposures are represented through sequence numbers rather than barcodes.</p>
+<h4 id="slides-and-transparencies">Slides and transparencies</h4>
+<p>Natively positive slides and transparencies do not use the word <code>positive</code> in the filename.</p>
+<p>For large slide collections, the digitization unit may be:</p>
+<ul>
+<li>an individual slide;</li>
+<li>a slide page;</li>
+<li>a tray;</li>
+<li>a box;</li>
+<li>a photographer-defined group; or</li>
+<li>another stable arrangement unit.</li>
+</ul>
+<p>The project must define the selected level before barcoding begins. Item-level barcoding should be used when individual slides are already described, retrieved, or expected to become separate repository objects. Group-level barcoding may be more practical for large, minimally processed collections.</p>
+<h3 id="75-microfilm">7.5 Microfilm</h3>
+<p>Assign one digitization-unit barcode per physical microfilm reel.</p>
+<p>Do not assign new physical barcodes to pamphlets, issues, volumes, or other intellectual units contained within the same reel unless they are physically separated carriers.</p>
+<p>When a reel contains several intellectual works:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433555554444/
+</span></span><span class="line"><span class="cl">└── data/
+</span></span><span class="line"><span class="cl">    ├── u001/
+</span></span><span class="line"><span class="cl">    ├── u002/
+</span></span><span class="line"><span class="cl">    └── u003/
+</span></span></code></pre></div><p>The reel retains one barcode and one BagIt bag.</p>
+<p>Internal unit membership is represented through:</p>
+<ul>
+<li><code>unitIndex</code>;</li>
+<li><code>unitTitle</code>;</li>
+<li><code>u###</code> directories; and</li>
+<li>absolute sequence numbers that never reset across the reel.</li>
+</ul>
+<h3 id="76-oversized-and-flat-materials">7.6 Oversized and Flat Materials</h3>
+<p>Assign one digitization-unit barcode per independently controlled map, poster, broadside, drawing, or other oversized object.</p>
+<p>Apply the barcode to:</p>
+<ul>
+<li>the object’s folder;</li>
+<li>a polyester sleeve;</li>
+<li>a portfolio;</li>
+<li>a wrapper; or</li>
+<li>another approved enclosure.</li>
+</ul>
+<p>A flat-file drawer, portfolio, or transport folder may also receive a separate container barcode.</p>
+<p>Do not apply the barcode directly to the image surface, verso, mount, or backing unless specifically approved.</p>
+<h3 id="77-mixed-format-boxes">7.7 Mixed-Format Boxes</h3>
+<p>Mixed-format boxes should receive a container barcode. Subordinate digitization units should be assigned based on the smallest stable, meaningful housing.</p>
+<p>Examples:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Box barcode
+</span></span><span class="line"><span class="cl">├── Folder barcode: correspondence
+</span></span><span class="line"><span class="cl">├── Envelope barcode: photographic negatives
+</span></span><span class="line"><span class="cl">├── Volume barcode: ledger
+</span></span><span class="line"><span class="cl">└── Folder barcode: maps and diagrams
+</span></span></code></pre></div><p>Separate child barcodes can support different vendor routing and technical specifications while preserving the parent box relationship.</p>
+<h2 id="8-barcode-placement-and-labeling">8. Barcode Placement and Labeling</h2>
+<h3 id="81-general-placement-rules">8.1 General Placement Rules</h3>
+<p>Barcode labels should:</p>
+<ul>
+<li>remain visible without disturbing the collection object;</li>
+<li>be placed consistently across a project;</li>
+<li>include the human-readable 14-digit number;</li>
+<li>avoid seams, folds, fasteners, edges, and curved surfaces;</li>
+<li>avoid existing descriptive labels and annotations;</li>
+<li>remain scannable when the unit is packed normally;</li>
+<li>be applied to the enclosure body rather than a removable lid when practical; and</li>
+<li>be tested with the intended scanner after application.</li>
+</ul>
+<h3 id="82-recommended-placement-zones">8.2 Recommended Placement Zones</h3>
+<p>These zones are proposed starting points and require confirmation from Collection Management and Conservation.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Housing</th>
+					<th>Recommended placement</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Archival record box</td>
+					<td>Short end of box body, upper-right area, clear of existing box label</td>
+			</tr>
+			<tr>
+					<td>Manuscript folder</td>
+					<td>Exterior front, upper-right area, below or beside the descriptive label</td>
+			</tr>
+			<tr>
+					<td>Envelope</td>
+					<td>Exterior front, upper-right area</td>
+			</tr>
+			<tr>
+					<td>Four-flap enclosure</td>
+					<td>Exterior front panel, away from folds</td>
+			</tr>
+			<tr>
+					<td>Photograph sleeve</td>
+					<td>On a separate backing card, envelope, or approved label area—not over the image</td>
+			</tr>
+			<tr>
+					<td>Book box or phase box</td>
+					<td>Exterior front or spine-facing panel</td>
+			</tr>
+			<tr>
+					<td>Microfilm box</td>
+					<td>Exterior face visible during normal handling</td>
+			</tr>
+			<tr>
+					<td>Glass-plate enclosure</td>
+					<td>Exterior of four-flap enclosure or box</td>
+			</tr>
+			<tr>
+					<td>Map folder or portfolio</td>
+					<td>Exterior upper-right area, clear of title and call-number information</td>
+			</tr>
+			<tr>
+					<td>Slide page or tray</td>
+					<td>Stable label area on the page, tray, or associated divider</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="83-label-materials">8.3 Label Materials</h3>
+<p>The Library should adopt approved label stock for at least three application categories:</p>
+<ol>
+<li>folders and box-board;</li>
+<li>approved book covers or book enclosures; and</li>
+<li>plastic, metal, or other non-paper housings.</li>
+</ol>
+<p>One adhesive and label stock should not be assumed safe or effective for every surface.</p>
+<p>Final material specifications should be reviewed by Conservation and Collection Management before implementation.</p>
+<h3 id="84-temporary-barcode-control-sheets">8.4 Temporary Barcode Control Sheets</h3>
+<p>For vendor digitization, each digitization unit should also receive a removable <strong>barcode control sheet</strong> or lead card when practical.</p>
+<p>The control sheet may include:</p>
+<ul>
+<li>scannable barcode;</li>
+<li>human-readable barcode;</li>
+<li>collection title;</li>
+<li>box and folder number;</li>
+<li>item or unit title;</li>
+<li>expected sides or sequence;</li>
+<li>special handling notes;</li>
+<li>restriction flags; and</li>
+<li>project code.</li>
+</ul>
+<p>The control sheet should be placed at the beginning of the digitization unit and used by the vendor to initialize production tracking.</p>
+<p>Unless specifically required as documentation, the control sheet should not be delivered as a preservation or access image.</p>
+<h2 id="9-recording-barcodes-and-system-responsibilities">9. Recording Barcodes and System Responsibilities</h2>
+<p>The final institution-wide system of record may vary by collection type. This policy should therefore establish a minimum cross-system model without requiring one application to solve every use case immediately.</p>
+<h3 id="91-cataloged-items-in-sierra">9.1 Cataloged Items in Sierra</h3>
+<p>For cataloged books and other item-level materials, the digitization-unit barcode should be recorded in the applicable Sierra item record when Sierra is the authoritative physical-item system.</p>
+<p>The project inventory should also include:</p>
+<ul>
+<li>Sierra bibliographic identifier;</li>
+<li>item record identifier, where available;</li>
+<li>call number;</li>
+<li>division;</li>
+<li>title; and</li>
+<li>current location.</li>
+</ul>
+<h3 id="92-archival-containers-in-archivesspace">9.2 Archival Containers in ArchivesSpace</h3>
+<p>ArchivesSpace should be used for top-container barcodes where boxes, reels, trays, portfolios, or similar containers are represented as top containers.</p>
+<p>A local decision is still required for recording folder-level or item-level digitization barcodes when those units do not correspond to ArchivesSpace top containers.</p>
+<p>Possible implementation options for review include:</p>
+<ul>
+<li>a local structured field;</li>
+<li>a user-defined field;</li>
+<li>an external identifier;</li>
+<li>a linked digital-preparation record;</li>
+<li>a controlled project registry keyed to the ArchivesSpace component URI; or</li>
+<li>a future collections-management integration.</li>
+</ul>
+<h3 id="93-spec">9.3 SPEC</h3>
+<p>Because SPEC is expected to be deprecated, new barcode policy should not depend on SPEC as the sole authoritative system.</p>
+<p>Existing SPEC identifiers and records may be retained and crosswalked where needed, but the future workflow should remain functional without new SPEC development.</p>
+<h3 id="94-interim-barcode-registry">9.4 Interim Barcode Registry</h3>
+<p>Until a durable institution-wide system is selected, the Library should maintain a controlled barcode registry for image digitization.</p>
+<p>The registry may initially be a governed table, database, or standardized project spreadsheet, provided that:</p>
+<ul>
+<li>barcode issuance is controlled;</li>
+<li>duplicate values are prevented;</li>
+<li>changes are auditable;</li>
+<li>parent-child relationships are retained;</li>
+<li>system record identifiers are included; and</li>
+<li>the registry can export the vendor inventory format.</li>
+</ul>
+<p>The project inventory sent to the vendor is a production manifest, not necessarily the permanent system of record.</p>
+<h2 id="10-minimum-barcode-metadata">10. Minimum Barcode Metadata</h2>
+<p>Each barcode record should include the following fields.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Field</th>
+					<th>Requirement</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>barcode</code></td>
+					<td>Required</td>
+					<td>Unique 14-digit Library barcode</td>
+			</tr>
+			<tr>
+					<td><code>barcodeRole</code></td>
+					<td>Required</td>
+					<td><code>container</code> or <code>digitizationUnit</code></td>
+			</tr>
+			<tr>
+					<td><code>parentBarcode</code></td>
+					<td>Conditional</td>
+					<td>Barcode of the containing box, tray, portfolio, or other parent</td>
+			</tr>
+			<tr>
+					<td><code>divisionCode</code></td>
+					<td>Required</td>
+					<td>Responsible Library division</td>
+			</tr>
+			<tr>
+					<td><code>collectionId</code></td>
+					<td>When available</td>
+					<td>Collection-level identifier</td>
+			</tr>
+			<tr>
+					<td><code>bnumber</code></td>
+					<td>When applicable</td>
+					<td>Sierra bibliographic identifier</td>
+			</tr>
+			<tr>
+					<td><code>classmark</code></td>
+					<td>When applicable</td>
+					<td>Call number or classmark</td>
+			</tr>
+			<tr>
+					<td><code>aspaceComponentId</code></td>
+					<td>When applicable</td>
+					<td>ArchivesSpace component or record identifier</td>
+			</tr>
+			<tr>
+					<td><code>title</code></td>
+					<td>Required</td>
+					<td>Human-readable title or unit description</td>
+			</tr>
+			<tr>
+					<td><code>containerType</code></td>
+					<td>Required for containers</td>
+					<td>Box, tray, portfolio, reel box, etc.</td>
+			</tr>
+			<tr>
+					<td><code>unitType</code></td>
+					<td>Required for digitization units</td>
+					<td>Volume, folder, print, reel, negative, plate, fiche, etc.</td>
+			</tr>
+			<tr>
+					<td><code>boxNumber</code></td>
+					<td>When applicable</td>
+					<td>Existing collection box number</td>
+			</tr>
+			<tr>
+					<td><code>folderNumber</code></td>
+					<td>When applicable</td>
+					<td>Existing folder number</td>
+			</tr>
+			<tr>
+					<td><code>location</code></td>
+					<td>Required</td>
+					<td>Current physical location</td>
+			</tr>
+			<tr>
+					<td><code>systemOfRecord</code></td>
+					<td>Required</td>
+					<td>Sierra, ArchivesSpace, SPEC, barcode registry, or approved alternative</td>
+			</tr>
+			<tr>
+					<td><code>systemRecordId</code></td>
+					<td>When available</td>
+					<td>Persistent system identifier or URI</td>
+			</tr>
+			<tr>
+					<td><code>projectCode</code></td>
+					<td>Required for project work</td>
+					<td>Digitization project identifier</td>
+			</tr>
+			<tr>
+					<td><code>barcodeStatus</code></td>
+					<td>Required</td>
+					<td>Active, replaced, missing, damaged, cancelled, or other controlled status</td>
+			</tr>
+			<tr>
+					<td><code>dateAssigned</code></td>
+					<td>Required</td>
+					<td>Date barcode was assigned</td>
+			</tr>
+			<tr>
+					<td><code>assignedBy</code></td>
+					<td>Required</td>
+					<td>Staff member or unit responsible</td>
+			</tr>
+			<tr>
+					<td><code>notes</code></td>
+					<td>Optional</td>
+					<td>Exceptions, restrictions, condition, or handling notes</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="11-vendor-inventory-requirements">11. Vendor Inventory Requirements</h2>
+<p>Before shipment, the Library must provide the vendor with an inventory that:</p>
+<ul>
+<li>includes every digitization-unit barcode;</li>
+<li>identifies parent container barcodes;</li>
+<li>distinguishes container records from digitization-unit records;</li>
+<li>states the expected digitization granularity;</li>
+<li>records box, folder, volume, reel, or item designations;</li>
+<li>provides titles and collection identifiers;</li>
+<li>identifies known multi-unit physical items;</li>
+<li>flags restricted or fragile materials;</li>
+<li>identifies expected file roles;</li>
+<li>defines expected sequence behavior; and</li>
+<li>includes any approved exceptions.</li>
+</ul>
+<p>The vendor must reconcile the physical shipment against the inventory before production begins.</p>
+<h2 id="12-quality-control-requirements">12. Quality-Control Requirements</h2>
+<h3 id="121-pre-shipment-qc">12.1 Pre-Shipment QC</h3>
+<p>The Library should verify 100% of assigned barcodes for:</p>
+<ul>
+<li>uniqueness;</li>
+<li>correct number length and format;</li>
+<li>scan readability;</li>
+<li>correct placement;</li>
+<li>correct physical association;</li>
+<li>correct barcode role;</li>
+<li>parent-child relationship;</li>
+<li>system or registry entry;</li>
+<li>inventory inclusion;</li>
+<li>consistency between human-readable and encoded values; and</li>
+<li>absence of duplicate or conflicting active barcodes.</li>
+</ul>
+<h3 id="122-vendor-intake-qc">12.2 Vendor Intake QC</h3>
+<p>At intake, the vendor should verify:</p>
+<ul>
+<li>every expected container was received;</li>
+<li>every expected digitization unit was received;</li>
+<li>each barcode scans successfully;</li>
+<li>barcode values match the inventory;</li>
+<li>parent-child relationships match the physical packing;</li>
+<li>no unit contains an unexpected duplicate barcode;</li>
+<li>no expected barcode is missing; and</li>
+<li>any discrepancy is reported before production.</li>
+</ul>
+<h3 id="123-production-qc">12.3 Production QC</h3>
+<p>The vendor should validate that:</p>
+<ul>
+<li>filenames begin with the digitization-unit barcode;</li>
+<li>the barcode in each JSON sidecar matches the source unit;</li>
+<li>file roles and naming structures are correct;</li>
+<li>unit boundaries have not caused sequence resets;</li>
+<li>no container barcode was mistakenly used in place of a child digitization barcode;</li>
+<li>no temporary vendor identifier appears as the Library barcode; and</li>
+<li>all assets remain associated with the correct physical unit.</li>
+</ul>
+<h3 id="124-return-qc">12.4 Return QC</h3>
+<p>Upon return, the Library should confirm:</p>
+<ul>
+<li>all containers and digitization units were returned;</li>
+<li>the physical hierarchy matches the outgoing inventory;</li>
+<li>barcode labels remain present and legible;</li>
+<li>no barcodes were altered or replaced without authorization;</li>
+<li>rehousing or unit changes are documented;</li>
+<li>the digital packages correspond to the expected digitization-unit barcodes; and</li>
+<li>all exceptions and rework items are resolved or tracked.</li>
+</ul>
+<h2 id="13-exceptions">13. Exceptions</h2>
+<p>Any departure from these recommendations should be documented in the project scope or barcode plan.</p>
+<p>Common exceptions may include:</p>
+<ul>
+<li>extremely high-volume slide or aperture-card collections;</li>
+<li>unprocessed collections lacking stable folder structure;</li>
+<li>materials that cannot safely receive or retain an enclosure;</li>
+<li>objects with pre-existing identifiers that cannot be replaced;</li>
+<li>externally owned or borrowed materials;</li>
+<li>items requiring conservation before labeling;</li>
+<li>one physical carrier containing unusually complex intellectual structure; and</li>
+<li>projects where repository constraints require a different digital-object level.</li>
+</ul>
+<p>An exception record should state:</p>
+<ul>
+<li>the affected collection or project;</li>
+<li>the standard rule being modified;</li>
+<li>the approved alternative;</li>
+<li>the responsible approver;</li>
+<li>the metadata and packaging implications; and</li>
+<li>the duration of the exception.</li>
+</ul>
+<h2 id="14-roles-and-responsibilities">14. Roles and Responsibilities</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Role</th>
+					<th>Proposed responsibility</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Curatorial or collection owner</td>
+					<td>Confirms intellectual units, titles, restrictions, and access expectations</td>
+			</tr>
+			<tr>
+					<td>Archival processing or cataloging</td>
+					<td>Confirms descriptive hierarchy and system-record relationships</td>
+			</tr>
+			<tr>
+					<td>Collection Management</td>
+					<td>Approves housing, physical handling, and label placement</td>
+			</tr>
+			<tr>
+					<td>Conservation</td>
+					<td>Approves label stock, adhesives, direct application, and fragile-material procedures</td>
+			</tr>
+			<tr>
+					<td>Digitization program</td>
+					<td>Defines digitization units, file/package implications, inventory requirements, and vendor instructions</td>
+			</tr>
+			<tr>
+					<td>Barcode assignment staff</td>
+					<td>Issues, applies, scans, and records barcodes</td>
+			</tr>
+			<tr>
+					<td>Metadata or systems staff</td>
+					<td>Defines registry fields, system mappings, validation rules, and exports</td>
+			</tr>
+			<tr>
+					<td>Vendor</td>
+					<td>Reconciles barcodes at intake and preserves identity throughout production</td>
+			</tr>
+			<tr>
+					<td>Repository or DAMS staff</td>
+					<td>Confirms barcode use supports ingest and digital-object relationships</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="15-required-project-level-barcode-plan">15. Required Project-Level Barcode Plan</h2>
+<p>Every image-digitization project should complete a barcode plan before large-scale preparation begins.</p>
+<p>The plan should identify:</p>
+<ol>
+<li>the physical material types included;</li>
+<li>the proposed container level;</li>
+<li>the proposed digitization-unit level;</li>
+<li>whether any child barcodes are required;</li>
+<li>where each barcode role will be recorded;</li>
+<li>who will issue, apply, and quality-check the labels;</li>
+<li>the approved label stock and placement;</li>
+<li>any material requiring Conservation review;</li>
+<li>the expected relationship between barcodes and digital packages;</li>
+<li>treatment of internal intellectual units;</li>
+<li>expected shipment and return reconciliation;</li>
+<li>known exceptions; and</li>
+<li>the pilot sample used to test the approach.</li>
+</ol>
+<h2 id="16-pilot-and-approval-process">16. Pilot and Approval Process</h2>
+<p>Before barcoding an entire collection, the project team should test the proposed model on a representative sample.</p>
+<p>The pilot should include, where applicable:</p>
+<ul>
+<li>one simple item, such as a bound volume;</li>
+<li>one foldered archival box;</li>
+<li>one photographic group;</li>
+<li>one negative or transparency format;</li>
+<li>one multi-unit microfilm reel;</li>
+<li>one oversized or fragile object; and</li>
+<li>one mixed-format container.</li>
+</ul>
+<p>The pilot should test:</p>
+<ul>
+<li>barcode level;</li>
+<li>label placement;</li>
+<li>scan readability;</li>
+<li>inventory structure;</li>
+<li>parent-child relationships;</li>
+<li>vendor intake;</li>
+<li>filename and BagIt generation;</li>
+<li>JSON-sidecar mapping;</li>
+<li>QC reporting; and</li>
+<li>physical return reconciliation.</li>
+</ul>
+<p>The barcode plan should be revised after the pilot and approved before full production.</p>
+<h2 id="17-implementation-roadmap">17. Implementation Roadmap</h2>
+<h3 id="phase-1-policy-review">Phase 1: Policy Review</h3>
+<p>Circulate this draft to:</p>
+<ul>
+<li>Collection Management;</li>
+<li>Conservation;</li>
+<li>Archival  Processing;</li>
+<li>Cataloging;</li>
+<li>Sierra stakeholders;</li>
+<li>ArchivesSpace stakeholders;</li>
+<li>Digital Imaging Services;</li>
+<li>Metadata Services Unit;</li>
+<li>curatorial divisions; and</li>
+<li>Procurement or vendor-management staff.</li>
+</ul>
+<p>The review should focus on gaps, unacceptable risks, system constraints, and format-specific exceptions.</p>
+<h3 id="phase-2-establish-barcode-governance">Phase 2: Establish Barcode Governance</h3>
+<p>Define:</p>
+<ul>
+<li>who controls barcode issuance;</li>
+<li>which barcode ranges are approved;</li>
+<li>whether container and digitization-unit barcodes use the same number pool;</li>
+<li>how duplicate prevention is enforced;</li>
+<li>how replacements are handled;</li>
+<li>how cancelled numbers are retained; and</li>
+<li>who owns the interim registry.</li>
+</ul>
+<h3 id="phase-3-define-system-mappings">Phase 3: Define System Mappings</h3>
+<p>Document how the minimum barcode metadata maps to:</p>
+<ul>
+<li>Sierra;</li>
+<li>ArchivesSpace;</li>
+<li>SPEC during transition;</li>
+<li>the interim barcode registry;</li>
+<li>the vendor inventory spreadsheet;</li>
+<li>the JSON sidecar; and</li>
+<li>the preservation or access repository.</li>
+</ul>
+<h3 id="phase-4-approve-physical-application-standards">Phase 4: Approve Physical Application Standards</h3>
+<p>Conservation and Collection Management should approve:</p>
+<ul>
+<li>label stock;</li>
+<li>adhesives;</li>
+<li>label dimensions;</li>
+<li>print quality;</li>
+<li>placement zones;</li>
+<li>direct-application exceptions;</li>
+<li>barcode-control sheets; and</li>
+<li>rehousing requirements.</li>
+</ul>
+<h3 id="phase-5-pilot">Phase 5: Pilot</h3>
+<p>Select one or more representative projects and test the full workflow from barcode assignment through digital delivery and physical return.</p>
+<h3 id="phase-6-publish-operational-instructions">Phase 6: Publish Operational Instructions</h3>
+<p>Convert the approved policy into:</p>
+<ul>
+<li>a concise staff decision tree;</li>
+<li>illustrated placement instructions;</li>
+<li>a barcode-registry data dictionary;</li>
+<li>a pre-shipment QC checklist;</li>
+<li>a vendor intake checklist; and</li>
+<li>project-specific barcode-plan templates.</li>
+</ul>
+<h2 id="18-questions-requiring-institutional-decision">18. Questions Requiring Institutional Decision</h2>
+<p>The following issues should be resolved during stakeholder review.</p>
+<ol>
+<li><strong>System of record:</strong> Where should folder-level and item-level digitization barcodes be permanently recorded when Sierra and ArchivesSpace do not provide a natural item record?</li>
+<li><strong>Barcode issuance:</strong> Which team owns the barcode number pool and prevents duplication?</li>
+<li><strong>Folder-level policy:</strong> Should folder-level digitization barcoding be the default for all fully digitized archival boxes, or only for vendor projects?</li>
+<li><strong>Pre-existing barcodes:</strong> When may an existing container or item barcode be reused as the digitization-unit barcode?</li>
+<li><strong>ArchivesSpace representation:</strong> Should folder-level barcode relationships be stored in ArchivesSpace, in an external registry, or both?</li>
+<li><strong>Repository object level:</strong> Does the future DAMS or repository expect one object per barcode, and can it support parent-child relationships?</li>
+<li><strong>High-volume exceptions:</strong> What is the threshold at which individual barcoding becomes impractical for slides, aperture cards, photographs, or negatives?</li>
+<li><strong>Label application:</strong> Which surfaces and label materials are approved by Conservation?</li>
+<li><strong>Staffing:</strong> Which staff group will barcode, scan, record, and quality-check materials before shipment?</li>
+<li><strong>Backlog:</strong> Will this policy apply only to new vendor projects or also guide retrospective normalization?</li>
+<li><strong>Barcode control sheets:</strong> Should lead sheets be mandatory for every digitization unit or only for selected formats?</li>
+<li><strong>Vendor discovery:</strong> What should happen when a vendor finds previously unidentified intellectual units or physical subdivisions?</li>
+<li><strong>Mixed-format routing:</strong> When should one folder be split into multiple digitization units because its contents require different capture workflows?</li>
+<li><strong>Restricted content:</strong> Can one barcode package contain both restricted and unrestricted content, or must those units be separated?</li>
+<li><strong>Replacement policy:</strong> How should missing, damaged, or duplicated barcode labels be replaced and documented?</li>
+</ol>
+<h2 id="19-proposed-default-rules-for-initial-adoption">19. Proposed Default Rules for Initial Adoption</h2>
+<p>Pending broader review, the following rules are recommended as an initial institutional baseline:</p>
+<ol>
+<li>Use one digitization-unit barcode per physical volume, reel, folder, individually enclosed photograph, negative, plate, map, or comparable stable unit.</li>
+<li>Use a separate container barcode for boxes, trays, portfolios, and other housings that contain multiple digitization units.</li>
+<li>For manuscript and correspondence collections, barcode the box and each folder selected for digitization; do not barcode every sheet.</li>
+<li>Use the digitization-unit barcode—not the parent container barcode—for filenames, JSON sidecars, BagIt roots, QC, and ingest.</li>
+<li>Maintain parent-child relationships in the barcode registry and vendor inventory.</li>
+<li>Apply labels to housings rather than directly to original materials.</li>
+<li>Do not create separate barcodes for rectos, versos, pages, frames, access derivatives, or negative/positive digital tracks.</li>
+<li>Retain one barcode for a multi-unit physical carrier such as a microfilm reel; express internal units through metadata and subdirectories.</li>
+<li>Require all authoritative barcodes to be assigned and recorded by the Library before shipment.</li>
+<li>Pilot and document exceptions before large-scale production.</li>
+</ol>
+<h2 id="20-recommended-supporting-documents">20. Recommended Supporting Documents</h2>
+<p>This policy should ultimately be accompanied by:</p>
+<ul>
+<li><strong>Barcode Decision Tree:</strong> One-page staff guide for choosing the barcode level.</li>
+<li><strong>Barcode Placement Guide:</strong> Illustrated format-by-format placement instructions.</li>
+<li><strong>Barcode Registry Data Dictionary:</strong> Required fields, controlled values, and validation rules.</li>
+<li><strong>Project Barcode Plan Template:</strong> Project-level decisions, responsibilities, and exceptions.</li>
+<li><strong>Pre-Shipment Barcode QC Checklist:</strong> 100% validation steps before packing.</li>
+<li><strong>Vendor Barcode Intake Checklist:</strong> Reconciliation and discrepancy-reporting requirements.</li>
+<li><strong>Replacement and Exception Procedure:</strong> Rules for damaged, missing, duplicate, or superseded labels.</li>
+<li><strong>System Mapping Appendix:</strong> Sierra, ArchivesSpace, SPEC, registry, inventory, and repository crosswalks.</li>
 </ul>
 
 </div>

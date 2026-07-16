@@ -30,7 +30,7 @@
 
 	<meta itemprop="name" content="JSON Sidecar Schema & Automated Validation">
 	<meta itemprop="description" content="Technical reference, property definitions, and command-line validation workflows for image-based digitization JSON sidecars.">
-	<meta itemprop="wordCount" content="1302">
+	<meta itemprop="wordCount" content="1804">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="JSON Sidecar Schema & Automated Validation">
 	<meta name="twitter:description" content="Technical reference, property definitions, and command-line validation workflows for image-based digitization JSON sidecars.">
@@ -219,6 +219,10 @@
   <input type="checkbox" id="m-digital-imaging-resourcesdocsvendor_digitizationdigital_asset_specifications-check"/>
   <label for="m-digital-imaging-resourcesdocsvendor_digitizationdigital_asset_specifications-check"><a href="/digital-imaging-resources/docs/vendor_digitization/digital_asset_specifications/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocsvendor_digitizationdigital_asset_specifications"><span class="">Digital Asset Specifications</span></a></label>
   
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-digital-imaging-resourcesdocsvendor_digitizationbarcode-assignment-recommendations-li">
+  <input type="checkbox" id="m-digital-imaging-resourcesdocsvendor_digitizationbarcode-assignment-recommendations-check"/>
+  <label for="m-digital-imaging-resourcesdocsvendor_digitizationbarcode-assignment-recommendations-check"><a href="/digital-imaging-resources/docs/vendor_digitization/barcode-assignment-recommendations/" title="Barcode Assignment and Application Recommendations" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-digital-imaging-resourcesdocsvendor_digitizationbarcode-assignment-recommendations"><span class="">Barcode Recommendations</span></a></label>
+  
 </li>
   </ul>
 </li>
@@ -255,7 +259,8 @@
             <li><a href="#invalid-examples">Invalid examples</a></li>
           </ul>
         </li>
-        <li><a href="#32-controlled-vocabulary-validation">3.2 Controlled-Vocabulary Validation</a></li>
+        <li><a href="#32-multi-unit-directory-and-sequence-rules">3.2 Multi-Unit Directory and Sequence Rules</a></li>
+        <li><a href="#33-controlled-vocabulary-validation">3.3 Controlled-Vocabulary Validation</a></li>
       </ul>
     </li>
     <li><a href="#4-automated-validation-workflows">4. Automated Validation Workflows</a>
@@ -274,6 +279,7 @@
             <li><a href="#2-validate-a-sidecar">2. Validate a sidecar</a></li>
           </ul>
         </li>
+        <li><a href="#43-validation-beyond-json-schema">4.3 Validation Beyond JSON Schema</a></li>
       </ul>
     </li>
     <li><a href="#5-schema-access-and-download">5. Schema Access and Download</a>
@@ -328,27 +334,27 @@
 <p>Every sidecar must contain the following six top-level objects:</p>
 <ol>
 <li>
-<p><strong><code>administrative</code></strong>
+<p><strong><code>administrative</code></strong><br>
 Grant, contract, or project-level administrative data, such as <code>projectCode</code>.</p>
 </li>
 <li>
-<p><strong><code>asset</code></strong>
+<p><strong><code>asset</code></strong><br>
 File-level tracking data, including the file role (<code>pres</code>, <code>serv</code>, <code>access</code>, or <code>ocr</code>), schema version, and exact <code>referenceFilename</code>.</p>
 </li>
 <li>
-<p><strong><code>identifiers</code></strong>
+<p><strong><code>identifiers</code></strong><br>
 Bibliographic and archival identifiers mapped from the Library-supplied inventory spreadsheet, such as <code>barcode</code>, <code>divisionCode</code>, <code>bnumber</code>, and <code>classmark</code>.</p>
 </li>
 <li>
-<p><strong><code>source</code></strong>
-Physical-source characteristics observed at capture, including the controlled object type and format pairing and sequential capture data such as <code>sequenceNumber</code>, <code>unitIndex</code>, <code>side</code>, and <code>sequenceLabel</code>.</p>
+<p><strong><code>source</code></strong><br>
+Physical-source characteristics observed at capture, including the controlled object type and format pairing and sequential capture data such as <code>sequenceNumber</code>, <code>unitIndex</code>, <code>unitTitle</code>, <code>side</code>, and <code>sequenceLabel</code>.</p>
 </li>
 <li>
-<p><strong><code>digitizationProcess</code></strong>
+<p><strong><code>digitizationProcess</code></strong><br>
 Technical metadata describing the capture device, lens, capture software, equipment identifiers, and calibration targets.</p>
 </li>
 <li>
-<p><strong><code>digitizer</code></strong>
+<p><strong><code>digitizer</code></strong><br>
 Administrative information identifying the operator and vendor organization responsible for capture.</p>
 </li>
 </ol>
@@ -356,43 +362,39 @@ Administrative information identifying the operator and vendor organization resp
 <h2 id="3-strict-naming-and-controlled-vocabularies">3. Strict Naming and Controlled Vocabularies</h2>
 <h3 id="31-filename-pattern">3.1 Filename Pattern</h3>
 <p>To support reliable automated ingest and validation, the <code>referenceFilename</code> property in the <code>asset</code> object must follow one of the Library’s approved naming structures.</p>
-<p>The following regular expression supports the standard, dual-track negative, and split multi-unit workflows:</p>
-<pre tabindex="0"><code class="language-regex" data-lang="regex">^33433\d{9}_(?:(?:negative|positive)_(?:[rv]|\d{5})|u\d{3}_\d{5}|[rv]|\d{5})_(?:pres|serv|access|ocr)\.[a-z0-9]+$
-</code></pre><p>This pattern permits the following structures:</p>
+<p>The base filename pattern is:</p>
+<pre tabindex="0"><code class="language-regex" data-lang="regex">^33433\d{9}_(?:(?:negative|positive)_)?(?:[rv]|\d{5})_(?:pres|serv|access|ocr)\.[a-z0-9]+$
+</code></pre><p>The pattern supports the following two filename structures:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[barcode]_[side-or-sequence]_[role].[extension]
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">[barcode]_[negative-or-positive]_[side-or-sequence]_[role].[extension]
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">[barcode]_u[unit]_[sequence]_[role].[extension]
-</span></span></code></pre></div><h4 id="pattern-components">Pattern components</h4>
+</span></span></code></pre></div><p>Multi-unit identifiers such as <code>u001</code> and <code>u002</code> are <strong>not included in filenames</strong>. Multi-unit membership is represented by the asset’s enclosing directory and by the <code>source.sequence.unitIndex</code> property in its JSON sidecar.</p>
+<h4 id="pattern-components">Pattern components</h4>
 <ul>
 <li>
-<p><strong>Barcode — <code>33433\d{9}</code></strong>
+<p><strong>Barcode — <code>33433\d{9}</code></strong><br>
 A 14-digit NYPL barcode beginning with <code>33433</code>.</p>
 </li>
 <li>
-<p><strong>Standard side or sequence — <code>[rv]|\d{5}</code></strong>
+<p><strong>Negative-source component — <code>negative|positive</code></strong><br>
+Used only for parallel files derived from a physical film or glass negative:</p>
+<ul>
+<li><code>negative</code> identifies the faithful, non-inverted representation of the source negative;</li>
+<li><code>positive</code> identifies the digitally inverted positive representation derived from that negative.</li>
+</ul>
+<p>These components do not describe all materials that happen to display as positive images. They must not be used for photographic prints, slides, transparencies, reflective materials, or other natively positive source objects.</p>
+</li>
+<li>
+<p><strong>Side or sequence — <code>[rv]|\d{5}</code></strong><br>
 Either:</p>
 <ul>
 <li><code>r</code> for recto;</li>
 <li><code>v</code> for verso; or</li>
-<li>a five-digit, zero-padded sequence number such as <code>00001</code>.</li>
+<li>a five-digit, zero-padded sequence number such as <code>00001</code> or <code>00981</code>.</li>
 </ul>
 </li>
 <li>
-<p><strong>Negative component — <code>negative|positive</code></strong>
-Used only for dual-track film- or glass-negative workflows:</p>
-<ul>
-<li><code>negative</code> identifies the non-inverted capture;</li>
-<li><code>positive</code> identifies the digitally inverted representation.</li>
-</ul>
-</li>
-<li>
-<p><strong>Unit index — <code>u\d{3}</code></strong>
-Used only when a microfilm reel or another barcode-level object is divided into distinct intellectual units, such as <code>u001</code> or <code>u002</code>.</p>
-</li>
-<li>
-<p><strong>File role — <code>pres|serv|access|ocr</code></strong>
+<p><strong>File role — <code>pres|serv|access|ocr</code></strong><br>
 One of the four approved delivery roles:</p>
 <ul>
 <li><code>pres</code>;</li>
@@ -402,7 +404,7 @@ One of the four approved delivery roles:</p>
 </ul>
 </li>
 <li>
-<p><strong>Extension — <code>[a-z0-9]+</code></strong>
+<p><strong>Extension — <code>[a-z0-9]+</code></strong><br>
 A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.jpg</code>, <code>.pdf</code>, <code>.xml</code>, or <code>.txt</code>.</p>
 </li>
 </ul>
@@ -412,19 +414,72 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 </span></span><span class="line"><span class="cl">33433123456789_00001_serv.tif
 </span></span><span class="line"><span class="cl">33433987654321_negative_00001_pres.tif
 </span></span><span class="line"><span class="cl">33433987654321_positive_00001_access.jpg
-</span></span><span class="line"><span class="cl">33433555554444_u001_00001_ocr.xml
+</span></span><span class="line"><span class="cl">33433555554444_00981_ocr.xml
 </span></span></code></pre></div><h4 id="invalid-examples">Invalid examples</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433123456789_R_pres.tif
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433123456789_positive_r_pres.tif
+</span></span><span class="line"><span class="cl">33433123456789_R_pres.tif
 </span></span><span class="line"><span class="cl">33433123456789_1_pres.tif
+</span></span><span class="line"><span class="cl">33433555554444_u001_00001_ocr.xml
 </span></span><span class="line"><span class="cl">33433987654321_negative_u001_00001_pres.tif
 </span></span><span class="line"><span class="cl">nypl_33433123456789_00001_pres.tif
 </span></span><span class="line"><span class="cl">33433123456789_00001_master.tif
 </span></span><span class="line"><span class="cl">33433123456789_00001_pres.TIF
 </span></span></code></pre></div><p>The filename pattern must be encoded with doubled backslashes when stored as a JSON string inside the schema:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;^33433\\d{9}_(?:(?:negative|positive)_(?:[rv]|\\d{5})|u\\d{3}_\\d{5}|[rv]|\\d{5})_(?:pres|serv|access|ocr)\\.[a-z0-9]+$&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;pattern&#34;</span><span class="p">:</span> <span class="s2">&#34;^33433\\d{9}_(?:(?:negative|positive)_)?(?:[rv]|\\d{5})_(?:pres|serv|access|ocr)\\.[a-z0-9]+$&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="32-controlled-vocabulary-validation">3.2 Controlled-Vocabulary Validation</h3>
+</span></span></code></pre></div><p>The schema applies additional conditional validation based on <code>source.object.format</code>:</p>
+<ul>
+<li>When the physical source is a black-and-white negative, color negative, or glass plate negative, <code>referenceFilename</code> must include either <code>negative</code> or <code>positive</code>.</li>
+<li>For all other source formats, <code>referenceFilename</code> must not include either component.</li>
+<li>The suffix in <code>referenceFilename</code> must agree with <code>asset.fileRole</code>. For example, an asset with <code>&quot;fileRole&quot;: &quot;pres&quot;</code> must have a filename ending in <code>_pres</code> followed by its extension.</li>
+</ul>
+<h3 id="32-multi-unit-directory-and-sequence-rules">3.2 Multi-Unit Directory and Sequence Rules</h3>
+<p>When one physical item contains multiple distinct intellectual units, the Library still requires <strong>one BagIt bag for the complete physical object</strong>. The bag root is named with the physical item’s barcode.</p>
+<p>Each intellectual unit is represented by a zero-padded unit subdirectory inside the bag’s <code>data/</code> directory:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433555554444/
+</span></span><span class="line"><span class="cl">└── data/
+</span></span><span class="line"><span class="cl">    ├── u001/
+</span></span><span class="line"><span class="cl">    └── u002/
+</span></span></code></pre></div><p>The unit identifier is recorded in two places:</p>
+<ol>
+<li>the enclosing directory, such as <code>data/u002/</code>; and</li>
+<li>the JSON sidecar property <code>source.sequence.unitIndex</code>, where the integer <code>2</code> corresponds to <code>u002</code>.</li>
+</ol>
+<p>A human-readable intellectual-unit title is recorded in <code>source.sequence.unitTitle</code>.</p>
+<p>The unit identifier must not appear in <code>referenceFilename</code>.</p>
+<p>Sequence numbering must remain absolute and uninterrupted across the entire physical object. It must not restart when a new intellectual unit begins.</p>
+<p>For example, when unit 1 contains frames 1 through 980 and unit 2 begins at frame 981, the files are structured as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">33433555554444/
+</span></span><span class="line"><span class="cl">└── data/
+</span></span><span class="line"><span class="cl">    ├── u001/
+</span></span><span class="line"><span class="cl">    │   ├── 33433555554444_00001_pres.tif
+</span></span><span class="line"><span class="cl">    │   └── 33433555554444_00980_pres.tif
+</span></span><span class="line"><span class="cl">    └── u002/
+</span></span><span class="line"><span class="cl">        ├── 33433555554444_00981_pres.tif
+</span></span><span class="line"><span class="cl">        └── 33433555554444_01650_pres.tif
+</span></span></code></pre></div><p>The JSON sidecar for the first frame in <code>u002</code> would therefore include:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;asset&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;fileRole&#34;</span><span class="p">:</span> <span class="s2">&#34;pres&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;schemaVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;referenceFilename&#34;</span><span class="p">:</span> <span class="s2">&#34;33433555554444_00981_pres.tif&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;object&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;microform&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;format&#34;</span><span class="p">:</span> <span class="s2">&#34;35mm roll microfilm&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;sequence&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;unitIndex&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;unitTitle&#34;</span><span class="p">:</span> <span class="s2">&#34;Pamphlet 2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;sequenceNumber&#34;</span><span class="p">:</span> <span class="mi">981</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;sequenceLabel&#34;</span><span class="p">:</span> <span class="s2">&#34;Frame 981&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The integer <code>sequenceNumber</code> is stored as <code>981</code> in JSON. Its filename representation is zero-padded to five digits as <code>00981</code>.</p>
+<h3 id="33-controlled-vocabulary-validation">3.3 Controlled-Vocabulary Validation</h3>
 <p>The schema uses conditional JSON Schema logic, including <code>oneOf</code>, to enforce approved pairings between <code>source.object.type</code> and <code>source.object.format</code>.</p>
 <p>For example, when a sidecar declares:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
@@ -450,7 +505,7 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 </span></span></span><span class="line"><span class="cl">  --spec<span class="o">=</span>draft7 <span class="se">\
 </span></span></span><span class="line"><span class="cl">  --all-errors <span class="se">\
 </span></span></span><span class="line"><span class="cl">  -s ./digitized_image_schema.json <span class="se">\
-</span></span></span><span class="line"><span class="cl">  -d /path/to/delivery/33433087654321_00001_pres.json
+</span></span></span><span class="line"><span class="cl">  -d /path/to/delivery/33433123456789_r_pres.json
 </span></span></code></pre></div><h4 id="4-validate-an-entire-directory">4. Validate an entire directory</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ajv validate <span class="se">\
 </span></span></span><span class="line"><span class="cl">  --spec<span class="o">=</span>draft7 <span class="se">\
@@ -465,7 +520,9 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 <li>a controlled-vocabulary mismatch;</li>
 <li>an incorrect data type;</li>
 <li>a malformed filename;</li>
-<li>a filename that does not match <code>referenceFilename</code>.</li>
+<li>a filename that does not match <code>referenceFilename</code>;</li>
+<li>a mismatch between <code>asset.fileRole</code> and the filename suffix;</li>
+<li>an invalid use or omission of the <code>negative</code> or <code>positive</code> filename component.</li>
 </ul>
 <p>For more readable output, add:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">--errors<span class="o">=</span>text
@@ -500,7 +557,7 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;schemas/digitized_image_schema.json&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">SIDECAR_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&#34;33433087654321_00001_pres.json&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">SIDECAR_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&#34;33433123456789_r_pres.json&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">load_remote_json</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -623,6 +680,18 @@ A lowercase file extension such as <code>.tif</code>, <code>.jp2</code>, <code>.
 <li><code>2</code>: the schema or sidecar could not be loaded or parsed.</li>
 </ul>
 <p>For high-volume validation, vendors should download the schema once, instantiate one <code>Draft7Validator</code>, and reuse that validator for every sidecar in the batch.</p>
+<h3 id="43-validation-beyond-json-schema">4.3 Validation Beyond JSON Schema</h3>
+<p>JSON Schema validation confirms that an individual sidecar follows the required structure and controlled rules. It does not inspect the filesystem or compare values across multiple files.</p>
+<p>The vendor’s delivery-validation workflow must therefore perform additional checks that cannot be enforced by the Draft 7 schema alone, including:</p>
+<ul>
+<li>confirming that the barcode at the beginning of <code>asset.referenceFilename</code> matches <code>identifiers.barcode</code>;</li>
+<li>confirming that the asset file and its JSON sidecar have matching basenames;</li>
+<li>confirming that a sidecar with <code>unitIndex: 2</code> resides in <code>data/u002/</code>;</li>
+<li>confirming that sequence numbers remain continuous across unit-directory boundaries;</li>
+<li>confirming that sequence numbering does not restart within each unit;</li>
+<li>confirming that every file listed in the BagIt payload is included in the applicable checksum manifest;</li>
+<li>confirming that no asset is duplicated or omitted when files are grouped into unit directories.</li>
+</ul>
 <hr>
 <h2 id="5-schema-access-and-download">5. Schema Access and Download</h2>
 <p>The authoritative schema is maintained as an independent JSON artifact rather than duplicated within this documentation.</p>
