@@ -203,7 +203,7 @@ To preserve both the physical reality of a transmissive artifact and its human-r
 | Compression | Lossless ZIP (Deflate) | Lossless ZIP (Deflate) | Lossless ZIP (Deflate) | Lossy JPEG |
 | Bit depth | 16-bit | 16-bit | 8-bit | 8-bit |
 | Color mode | Grayscale | Grayscale | Grayscale | Grayscale |
-| Color Profile | Gray Gamma 2.2 | Grey Gamma 2.2 | Grey Gamma 2.2 | Grey Gamma 2.2 |
+| Color Profile | Grey Gamma 2.2 | Grey Gamma 2.2 | Grey Gamma 2.2 | Grey Gamma 2.2 |
 | Resolution | Project-specific based on film format | Match negative preservation | Match or resize from preservation files | Match or resize from service files |
 | Cropping | Full image area; rebate/edge markings retained if specified; no loss of image content | Cropped/oriented as specified | **Negative Service:** Matches Neg Master crop.<br><br>**Positive Service:** Matches Pos Master crop. | **Negative Access:** Matches Neg Service crop.<br><br>**Positive Access:** Matches Pos Service crop. |
 | Processing | No inversion; no clipping; no undocumented tonal enhancement | Inverted and adjusted for visual clarity; no highlight/shadow clipping | **Negative Service:** Non-inverted; normalized contrast.<br><br>**Positive Service:** Inverted; approved visual optimization. | Derived directly from the corresponding Negative and Positive Service files |
@@ -265,7 +265,7 @@ The vendor shall use handling and capture methods appropriate for fragile glass 
 - Minimal exposure time
 - Appropriate custom supports for cracked or structurally compromised glass
 - No direct physical pressure placed on emulsion surfaces (e.g., placing glass plates emulsion-side up on a low-iron, anti-reflective lower glass shelf)
-- Meticulous handling of flaking, lifting, or lifting emulsions
+- Meticulous handling of flaking or lifting emulsions
 - Procedures for broken or cracked plates
 - Immediate reporting of unstable or unsafe items
 - Project-specific approval before attempting capture of damaged items.
@@ -353,7 +353,7 @@ All files delivered under this agreement shall follow a consistent, underscore-d
    `[barcode]_[side-or-sequence]_[role].[extension]`
 
 2. **Dual-Track Negative Workflow (Film and Glass Negatives Only):**  
-   `[barcode]_[component]_[side-or-sequence][role].[extension]`
+   `[barcode]_[component]_[side-or-sequence]_[role].[extension]`
 
 3. **Multi-Unit Split Workflow (Only Microfilm Reels containing distinct sub-content):**  
    `[barcode]_u[unit]_[sequence]_[role].[extension]`
