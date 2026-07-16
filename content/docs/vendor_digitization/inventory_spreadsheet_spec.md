@@ -30,13 +30,18 @@ When delivering digitized assets back to the Library, the vendor is responsible 
 
 ---
 
-## 2. Row Granularity and Barcode Requirements
+## 2. Row Granularity: Physical vs. Intellectual Content
 
-The spreadsheet must be populated according to the physical structure of the materials being shipped. **It is critical that each physical item being digitized gets its own dedicated row.**
+The spreadsheet must be populated according to the physical and intellectual structure of the materials being shipped. **Every item scheduled for digitization requires a valid barcode (`barcode`), or the project cannot be initiated.**
 
-* **One Row per Physical Carrier:** Whether an item is a bound volume, folder, reel, glass plate, or individual photograph, it must be logged on its own row. If multiple physical items are associated with a single catalog record (`bnumber`) or finding aid component, create a separate row for each physical item and reuse/repeat that `bnumber` or `classmark` across those rows.
-* **Mandatory Barcodes:** **Every item scheduled for digitization requires a valid barcode (`barcode`), or the project cannot be initiated.** If physical materials lack barcodes or if staff require assistance with barcoding workflows prior to vendor shipment, contact the Vendor Digitization Services team immediately.
-* **Multi-Unit Objects:** Create one row per physical carrier when a single cataloged item spans multiple containers (e.g., a manuscript split across two microfilm reels). Repeat the primary `barcode` across every row associated with the item and increment the `unit_index` field sequentially (`1`, `2`, `3`, etc.).
+### 2.1 Standard Physical Granularity (One Row per Item)
+As a baseline rule, each physical item being digitized (e.g., each bound volume, box, folder, reel, or photograph) must get its own dedicated row. If multiple physical items belong to a single catalog record (`bnumber`) or finding aid component, create a separate row for each physical carrier and reuse/repeat that `bnumber` or `classmark` across those rows.
+
+### 2.2 Intellectual Splitting on a Single Physical Item (Multi-Unit Objects)
+Frequently, a single physical carrier (such as a volume of bound pamphlets or a microfilm reel) contains **multiple distinct intellectual works** that require the vendor to build separate digital packages/sidecars. Because splitting intellectual units impacts vendor pricing and capture workflows, staff must capture known complexities upfront:
+
+* **Known Intellectual Units:** If staff know at the inventory stage that a single physical item must be split into multiple digital packages, create **one row per intellectual unit**. Repeat the physical `barcode` across every row associated with the item, increment the `unit_index` field sequentially (`1`, `2`, `3`, etc.), and provide descriptive titles in `unit_title`.
+* **Unknown/Unscoped Splits:** If staff know a physical carrier contains multiple works but do not yet know the specific unit boundaries or titles, log **one row for the physical item**, leave `unit_index` and `unit_title` blank, and explicitly note the complexity in `physical_condition_notes` (e.g., *"Contains multiple titles; vendor scoping required to determine digital package splits"*).
 
 ---
 
@@ -55,7 +60,7 @@ The spreadsheet must be populated according to the physical structure of the mat
 | I | `item_title` | `source.identifiers.title` | No | String | Item-level bibliographic title |
 | J | `object_type` | `source.object.type` | **Yes** | See controlled list below | Broad material category; use dropdown |
 | K | `object_format` | `source.object.format` | **Yes** | See controlled list below | Must match valid `object_type`; use dropdown |
-| L | `physical_condition_notes` | `source.notes.physicalConditionNotes` | No | Free text | Condition observed at selection |
+| L | `physical_condition_notes` | `source.notes.physicalConditionNotes` | No | Free text | Condition observed at selection / split notes |
 | M | `unit_index` | `unit.unitIndex` | No | Integer ≥ 1 | Multi-unit items only (e.g., `2` for u002) |
 | N | `unit_title` | `unit.title` | No | Free text | Multi-unit items only |
 | O | `[INFO] estimated_page_count` | *(None)* | No | Integer | Logistics & estimates; strip before sidecar creation |
@@ -91,8 +96,8 @@ The template features dependent data validation: selecting an `object_type` in C
 
 ## 5. Worked Examples
 
-### 5.1 Single-Unit Item (Photographic Print)
-For standard single-unit materials, leave the unit index and unit title fields blank.
+### 5.1 Standard Single-Unit Item (Photographic Print)
+For standard materials containing a single intellectual work on a single physical carrier, leave the unit index and unit title fields blank.
 
 | Field | Value |
 |---|---|
@@ -109,13 +114,14 @@ For standard single-unit materials, leave the unit index and unit title fields b
 | `[INFO] estimated_page_count` | `1` |
 | `[INFO] is_oversized` | `FALSE` |
 
-### 5.2 Multi-Unit Item (Split Microfilm Reel)
-When a single cataloged item spans multiple physical carriers, repeat the metadata across rows while incrementing the unit index.
+### 5.2 Single Physical Item Containing Multiple Intellectual Works (Bound Pamphlets)
+When staff know upfront that a single physical volume contains multiple distinct works that must be delivered as separate digital packages, repeat the physical barcode across rows while assigning sequential unit indexes and titles to estimate the scope of each digital package.
 
 | `barcode` | `unit_index` | `unit_title` | `object_type` | `object_format` | `[INFO] estimated_page_count` |
 |---|---|---|---|---|---|
-| `33433555554444` | `1` | `Vol. 1, Jan–Jun 1920` | `microform` | `35mm roll microfilm` | `850` |
-| `33433555554444` | `2` | `Vol. 1, Jul–Dec 1920` | `microform` | `35mm roll microfilm` | `820` |
+| `33433999888777` | `1` | `An Essay on the Harbor of New York (1820)` | `reflective textual and graphic` | `bound volume` | `45` |
+| `33433999888777` | `2` | `Regulations of the Port of New York (1822)` | `reflective textual and graphic` | `bound volume` | `30` |
+| `33433999888777` | `3` | `Report of the Waterfront Commission (1825)` | `reflective textual and graphic` | `bound volume` | `60` |
 
 ---
 
@@ -123,5 +129,6 @@ When a single cataloged item spans multiple physical carriers, repeat the metada
 
 * **Root Filename Generation:** The `barcode` value (Column C) serves as the primary identifier for the physical asset and must form the root prefix for all generated digital files. In the JSON sidecar, the `referenceFilename` attribute must always begin with this string.
 * **Multi-Unit Naming Syntax:** For multi-unit items, the integer in `unit_index` (Column M) dictates the unit segment of the final filename. Vendors must zero-pad this integer to three digits using the `u00N` naming convention (e.g., `unit_index: 2` maps to filename segment `u002`).
+* **Scoping Multi-Unit Packages:** When vendors ingest inventory rows where identical barcodes share multiple sequential `unit_index` numbers, they must configure their capture pipelines to generate distinct structural digital packages and sidecars for each unit segment, rather than combining them into a single asset package.
 * **Internal Field Verification:** Prior to vendor distribution, the Vendor Digitization Services team is responsible for verifying and locking the `schema_version` (Column A) and `project_code` (Column B) fields for the entire batch.
-* **Template Dropdown Enforcement:** The Excel template provided by the Library contains pre-configured dependent data validation rules for columns J (`object_type`) and K (`object_format`). Staff must not overwrite or paste plain text over these cells to prevent validation failures during ingest.
+* **Template Dropdown Enforcement:** The Excel template provided by the Library contains pre-configured dependent data validation rules for columns J (`object_type`) and K (`object_format`). Staff must not overwrite or paste plain text over these cells to prevent validation failures during ingestion.
