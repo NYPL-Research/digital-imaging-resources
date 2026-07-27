@@ -4,7 +4,75 @@ import pandas as pd
 import xlsxwriter
 import re
 import sys
+import os
 import datetime
+import logging
+from bookops_nypl_platform import PlatformSession, PlatformToken
+
+def setup_logging():
+    """Sets up basic logging output."""
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+
+def init_platform_session() -> PlatformSession | None:
+    """
+    Attempts to initialize a Platform API session using environment variables.
+    Returns None if credentials are missing or authentication fails.
+    """
+    client_id = os.getenv("OAUTH_CLIENT_ID")
+    client_secret = os.getenv("OAUTH_CLIENT_SECRET")
+    oauth_server = os.getenv("OAUTH_SERVER")
+
+    if not (client_id and client_secret and oauth_server):
+        logging.info("Platform API credentials not fully set in environment. Skipping API bnumber lookups.")
+        return None
+
+    try:
+        token = PlatformToken(
+            client_id=client_id,
+            client_secret=client_secret,
+            oauth_server=oauth_server
+        )
+        session = PlatformSession(authorization=token)
+        logging.info("Successfully connected to NYPL Platform API for B-number enrichment.")
+        return session
+    except Exception as e:
+        logging.warning(f"Failed to authenticate with Platform API: {e}. Proceeding without API lookups.")
+        return None
+
+def fetch_bnumber_for_barcode(session: PlatformSession, barcode: str, cache: dict) -> str:
+    """
+    Queries the Platform API for a barcode and returns the formatted b-number.
+    Uses an in-memory cache to avoid duplicate API calls.
+    """
+    if not barcode or not session:
+        return ""
+
+    if barcode in cache:
+        return cache[barcode]
+
+    try:
+        response = session.get_item_list(barcode=barcode)
+        if response.status_code == 200:
+            data = response.json()
+            items = data.get("data", [])
+            if items:
+                bib_ids = items[0].get("bibIds", [])
+                if bib_ids:
+                    raw_bib = str(bib_ids[0])
+                    bnumber = f"b{raw_bib}" if not raw_bib.startswith("b") else raw_bib
+                    cache[barcode] = bnumber
+                    return bnumber
+        
+        # If no match or status code wasn't 200
+        cache[barcode] = ""
+        return ""
+    except Exception as e:
+        logging.warning(f"API query failed for barcode {barcode}: {e}")
+        cache[barcode] = ""
+        return ""
 
 def clean_barcode(val):
     """Safely converts potential scientific notation floats back to string barcodes."""
@@ -67,8 +135,8 @@ def clean_page_count(val):
             
     return val_str
 
-def process_file(input_file):
-    """Reads CSV/XLSX, handles multi-sheet mapping, filters noise, and logs flags."""
+def process_file(input_file, platform_session=None):
+    """Reads CSV/XLSX, handles multi-sheet mapping, filters noise, queries API, and logs flags."""
     # 1. Read input file and track source sheet names
     if input_file.lower().endswith('.csv'):
         df = pd.read_csv(input_file)
@@ -90,6 +158,7 @@ def process_file(input_file):
     known_mappings = {
         'title': ['title', 'item_title', 'item title'],
         'barcode': ['barcode'],
+        'bnumber': ['bnumber', 'b-number', 'bib_id', 'bib id', 'b_number'],
         'call_number': ['call number', 'classmark', 'call_number'],
         'page_count': ['page count', 'pages', 'estimated_page_count'],
         'condition': ['condition'],
@@ -115,6 +184,7 @@ def process_file(input_file):
 
     mapped_data = []
     current_title = ""
+    barcode_api_cache = {}
     
     print("--- Processing Audit Log ---")
     
@@ -131,6 +201,7 @@ def process_file(input_file):
         source_sheet = str(row.get('_source_sheet', '')).strip()
         raw_title = get_val(*known_mappings['title'])
         barcode = clean_barcode(get_val(*known_mappings['barcode']))
+        existing_bnumber = get_val(*known_mappings['bnumber'])
         call_num = get_val(*known_mappings['call_number'])
         page_count = clean_page_count(get_val(*known_mappings['page_count']))
         condition = get_val(*known_mappings['condition'])
@@ -151,16 +222,25 @@ def process_file(input_file):
         # Check if this row actually contains item-level data
         has_item_data = any([barcode, call_num, page_count, condition, notes, date_vol, size])
         
-        # Issue #3: If a row has NO item data (only a title, or completely blank), skip & flag it
+        # If a row has NO item data (only a title, or completely blank), skip & flag it
         if not has_item_data:
             if raw_title:
                 print(f"  [HEADER/SKIP] Sheet '{source_sheet}': Row has Title ('{raw_title}') but no item info. Saved as parent header & skipped in output.")
             continue
             
-        # Issue #3: If an item IS being included but lacks a barcode, flag it!
+        # If an item IS being included but lacks a barcode, flag it!
         if not barcode:
             print(f"  [FLAG: NO BARCODE] Sheet '{source_sheet}': Included item with blank barcode | Title: '{current_title}' | Vol/Date: '{date_vol}' | Call Num: '{call_num}'")
-            
+            bnumber = existing_bnumber
+        else:
+            # Prefer existing b-number in spreadsheet; otherwise query Platform API
+            if existing_bnumber:
+                bnumber = existing_bnumber
+            elif platform_session:
+                bnumber = fetch_bnumber_for_barcode(platform_session, barcode, barcode_api_cache)
+            else:
+                bnumber = ""
+
         # Combine condition, notes, and size safely
         phys_notes = []
         if condition: phys_notes.append(condition)
@@ -174,7 +254,7 @@ def process_file(input_file):
         if re.search(r'oversize[d]?', combined_text_for_size, re.IGNORECASE):
             is_oversized = "Yes"
 
-        # Issue #1: Robust Microform vs. Reflective detection
+        # Microform vs. Reflective detection
         is_microform = (
             'micro' in source_sheet.lower() or
             'micro' in fmt.lower() or
@@ -205,7 +285,7 @@ def process_file(input_file):
             'project_code': '',
             'barcode': barcode,
             'division_code': '', 
-            'bnumber': '',
+            'bnumber': bnumber,
             'classmark': call_num,
             'aspace_component_id': '',
             'collection_id': '',
@@ -287,6 +367,8 @@ def write_output(mapped_data, output_file):
     workbook.close()
 
 def main():
+    setup_logging()
+    
     parser = argparse.ArgumentParser(
         description='Map legacy spreadsheet data to the digitization inventory template.'
     )
@@ -294,9 +376,12 @@ def main():
     parser.add_argument('-o', '--output', required=True, help='Output XLSX file')
     args = parser.parse_args()
 
+    # Initialize Platform Session if environment variables exist
+    platform_session = init_platform_session()
+
     print(f"Reading and mapping data from '{args.input}'...")
     try:
-        mapped_data = process_file(args.input)
+        mapped_data = process_file(args.input, platform_session=platform_session)
         print(f"Successfully processed {len(mapped_data)} item rows.")
         
         write_output(mapped_data, args.output)
