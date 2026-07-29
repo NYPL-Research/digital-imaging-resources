@@ -15,7 +15,7 @@ While the **[Inventory Spreadsheet]({{< relref "inventory_spreadsheet_spec" >}})
 The authoritative JSON Schema is maintained as a separate, publicly accessible file. Vendors must integrate this schema into their automated quality-control pipelines before delivery.
 
 - **Public schema:** [digitized_image_schema.json](https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json)
-- - **Sample Photograph Sidecar (Single-Unit):** [sample_photograph_sidecar.json](/digital-imaging-resources/templates/sample_photograph_sidecar.json)
+- **Sample Photograph Sidecar (Single-Unit):** [sample_photograph_sidecar.json](/digital-imaging-resources/templates/sample_photograph_sidecar.json)
 - **Sample Split Microfilm Sidecar (Multi-Unit):** [sample_split_microfilm_sidecar.json](/digital-imaging-resources/templates/sample_split_microfilm_sidecar.json)
 
 The public URL must return the raw JSON Schema document rather than an HTML page, redirect, or error response.
