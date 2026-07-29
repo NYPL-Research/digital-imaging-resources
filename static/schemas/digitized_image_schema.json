@@ -17,7 +17,15 @@
     "administrative": {
       "type": "object",
       "additionalProperties": false,
+      "required": [
+        "schemaVersion"
+      ],
       "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The version of this sidecar schema used to create the record."
+        },
         "projectCode": {
           "type": "string",
           "description": "Administrative code for the digitization project or grant."
@@ -29,7 +37,6 @@
       "additionalProperties": false,
       "required": [
         "fileRole",
-        "schemaVersion",
         "referenceFilename"
       ],
       "properties": {
@@ -42,11 +49,6 @@
             "ocr"
           ],
           "description": "The approved delivery role for the asset."
-        },
-        "schemaVersion": {
-          "type": "string",
-          "minLength": 1,
-          "description": "The version of this sidecar schema used to create the record."
         },
         "referenceFilename": {
           "type": "string",
