@@ -1,10 +1,10 @@
 {
   "administrative": {
+    "schemaVersion": "1.0",
     "projectCode": "MICROFILM-2026"
   },
   "asset": {
     "fileRole": "pres",
-    "schemaVersion": "1.0",
     "referenceFilename": "33433555554444_00981_pres.tif"
   },
   "identifiers": {

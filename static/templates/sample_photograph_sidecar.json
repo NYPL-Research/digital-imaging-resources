@@ -1,10 +1,10 @@
 {
   "administrative": {
+    "schemaVersion": "1.0",
     "projectCode": "PHOTO-2026"
   },
   "asset": {
     "fileRole": "pres",
-    "schemaVersion": "1.0",
     "referenceFilename": "33433123456789_r_pres.tif"
   },
   "identifiers": {
