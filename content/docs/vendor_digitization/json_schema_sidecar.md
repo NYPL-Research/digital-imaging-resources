@@ -15,6 +15,8 @@ While the **[Inventory Spreadsheet]({{< relref "inventory_spreadsheet_spec" >}})
 The authoritative JSON Schema is maintained as a separate, publicly accessible file. Vendors must integrate this schema into their automated quality-control pipelines before delivery.
 
 - **Public schema:** [digitized_image_schema.json](https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json)
+- - **Sample Photograph Sidecar (Single-Unit):** [sample_photograph_sidecar.json](/digital-imaging-resources/templates/sample_photograph_sidecar.json)
+- **Sample Split Microfilm Sidecar (Multi-Unit):** [sample_split_microfilm_sidecar.json](/digital-imaging-resources/templates/sample_split_microfilm_sidecar.json)
 
 The public URL must return the raw JSON Schema document rather than an HTML page, redirect, or error response.
 
@@ -33,13 +35,13 @@ Property names and controlled-vocabulary values are case-sensitive.
 Every sidecar must contain the following six top-level objects:
 
 1. **`administrative`**  
-   Grant, contract, or project-level administrative data, such as `projectCode`.
+   Grant, contract, or project-level administrative data, such as `projectCode` and `schemaVersion`.
 
 2. **`asset`**  
-   File-level tracking data, including the file role (`pres`, `serv`, `access`, or `ocr`), schema version, and exact `referenceFilename`.
+   File-level tracking data, including the file role (`pres`, `serv`, `access`, or `ocr`) and exact `referenceFilename`.
 
 3. **`identifiers`**  
-   Bibliographic and archival identifiers mapped from the Library-supplied inventory spreadsheet, such as `barcode`, `divisionCode`, `bnumber`, and `classmark`.
+   Bibliographic and archival identifiers mapped from the Library-supplied inventory spreadsheet, such as `barcode`, `divisionCode`, `bnumber`, and `shelf_locator` (or classmark).
 
 4. **`source`**  
    Physical-source characteristics observed at capture, including the controlled object type and format pairing and sequential capture data such as `sequenceNumber`, `unitIndex`, `unitTitle`, `side`, and `sequenceLabel`.
@@ -181,9 +183,11 @@ The JSON sidecar for the first frame in `u002` would therefore include:
 
 ```json
 {
+  "administrative": {
+    "schemaVersion": "1.0"
+  },
   "asset": {
     "fileRole": "pres",
-    "schemaVersion": "1.0",
     "referenceFilename": "33433555554444_00981_pres.tif"
   },
   "source": {
