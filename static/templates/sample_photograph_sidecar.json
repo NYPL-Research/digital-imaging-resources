@@ -1,7 +1,8 @@
 {
   "administrative": {
     "schemaVersion": "1.0",
-    "projectCode": "PHOTO-2026"
+    "projectCode": "VDS_2026_001",
+    "fundingSource": "National Endowment for the Humanities"
   },
   "asset": {
     "fileRole": "pres",
