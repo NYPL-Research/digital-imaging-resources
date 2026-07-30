@@ -13,7 +13,7 @@ from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.utils import get_column_letter
 from openpyxl.workbook.defined_name import DefinedName
 
-def generate_inventory_template(output_filename="NYPL_Vendor_Digital_Imaging_Inventory_Template.xlsx"):
+def generate_inventory_template(output_filename="NYPL_Vendor_Digital_Imaging_Inventory_Template.xlsx", inventory_data=None):
     wb = openpyxl.Workbook()
 
     # Setup sheets
@@ -110,7 +110,7 @@ def generate_inventory_template(output_filename="NYPL_Vendor_Digital_Imaging_Inv
     # Section 4: [INFO] Gold Headers
     sec4_items = [
         ("Why They Are Yellow", "Columns N ('[INFO] estimated_page_count'), O ('[INFO] is_oversized'), and P ('[INFO] needs_cataloging') are highlighted with a distinct yellow/gold header to differentiate them from archival metadata."),
-        ("Purpose of [INFO] Fields", "This data is NOT retained in final archival digital packages or sidecars. However, it is essential for vendor cost estimates, sizing timelines, and capture equipment allocation—so please fill out these fields whenever possible! Use the 'needs_cataloging' dropdown (TRUE/FALSE) to flag items requiring metadata enhancement.")
+        ("Purpose of [INFO] Fields", "This data is NOT retained in final archival digital packages or sidecars. However, it is essential for vendor cost estimates, sizing timelines, and capture equipment allocation—so please fill out these fields whenever possible! Use the 'needs_cataloging' dropdown (Yes/No) to flag items requiring metadata enhancement.")
     ]
     r = add_inst_section(ws_inst, r, "4. VENDOR ESTIMATE [INFO] FIELDS (YELLOW HIGHLIGHTS)", sec4_items, "D97706")
 
@@ -194,7 +194,7 @@ def generate_inventory_template(output_filename="NYPL_Vendor_Digital_Imaging_Inv
         "microform": ["16mm roll microfilm", "35mm roll microfilm", "microfiche", "aperture card"]
     }
 
-    boolean_flags = ["TRUE", "FALSE"]
+    boolean_flags = ["Yes", "No"]
     division_codes = [code for code, name in div_items]
 
     # Write Object Types
@@ -257,6 +257,7 @@ def generate_inventory_template(output_filename="NYPL_Vendor_Digital_Imaging_Inv
         ("barcode", "REQUIRED", "14-digit code"),
         ("item_title", "OPTIONAL", "plain text, no formatting"),
         ("project_code", "REQUIRED", "assigned by VDS team"),
+        ("funding_source", "REQUIRED", "assigned by VDS team"),
         ("collection_id", "REQUIRED", "3-7 digit code, not classmark"),
         ("division_code", "REQUIRED", "choose from dropdown"),
         ("shelf_locator", "OPTIONAL", "also known as classmark"),
@@ -273,14 +274,14 @@ def generate_inventory_template(output_filename="NYPL_Vendor_Digital_Imaging_Inv
     ]
 
     # Title Block
-    ws_template.merge_cells("A1:P1")
+    ws_template.merge_cells("A1:Q1")
     ws_template["A1"] = "NYPL DIGITAL IMAGING INVENTORY — SCHEMA 1.0"
     ws_template["A1"].font = Font(name="Calibri", size=16, bold=True, color="FFFFFF")
     ws_template["A1"].fill = PatternFill(start_color="1E293B", end_color="1E293B", fill_type="solid")
     ws_template["A1"].alignment = Alignment(horizontal="center", vertical="center")
     ws_template.row_dimensions[1].height = 40
 
-    ws_template.merge_cells("A2:P2")
+    ws_template.merge_cells("A2:Q2")
     ws_template["A2"] = "Standardized Sidecar Metadata Ingestion Sheet | Compliant with Digitized Image Schema v1.0"
     ws_template["A2"].font = Font(name="Calibri", size=11, italic=True, color="FFFFFF")
     ws_template["A2"].fill = PatternFill(start_color="334155", end_color="334155", fill_type="solid")
@@ -300,7 +301,7 @@ def generate_inventory_template(output_filename="NYPL_Vendor_Digital_Imaging_Inv
         c_desc_cell = ws_template.cell(row=6, column=col_idx, value=col_desc)
         
         # Color coding for Header Names (Row 4)
-        if col_idx in [14, 15, 16]: # [INFO] columns
+        if col_idx in [15, 16, 17]: # [INFO] columns
             c_head.fill = PatternFill(start_color="D97706", end_color="D97706", fill_type="solid") # Warm Amber Gold
             c_head.font = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
             c_req.fill = PatternFill(start_color="B45309", end_color="B45309", fill_type="solid")  # Lighter/dark amber
@@ -315,7 +316,7 @@ def generate_inventory_template(output_filename="NYPL_Vendor_Digital_Imaging_Inv
             c_desc_cell.fill = PatternFill(start_color="CCFBF1", end_color="CCFBF1", fill_type="solid") # Light teal tint
             c_desc_cell.font = Font(name="Calibri", size=9, italic=True, color="134E4A")
             
-        c_head.alignment = Alignment(horizontal="center" if col_idx not in [2, 11, 13] else "left", vertical="center", wrap_text=True)
+        c_head.alignment = Alignment(horizontal="center" if col_idx not in [2, 12, 14] else "left", vertical="center", wrap_text=True)
         c_req.alignment = Alignment(horizontal="center", vertical="center")
         c_desc_cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
         
@@ -324,52 +325,64 @@ def generate_inventory_template(output_filename="NYPL_Vendor_Digital_Imaging_Inv
         c_req.border  = Border(left=Side(style='thin', color='CBD5E1'), right=Side(style='thin', color='CBD5E1'), top=Side(style='thin', color='E2E8F0'), bottom=Side(style='thin', color='E2E8F0'))
         c_desc_cell.border = Border(left=Side(style='thin', color='CBD5E1'), right=Side(style='thin', color='CBD5E1'), top=Side(style='thin', color='E2E8F0'), bottom=Side(style='medium', color='1E293B'))
 
-    # Write 100 blank styled rows for data entry (Rows 7 to 106)
-    for row_idx in range(7, 107):
+    # Write styled rows for data entry (Rows 7 onwards)
+    num_rows = max(len(inventory_data), 100) if inventory_data else 100
+    end_row = 7 + num_rows - 1
+
+    for row_idx in range(7, end_row + 1):
         ws_template.row_dimensions[row_idx].height = 22
         fill_color = "FFFFFF" if row_idx % 2 != 0 else "F8FAFC"
-        for col_idx in range(1, len(template_structure) + 1):
+        
+        row_data = inventory_data[row_idx - 7] if inventory_data and (row_idx - 7) < len(inventory_data) else {}
+        
+        for col_idx, (col_name, req_status, col_desc) in enumerate(template_structure, 1):
             c = ws_template.cell(row=row_idx, column=col_idx)
             c.font = Font(name="Calibri", size=10, color="1E293B")
             
+            val = row_data.get(col_name, "")
+            if col_name == '[INFO] estimated_page_count' and str(val).isdigit():
+                c.value = int(val)
+            elif val != "":
+                c.value = str(val)
+            
             # Apply subtle warm tint to [INFO] data rows; neutral grey/white striping for standard columns
-            if col_idx in [14, 15, 16]:
+            if col_idx in [15, 16, 17]:
                 c.fill = PatternFill(start_color="FFFBEB" if row_idx % 2 != 0 else "FEF3C7", end_color="FFFBEB" if row_idx % 2 != 0 else "FEF3C7", fill_type="solid")
             else:
                 c.fill = PatternFill(start_color=fill_color, end_color=fill_color, fill_type="solid")
                 
             c.border = Border(left=Side(style='thin', color='E2E8F0'), right=Side(style='thin', color='E2E8F0'), top=Side(style='thin', color='E2E8F0'), bottom=Side(style='thin', color='E2E8F0'))
             
-            if col_idx in [1, 3, 4, 5, 6, 7, 8, 9, 12, 14, 15, 16]:
+            if col_idx in [1, 3, 4, 5, 6, 7, 8, 9, 10, 13, 15, 16, 17]:
                 c.alignment = Alignment(horizontal="center", vertical="center")
             else:
                 c.alignment = Alignment(horizontal="left", vertical="center")
 
     # --- ADD DATA VALIDATION DROPDOWNS ---
-    # 1. Division Code Dropdown (Col E)
+    # 1. Division Code Dropdown (Col F)
     dv_div = DataValidation(type="list", formula1="division_code_list", allow_blank=True)
     dv_div.error = "Please select a valid division_code from the dropdown list."
     dv_div.errorTitle = "Invalid Division Code"
     dv_div.prompt = "Select a division code."
     dv_div.promptTitle = "Curatorial Division"
 
-    # 2. Primary Dropdown: object_type (Col H)
+    # 2. Primary Dropdown: object_type (Col I)
     dv_type = DataValidation(type="list", formula1="object_type_list", allow_blank=True)
     dv_type.error = "Please select a valid object_type from the schema dropdown list."
     dv_type.errorTitle = "Invalid Object Type"
     dv_type.prompt = "Select an object_type from the list."
     dv_type.promptTitle = "Schema: object_type"
 
-    # 3. Dependent Dropdown: object_format (Col I) -> Dynamically maps spaces/hyphens to underscores
-    dv_format = DataValidation(type="list", formula1='INDIRECT(SUBSTITUTE(SUBSTITUTE($H7, " ", "_"), "-", "_"))', allow_blank=True)
+    # 3. Dependent Dropdown: object_format (Col J) -> Dynamically maps spaces/hyphens to underscores
+    dv_format = DataValidation(type="list", formula1='INDIRECT(SUBSTITUTE(SUBSTITUTE($I7, " ", "_"), "-", "_"))', allow_blank=True)
     dv_format.error = "Please select a valid object_format matching the chosen object_type."
     dv_format.errorTitle = "Invalid Dependent Format"
     dv_format.prompt = "Select a format valid for the selected object_type."
     dv_format.promptTitle = "Dependent Schema Format"
 
-    # 4. Boolean Flags for [INFO] columns (Col O: is_oversized, Col P: needs_cataloging)
+    # 4. Boolean Flags for [INFO] columns (Col P: is_oversized, Col Q: needs_cataloging)
     dv_bool = DataValidation(type="list", formula1="boolean_list", allow_blank=True)
-    dv_bool.error = "Please select TRUE or FALSE."
+    dv_bool.error = "Please select Yes or No."
     dv_bool.errorTitle = "Invalid Flag"
 
     ws_template.add_data_validation(dv_div)
@@ -377,11 +390,11 @@ def generate_inventory_template(output_filename="NYPL_Vendor_Digital_Imaging_Inv
     ws_template.add_data_validation(dv_format)
     ws_template.add_data_validation(dv_bool)
 
-    dv_div.add("E7:E106")
-    dv_type.add("H7:H106")
-    dv_format.add("I7:I106")
-    dv_bool.add("O7:O106")
-    dv_bool.add("P7:P106")
+    dv_div.add(f"F7:F{end_row}")
+    dv_type.add(f"I7:I{end_row}")
+    dv_format.add(f"J7:J{end_row}")
+    dv_bool.add(f"P7:P{end_row}")
+    dv_bool.add(f"Q7:Q{end_row}")
 
     # Freeze Panes below the 3-row header block (so headers, required status, and description stay visible)
     ws_template.freeze_panes = "A7"
