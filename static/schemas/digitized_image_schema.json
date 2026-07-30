@@ -29,6 +29,10 @@
         "projectCode": {
           "type": "string",
           "description": "Administrative code for the digitization project or grant."
+        },
+        "fundingSource": {
+          "type": "string",
+          "description": "The source of funding for the digitization project."
         }
       }
     },
