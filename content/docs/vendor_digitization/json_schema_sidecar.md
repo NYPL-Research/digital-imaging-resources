@@ -35,7 +35,7 @@ Property names and controlled-vocabulary values are case-sensitive.
 Every sidecar must contain the following six top-level objects:
 
 1. **`administrative`**  
-   Grant, contract, or project-level administrative data, such as `projectCode` and `schemaVersion`.
+   Grant, contract, or project-level administrative data, such as `projectCode`, `fundingSource`, and `schemaVersion`.
 
 2. **`asset`**  
    File-level tracking data, including the file role (`pres`, `serv`, `access`, or `ocr`) and exact `referenceFilename`.
@@ -184,7 +184,9 @@ The JSON sidecar for the first frame in `u002` would therefore include:
 ```json
 {
   "administrative": {
-    "schemaVersion": "1.0"
+    "schemaVersion": "1.0",
+    "projectCode": "NEH-2024-001",
+    "fundingSource": "NEH_GRANT_1"
   },
   "asset": {
     "fileRole": "pres",
