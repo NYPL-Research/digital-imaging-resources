@@ -19,7 +19,7 @@ When initiating an external digitization project, the Library provides vendors w
 This spreadsheet is a shared tool between curatorial staff, the Vendor Digitization Services team, and external vendors. When filling out this sheet, staff must adhere to the following division of responsibilities:
 
 * **Fill Out to the Best of Your Ability:** Not every field in the spreadsheet is mandatory. Some archival inventory items may not be fully cataloged, described in a finding aid, or possess formalized collection IDs. However, **because this inventory is used to calculate vendor estimates and resource allocation, it is vital that it be filled out as completely and accurately as possible.** If descriptive metadata exists, include it.
-* **Internal Tracking Fields:** Users preparing inventories do not need to fill out `project_code` (Column C) if it is unassigned. The Vendor Digitization Services team will complete and verify administrative tracking codes before submitting the final sheet to a vendor.
+* **Internal Tracking Fields:** Users preparing inventories do not need to fill out `project_code` (Column C) or `funding_source` (Column D) if they are unassigned. The Vendor Digitization Services team will complete and verify administrative tracking codes before submitting the final sheet to a vendor.
 
 ### 1.3 How Vendors Must Use This Data
 This spreadsheet represents the **initial selection and inventory stage** of the digitization workflow. The data provided here must be ingested by the vendor and used as the root source for generating item-level metadata during capture.
@@ -48,7 +48,7 @@ Frequently, a single physical carrier (such as a volume of bound pamphlets or a 
 
 ---
 
-## 3. Column Specification (A–P)
+## 3. Column Specification (A–Q)
 
 The spreadsheet follows an ordered curatorial citation structure, grouping `division_code`, `shelf_locator`, and `bnumber` together.
 
@@ -57,25 +57,26 @@ The spreadsheet follows an ordered curatorial citation structure, grouping `divi
 | A | `barcode` | `source.identifiers.barcode` | **Yes** | `33433` + 9 digits | Primary item key; **mandatory to initiate** |
 | B | `item_title` | `source.identifiers.title` | No | String | Plain text, no formatting |
 | C | `project_code` | `administrative.projectCode` | **Yes** | String | Assigned by VDS team |
-| D | `collection_id` | `source.identifiers.collectionId` | **Yes** | String | 3–7 digit code, not classmark |
-| E | `division_code` | `source.identifiers.divisionCode` | **Yes** | Controlled vocabulary | Curatorial division code; use dropdown |
-| F | `shelf_locator` | `source.identifiers.classmark` | No | String | Also known as classmark / call number |
-| G | `bnumber` | `source.identifiers.bnumber` | No | String | Sierra / catalog record number |
-| H | `object_type` | `source.object.type` | **Yes** | Controlled vocabulary | Broad material category; use dropdown |
-| I | `object_format` | `source.object.format` | **Yes** | Controlled vocabulary | Must match valid `object_type`; use dropdown |
-| J | `aspace_component_id` | `source.identifiers.aspaceComponentId` | No | String | ArchivesSpace component ref |
-| K | `physical_condition_notes` | `source.notes.physicalConditionNotes` | No | Free text | Condition observed at selection / split notes |
-| L | `unit_index` | `unit.unitIndex` | No | Integer ≥ 1 | For composite items like microfilm (e.g., `2` for u002) |
-| M | `unit_title` | `unit.title` | No | Free text | For composite items like microfilm |
-| N | `[INFO] estimated_page_count` | *(None)* | No | Integer | Logistics & estimates; strip before sidecar creation |
-| O | `[INFO] is_oversized` | *(None)* | No | `TRUE`, `FALSE` | Use dropdown; strip before sidecar creation |
-| P | `[INFO] needs_cataloging` | *(None)* | No | `TRUE`, `FALSE` | Use dropdown; strip before sidecar creation |
+| D | `funding_source` | `administrative.fundingSource` | **Yes** | String | Assigned by VDS team |
+| E | `collection_id` | `source.identifiers.collectionId` | **Yes** | String | 3–7 digit code, not classmark |
+| F | `division_code` | `source.identifiers.divisionCode` | **Yes** | Controlled vocabulary | Curatorial division code; use dropdown |
+| G | `shelf_locator` | `source.identifiers.classmark` | No | String | Also known as classmark / call number |
+| H | `bnumber` | `source.identifiers.bnumber` | No | String | Sierra / catalog record number |
+| I | `object_type` | `source.object.type` | **Yes** | Controlled vocabulary | Broad material category; use dropdown |
+| J | `object_format` | `source.object.format` | **Yes** | Controlled vocabulary | Must match valid `object_type`; use dropdown |
+| K | `aspace_component_id` | `source.identifiers.aspaceComponentId` | No | String | ArchivesSpace component ref |
+| L | `physical_condition_notes` | `source.notes.physicalConditionNotes` | No | Free text | Condition observed at selection / split notes |
+| M | `unit_index` | `unit.unitIndex` | No | Integer ≥ 1 | For composite items like microfilm (e.g., `2` for u002) |
+| N | `unit_title` | `unit.title` | No | Free text | For composite items like microfilm |
+| O | `[INFO] estimated_page_count` | *(None)* | No | Integer | Logistics & estimates; strip before sidecar creation |
+| P | `[INFO] is_oversized` | *(None)* | No | `Yes`, `No` | Use dropdown; strip before sidecar creation |
+| Q | `[INFO] needs_cataloging` | *(None)* | No | `Yes`, `No` | Use dropdown; strip before sidecar creation |
 
 ---
 
 ### 3.1 Non-Schema Tracking Columns (`[INFO]`)
 
-Columns N, O, and P (`[INFO] estimated_page_count`, `[INFO] is_oversized`, and `[INFO] needs_cataloging`) are explicitly differentiated in the template with a **yellow header background**. They are color-coded differently because **this data will not be retained in final digital archival packages or sidecars**. 
+Columns O, P, and Q (`[INFO] estimated_page_count`, `[INFO] is_oversized`, and `[INFO] needs_cataloging`) are explicitly differentiated in the template with a **yellow header background**. They are color-coded differently because **this data will not be retained in final digital archival packages or sidecars**. 
 
 However, **these fields are critical for calculating vendor cost estimates, timeline sizing, capture equipment allocation, and curatorial remediation.** Staff should make every effort to fill out these yellow columns whenever possible.
 
@@ -86,11 +87,11 @@ However, **these fields are critical for calculating vendor cost estimates, time
 ## 4. Controlled Vocabulary
 
 ### 4.1 Material Types (`object_type` & `object_format`)
-To ensure data consistency and schema compliance across all projects, **users must use the built-in drop-down menus in the Excel template for `object_type` (Col H) and `object_format` (Col I)** rather than typing manual entries. 
+To ensure data consistency and schema compliance across all projects, **users must use the built-in drop-down menus in the Excel template for `object_type` (Col I) and `object_format` (Col J)** rather than typing manual entries. 
 
-The template features dependent data validation: selecting an `object_type` in Column H will automatically filter the allowed values in Column I (`object_format`) to only show legal pairings. Any unrecognized string or mismatched pair will fail schema validation.
+The template features dependent data validation: selecting an `object_type` in Column I will automatically filter the allowed values in Column J (`object_format`) to only show legal pairings. Any unrecognized string or mismatched pair will fail schema validation.
 
-| `object_type` (Column H Dropdown) | Valid `object_format` Values (Column I Dependent Dropdown) |
+| `object_type` (Column I Dropdown) | Valid `object_format` Values (Column J Dependent Dropdown) |
 |---|---|
 | `reflective textual and graphic` | `bound volume`, `loose paper` |
 | `reflective photographic` | `photographic print` |
@@ -99,7 +100,7 @@ The template features dependent data validation: selecting an `object_type` in C
 | `microform` | `16mm roll microfilm`, `35mm roll microfilm`, `microfiche`, `aperture card` |
 
 ### 4.2 Curatorial Division Codes (`division_code`)
-Column E (`division_code`) requires a standardized administrative code selected from the built-in dropdown menu. Do not enter full division names.
+Column F (`division_code`) requires a standardized administrative code selected from the built-in dropdown menu. Do not enter full division names.
 
 | Code | Curatorial Division Name |
 |---|---|
@@ -143,6 +144,7 @@ For standard materials containing a single intellectual work on a single physica
 | `barcode` | `33433087654321` |
 | `item_title` | `Portrait of unidentified woman, ca. 1910` |
 | `project_code` | `NEH-2024-001` |
+| `funding_source` | `NEH_GRANT_1` |
 | `collection_id` | `col_4567` |
 | `division_code` | `PHG` |
 | `shelf_locator` | `MFZ (Photo) 99-12` |
@@ -153,8 +155,8 @@ For standard materials containing a single intellectual work on a single physica
 | `unit_index` | *(blank)* |
 | `unit_title` | *(blank)* |
 | `[INFO] estimated_page_count` | `1` |
-| `[INFO] is_oversized` | `FALSE` |
-| `[INFO] needs_cataloging` | `FALSE` |
+| `[INFO] is_oversized` | `No` |
+| `[INFO] needs_cataloging` | `No` |
 
 ### 5.2 Single Physical Item Containing Multiple Intellectual Works (Bound Pamphlets)
 When staff know upfront that a single physical volume contains multiple distinct works that must be delivered as separate digital packages, repeat the physical barcode across rows while assigning sequential unit indexes and titles to estimate the scope of each digital package.
@@ -174,5 +176,5 @@ When staff know upfront that a single physical volume contains multiple distinct
 * **Root Filename Generation:** The `barcode` value (Column A) serves as the primary identifier for the physical asset and must form the root prefix for all generated digital files. In the JSON sidecar, the `referenceFilename` attribute must always begin with this string.
 * **Multi-Unit Naming Syntax:** For multi-unit items, the integer in `unit_index` (Column L) dictates the unit segment of the final filename. Vendors must zero-pad this integer to three digits using the `u00N` naming convention (e.g., `unit_index: 2` maps to filename segment `u002`).
 * **Scoping Multi-Unit Packages:** When vendors ingest inventory rows where identical barcodes share multiple sequential `unit_index` numbers, they must configure their capture pipelines to generate distinct structural digital packages and sidecars for each unit segment, rather than combining them into a single asset package.
-* **Internal Field Verification:** Prior to vendor distribution, the Vendor Digitization Services team is responsible for verifying and locking the `project_code` (Column C) field for the entire batch.
-* **Template Dropdown Enforcement:** The Excel template provided by the Library contains pre-configured data validation rules for columns E (`division_code`), H (`object_type`), I (`object_format`), O (`is_oversized`), and P (`needs_cataloging`). Staff must not overwrite or paste plain text over these cells to prevent validation failures during ingestion.
+* **Internal Field Verification:** Prior to vendor distribution, the Vendor Digitization Services team is responsible for verifying and locking the `project_code` (Column C) and `funding_source` (Column D) fields for the entire batch.
+* **Template Dropdown Enforcement:** The Excel template provided by the Library contains pre-configured data validation rules for columns F (`division_code`), I (`object_type`), J (`object_format`), P (`is_oversized`), and Q (`needs_cataloging`). Staff must not overwrite or paste plain text over these cells to prevent validation failures during ingestion.
