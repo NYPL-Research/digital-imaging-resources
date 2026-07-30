@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import pandas as pd
+import build_inventory_template
 import xlsxwriter
 import re
 import sys
@@ -42,13 +43,13 @@ def init_platform_session() -> PlatformSession | None:
         logging.warning(f"Failed to authenticate with Platform API: {e}. Proceeding without API lookups.")
         return None
 
-def fetch_bnumber_for_barcode(session: PlatformSession, barcode: str, cache: dict) -> str:
+def fetch_bnumber_for_barcode(session: PlatformSession, barcode: str, cache: dict) -> tuple:
     """
-    Queries the Platform API for a barcode and returns the formatted b-number.
+    Queries the Platform API for a barcode and returns the formatted b-number and call number.
     Uses an in-memory cache to avoid duplicate API calls.
     """
     if not barcode or not session:
-        return ""
+        return "", ""
 
     if barcode in cache:
         return cache[barcode]
@@ -59,32 +60,41 @@ def fetch_bnumber_for_barcode(session: PlatformSession, barcode: str, cache: dic
             data = response.json()
             items = data.get("data", [])
             if items:
-                bib_ids = items[0].get("bibIds", [])
+                item = items[0]
+                bib_ids = item.get("bibIds", [])
+                bnumber = ""
                 if bib_ids:
                     raw_bib = str(bib_ids[0])
                     bnumber = f"b{raw_bib}" if not raw_bib.startswith("b") else raw_bib
-                    cache[barcode] = bnumber
-                    return bnumber
+                call_number = item.get("callNumber", "")
+                result = (bnumber, call_number)
+                cache[barcode] = result
+                return result
         
         # If no match or status code wasn't 200
-        cache[barcode] = ""
-        return ""
+        cache[barcode] = ("", "")
+        return ("", "")
     except Exception as e:
         logging.warning(f"API query failed for barcode {barcode}: {e}")
-        cache[barcode] = ""
-        return ""
+        cache[barcode] = ("", "")
+        return ("", "")
 
 def clean_barcode(val):
     """Safely converts potential scientific notation floats back to string barcodes."""
     if pd.isna(val):
         return ""
+        
+    val_str = str(val).strip()
+    if val_str.lower() in ["no barcode", "none", "n/a", "missing"]:
+        return ""
+        
     try:
         val_float = float(val)
         if val_float.is_integer():
             return str(int(val_float))
         return str(val_float)
     except ValueError:
-        return str(val).strip()
+        return val_str
 
 def clean_unit_title(val):
     """Prevents Excel/pandas from turning strings like 'Oct. 1908' into timestamps."""
@@ -135,7 +145,7 @@ def clean_page_count(val):
             
     return val_str
 
-def process_file(input_file, platform_session=None):
+def process_file(input_file, platform_session=None, project_code="", funding_source=""):
     """Reads CSV/XLSX, handles multi-sheet mapping, filters noise, queries API, and logs flags."""
     # 1. Read input file and track source sheet names
     if input_file.lower().endswith('.csv'):
@@ -166,7 +176,9 @@ def process_file(input_file, platform_session=None):
         'date_vol': ['date/volume', 'volume', 'date'],
         'bound_unbound': ['bound/unbound'],
         'format': ['format', 'item format', 'item_format', 'type'],
-        'size': ['size', 'dimensions', 'length', 'feet', 'ft', 'physical size']
+        'size': ['size', 'dimensions', 'length', 'feet', 'ft', 'physical size'],
+        'cataloging': ['cataloging', 'cataloguing'],
+        'funding_source': ['funding source', 'funding_source', 'funding']
     }
     
     # 3. Identify and warn about unmapped columns
@@ -210,6 +222,10 @@ def process_file(input_file, platform_session=None):
         bound_unbound = get_val(*known_mappings['bound_unbound']).lower()
         fmt = get_val(*known_mappings['format'])
         size = get_val(*known_mappings['size'])
+        cataloging_val = get_val(*known_mappings.get('cataloging', []))
+        funding_val = get_val(*known_mappings.get('funding_source', []))
+        
+        final_funding = funding_val if funding_val else funding_source
         
         # Drop summary rows silently (e.g., "Total: 52 titles")
         if re.match(r'^total:\s*\d+', raw_title, re.IGNORECASE) or re.match(r'^total:\s*\d+', date_vol, re.IGNORECASE):
@@ -233,13 +249,13 @@ def process_file(input_file, platform_session=None):
             print(f"  [FLAG: NO BARCODE] Sheet '{source_sheet}': Included item with blank barcode | Title: '{current_title}' | Vol/Date: '{date_vol}' | Call Num: '{call_num}'")
             bnumber = existing_bnumber
         else:
-            # Prefer existing b-number in spreadsheet; otherwise query Platform API
-            if existing_bnumber:
-                bnumber = existing_bnumber
-            elif platform_session:
-                bnumber = fetch_bnumber_for_barcode(platform_session, barcode, barcode_api_cache)
-            else:
-                bnumber = ""
+            bnumber = existing_bnumber
+            if platform_session and (not bnumber or not call_num):
+                api_bnumber, api_call_num = fetch_bnumber_for_barcode(platform_session, barcode, barcode_api_cache)
+                if not bnumber:
+                    bnumber = api_bnumber
+                if not call_num:
+                    call_num = api_call_num
 
         # Combine condition, notes, and size safely
         phys_notes = []
@@ -280,23 +296,26 @@ def process_file(input_file, platform_session=None):
             obj_type = "reflective textual and graphic"
             obj_format = "bound volume"
             
+        needs_cataloging = "Yes" if cataloging_val.lower() in ['y', 'yes', 'true'] else ""
+            
         mapped_row = {
-            'schema_version': '1.0.0',
-            'project_code': '',
             'barcode': barcode,
-            'division_code': '', 
-            'bnumber': bnumber,
-            'classmark': call_num,
-            'aspace_component_id': '',
-            'collection_id': '',
             'item_title': current_title,
+            'project_code': project_code,
+            'funding_source': final_funding,
+            'collection_id': '',
+            'division_code': '', 
+            'shelf_locator': call_num,
+            'bnumber': bnumber,
             'object_type': obj_type,
             'object_format': obj_format,
+            'aspace_component_id': '',
             'physical_condition_notes': phys_notes_str,
             'unit_index': '',
             'unit_title': date_vol,
             '[INFO] estimated_page_count': page_count,
-            '[INFO] is_oversized': is_oversized
+            '[INFO] is_oversized': is_oversized,
+            '[INFO] needs_cataloging': needs_cataloging
         }
         mapped_data.append(mapped_row)
         
@@ -305,66 +324,7 @@ def process_file(input_file, platform_session=None):
 
 def write_output(mapped_data, output_file):
     """Writes the mapped data into the validated XLSX template structure."""
-    workbook = xlsxwriter.Workbook(output_file)
-    worksheet = workbook.add_worksheet('Inventory')
-    vocab_sheet = workbook.add_worksheet('Vocab (Hidden)')
-    vocab_sheet.hide()
-
-    headers = [
-        'schema_version', 'project_code', 'barcode', 'division_code', 
-        'bnumber', 'classmark', 'aspace_component_id', 'collection_id', 
-        'item_title', 'object_type', 'object_format', 'physical_condition_notes', 
-        'unit_index', 'unit_title', '[INFO] estimated_page_count', '[INFO] is_oversized'
-    ]
-
-    header_format = workbook.add_format({'bold': True, 'bg_color': '#E0E0E0', 'border': 1})
-    info_header_format = workbook.add_format({'bold': True, 'bg_color': '#FFF2CC', 'border': 1})
-
-    for col_num, header in enumerate(headers):
-        if header.startswith('[INFO]'):
-            worksheet.write(0, col_num, header, info_header_format)
-        else:
-            worksheet.write(0, col_num, header, header_format)
-
-    worksheet.set_column('A:P', 22)
-
-    vocab = {
-        "reflective textual and graphic": ["bound volume", "loose paper"],
-        "reflective photographic": ["photographic print"],
-        "transmissive photographic": ["black-and-white negative", "color negative", "color transparency", "mounted slide"],
-        "glass substrate": ["glass plate negative", "lantern slide"],
-        "microform": ["16mm roll microfilm", "35mm roll microfilm", "microfiche", "aperture card"]
-    }
-
-    row = 0
-    for obj_type, formats in vocab.items():
-        safe_name = re.sub(r'[^a-zA-Z0-9_]', '_', obj_type)
-        vocab_sheet.write(row, 0, obj_type)
-        for col, fmt in enumerate(formats):
-            vocab_sheet.write(row, col + 1, fmt)
-        start_cell = xlsxwriter.utility.xl_rowcol_to_cell(row, 1, row_abs=True, col_abs=True)
-        end_cell = xlsxwriter.utility.xl_rowcol_to_cell(row, len(formats), row_abs=True, col_abs=True)
-        workbook.define_name(safe_name, f"='Vocab (Hidden)'!{start_cell}:{end_cell}")
-        row += 1
-
-    end_type_cell = xlsxwriter.utility.xl_rowcol_to_cell(row - 1, 0, row_abs=True, col_abs=True)
-    workbook.define_name('ObjectTypes', f"='Vocab (Hidden)'!$A$1:{end_type_cell}")
-
-    # Set up dependent validations
-    worksheet.data_validation('J2:J1048576', {'validate': 'list', 'source': '=ObjectTypes'})
-    for i in range(2, 2001):  # Apply dependent validation to first 2000 rows
-        worksheet.data_validation(f'K{i}', {'validate': 'list', 'source': f'=INDIRECT(SUBSTITUTE(J{i}, " ", "_"))'})
-
-    # Write the data
-    for row_num, row_data in enumerate(mapped_data, start=1):
-        for col_num, header in enumerate(headers):
-            val = row_data.get(header, "")
-            if header == '[INFO] estimated_page_count' and str(val).isdigit():
-                worksheet.write_number(row_num, col_num, int(val))
-            else:
-                worksheet.write_string(row_num, col_num, str(val))
-
-    workbook.close()
+    build_inventory_template.generate_inventory_template(output_filename=output_file, inventory_data=mapped_data)
 
 def main():
     setup_logging()
@@ -374,6 +334,8 @@ def main():
     )
     parser.add_argument('-i', '--input', required=True, help='Input CSV or XLSX file')
     parser.add_argument('-o', '--output', required=True, help='Output XLSX file')
+    parser.add_argument('-p', '--project-code', default='', help='Project code to apply to all items')
+    parser.add_argument('-f', '--funding-source', default='', help='Funding source to apply to all items')
     args = parser.parse_args()
 
     # Initialize Platform Session if environment variables exist
@@ -381,7 +343,7 @@ def main():
 
     print(f"Reading and mapping data from '{args.input}'...")
     try:
-        mapped_data = process_file(args.input, platform_session=platform_session)
+        mapped_data = process_file(args.input, platform_session=platform_session, project_code=args.project_code, funding_source=args.funding_source)
         print(f"Successfully processed {len(mapped_data)} item rows.")
         
         write_output(mapped_data, args.output)
