@@ -19,21 +19,21 @@
 <link rel="icon" type="image/png" href="/digital-imaging-resources/favicons/android-192x192.png" sizes="192x192">
 
 <title>Vendor Digitization Inventory Spreadsheet | Digital Imaging Resources</title>
-<meta name="description" content="Schema specification, required fields, and controlled vocabulary for vendor digitization inventory spreadsheets.">
+<meta name="description" content="Schema specification, required fields, operational guidelines, and controlled vocabulary for vendor digitization inventory spreadsheets.">
 <meta property="og:url" content="http://localhost:1313/digital-imaging-resources/docs/vendor_digitization/inventory_spreadsheet_spec/">
 	<meta property="og:site_name" content="Digital Imaging Resources">
 	<meta property="og:title" content="Vendor Digitization Inventory Spreadsheet">
-	<meta property="og:description" content="Schema specification, required fields, and controlled vocabulary for vendor digitization inventory spreadsheets.">
+	<meta property="og:description" content="Schema specification, required fields, operational guidelines, and controlled vocabulary for vendor digitization inventory spreadsheets.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="docs">
 
 	<meta itemprop="name" content="Vendor Digitization Inventory Spreadsheet">
-	<meta itemprop="description" content="Schema specification, required fields, and controlled vocabulary for vendor digitization inventory spreadsheets.">
-	<meta itemprop="wordCount" content="874">
+	<meta itemprop="description" content="Schema specification, required fields, operational guidelines, and controlled vocabulary for vendor digitization inventory spreadsheets.">
+	<meta itemprop="wordCount" content="1441">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Vendor Digitization Inventory Spreadsheet">
-	<meta name="twitter:description" content="Schema specification, required fields, and controlled vocabulary for vendor digitization inventory spreadsheets.">
+	<meta name="twitter:description" content="Schema specification, required fields, operational guidelines, and controlled vocabulary for vendor digitization inventory spreadsheets.">
 <link href="/digital-imaging-resources/scss/main.css" rel="stylesheet">
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -131,16 +131,22 @@
             
 <div class="td-content">
 	<h1>Vendor Digitization Inventory Spreadsheet</h1>
-	<div class="lead">Schema specification, required fields, and controlled vocabulary for vendor digitization inventory spreadsheets.</div>
+	<div class="lead">Schema specification, required fields, operational guidelines, and controlled vocabulary for vendor digitization inventory spreadsheets.</div>
 	<header class="article-meta">
 		
   </header>
 	<h2 id="1-overview-and-workflow">1. Overview and Workflow</h2>
-<p>When initiating an external digitization project, the Library provides vendors with a minimal metadata inventory spreadsheet. This document serves as the foundational tracking manifest for physical materials selected for digitization and establishes the baseline data required for item identification.</p>
+<p>When initiating an external digitization project, the Library provides vendors with a standardized metadata inventory spreadsheet. This document serves as the foundational tracking manifest for physical materials selected for digitization, establishes the baseline data required for item identification, and directly informs vendor scoping, equipment preparation, and cost estimates.</p>
 <ul>
-<li><strong>Download Template:</strong> <a href="/digital-imaging-resources/static/templates/image_digitization_inventory_template.csv">image_digitization_inventory_template.csv</a></li>
+<li><strong>Download Template:</strong> <a href="/digital-imaging-resources/templates/NYPL_Vendor_Digital_Imaging_Inventory_Template.xlsx">NYPL_Vendor_Digital_Imaging_Inventory_Template.xlsx</a></li>
 </ul>
-<h3 id="11-how-vendors-must-use-this-data">1.1 How Vendors Must Use This Data</h3>
+<h3 id="11-completeness--internal-tracking-fields">1.1 Completeness &amp; Internal Tracking Fields</h3>
+<p>This spreadsheet is a shared tool between curatorial staff, the Vendor Digitization Services team, and external vendors. When filling out this sheet, staff must adhere to the following division of responsibilities:</p>
+<ul>
+<li><strong>Fill Out to the Best of Your Ability:</strong> Not every field in the spreadsheet is mandatory. Some archival inventory items may not be fully cataloged, described in a finding aid, or possess formalized collection IDs. However, <strong>because this inventory is used to calculate vendor estimates and resource allocation, it is vital that it be filled out as completely and accurately as possible.</strong> If descriptive metadata exists, include it.</li>
+<li><strong>Internal Tracking Fields:</strong> Users preparing inventories do not need to fill out <code>schema_version</code> (Column A) or <code>project_code</code> (Column B). These are internal administrative tracking fields; the Vendor Digitization Services team will complete and verify them before submitting the final sheet to a vendor.</li>
+</ul>
+<h3 id="12-how-vendors-must-use-this-data">1.2 How Vendors Must Use This Data</h3>
 <p>This spreadsheet represents the <strong>initial selection and inventory stage</strong> of the digitization workflow. The data provided here must be ingested by the vendor and used as the root source for generating item-level metadata during capture.</p>
 <p>When delivering digitized assets back to the Library, the vendor is responsible for generating individual JSON sidecar files for each asset. To build valid sidecars, the vendor must:</p>
 <ol>
@@ -152,14 +158,18 @@
 <p><strong>Scope Limitation:</strong> Because technical capture fields and asset-level file specifications are generated dynamically during the digitization process, they are strictly excluded from this initial inventory spreadsheet.</p>
 </blockquote>
 <hr>
-<h2 id="2-row-granularity">2. Row Granularity</h2>
-<p>The spreadsheet must be populated according to the physical structure of the materials being shipped:</p>
+<h2 id="2-row-granularity-physical-vs-intellectual-content">2. Row Granularity: Physical vs. Intellectual Content</h2>
+<p>The spreadsheet must be populated according to the physical and intellectual structure of the materials being shipped. <strong>Every item scheduled for digitization requires a valid barcode (<code>barcode</code>), or the project cannot be initiated.</strong></p>
+<h3 id="21-standard-physical-granularity-one-row-per-item">2.1 Standard Physical Granularity (One Row per Item)</h3>
+<p>As a baseline rule, each physical item being digitized (e.g., each bound volume, box, folder, reel, or photograph) must get its own dedicated row. If multiple physical items belong to a single catalog record (<code>bnumber</code>) or finding aid component, create a separate row for each physical carrier and reuse/repeat that <code>bnumber</code> or <code>classmark</code> across those rows.</p>
+<h3 id="22-intellectual-splitting-on-a-single-physical-item-multi-unit-objects">2.2 Intellectual Splitting on a Single Physical Item (Multi-Unit Objects)</h3>
+<p>Frequently, a single physical carrier (such as a volume of bound pamphlets or a microfilm reel) contains <strong>multiple distinct intellectual works</strong> that require the vendor to build separate digital packages/sidecars. Because splitting intellectual units impacts vendor pricing and capture workflows, staff must capture known complexities upfront:</p>
 <ul>
-<li><strong>Single-Unit Objects:</strong> Create <strong>one row per item</strong> (e.g., a single bound volume, a photograph, or a manuscript box).</li>
-<li><strong>Multi-Unit Objects:</strong> Create <strong>one row per unit</strong> when a single cataloged item spans multiple physical carriers (e.g., a manuscript split across two microfilm reels). Repeat the primary <code>barcode</code> across every row associated with the item and increment the <code>unit_index</code> field sequentially (<code>1</code>, <code>2</code>, <code>3</code>, etc.).</li>
+<li><strong>Known Intellectual Units:</strong> If staff know at the inventory stage that a single physical item must be split into multiple digital packages, create <strong>one row per intellectual unit</strong>. Repeat the physical <code>barcode</code> across every row associated with the item, increment the <code>unit_index</code> field sequentially (<code>1</code>, <code>2</code>, <code>3</code>, etc.), and provide descriptive titles in <code>unit_title</code>.</li>
+<li><strong>Unknown/Unscoped Splits:</strong> If staff know a physical carrier contains multiple works but do not yet know the specific unit boundaries or titles, log <strong>one row for the physical item</strong>, leave <code>unit_index</code> and <code>unit_title</code> blank, and explicitly note the complexity in <code>physical_condition_notes</code> (e.g., <em>&ldquo;Contains multiple titles; vendor scoping required to determine digital package splits&rdquo;</em>).</li>
 </ul>
 <hr>
-<h2 id="3-column-specification-an">3. Column Specification (A–N)</h2>
+<h2 id="3-column-specification-ap">3. Column Specification (A–P)</h2>
 <table>
 	<thead>
 			<tr>
@@ -178,7 +188,7 @@
 					<td><code>administrative.schemaVersion</code></td>
 					<td><strong>Yes</strong></td>
 					<td>String, e.g., <code>1.0.0</code></td>
-					<td>Pre-populate for entire batch</td>
+					<td>Completed by Vendor Digitization team</td>
 			</tr>
 			<tr>
 					<td>B</td>
@@ -186,7 +196,7 @@
 					<td><code>administrative.projectCode</code></td>
 					<td>No</td>
 					<td>String</td>
-					<td>Grant or project identifier</td>
+					<td>Completed by Vendor Digitization team</td>
 			</tr>
 			<tr>
 					<td>C</td>
@@ -194,7 +204,7 @@
 					<td><code>source.identifiers.barcode</code></td>
 					<td><strong>Yes</strong></td>
 					<td><code>33433</code> + 9 digits</td>
-					<td>Primary item key</td>
+					<td>Primary item key; <strong>mandatory to initiate</strong></td>
 			</tr>
 			<tr>
 					<td>D</td>
@@ -250,7 +260,7 @@
 					<td><code>source.object.type</code></td>
 					<td><strong>Yes</strong></td>
 					<td>See controlled list below</td>
-					<td>Broad material category</td>
+					<td>Broad material category; use dropdown</td>
 			</tr>
 			<tr>
 					<td>K</td>
@@ -258,7 +268,7 @@
 					<td><code>source.object.format</code></td>
 					<td><strong>Yes</strong></td>
 					<td>See controlled list below</td>
-					<td>Must match valid <code>object_type</code></td>
+					<td>Must match valid <code>object_type</code>; use dropdown</td>
 			</tr>
 			<tr>
 					<td>L</td>
@@ -266,7 +276,7 @@
 					<td><code>source.notes.physicalConditionNotes</code></td>
 					<td>No</td>
 					<td>Free text</td>
-					<td>Condition observed at selection</td>
+					<td>Condition observed at selection / split notes</td>
 			</tr>
 			<tr>
 					<td>M</td>
@@ -290,7 +300,7 @@
 					<td><em>(None)</em></td>
 					<td>No</td>
 					<td>Integer</td>
-					<td>Logistics only; strip before sidecar creation</td>
+					<td>Logistics &amp; estimates; strip before sidecar creation</td>
 			</tr>
 			<tr>
 					<td>P</td>
@@ -298,22 +308,24 @@
 					<td><em>(None)</em></td>
 					<td>No</td>
 					<td>Boolean / String</td>
-					<td>Logistics only; strip before sidecar creation</td>
+					<td>Logistics &amp; estimates; strip before sidecar creation</td>
 			</tr>
 	</tbody>
 </table>
 <hr>
 <h3 id="31-non-schema-tracking-columns-info">3.1 Non-Schema Tracking Columns (<code>[INFO]</code>)</h3>
-<p>Columns prefixed with <code>[INFO]</code> (typically highlighted with a yellow header background in the template spreadsheet) are strictly for logistical communication between Library staff and vendor project managers—such as estimating capture counts or flagging oversized materials requiring special handling.</p>
+<p>Columns O and P (<code>[INFO] estimated_page_count</code> and <code>[INFO] is_oversized</code>) are explicitly differentiated in the template with a <strong>yellow header background</strong>. They are color-coded differently because <strong>this data will not be retained in final digital archival packages or sidecars</strong>.</p>
+<p>However, <strong>these fields are critical for calculating vendor cost estimates, timeline sizing, and capture equipment allocation.</strong> Staff should make every effort to fill out these yellow columns whenever possible.</p>
 <p><strong>Vendors must ignore and strip all <code>[INFO]</code> columns</strong> when parsing the spreadsheet into automated production pipelines. These columns do not map to the metadata schema and must never appear in generated JSON sidecar files.</p>
 <hr>
 <h2 id="4-controlled-vocabulary--material-types">4. Controlled Vocabulary — Material Types</h2>
-<p>The <code>object_type</code> and <code>object_format</code> fields must use exact pairings from the controlled vocabulary below. Any unrecognized string or mismatched pair will fail schema validation.</p>
+<p>To ensure data consistency and schema compliance across all projects, <strong>users must use the built-in drop-down menus in the Excel template for <code>object_type</code> and <code>object_format</code></strong> rather than typing manual entries.</p>
+<p>The template features dependent data validation: selecting an <code>object_type</code> in Column J will automatically filter the allowed values in Column K (<code>object_format</code>) to only show legal pairings. Any unrecognized string or mismatched pair will fail schema validation.</p>
 <table>
 	<thead>
 			<tr>
-					<th><code>object_type</code></th>
-					<th>Valid <code>object_format</code> Values</th>
+					<th><code>object_type</code> (Column J Dropdown)</th>
+					<th>Valid <code>object_format</code> Values (Column K Dependent Dropdown)</th>
 			</tr>
 	</thead>
 	<tbody>
@@ -341,8 +353,8 @@
 </table>
 <hr>
 <h2 id="5-worked-examples">5. Worked Examples</h2>
-<h3 id="51-single-unit-item-photographic-print">5.1 Single-Unit Item (Photographic Print)</h3>
-<p>For standard single-unit materials, leave the unit index and unit title fields blank.</p>
+<h3 id="51-standard-single-unit-item-photographic-print">5.1 Standard Single-Unit Item (Photographic Print)</h3>
+<p>For standard materials containing a single intellectual work on a single physical carrier, leave the unit index and unit title fields blank.</p>
 <table>
 	<thead>
 			<tr>
@@ -391,10 +403,18 @@
 					<td><code>unit_title</code></td>
 					<td><em>(blank)</em></td>
 			</tr>
+			<tr>
+					<td><code>[INFO] estimated_page_count</code></td>
+					<td><code>1</code></td>
+			</tr>
+			<tr>
+					<td><code>[INFO] is_oversized</code></td>
+					<td><code>FALSE</code></td>
+			</tr>
 	</tbody>
 </table>
-<h3 id="52-multi-unit-item-split-microfilm-reel">5.2 Multi-Unit Item (Split Microfilm Reel)</h3>
-<p>When a single cataloged item spans multiple physical carriers, repeat the metadata across rows while incrementing the unit index.</p>
+<h3 id="52-single-physical-item-containing-multiple-intellectual-works-bound-pamphlets">5.2 Single Physical Item Containing Multiple Intellectual Works (Bound Pamphlets)</h3>
+<p>When staff know upfront that a single physical volume contains multiple distinct works that must be delivered as separate digital packages, repeat the physical barcode across rows while assigning sequential unit indexes and titles to estimate the scope of each digital package.</p>
 <table>
 	<thead>
 			<tr>
@@ -403,22 +423,33 @@
 					<th><code>unit_title</code></th>
 					<th><code>object_type</code></th>
 					<th><code>object_format</code></th>
+					<th><code>[INFO] estimated_page_count</code></th>
 			</tr>
 	</thead>
 	<tbody>
 			<tr>
-					<td><code>33433555554444</code></td>
+					<td><code>33433999888777</code></td>
 					<td><code>1</code></td>
-					<td><code>Vol. 1, Jan–Jun 1920</code></td>
-					<td><code>microform</code></td>
-					<td><code>35mm roll microfilm</code></td>
+					<td><code>An Essay on the Harbor of New York (1820)</code></td>
+					<td><code>reflective textual and graphic</code></td>
+					<td><code>bound volume</code></td>
+					<td><code>45</code></td>
 			</tr>
 			<tr>
-					<td><code>33433555554444</code></td>
+					<td><code>33433999888777</code></td>
 					<td><code>2</code></td>
-					<td><code>Vol. 1, Jul–Dec 1920</code></td>
-					<td><code>microform</code></td>
-					<td><code>35mm roll microfilm</code></td>
+					<td><code>Regulations of the Port of New York (1822)</code></td>
+					<td><code>reflective textual and graphic</code></td>
+					<td><code>bound volume</code></td>
+					<td><code>30</code></td>
+			</tr>
+			<tr>
+					<td><code>33433999888777</code></td>
+					<td><code>3</code></td>
+					<td><code>Report of the Waterfront Commission (1825)</code></td>
+					<td><code>reflective textual and graphic</code></td>
+					<td><code>bound volume</code></td>
+					<td><code>60</code></td>
 			</tr>
 	</tbody>
 </table>
@@ -427,8 +458,9 @@
 <ul>
 <li><strong>Root Filename Generation:</strong> The <code>barcode</code> value (Column C) serves as the primary identifier for the physical asset and must form the root prefix for all generated digital files. In the JSON sidecar, the <code>referenceFilename</code> attribute must always begin with this string.</li>
 <li><strong>Multi-Unit Naming Syntax:</strong> For multi-unit items, the integer in <code>unit_index</code> (Column M) dictates the unit segment of the final filename. Vendors must zero-pad this integer to three digits using the <code>u00N</code> naming convention (e.g., <code>unit_index: 2</code> maps to filename segment <code>u002</code>).</li>
-<li><strong>Batch Pre-Population:</strong> To prevent version mismatch errors across large deliveries, Library project managers should pre-fill <code>schema_version</code> (Column A) and <code>project_code</code> (Column B) for all rows prior to vendor distribution.</li>
-<li><strong>Spreadsheet Validation:</strong> Library staff should implement data validation dropdowns in Excel or Google Sheets for columns J (<code>object_type</code>) and K (<code>object_format</code>) to prevent typographical errors prior to vendor delivery.</li>
+<li><strong>Scoping Multi-Unit Packages:</strong> When vendors ingest inventory rows where identical barcodes share multiple sequential <code>unit_index</code> numbers, they must configure their capture pipelines to generate distinct structural digital packages and sidecars for each unit segment, rather than combining them into a single asset package.</li>
+<li><strong>Internal Field Verification:</strong> Prior to vendor distribution, the Vendor Digitization Services team is responsible for verifying and locking the <code>schema_version</code> (Column A) and <code>project_code</code> (Column B) fields for the entire batch.</li>
+<li><strong>Template Dropdown Enforcement:</strong> The Excel template provided by the Library contains pre-configured dependent data validation rules for columns J (<code>object_type</code>) and K (<code>object_format</code>). Staff must not overwrite or paste plain text over these cells to prevent validation failures during ingestion.</li>
 </ul>
 
 	

@@ -1,0 +1,56 @@
+{
+  "administrative": {
+    "schemaVersion": "1.0",
+    "projectCode": "VDS_2026_001",
+    "fundingSource": "National Endowment for the Humanities"
+  },
+  "asset": {
+    "fileRole": "pres",
+    "referenceFilename": "33433123456789_r_pres.tif"
+  },
+  "identifiers": {
+    "barcode": "33433123456789",
+    "bnumber": "b123456789",
+    "classmark": "MSS Example 001",
+    "collectionId": "COLL-001",
+    "divisionCode": "MSS",
+    "title": "Portrait photograph, recto"
+  },
+  "source": {
+    "object": {
+      "type": "reflective photographic",
+      "format": "photographic print"
+    },
+    "sequence": {
+      "side": "r",
+      "sequenceLabel": "Recto"
+    },
+    "notes": {
+      "physicalConditionNotes": "Minor edge wear; no active mold observed."
+    }
+  },
+  "digitizationProcess": {
+    "captureDevice": {
+      "manufacturer": "Example Imaging",
+      "model": "Copy Stand System 5000",
+      "lens": "80mm macro",
+      "serialNumber": "CAM-000123"
+    },
+    "captureSoftware": {
+      "manufacturer": "Example Imaging",
+      "productName": "Capture Suite",
+      "version": "4.2.1"
+    },
+    "calibrationTarget": "ISA Object Level Target",
+    "notes": "Target captured inline with the preservation image."
+  },
+  "digitizer": {
+    "operator": {
+      "firstName": "Jane",
+      "lastName": "Doe"
+    },
+    "organization": {
+      "name": "Example Digitization Vendor"
+    }
+  }
+}

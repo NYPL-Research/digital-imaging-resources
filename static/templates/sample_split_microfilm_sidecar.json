@@ -1,0 +1,58 @@
+{
+  "administrative": {
+    "schemaVersion": "1.0",
+    "projectCode": "VDS_2026_005",
+    "fundingSource": "Example Foundation Grant"
+  },
+  "asset": {
+    "fileRole": "pres",
+    "referenceFilename": "33433555554444_00981_pres.tif"
+  },
+  "identifiers": {
+    "barcode": "33433555554444",
+    "bnumber": "b987654321",
+    "classmark": "Microfilm Reel 42",
+    "aspaceComponentId": "aspace_abc123",
+    "collectionId": "COLL-042",
+    "divisionCode": "MSS",
+    "title": "Microfilm reel containing multiple pamphlets"
+  },
+  "source": {
+    "object": {
+      "type": "microform",
+      "format": "35mm roll microfilm"
+    },
+    "sequence": {
+      "unitIndex": 2,
+      "unitTitle": "Pamphlet 2: Annual Report, 1954",
+      "sequenceNumber": 981,
+      "sequenceLabel": "Frame 981"
+    },
+    "notes": {
+      "physicalConditionNotes": "Density variation and minor edge abrasion observed near the unit boundary."
+    }
+  },
+  "digitizationProcess": {
+    "captureDevice": {
+      "manufacturer": "Example Micrographics",
+      "model": "Archive Scanner 35",
+      "serialNumber": "MF-3500981"
+    },
+    "captureSoftware": {
+      "manufacturer": "Example Micrographics",
+      "productName": "Reel Capture Pro",
+      "version": "7.3.0"
+    },
+    "calibrationTarget": "35mm microfilm scanner calibration target",
+    "notes": "Frame numbering continues from unit 1; numbering does not reset at the u002 boundary."
+  },
+  "digitizer": {
+    "operator": {
+      "firstName": "Alex",
+      "lastName": "Rivera"
+    },
+    "organization": {
+      "name": "Example Digitization Vendor"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Digitized Image Schema",
-  "$id": "https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json",  
+  "$id": "https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json",
   "description": "Definitions for image-based digitization metadata sidecars",
   "type": "object",
   "additionalProperties": false,
@@ -17,10 +17,22 @@
     "administrative": {
       "type": "object",
       "additionalProperties": false,
+      "required": [
+        "schemaVersion"
+      ],
       "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The version of this sidecar schema used to create the record."
+        },
         "projectCode": {
           "type": "string",
           "description": "Administrative code for the digitization project or grant."
+        },
+        "fundingSource": {
+          "type": "string",
+          "description": "The source of funding for the digitization project."
         }
       }
     },
@@ -29,21 +41,103 @@
       "additionalProperties": false,
       "required": [
         "fileRole",
-        "schemaVersion",
         "referenceFilename"
       ],
       "properties": {
         "fileRole": {
-          "enum": ["pres", "serv", "access", "ocr"]
-        },
-        "schemaVersion": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "pres",
+            "serv",
+            "access",
+            "ocr"
+          ],
+          "description": "The approved delivery role for the asset."
         },
         "referenceFilename": {
           "type": "string",
-          "pattern": "^33433\\d{9}_(?:[a-z]+_)?(?:u\\d{3}_)?(?:[rv]|\\d{5})_(pres|serv|access|ocr)\\.[a-z0-9]+$"
+          "description": "The asset basename only, excluding parent directories. Multi-unit membership is represented by the enclosing data/u### directory and source.sequence.unitIndex; the unit identifier must not appear in the filename.",
+          "pattern": "^33433\\d{9}_(?:(?:negative|positive)_)?(?:[rv]|\\d{5})_(?:pres|serv|access|ocr)\\.[a-z0-9]+$"
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "fileRole": {
+                "const": "pres"
+              }
+            },
+            "required": [
+              "fileRole"
+            ]
+          },
+          "then": {
+            "properties": {
+              "referenceFilename": {
+                "pattern": "_pres\\.[a-z0-9]+$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "fileRole": {
+                "const": "serv"
+              }
+            },
+            "required": [
+              "fileRole"
+            ]
+          },
+          "then": {
+            "properties": {
+              "referenceFilename": {
+                "pattern": "_serv\\.[a-z0-9]+$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "fileRole": {
+                "const": "access"
+              }
+            },
+            "required": [
+              "fileRole"
+            ]
+          },
+          "then": {
+            "properties": {
+              "referenceFilename": {
+                "pattern": "_access\\.[a-z0-9]+$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "fileRole": {
+                "const": "ocr"
+              }
+            },
+            "required": [
+              "fileRole"
+            ]
+          },
+          "then": {
+            "properties": {
+              "referenceFilename": {
+                "pattern": "_ocr\\.[a-z0-9]+$"
+              }
+            }
+          }
+        }
+      ]
     },
     "identifiers": {
       "type": "object",
@@ -91,10 +185,20 @@
             "type",
             "format"
           ],
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "format": {
+              "type": "string"
+            }
+          },
           "oneOf": [
             {
               "properties": {
-                "type": { "const": "reflective textual and graphic" },
+                "type": {
+                  "const": "reflective textual and graphic"
+                },
                 "format": {
                   "enum": [
                     "bound volume",
@@ -105,7 +209,9 @@
             },
             {
               "properties": {
-                "type": { "const": "reflective photographic" },
+                "type": {
+                  "const": "reflective photographic"
+                },
                 "format": {
                   "enum": [
                     "photographic print"
@@ -115,7 +221,9 @@
             },
             {
               "properties": {
-                "type": { "const": "transmissive photographic" },
+                "type": {
+                  "const": "transmissive photographic"
+                },
                 "format": {
                   "enum": [
                     "black-and-white negative",
@@ -128,7 +236,9 @@
             },
             {
               "properties": {
-                "type": { "const": "glass substrate" },
+                "type": {
+                  "const": "glass substrate"
+                },
                 "format": {
                   "enum": [
                     "glass plate negative",
@@ -139,7 +249,9 @@
             },
             {
               "properties": {
-                "type": { "const": "microform" },
+                "type": {
+                  "const": "microform"
+                },
                 "format": {
                   "enum": [
                     "16mm roll microfilm",
@@ -158,21 +270,62 @@
           "properties": {
             "unitIndex": {
               "type": "integer",
-              "description": "Multi-unit split identifier (e.g., 1 for u001)"
+              "minimum": 1,
+              "maximum": 999,
+              "description": "The intellectual unit identifier corresponding to the enclosing unit directory. For example, the integer 1 corresponds to data/u001/. The unit index does not alter or reset sequenceNumber."
+            },
+            "unitTitle": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A human-readable title or description for the intellectual unit, mapped from the Library-supplied inventory spreadsheet."
             },
             "sequenceNumber": {
               "type": "integer",
-              "description": "The sequential capture number corresponding to the filename (e.g., 24 for 00024)"
+              "minimum": 1,
+              "maximum": 99999,
+              "description": "The absolute sequential capture number across the entire physical object identified by the barcode. Numbering must not reset at intellectual-unit boundaries. For example, if unit 1 ends at frame 980, unit 2 begins at sequenceNumber 981, represented as 00981 in the filename."
             },
             "side": {
-              "enum": ["r", "v"],
-              "description": "Side indicator for two-sided objects, matching the 'r' or 'v' filename convention."
+              "type": "string",
+              "enum": [
+                "r",
+                "v"
+              ],
+              "description": "The side indicator for two-sided objects, matching the r or v filename convention."
             },
             "sequenceLabel": {
               "type": "string",
-              "description": "The physical reality of this sequence, e.g., 'Recto', 'Verso', 'Page 42', 'Frame 105', 'Front Cover'"
+              "description": "A human-readable label describing the physical or intellectual meaning of the sequence, such as Recto, Verso, Page 42, Frame 981, or Front Cover."
             }
-          }
+          },
+          "allOf": [
+            {
+              "if": {
+                "required": [
+                  "unitIndex"
+                ]
+              },
+              "then": {
+                "required": [
+                  "unitTitle",
+                  "sequenceNumber"
+                ]
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "unitTitle"
+                ]
+              },
+              "then": {
+                "required": [
+                  "unitIndex",
+                  "sequenceNumber"
+                ]
+              }
+            }
+          ]
         },
         "notes": {
           "type": "object",
@@ -248,15 +401,23 @@
       "properties": {
         "operator": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
-            "firstName": { "type": "string" },
-            "lastName": { "type": "string" }
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            }
           }
         },
         "organization": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
-            "name": { "type": "string" }
+            "name": {
+              "type": "string"
+            }
           }
         }
       }

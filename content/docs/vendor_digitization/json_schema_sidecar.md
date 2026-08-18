@@ -14,7 +14,9 @@ While the **[Inventory Spreadsheet]({{< relref "inventory_spreadsheet_spec" >}})
 
 The authoritative JSON Schema is maintained as a separate, publicly accessible file. Vendors must integrate this schema into their automated quality-control pipelines before delivery.
 
-* **Public schema:** [digitized_image_schema.json](https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json)
+- **Public schema:** [digitized_image_schema.json](https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json)
+- **Sample Photograph Sidecar (Single-Unit):** [sample_photograph_sidecar.json](/digital-imaging-resources/templates/sample_photograph_sidecar.json)
+- **Sample Split Microfilm Sidecar (Multi-Unit):** [sample_split_microfilm_sidecar.json](/digital-imaging-resources/templates/sample_split_microfilm_sidecar.json)
 
 The public URL must return the raw JSON Schema document rather than an HTML page, redirect, or error response.
 
@@ -32,22 +34,22 @@ Property names and controlled-vocabulary values are case-sensitive.
 
 Every sidecar must contain the following six top-level objects:
 
-1. **`administrative`**
-   Grant, contract, or project-level administrative data, such as `projectCode`.
+1. **`administrative`**  
+   Grant, contract, or project-level administrative data, such as `projectCode`, `fundingSource`, and `schemaVersion`.
 
-2. **`asset`**
-   File-level tracking data, including the file role (`pres`, `serv`, `access`, or `ocr`), schema version, and exact `referenceFilename`.
+2. **`asset`**  
+   File-level tracking data, including the file role (`pres`, `serv`, `access`, or `ocr`) and exact `referenceFilename`.
 
-3. **`identifiers`**
-   Bibliographic and archival identifiers mapped from the Library-supplied inventory spreadsheet, such as `barcode`, `divisionCode`, `bnumber`, and `classmark`.
+3. **`identifiers`**  
+   Bibliographic and archival identifiers mapped from the Library-supplied inventory spreadsheet, such as `barcode`, `divisionCode`, `bnumber`, and `shelf_locator` (or classmark).
 
-4. **`source`**
-   Physical-source characteristics observed at capture, including the controlled object type and format pairing and sequential capture data such as `sequenceNumber`, `unitIndex`, `side`, and `sequenceLabel`.
+4. **`source`**  
+   Physical-source characteristics observed at capture, including the controlled object type and format pairing and sequential capture data such as `sequenceNumber`, `unitIndex`, `unitTitle`, `side`, and `sequenceLabel`.
 
-5. **`digitizationProcess`**
+5. **`digitizationProcess`**  
    Technical metadata describing the capture device, lens, capture software, equipment identifiers, and calibration targets.
 
-6. **`digitizer`**
+6. **`digitizer`**  
    Administrative information identifying the operator and vendor organization responsible for capture.
 
 ---
@@ -58,52 +60,48 @@ Every sidecar must contain the following six top-level objects:
 
 To support reliable automated ingest and validation, the `referenceFilename` property in the `asset` object must follow one of the Library’s approved naming structures.
 
-The following regular expression supports the standard, dual-track negative, and split multi-unit workflows:
+The base filename pattern is:
 
 ```regex
-^33433\d{9}_(?:(?:negative|positive)_(?:[rv]|\d{5})|u\d{3}_\d{5}|[rv]|\d{5})_(?:pres|serv|access|ocr)\.[a-z0-9]+$
+^33433\d{9}_(?:(?:negative|positive)_)?(?:[rv]|\d{5})_(?:pres|serv|access|ocr)\.[a-z0-9]+$
 ```
 
-This pattern permits the following structures:
+The pattern supports the following two filename structures:
 
 ```text
 [barcode]_[side-or-sequence]_[role].[extension]
 
 [barcode]_[negative-or-positive]_[side-or-sequence]_[role].[extension]
-
-[barcode]_u[unit]_[sequence]_[role].[extension]
 ```
+
+Multi-unit identifiers such as `u001` and `u002` are **not included in filenames**. Multi-unit membership is represented by the asset’s enclosing directory and by the `source.sequence.unitIndex` property in its JSON sidecar.
 
 #### Pattern components
 
-* **Barcode — `33433\d{9}`**
+- **Barcode — `33433\d{9}`**  
   A 14-digit NYPL barcode beginning with `33433`.
 
-* **Standard side or sequence — `[rv]|\d{5}`**
+- **Negative-source component — `negative|positive`**  
+  Used only for parallel files derived from a physical film or glass negative:
+  - `negative` identifies the faithful, non-inverted representation of the source negative;
+  - `positive` identifies the digitally inverted positive representation derived from that negative.
+
+  These components do not describe all materials that happen to display as positive images. They must not be used for photographic prints, slides, transparencies, reflective materials, or other natively positive source objects.
+
+- **Side or sequence — `[rv]|\d{5}`**  
   Either:
+  - `r` for recto;
+  - `v` for verso; or
+  - a five-digit, zero-padded sequence number such as `00001` or `00981`.
 
-  * `r` for recto;
-  * `v` for verso; or
-  * a five-digit, zero-padded sequence number such as `00001`.
-
-* **Negative component — `negative|positive`**
-  Used only for dual-track film- or glass-negative workflows:
-
-  * `negative` identifies the non-inverted capture;
-  * `positive` identifies the digitally inverted representation.
-
-* **Unit index — `u\d{3}`**
-  Used only when a microfilm reel or another barcode-level object is divided into distinct intellectual units, such as `u001` or `u002`.
-
-* **File role — `pres|serv|access|ocr`**
+- **File role — `pres|serv|access|ocr`**  
   One of the four approved delivery roles:
+  - `pres`;
+  - `serv`;
+  - `access`;
+  - `ocr`.
 
-  * `pres`;
-  * `serv`;
-  * `access`;
-  * `ocr`.
-
-* **Extension — `[a-z0-9]+`**
+- **Extension — `[a-z0-9]+`**  
   A lowercase file extension such as `.tif`, `.jp2`, `.jpg`, `.pdf`, `.xml`, or `.txt`.
 
 #### Valid examples
@@ -114,14 +112,16 @@ This pattern permits the following structures:
 33433123456789_00001_serv.tif
 33433987654321_negative_00001_pres.tif
 33433987654321_positive_00001_access.jpg
-33433555554444_u001_00001_ocr.xml
+33433555554444_00981_ocr.xml
 ```
 
 #### Invalid examples
 
 ```text
+33433123456789_positive_r_pres.tif
 33433123456789_R_pres.tif
 33433123456789_1_pres.tif
+33433555554444_u001_00001_ocr.xml
 33433987654321_negative_u001_00001_pres.tif
 nypl_33433123456789_00001_pres.tif
 33433123456789_00001_master.tif
@@ -132,11 +132,84 @@ The filename pattern must be encoded with doubled backslashes when stored as a J
 
 ```json
 {
-  "pattern": "^33433\\d{9}_(?:(?:negative|positive)_(?:[rv]|\\d{5})|u\\d{3}_\\d{5}|[rv]|\\d{5})_(?:pres|serv|access|ocr)\\.[a-z0-9]+$"
+  "pattern": "^33433\\d{9}_(?:(?:negative|positive)_)?(?:[rv]|\\d{5})_(?:pres|serv|access|ocr)\\.[a-z0-9]+$"
 }
 ```
 
-### 3.2 Controlled-Vocabulary Validation
+The schema applies additional conditional validation based on `source.object.format`:
+
+- When the physical source is a black-and-white negative, color negative, or glass plate negative, `referenceFilename` must include either `negative` or `positive`.
+- For all other source formats, `referenceFilename` must not include either component.
+- The suffix in `referenceFilename` must agree with `asset.fileRole`. For example, an asset with `"fileRole": "pres"` must have a filename ending in `_pres` followed by its extension.
+
+### 3.2 Multi-Unit Directory and Sequence Rules
+
+When one physical item contains multiple distinct intellectual units, the Library still requires **one BagIt bag for the complete physical object**. The bag root is named with the physical item’s barcode.
+
+Each intellectual unit is represented by a zero-padded unit subdirectory inside the bag’s `data/` directory:
+
+```text
+33433555554444/
+└── data/
+    ├── u001/
+    └── u002/
+```
+
+The unit identifier is recorded in two places:
+
+1. the enclosing directory, such as `data/u002/`; and
+2. the JSON sidecar property `source.sequence.unitIndex`, where the integer `2` corresponds to `u002`.
+
+A human-readable intellectual-unit title is recorded in `source.sequence.unitTitle`.
+
+The unit identifier must not appear in `referenceFilename`.
+
+Sequence numbering must remain absolute and uninterrupted across the entire physical object. It must not restart when a new intellectual unit begins.
+
+For example, when unit 1 contains frames 1 through 980 and unit 2 begins at frame 981, the files are structured as follows:
+
+```text
+33433555554444/
+└── data/
+    ├── u001/
+    │   ├── 33433555554444_00001_pres.tif
+    │   └── 33433555554444_00980_pres.tif
+    └── u002/
+        ├── 33433555554444_00981_pres.tif
+        └── 33433555554444_01650_pres.tif
+```
+
+The JSON sidecar for the first frame in `u002` would therefore include:
+
+```json
+{
+  "administrative": {
+    "schemaVersion": "1.0",
+    "projectCode": "NEH-2024-001",
+    "fundingSource": "NEH_GRANT_1"
+  },
+  "asset": {
+    "fileRole": "pres",
+    "referenceFilename": "33433555554444_00981_pres.tif"
+  },
+  "source": {
+    "object": {
+      "type": "microform",
+      "format": "35mm roll microfilm"
+    },
+    "sequence": {
+      "unitIndex": 2,
+      "unitTitle": "Pamphlet 2",
+      "sequenceNumber": 981,
+      "sequenceLabel": "Frame 981"
+    }
+  }
+}
+```
+
+The integer `sequenceNumber` is stored as `981` in JSON. Its filename representation is zero-padded to five digits as `00981`.
+
+### 3.3 Controlled-Vocabulary Validation
 
 The schema uses conditional JSON Schema logic, including `oneOf`, to enforce approved pairings between `source.object.type` and `source.object.format`.
 
@@ -187,7 +260,7 @@ ajv validate \
   --spec=draft7 \
   --all-errors \
   -s ./digitized_image_schema.json \
-  -d /path/to/delivery/33433087654321_00001_pres.json
+  -d /path/to/delivery/33433123456789_r_pres.json
 ```
 
 #### 4. Validate an entire directory
@@ -204,12 +277,14 @@ AJV returns an exit status of `0` when all supplied files are valid and an exit 
 
 Validation errors identify the affected instance path, schema path, failed keyword, and associated error message. For example, an error may identify:
 
-* a missing required property;
-* an unapproved additional property;
-* a controlled-vocabulary mismatch;
-* an incorrect data type;
-* a malformed filename;
-* a filename that does not match `referenceFilename`.
+- a missing required property;
+- an unapproved additional property;
+- a controlled-vocabulary mismatch;
+- an incorrect data type;
+- a malformed filename;
+- a filename that does not match `referenceFilename`;
+- a mismatch between `asset.fileRole` and the filename suffix;
+- an invalid use or omission of the `negative` or `positive` filename component.
 
 For more readable output, add:
 
@@ -260,7 +335,7 @@ SCHEMA_URL = (
     "schemas/digitized_image_schema.json"
 )
 
-SIDECAR_PATH = Path("33433087654321_00001_pres.json")
+SIDECAR_PATH = Path("33433123456789_r_pres.json")
 
 
 def load_remote_json(url: str) -> Any:
@@ -380,11 +455,25 @@ if __name__ == "__main__":
 
 This example uses three exit statuses:
 
-* `0`: the sidecar is valid;
-* `1`: the sidecar is valid JSON but fails schema validation;
-* `2`: the schema or sidecar could not be loaded or parsed.
+- `0`: the sidecar is valid;
+- `1`: the sidecar is valid JSON but fails schema validation;
+- `2`: the schema or sidecar could not be loaded or parsed.
 
 For high-volume validation, vendors should download the schema once, instantiate one `Draft7Validator`, and reuse that validator for every sidecar in the batch.
+
+### 4.3 Validation Beyond JSON Schema
+
+JSON Schema validation confirms that an individual sidecar follows the required structure and controlled rules. It does not inspect the filesystem or compare values across multiple files.
+
+The vendor’s delivery-validation workflow must therefore perform additional checks that cannot be enforced by the Draft 7 schema alone, including:
+
+- confirming that the barcode at the beginning of `asset.referenceFilename` matches `identifiers.barcode`;
+- confirming that the asset file and its JSON sidecar have matching basenames;
+- confirming that a sidecar with `unitIndex: 2` resides in `data/u002/`;
+- confirming that sequence numbers remain continuous across unit-directory boundaries;
+- confirming that sequence numbering does not restart within each unit;
+- confirming that every file listed in the BagIt payload is included in the applicable checksum manifest;
+- confirming that no asset is duplicated or omitted when files are grouped into unit directories.
 
 ---
 
@@ -396,7 +485,7 @@ The authoritative schema is maintained as an independent JSON artifact rather th
 
 Open the following resource to view or save the schema:
 
-* [digitized_image_schema.json](https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json)
+- [digitized_image_schema.json](https://nypl-research.github.io/digital-imaging-resources/schemas/digitized_image_schema.json)
 
 ### 5.2 Download with cURL
 
