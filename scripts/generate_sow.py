@@ -43,6 +43,12 @@ VENDORS: dict[str, str] = {
     "CAW": "Chicago Albumen Works",
 }
 
+# Vendor address registry
+VENDOR_ADDRESSES: dict[str, str] = {
+    "BLW": "Backstage Library Works<br/>Nine S. Commerce Way<br/>Bethlehem, PA, US<br/>18017",
+    "CAW": "Chicago Albumen Works<br/>174 Front Street<br/>Housatonic, MA 01236",
+}
+
 # Physical shipping destination for digital deliverables
 DELIVERY_ADDRESS = """\
 New York Public Library<br/>
@@ -382,6 +388,7 @@ def generate_sow_pdf(
 
     today_str = datetime.date.today().strftime("%B %-d, %Y")
     vendor_full_name = VENDORS.get(args.vendor, args.vendor)
+    vendor_full_address = VENDOR_ADDRESSES.get(args.vendor, vendor_full_name)
     needs_cataloging: bool = data["needs_cataloging"]
 
     # ---- Title block -------------------------------------------------------
@@ -402,7 +409,7 @@ def generate_sow_pdf(
         f"{args.contact_email}</a>"
         f"<br/><br/>"
         f"<b>Estimate Requested From:</b><br/>"
-        f"{vendor_full_name}",
+        f"{vendor_full_address}",
         styles["body"],
     ))
     story.append(Spacer(1, 4))
@@ -410,7 +417,7 @@ def generate_sow_pdf(
     # ---- Introduction ------------------------------------------------------
     story.append(Paragraph("Introduction", styles["heading"]))
     story.append(Paragraph(
-        "The New York Public Library (NYPL) invites the above-named vendor to submit a "
+        f"The New York Public Library (NYPL) invites {vendor_full_name} to submit a "
         "formal cost estimate for image-based digitization services in support of an archival "
         "preservation initiative. This Statement of Work (SOW) defines the project scope, "
         "technical specifications, and deliverable requirements to serve as the basis for "
@@ -430,8 +437,7 @@ def generate_sow_pdf(
     subtotals = [
         "(a) Image capture and digitization services — itemized by object type and format, "
         "with separate line items for any applicable special handling surcharges",
-        "(b) Digital storage media (external hard drives)",
-        "(c) Return shipping costs for digital storage media",
+        "(b) Return shipping costs for digital storage media",
     ]
     optional_items: list[str] = []
     if args.vendor_shipping:
@@ -541,10 +547,10 @@ def generate_sow_pdf(
         "absolute sequence number.",
 
         "<b>Pilot batch required before mass production.</b> The vendor must deliver "
-        "a representative pilot batch for Library review and approval before full "
-        "production begins. Mass production shall not commence until the Library "
-        "provides written approval of the pilot, unless this requirement is "
-        "explicitly waived in writing.",
+        "a representative pilot batch consisting of at least one complete bag per format type "
+        "for Library review and approval before full production begins. Mass production shall "
+        "not commence until the Library provides written approval of the pilot, unless this "
+        "requirement is explicitly waived in writing.",
     ]
     for req in key_reqs:
         story.append(Paragraph(f"• {req}", styles["list"]))
