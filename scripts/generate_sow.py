@@ -441,7 +441,10 @@ def generate_sow_pdf(
     if args.ocr:
         optional_items.append("OCR / Text extraction services")
     if needs_cataloging:
-        optional_items.append("Cataloging and metadata services")
+        optional_items.append(
+            "Cataloging and bibliographic services "
+            "(original cataloging and bibliographic record creation)"
+        )
 
     for i, label in enumerate(optional_items, start=ord("d")):
         subtotals.append(f"({chr(i)}) {label}")
@@ -504,6 +507,49 @@ def generate_sow_pdf(
         styles["body"],
     ))
 
+    # ---- Section 4 key requirements callout --------------------------------
+    story.append(Paragraph(
+        "<b>Key Requirements (see full specification for detail):</b>",
+        styles["body"],
+    ))
+    key_reqs = [
+        "<b>No silent substitution.</b> The vendor shall not substitute file formats, "
+        "compression methods, color profiles, bit depths, resolutions, OCR formats, "
+        "naming conventions, metadata fields, or delivery structures without prior "
+        "written approval from the Library.",
+
+        "<b>File counts per physical item.</b> Transmissive film and glass negatives "
+        "require six (6) files per physical item (two preservation masters, two service "
+        "files, and two access JPEGs — one negative-polarity and one positive-polarity "
+        "each). Natively positive slides and transparencies require three (3) files. "
+        "Reflective materials follow the standard three-file structure unless otherwise "
+        "specified. Vendors must confirm their pricing reflects the correct file count "
+        "for each format in this project.",
+
+        "<b>JSON sidecar 1:1 pairing and co-location.</b> Every delivered asset — "
+        "including all preservation masters, service files, access derivatives, and OCR "
+        "files — must be accompanied by exactly one matching JSON sidecar file. Bulk or "
+        "combined JSON manifests do not satisfy this requirement. The sidecar filename "
+        "must match its paired asset character-for-character, changing only the "
+        "extension to .json, and must reside in the same directory as its paired asset.",
+
+        "<b>Continuous absolute sequence numbering.</b> For multi-unit items (e.g., "
+        "microfilm reels containing multiple distinct intellectual works), the physical "
+        "frame sequence must be continuous across the complete barcode-level object. "
+        "Sequence numbering must not reset at intellectual unit boundaries. "
+        "All files derived from the same physical frame must share the same "
+        "absolute sequence number.",
+
+        "<b>Pilot batch required before mass production.</b> The vendor must deliver "
+        "a representative pilot batch for Library review and approval before full "
+        "production begins. Mass production shall not commence until the Library "
+        "provides written approval of the pilot, unless this requirement is "
+        "explicitly waived in writing.",
+    ]
+    for req in key_reqs:
+        story.append(Paragraph(f"• {req}", styles["list"]))
+    story.append(Spacer(1, 6))
+
     # ---- Section 5: Expanded Services (conditional) -----------------------
     has_expanded = any([args.vendor_shipping, args.vendor_packing, args.ocr, needs_cataloging])
     if has_expanded:
@@ -543,6 +589,7 @@ def generate_sow_pdf(
                 "(e.g., RDA, MARC21). The Contractor shall not make direct changes in NYPL "
                 "systems unless expressly authorized.",
             ))
+
 
         for title, body in expanded:
             story.append(Paragraph(f"<b>{title}:</b>", styles["body"]))
