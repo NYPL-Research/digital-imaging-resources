@@ -452,7 +452,7 @@ def generate_sow_pdf(
             "(original cataloging and bibliographic record creation)"
         )
 
-    for i, label in enumerate(optional_items, start=ord("d")):
+    for i, label in enumerate(optional_items, start=ord("c")):
         subtotals.append(f"({chr(i)}) {label}")
 
     for item in subtotals:
