@@ -75,6 +75,7 @@
           "then": {
             "properties": {
               "referenceFilename": {
+                "type": "string",
                 "pattern": "_pres\\.[a-z0-9]+$"
               }
             }
@@ -94,6 +95,7 @@
           "then": {
             "properties": {
               "referenceFilename": {
+                "type": "string",
                 "pattern": "_serv\\.[a-z0-9]+$"
               }
             }
@@ -113,6 +115,7 @@
           "then": {
             "properties": {
               "referenceFilename": {
+                "type": "string",
                 "pattern": "_access\\.[a-z0-9]+$"
               }
             }
@@ -132,6 +135,7 @@
           "then": {
             "properties": {
               "referenceFilename": {
+                "type": "string",
                 "pattern": "_ocr\\.[a-z0-9]+$"
               }
             }
@@ -398,6 +402,9 @@
     "digitizer": {
       "type": "object",
       "additionalProperties": false,
+      "required": [
+        "organization"
+      ],
       "properties": {
         "operator": {
           "type": "object",
@@ -414,6 +421,9 @@
         "organization": {
           "type": "object",
           "additionalProperties": false,
+          "required": [
+            "name"
+          ],
           "properties": {
             "name": {
               "type": "string"
