@@ -5,6 +5,7 @@ import sys
 import pandas as pd
 from pyairtable import Api
 from openpyxl.utils import get_column_letter
+from openpyxl.styles import Font  # NEW: For bolding headers
 
 # Load credentials
 TOKEN = os.getenv('AIRTABLE_TOKEN')
@@ -75,6 +76,39 @@ output_file = 'LPA_Divisions_Export.xlsx'
 print(f"Generating {output_file}...")
 
 with pd.ExcelWriter(output_file, engine='openpyxl') as writer:
+    
+    # --- HELPER FUNCTION FOR FORMATTING ---
+    def format_worksheet(ws, df_sheet):
+        # 1. Auto-size columns and bold headers
+        for idx, col_name in enumerate(df_sheet.columns, start=1):
+            # Calculate width
+            col_data_len = df_sheet[col_name].astype(str).map(len).max()
+            header_len = len(str(col_name))
+            max_len = max(col_data_len, header_len)
+            
+            # Add padding, cap width at 50
+            adjusted_width = min(max_len + 2, 50)
+            col_letter = get_column_letter(idx)
+            ws.column_dimensions[col_letter].width = adjusted_width
+            
+            # Bold the header text
+            ws.cell(row=1, column=idx).font = Font(bold=True)
+            
+        # 2. Add AutoFilter dropdowns to all columns
+        ws.auto_filter.ref = ws.dimensions
+        
+        # 3. Freeze the top row so headers stay visible when scrolling
+        ws.freeze_panes = "A2"
+    # --------------------------------------
+
+    # --- CREATE MASTER SHEET ---
+    # Put all data in the first tab for easy cross-division filtering
+    df.to_excel(writer, sheet_name='All Data Master', index=False)
+    master_ws = writer.sheets['All Data Master']
+    format_worksheet(master_ws, df)
+    print(f" - Created sheet 'All Data Master' with {len(df)} rows.")
+
+    # --- CREATE DIVISION SHEETS ---
     divisions = df['LPA Division'].unique()
     
     for division in divisions:
@@ -87,17 +121,9 @@ with pd.ExcelWriter(output_file, engine='openpyxl') as writer:
         # Write to sheet
         division_df.to_excel(writer, sheet_name=safe_sheet_name, index=False)
         
-        # Auto-size columns
+        # Apply formatting (Filters, frozen rows, column widths)
         worksheet = writer.sheets[safe_sheet_name]
-        for idx, col_name in enumerate(division_df.columns, start=1):
-            col_data_len = division_df[col_name].astype(str).map(len).max()
-            header_len = len(str(col_name))
-            max_len = max(col_data_len, header_len)
-            
-            # Add padding, cap width at 50
-            adjusted_width = min(max_len + 2, 50)
-            col_letter = get_column_letter(idx)
-            worksheet.column_dimensions[col_letter].width = adjusted_width
+        format_worksheet(worksheet, division_df)
             
         print(f" - Created sheet '{safe_sheet_name}' with {len(division_df)} rows.")
 
