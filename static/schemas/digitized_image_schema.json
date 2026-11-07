@@ -311,7 +311,6 @@
               },
               "then": {
                 "required": [
-                  "unitTitle",
                   "sequenceNumber"
                 ]
               }
